@@ -13,6 +13,7 @@ class CreateDegreesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('degrees')) {
         Schema::create('degrees', function (Blueprint $table) {
             $table->id();
             $table->string('degree_name_th');
@@ -25,6 +26,7 @@ class CreateDegreesTable extends Migration
             
             $table->timestamps();
         });
+        }
     }
 
     /**
