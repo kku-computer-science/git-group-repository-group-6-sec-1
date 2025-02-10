@@ -2,39 +2,26 @@
 
 @section('content')
 <div class="container">
-    <h1>Research Assistant</h1>
-    <button class="btn btn-primary mb-3">+ ADD</button>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Group name</th>
-                    <th>Head</th>
-                    <th>Member</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if(isset($assistants) && count($assistants) > 0)
-                    @foreach($assistants as $assistant)
-                    <tr>
-                        <td>{{ $assistant['id'] }}</td>
-                        <td>{{ $assistant['group_name'] }}</td>
-                        <td>{{ $assistant['head'] }}</td>
-                        <td>{{ $assistant['member'] }}</td>
-                        <td>
-                            <button class="btn btn-outline-primary">Edit</button>
-                        </td>
-                    </tr>
-                    @endforeach
-                @else
-                    <tr>
-                        <td colspan="5" class="text-center">No data available</td>
-                    </tr>
-                @endif
-            </tbody>
-        </table>
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
     </div>
-</div>
+    @endif
+    <div class="card" style="padding: 16px;">
+        <div class="card-body">
+            <h4 class="card-title">ผู้ช่วยวิจัย</h4>
+            <a class="btn btn-primary btn-menu btn-icon-text btn-sm mb-3" href="{{ route('researchAssistant.index') }}"><i
+                    class="mdi mdi-plus btn-icon-prepend"></i> ADD</a>
+                    <table id ="example1" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Group name (ไทย)</th>
+                            <th>Head</th>
+                            <th>Member</th>
+                            <th width="280px">Action</th>
+                        </tr>
+                    </thead>
+    </div>
+
 @endsection
