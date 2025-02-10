@@ -232,6 +232,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </a>
                 </li>
                 @endcan
+                @can('Assistant-list')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('researchGroups.index')}}">
+                        <i class="menu-icon mdi mdi-view-dashboard-outline"></i>
+                        <span class="menu-title">Research Assistant</span>
+                        
+                    </a>
+                </li>
             </ul>
         </nav>
 

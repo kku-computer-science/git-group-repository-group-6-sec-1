@@ -36,6 +36,7 @@ class PermissionTableSeeder extends Seeder
             'funds-edit',
             'funds-delete',
             'projects-list',
+            'assistants-list', // สิทธิ์ใหม่
             'projects-create',
             'projects-edit',
             'projects-delete',
