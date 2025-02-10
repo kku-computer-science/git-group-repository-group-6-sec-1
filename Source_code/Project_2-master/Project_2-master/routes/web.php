@@ -38,6 +38,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TcicallController;
+use App\Http\Controllers\ResearchAssistantController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -91,6 +92,9 @@ Route::get('lang/{lang}', ['as' => 'langswitch', 'uses' => 'App\Http\Controllers
 Route::get('/export', [ExportPaperController::class, 'exportUsers'])->name('export-papers');
 Route::get('bib/{id}', [BibtexController::class, 'getbib'])->name('bibtex');
 
+// เพิ่มหน้า Research Assistant
+Route::get('new-page', [ResearchAssistantController::class, 'index'])->name('ResearchAssistant');
+
 //Route::get('bib/{id}', [BibtexController::class, 'index'])->name('bibtex');
 //Route::get('change/lang', [LocalizationController::class,'lang_change'])->name('LangChange');
 
@@ -107,7 +111,6 @@ Route::group(['middleware' => ['isAdmin', 'auth', 'PreventBackHistory']], functi
     Route::get('importfiles', [ImportExportController::class, 'index'])->name('importfiles');
     Route::post('import', [ImportExportController::class, 'import']);
     // Route::get('export', [ImportExportController::class, 'export']);
-
 });
 
 Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
@@ -139,6 +142,11 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     Route::get('tests', [TestController::class, 'index']); //call department
     Route::get('tests/{id}', [TestController::class, 'getCategory'])->name('tests'); //call program
 
+    Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
+        Route::get('/', [ProfileuserController::class, 'index'])->name('dashboard');
+        Route::resource('researchAssistant', ResearchAssistantController::class);
+    });
+    
 });
 
 

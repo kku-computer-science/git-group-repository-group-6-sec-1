@@ -272,6 +272,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
                     @endcan
+                    @can('funds-list')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('researchAssistant.index')}}">
+                            <i class="menu-icon mdi mdi-account-multiple-plus"></i>
+                            <span class="menu-title">Research Assistant</span>
+
+                        </a>
+                    </li>
+                    @endcan
                 </ul>
             </nav>
 
