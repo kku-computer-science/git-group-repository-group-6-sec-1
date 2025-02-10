@@ -141,11 +141,9 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     Route::get('/ajax-get-subcat', [UserController::class, 'getCategory']);
     Route::get('tests', [TestController::class, 'index']); //call department
     Route::get('tests/{id}', [TestController::class, 'getCategory'])->name('tests'); //call program
-
-    Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
-        Route::get('/', [ProfileuserController::class, 'index'])->name('dashboard');
-        Route::resource('researchAssistant', ResearchAssistantController::class);
-    });
+    
+    // Research Assistant route
+    Route::resource('researchAssistant', ResearchAssistantController::class);
     
 });
 
