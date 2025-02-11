@@ -207,8 +207,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </div>
                     </li>
-<<<<<<< HEAD
-=======
                     <!-- เพิ่มส่วนของ Research Assistant -->
                     @endcan
                     @can('groups-list')
@@ -220,7 +218,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
 
->>>>>>> origin/Thanachai_0183
                     @endcan
                     @can('export')
                     <li class="nav-item">

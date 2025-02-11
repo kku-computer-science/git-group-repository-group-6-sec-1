@@ -3,59 +3,108 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-
-class ResearchAssistantController extends Controller
-{
-    //
-}
-=======
-use App\Models\Degree;
+use App\Models\ResearchAssistant;
 use App\Models\ResearchGroup;
 use App\Models\ResearchProject;
-use App\Models\ResearchAssistant;
 
 class ResearchAssistantController extends Controller
 {
     public function index()
     {
-        return view('research_assistant.index');
+        $researchAssistants = ResearchAssistant::all();
+        return view('research_assistant.index', compact('researchAssistants'));
+
+
     }
-    
+
     public function create()
     {
-        $degrees = Degree::all(); // ดึงข้อมูลจากตาราง degrees
-        $researchGroups = ResearchGroup::all(); // ดึงข้อมูล research_groups ทั้งหมด
-        $researchProjects = ResearchProject::all(); // ดึงข้อมูลชื่องานวิจัยทั้งหมด
-        return view('research_assistant.create', compact('degrees', 'researchGroups', 'researchProjects'));
+        $researchGroups = ResearchGroup::all();
+        $researchProjects = ResearchProject::all();
+        return view('research_assistant.create', compact('researchGroups', 'researchProjects'));
     }
 
     public function store(Request $request)
     {
-        // 🔍 Debug: ดูค่าที่ส่งมาก่อน
-        // dd($request->all());  // ✅ ให้ลบหรือย้ายไปหลัง validate()
-
-        // ✅ ตรวจสอบค่าที่ส่งมา (ชื่อฟิลด์ต้องตรงกับฐานข้อมูล)
-        $request->validate([
-            'group_name_th' => 'required|string|max:255',
-            'group_name_en' => 'required|string|max:255',
-            'degree_id' => 'required|exists:degrees,id',
-            'research_group_id' => 'required|exists:research_groups,id',
-            'project_id' => 'required|exists:research_projects,id', // ✅ เพิ่ม project_id
-            'research_title_th' => 'required|string', // ✅ เปลี่ยนจาก description_th
-            'research_title_en' => 'required|string', // ✅ เปลี่ยนจาก description_en
-            'members_count' => 'required|integer',
-            'form_link' => 'required|url',
+        //  ตรวจสอบค่าจากฟอร์ม
+        $validated = $request->validate([
+            'member_count' => 'required|integer',
+            'project_id' => 'required|exists:research_projects,id',
+            'group_id' => 'required|exists:research_groups,id',
+            'form_link' => 'nullable|url',
         ]);
 
-        // ✅ Debug: ตรวจสอบข้อมูลก่อนบันทึก
-        // dd($request->all());
+        //  ดึงข้อมูลกลุ่มวิจัยเพื่อใช้ `group_name_th` และ `group_name_en`
+        $group = ResearchGroup::findOrFail($request->group_id);
 
-        // ✅ บันทึกข้อมูลลงตาราง `research_assistants`
-        ResearchAssistant::create($request->all());
+        //  บันทึกข้อมูล
+        ResearchAssistant::create([
+            'member_count' => $request->member_count,
+            'project_id' => $request->project_id,
+            'group_id' => $request->group_id,
+            'form_link' => $request->form_link,
+            'research_group_id' => $request->group_id,
+            'group_name_th' => $group->group_name_th,
+            'group_name_en' => $group->group_name_en,
+        ]);
 
-        // ✅ Redirect กลับหน้าหลัก พร้อมแจ้งเตือนสำเร็จ
         return redirect()->route('researchAssistant.index')->with('success', 'เพิ่มผู้ช่วยวิจัยสำเร็จ!');
     }
+
+    //ลบ
+    public function destroy($id)
+    {
+        // ค้นหาข้อมูลที่ต้องการลบ
+        $assistant = ResearchAssistant::find($id);
+
+        // ตรวจสอบว่าพบข้อมูลหรือไม่
+        if (!$assistant) {
+            return redirect()->route('researchAssistant.index')->with('error', 'ไม่พบข้อมูลที่ต้องการลบ');
+        }
+
+        // ทำการลบข้อมูล
+        $assistant->delete();
+
+        // กลับไปที่หน้ารายการ พร้อมแจ้งเตือนว่าลบสำเร็จ
+        return redirect()->route('researchAssistant.index')->with('success', 'ลบข้อมูลสำเร็จ!');
+    }
+
+    //แก้ไข อัพเดท
+
+    // ฟังก์ชันแก้ไขข้อมูล
+    public function edit($id)
+    {
+        $researchAssistant = ResearchAssistant::findOrFail($id);
+        $researchGroups = ResearchGroup::all();
+        $researchProjects = ResearchProject::all();
+        
+        return view('research_assistant.edit', compact('researchAssistant', 'researchGroups', 'researchProjects'));
+    }
+
+    // ฟังก์ชันอัปเดตข้อมูล
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'research_group_id' => 'required|exists:research_groups,id',
+            'group_name_en' => 'required|string',
+            'project_id' => 'required|exists:research_projects,id',
+            'member_count' => 'required|integer|min:1',
+            'form_link' => 'required|url',
+            
+        ]);
+
+        $researchAssistant = ResearchAssistant::findOrFail($id);
+        $researchGroup = ResearchGroup::find($request->research_group_id);
+
+        $researchAssistant->update([
+            'group_name_th' => $researchGroup->group_name_th,
+            'group_name_en' => $request->group_name_en,
+            'research_group_id' => $request->research_group_id,
+            'project_id' => $request->project_id,
+            'member_count' => $request->member_count,
+            'form_link' => $request->form_link,
+        ]);
+
+        return redirect()->route('researchAssistant.index')->with('success', 'อัปเดตข้อมูลสำเร็จ!');
+    }
 }
->>>>>>> origin/Thanachai_0183

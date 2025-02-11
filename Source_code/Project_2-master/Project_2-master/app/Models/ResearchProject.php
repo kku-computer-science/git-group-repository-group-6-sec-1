@@ -29,9 +29,5 @@ class ResearchProject extends Model
         // OR return $this->belongsTo('App\User');
         return $this->belongsTo(Fund::class);
     }
-<<<<<<< HEAD
-=======
-    
->>>>>>> origin/Thanachai_0183
 
 }

@@ -31,15 +31,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="degree_id">หลักสูตร (Degree)</label>
-                    <select class="form-control" id="degree_id" name="degree_id" required>
-                        <option value="" disabled selected>เลือกหลักสูตร</option>
-                        @foreach($degrees as $degree)
-                        <option value="{{ $degree->id }}">{{ $degree->degree_name_th }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                
                 <div class="form-group">
                     <label for="project_name">ชื่องานวิจัย</label>
                     <select class="form-control" id="project_name" name="project_name" required>
