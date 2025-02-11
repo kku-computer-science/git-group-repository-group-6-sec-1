@@ -20,13 +20,6 @@ class ResearchGroup extends Model
     public function product(){
         return $this->hasOne(Product::class,'group_id');
     }
-<<<<<<< HEAD
 
-    //เพิ่มเติมให้  researchAssistants
-    public function researchAssistants()
-    {
-        return $this->hasMany(ResearchAssistant::class);
-    }
-=======
->>>>>>> origin/Thanakrit_2664
+
 }
