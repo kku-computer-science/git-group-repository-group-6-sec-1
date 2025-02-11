@@ -12,6 +12,7 @@ class ResearchAssistant extends Model
     protected $table = 'research_assistants';
 
     protected $fillable = [
+        
         'member_count',
         'project_id',
         'group_id', // ต้องใช้ group_id ไม่ใช่ research_group_id

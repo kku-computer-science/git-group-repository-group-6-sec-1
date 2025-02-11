@@ -207,6 +207,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </div>
                     </li>
+
                     <!-- เพิ่มส่วนของ Research Assistant -->
                     @endcan
                     @can('groups-list')
