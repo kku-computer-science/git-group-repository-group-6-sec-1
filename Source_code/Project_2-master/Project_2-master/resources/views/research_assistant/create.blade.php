@@ -50,6 +50,13 @@
                     <input type="number" class="form-control" id="member_count" name="member_count" required>
                 </div>
 
+                <div class="form-group">
+                    <label for="form_link">Form Link <span class="text-danger">*</span></label>
+                    <input type="url" class="form-control" id="form_link" name="form_link"
+                        value="{{ old('form_link') }}"
+                        placeholder="กรอกลิงก์ที่เกี่ยวข้อง" required>
+                </div>
+
                 <button type="submit" class="btn btn-primary">บันทึก</button>
                 <a href="{{ route('researchAssistant.index') }}" class="btn btn-secondary">กลับ</a>
             </form>

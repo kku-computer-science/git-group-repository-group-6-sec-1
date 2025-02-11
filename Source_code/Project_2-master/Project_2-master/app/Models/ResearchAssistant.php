@@ -18,6 +18,7 @@ class ResearchAssistant extends Model
         'research_group_id',
         'group_name_th',
         'group_name_en',
+        'form_link',
     ];
 
     public $timestamps = false; // ปิด timestamps
