@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "81b756fe24cfdd1416a83d8e074ee16a",
+=======
+    "content-hash": "df12afa23ac71fe1005569e1ca54098b",
+>>>>>>> origin/Thanachai_0183
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -7191,6 +7195,7 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "laravel/dusk",
             "version": "v6.25.2",
             "source": {
@@ -7264,6 +7269,8 @@
             "time": "2022-09-29T09:37:07+00:00"
         },
         {
+=======
+>>>>>>> origin/Thanachai_0183
             "name": "laravel/sail",
             "version": "v1.13.9",
             "source": {
@@ -7653,6 +7660,7 @@
             "time": "2022-02-21T01:04:05+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "php-webdriver/webdriver",
             "version": "1.15.2",
             "source": {
@@ -7719,6 +7727,8 @@
             "time": "2024-11-21T15:12:59+00:00"
         },
         {
+=======
+>>>>>>> origin/Thanachai_0183
             "name": "phpdocumentor/reflection-common",
             "version": "2.2.0",
             "source": {
@@ -9383,12 +9393,21 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
+<<<<<<< HEAD
     "stability-flags": {},
+=======
+    "stability-flags": [],
+>>>>>>> origin/Thanachai_0183
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.3|^8.0"
     },
+<<<<<<< HEAD
     "platform-dev": {},
     "plugin-api-version": "2.6.0"
+=======
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
+>>>>>>> origin/Thanachai_0183
 }

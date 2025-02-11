@@ -38,6 +38,8 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TcicallController;
+//เพิ่มเติม
+use App\Http\Controllers\ResearchAssistantController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -99,7 +101,7 @@ Route::get('/callscopus/{id}', [App\Http\Controllers\ScopuscallController::class
 
 Route::group(['middleware' => ['isAdmin', 'auth', 'PreventBackHistory']], function () {
     //Route::post('change-profile-picture',[ProfileuserController::class,'updatePicture'])->name('adminPictureUpdate');
-    
+
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
@@ -138,6 +140,18 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     Route::get('/ajax-get-subcat', [UserController::class, 'getCategory']);
     Route::get('tests', [TestController::class, 'index']); //call department
     Route::get('tests/{id}', [TestController::class, 'getCategory'])->name('tests'); //call program
+
+    //เพิ่มส่วนของresearch-assistant
+    Route::get('/research-assistant', [ResearchAssistantController::class, 'index'])->name('researchAssistant.index');
+    Route::get('/research-assistant/create', [ResearchAssistantController::class, 'create'])->name('researchAssistant.create');
+
+    Route::resource('researchAssistant', ResearchAssistantController::class);
+
+
+
+
+
+
 
 });
 
