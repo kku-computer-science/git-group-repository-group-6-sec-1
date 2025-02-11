@@ -155,7 +155,10 @@
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="tab-content" style="padding-bottom: 20px;">
                 <a class="btn btn-success" href="{{ route('excel', ['id' => $res->id]) }}" target="_blank">Export To Excel</a>
+<<<<<<< HEAD
                 <a class="btn btn-primary btn-dark-blue" href="{{ route('announcement') }}">Apply for Research Assistant Position</a>
+=======
+>>>>>>> origin/Thanachai_0183
             </div>
             <table id="example1" class="table table-striped" style="width:100%">
                 <thead>

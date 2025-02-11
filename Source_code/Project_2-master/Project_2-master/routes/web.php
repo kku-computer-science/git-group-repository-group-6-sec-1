@@ -9,7 +9,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileuserController;
+<<<<<<< HEAD
 use App\Http\Controllers\AnnouncementController;
+=======
+>>>>>>> origin/Thanachai_0183
 use App\Http\Controllers\ProductController;
 
 use App\Http\Controllers\TeacherController;
@@ -39,6 +42,11 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TcicallController;
+<<<<<<< HEAD
+=======
+//เพิ่มเติม
+use App\Http\Controllers\ResearchAssistantController;
+>>>>>>> origin/Thanachai_0183
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,9 +95,12 @@ Route::get('docx', [PDFController::class, 'generateInvoiceDOCX'])->name('docx');
 Route::get('excel', [PDFController::class, 'generateInvoiceExcel'])->name('excel');
 
 Route::get('detail/{id}', [ProfileController::class, 'request'])->name('detail');
+<<<<<<< HEAD
 Route::get('/research-assistant/apply', [ResearchAssistantController::class, 'apply'])->name('research-assistant.apply');
 Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement');
 
+=======
+>>>>>>> origin/Thanachai_0183
 Route::get('index', [LocalizationController::class, 'index']);
 Route::get('lang/{lang}', ['as' => 'langswitch', 'uses' => 'App\Http\Controllers\LocalizationController@switchLang']);
 Route::get('/export', [ExportPaperController::class, 'exportUsers'])->name('export-papers');
@@ -143,6 +154,17 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     Route::get('tests', [TestController::class, 'index']); //call department
     Route::get('tests/{id}', [TestController::class, 'getCategory'])->name('tests'); //call program
 
+<<<<<<< HEAD
+=======
+    //เพิ่มส่วนของresearch-assistant
+    Route::get('/research-assistant', [ResearchAssistantController::class, 'index'])->name('researchAssistant.index');
+    Route::get('/research-assistant/create', [ResearchAssistantController::class, 'create'])->name('researchAssistant.create');
+    Route::post('/research-assistant', [ResearchAssistantController::class, 'store'])->name('researchAssistant.store');
+    Route::resource('researchAssistant', ResearchAssistantController::class);
+    
+
+
+>>>>>>> origin/Thanachai_0183
 });
 
 
