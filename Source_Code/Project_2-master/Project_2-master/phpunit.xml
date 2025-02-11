@@ -1,31 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
-         colors="true"
->
-    <testsuites>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
-        </testsuite>
-        <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
-        </testsuite>
-    </testsuites>
-    <coverage processUncoveredFiles="true">
-        <include>
-            <directory suffix=".php">./app</directory>
-        </include>
-    </coverage>
-    <php>
-        <server name="APP_ENV" value="testing"/>
-        <server name="BCRYPT_ROUNDS" value="4"/>
-        <server name="CACHE_DRIVER" value="array"/>
-        <!-- <server name="DB_CONNECTION" value="sqlite"/> -->
-        <!-- <server name="DB_DATABASE" value=":memory:"/> -->
-        <server name="MAIL_MAILER" value="array"/>
-        <server name="QUEUE_CONNECTION" value="sync"/>
-        <server name="SESSION_DRIVER" value="array"/>
-        <server name="TELESCOPE_ENABLED" value="false"/>
-    </php>
-</phpunit>
+<testsuites>
+  <testsuite name="" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="3.970879">
+    <testsuite name="Browser Test Suite" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="3.970879">
+      <testsuite name="Tests\Browser\TC01_LoginTest" file="C:\Users\bodin\git-group-repository-group-6-sec-1\Source_Code\Project_2-master\Project_2-master\tests\Browser\TC01_LoginTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="2.438291">
+        <testcase name="testUserCanLogin" class="Tests\Browser\TC01_LoginTest" classname="Tests.Browser.TC01_LoginTest" file="C:\Users\bodin\git-group-repository-group-6-sec-1\Source_Code\Project_2-master\Project_2-master\tests\Browser\TC01_LoginTest.php" line="16" assertions="1" time="2.438291">
+          <system-out>
+</system-out>
+        </testcase>
+      </testsuite>
+      <testsuite name="Tests\Browser\TC02_LoginWrongUsernameTest" file="C:\Users\bodin\git-group-repository-group-6-sec-1\Source_Code\Project_2-master\Project_2-master\tests\Browser\TC02_LoginWrongUsernameTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="1.532588">
+        <testcase name="testUserLoginWithWrongUsername" class="Tests\Browser\TC02_LoginWrongUsernameTest" classname="Tests.Browser.TC02_LoginWrongUsernameTest" file="C:\Users\bodin\git-group-repository-group-6-sec-1\Source_Code\Project_2-master\Project_2-master\tests\Browser\TC02_LoginWrongUsernameTest.php" line="16" assertions="1" time="1.532588">
+          <system-out>
+</system-out>
+        </testcase>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
