@@ -3,9 +3,15 @@
 @section('content')
 <div class="container">
     @if ($message = Session::get('success'))
-    <div class="alert alert-success">
-        <p>{{ $message }}</p>
-    </div>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'สำเร็จ!',
+            text: '{{ $message }}',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'ตกลง'
+        });
+    </script>
     @endif
 
     <div class="card" style="padding: 16px;">
@@ -38,17 +44,22 @@
                             <td>{{ $assistant->member_count }}</td>
                             <td>
                                 @if($assistant->form_link)
-                                    <a href="{{ $assistant->form_link }}" target="_blank">View Form</a>
+                                    <a href="{{ $assistant->form_link }}" target="_blank" class="btn btn-sm btn-info">View Form</a>
                                 @else
                                     -
                                 @endif
                             </td>
                             <td>
                                 <a href="{{ route('researchAssistant.edit', $assistant->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                <form action="{{ route('researchAssistant.destroy', $assistant->id) }}" method="POST" style="display:inline;">
+                                
+                                <!-- ปุ่ม Delete ที่ใช้ SweetAlert2 -->
+                                <button class="btn btn-sm btn-danger delete-button" data-id="{{ $assistant->id }}">
+                                    Delete
+                                </button>
+
+                                <form id="delete-form-{{ $assistant->id }}" action="{{ route('researchAssistant.destroy', $assistant->id) }}" method="POST" style="display: none;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
                             </td>
                         </tr>
@@ -60,15 +71,16 @@
     </div>
 </div>
 
+
 <style>
-    /* ป้องกันข้อความยาวดัน UI ออก */
+    
     .group-name, .research-title {
         word-break: break-word;
         white-space: normal;
         max-width: 250px;
     }
 
-    /* ให้ตาราง responsive */
+   
     .table-responsive {
         overflow-x: auto;
     }
@@ -78,4 +90,36 @@
         white-space: normal;
     }
 </style>
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // ค้นหาปุ่ม delete ทั้งหมด
+    let deleteButtons = document.querySelectorAll('.delete-button');
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            let researchAssistantId = this.getAttribute('data-id');
+            
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "If you delete this, it will be gone forever.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'OK',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(`delete-form-${researchAssistantId}`).submit();
+                }
+            });
+        });
+    });
+});
+</script>
+
 @endsection
