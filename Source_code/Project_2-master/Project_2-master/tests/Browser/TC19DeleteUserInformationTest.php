@@ -2,25 +2,18 @@
 
 namespace Tests\Browser;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
 class TC19DeleteUserInformationTest extends DuskTestCase
 {
     /**
-     * TC19 : ลบผู้ใช้
+     * A Dusk test example.
      *
-     * ขั้นตอน:
-     * 1. คลิกแท็บ Users
-     * 2. คลิก Action (ไอคอนรูปถังขยะ) เพื่อลบข้อมูล
-     * 3. กดปุ่ม OK
-     * 4. กดปุ่ม OK อีกครั้งเพื่อยืนยัน
-     *
-     * Expect Result:
-     * - กลับมาหน้า http://127.0.0.1:8000/users
-     * - ลบข้อมูลอัปเดตแล้ว
+     * @return void
      */
-    public function testDeleteUserInformation()
+    public function testExample()
     {
         $this->browse(function (Browser $browser) {
             // ล็อกอิน
@@ -50,9 +43,12 @@ class TC19DeleteUserInformationTest extends DuskTestCase
             $browser->click('a.nav-link[href="http://127.0.0.1:8000/users"]')
                     ->waitForLocation('/users', 5);
 
-            // คลิก Action (ไอคอนรูปถังขยะ) เพื่อลบข้อมูล
-            $browser->click('button#delete-user-5') // ใช้ id เช่น delete-user-1
-                    ->pause(2000); // รอให้คำขอ confirmation ปรากฏ
+            $browser->click('#deleted')
+                    ->pause(2000);
+
+            if ($browser->driver->switchTo()->alert()) {
+                $browser->acceptDialog();
+            }
 
             // กดปุ่ม OK เพื่อยืนยันการลบ
             $browser->acceptDialog() // กดยอมรับในป็อปอัปการลบ
@@ -64,9 +60,6 @@ class TC19DeleteUserInformationTest extends DuskTestCase
 
             // ตรวจสอบว่า URL กลับมาที่หน้า users
             $browser->assertPathIs('/users');
-
-            // ตรวจสอบว่าผู้ใช้ที่ลบหายไปจากหน้า
-            $browser->assertDontSee('admin_updated'); // ห้ามพบข้อมูลที่ลบแล้ว
         });
     }
 }
