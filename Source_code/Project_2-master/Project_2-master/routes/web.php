@@ -144,8 +144,10 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     //เพิ่มส่วนของresearch-assistant
     Route::get('/research-assistant', [ResearchAssistantController::class, 'index'])->name('researchAssistant.index');
     Route::get('/research-assistant/create', [ResearchAssistantController::class, 'create'])->name('researchAssistant.create');
-    Route::post('/research-assistant', [ResearchAssistantController::class, 'store'])->name('researchAssistant.store');
+    
     Route::resource('researchAssistant', ResearchAssistantController::class);
+    
+    // Route::post('/researchAssistant/store', [ResearchAssistantController::class, 'store'])->name('researchAssistant.store');
     
 
 
