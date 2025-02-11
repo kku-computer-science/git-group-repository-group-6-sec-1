@@ -21,6 +21,12 @@ class TC15_EditResearchAssistantForm extends DuskTestCase
                     ->type('password', '123456789') // Fill in the Password field
                     ->press('button[type="submit"]') // Click the submit button (by its type)
                     ->assertPathIs('/dashboard'); // Check if redirected to the dashboard
+            $browser->click('a.nav-link[href="http://127.0.0.1:8000/researchAssistant"]')
+                    ->waitForLocation('/researchAssistant', 5);
+            $browser->click('a.nav-link[href="http://127.0.0.1:8000/researchAssistant/1/edit"]')
+                    ->type('number_count','10');
+            $browser->press('button[type="submit"]')
+                    ->assertPathIs('href="http://127.0.0.1:8000/researchAssistant');
         });
     }
 }
