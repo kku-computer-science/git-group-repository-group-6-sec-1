@@ -40,6 +40,7 @@ use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TcicallController;
 //เพิ่มเติม
 use App\Http\Controllers\ResearchAssistantController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -147,12 +148,6 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     
     Route::resource('researchAssistant', ResearchAssistantController::class);
     
-    
-
-    
-    
-
-
 });
 
 

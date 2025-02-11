@@ -29,6 +29,9 @@ class ResearchProject extends Model
         // OR return $this->belongsTo('App\User');
         return $this->belongsTo(Fund::class);
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> origin/Thanakrit_2664
 
 }

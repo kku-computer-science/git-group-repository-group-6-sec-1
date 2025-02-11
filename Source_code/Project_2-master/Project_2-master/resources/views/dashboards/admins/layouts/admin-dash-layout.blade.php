@@ -232,6 +232,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </a>
                 </li>
                 @endcan
+
                 @can('Assistant-list')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('researchGroups.index')}}">
@@ -240,6 +241,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         
                     </a>
                 </li>
+
             </ul>
         </nav>
 
