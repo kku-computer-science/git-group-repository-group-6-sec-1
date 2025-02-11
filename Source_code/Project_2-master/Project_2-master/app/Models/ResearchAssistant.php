@@ -14,13 +14,13 @@ class ResearchAssistant extends Model
     protected $fillable = [
         'member_count',
         'project_id',
-        'group_id', // ✅ ต้องใช้ group_id ไม่ใช่ research_group_id
+        'group_id', // ต้องใช้ group_id ไม่ใช่ research_group_id
         'research_group_id',
         'group_name_th',
         'group_name_en',
     ];
 
-    public $timestamps = false; // ✅ ปิด timestamps
+    public $timestamps = false; // ปิด timestamps
 
     // ความสัมพันธ์กับ ResearchGroup
     public function researchGroup()

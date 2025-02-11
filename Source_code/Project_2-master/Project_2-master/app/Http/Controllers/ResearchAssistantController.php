@@ -24,17 +24,17 @@ class ResearchAssistantController extends Controller
 
     public function store(Request $request)
     {
-        // ✅ ตรวจสอบค่าจากฟอร์ม
+        //  ตรวจสอบค่าจากฟอร์ม
         $validated = $request->validate([
             'member_count' => 'required|integer',
             'project_id' => 'required|exists:research_projects,id',
             'group_id' => 'required|exists:research_groups,id',
         ]);
 
-        // ✅ ดึงข้อมูลกลุ่มวิจัยเพื่อใช้ `group_name_th` และ `group_name_en`
+        //  ดึงข้อมูลกลุ่มวิจัยเพื่อใช้ `group_name_th` และ `group_name_en`
         $group = ResearchGroup::findOrFail($request->group_id);
 
-        // ✅ บันทึกข้อมูล
+        //  บันทึกข้อมูล
         ResearchAssistant::create([
             'member_count' => $request->member_count,
             'project_id' => $request->project_id,
