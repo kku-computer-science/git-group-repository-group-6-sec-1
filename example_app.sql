@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2025 at 01:16 PM
+-- Generation Time: Feb 11, 2025 at 02:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -113,7 +113,6 @@ INSERT INTO `academicworks` (`id`, `ac_name`, `ac_type`, `ac_sourcetitle`, `ac_y
 CREATE TABLE `announcement` (
   `id` bigint(20) NOT NULL,
   `researcher_number` int(11) DEFAULT NULL COMMENT 'จำนวนที่รับ',
-  `form_link` varchar(255) NOT NULL COMMENT 'link รับสมัคร',
   `project_id` bigint(20) UNSIGNED NOT NULL,
   `group_id` bigint(20) UNSIGNED NOT NULL,
   `status` tinyint(1) NOT NULL COMMENT 'เปิดรับ/ปิดรับ'
@@ -3538,20 +3537,24 @@ INSERT INTO `programs` (`id`, `program_name_th`, `program_name_en`, `degree_id`,
 
 CREATE TABLE `research_assistants` (
   `id` bigint(20) NOT NULL,
-  `member_count` int(11) NOT NULL,
+  `member_count` int(11) NOT NULL COMMENT 'จำนวนสมาชิก',
   `project_id` bigint(20) UNSIGNED NOT NULL,
   `group_id` bigint(20) UNSIGNED NOT NULL,
   `group_name_th` varchar(255) NOT NULL,
   `group_name_en` varchar(255) NOT NULL,
-  `research_group_id` bigint(20) UNSIGNED NOT NULL
+  `research_group_id` bigint(20) UNSIGNED NOT NULL,
+  `form_link` varchar(255) NOT NULL COMMENT 'form รับสมัคร'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `research_assistants`
 --
 
-INSERT INTO `research_assistants` (`id`, `member_count`, `project_id`, `group_id`, `group_name_th`, `group_name_en`, `research_group_id`) VALUES
-(1, 5, 36, 3, 'เทคโนโลยี GIS ขั้นสูง (AGT)', 'Advanced GIS Technology (AGT)', 3);
+INSERT INTO `research_assistants` (`id`, `member_count`, `project_id`, `group_id`, `group_name_th`, `group_name_en`, `research_group_id`, `form_link`) VALUES
+(1, 3, 33, 3, 'ห้องปฏิบัติการวิจัย ระบบอัจฉริยะและการเรียนรู้เครื่อง (MLIS)', 'Intelligent Systems and Machine Learning Research Laboratory (MLIS)', 8, ''),
+(2, 3, 27, 5, 'ห้องปฏิบัติการการคำนวณแบบฉลาดขั้นสูง (ASC)', 'Advanced Intelligent Computing Laboratory (ASC)', 5, ''),
+(7, 2, 35, 5, 'ห้องปฏิบัติการการคำนวณแบบฉลาดขั้นสูง (ASC)', 'Advanced Intelligent Computing Laboratory (ASC)', 5, ''),
+(8, 2, 35, 5, 'ห้องปฏิบัติการการคำนวณแบบฉลาดขั้นสูง (ASC)', 'Advanced Intelligent Computing Laboratory (ASC)', 5, 'https://docs.google.com/forms');
 
 -- --------------------------------------------------------
 
@@ -5921,7 +5924,7 @@ ALTER TABLE `programs`
 -- AUTO_INCREMENT for table `research_assistants`
 --
 ALTER TABLE `research_assistants`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `research_groups`
