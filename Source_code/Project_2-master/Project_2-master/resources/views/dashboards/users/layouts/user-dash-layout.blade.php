@@ -47,7 +47,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <body>
     <div class=" container-scroller sidebar-dark">
-        <!-- navbar ข้างบน 
+        <!-- navbar ข้างบน
     -->
         <nav class=" navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
@@ -118,7 +118,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a class="dropdown-item"><i
                                     class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a> -->
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); 
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById ('logout-form').submit();"> {{ __('Logout') }} <i class="mdi mdi-logout"></i></a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
@@ -207,6 +207,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </div>
                     </li>
+                    <!-- เพิ่มส่วนของ Research Assistant -->
+                    @endcan
+                    @can('groups-list')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('researchAssistant.index')}}">
+                            <i  class="menu-icon mdi mdi-account-arrow-right "></i>
+                            <span class="menu-title">Research Assistant</span>
+
+                        </a>
+                    </li>
+
                     @endcan
                     @can('export')
                     <li class="nav-item">
@@ -268,15 +279,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a class="nav-link" href="{{ route('experts.index')}}">
                             <i class="menu-icon mdi mdi-buffer"></i>
                             <span class="menu-title">Manage Expertise</span>
-
-                        </a>
-                    </li>
-                    @endcan
-                    @can('funds-list')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('researchAssistant.index')}}">
-                            <i class="menu-icon mdi mdi-account-multiple-plus"></i>
-                            <span class="menu-title">Research Assistant</span>
 
                         </a>
                     </li>
