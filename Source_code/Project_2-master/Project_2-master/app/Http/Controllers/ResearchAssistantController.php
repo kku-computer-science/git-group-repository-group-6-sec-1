@@ -14,7 +14,7 @@ class ResearchAssistantController extends Controller
         $researchAssistants = ResearchAssistant::all();
         return view('research_assistant.index', compact('researchAssistants'));
 
-        
+
     }
 
     public function create()
@@ -31,6 +31,7 @@ class ResearchAssistantController extends Controller
             'member_count' => 'required|integer',
             'project_id' => 'required|exists:research_projects,id',
             'group_id' => 'required|exists:research_groups,id',
+            'form_link' => 'nullable|url',
         ]);
 
         //  ดึงข้อมูลกลุ่มวิจัยเพื่อใช้ `group_name_th` และ `group_name_en`
@@ -41,6 +42,7 @@ class ResearchAssistantController extends Controller
             'member_count' => $request->member_count,
             'project_id' => $request->project_id,
             'group_id' => $request->group_id,
+            'form_link' => $request->form_link,
             'research_group_id' => $request->group_id,
             'group_name_th' => $group->group_name_th,
             'group_name_en' => $group->group_name_en,
@@ -87,6 +89,8 @@ class ResearchAssistantController extends Controller
             'group_name_en' => 'required|string',
             'project_id' => 'required|exists:research_projects,id',
             'member_count' => 'required|integer|min:1',
+            'form_link' => 'required|url',
+            
         ]);
 
         $researchAssistant = ResearchAssistant::findOrFail($id);
@@ -98,6 +102,7 @@ class ResearchAssistantController extends Controller
             'research_group_id' => $request->research_group_id,
             'project_id' => $request->project_id,
             'member_count' => $request->member_count,
+            'form_link' => $request->form_link,
         ]);
 
         return redirect()->route('researchAssistant.index')->with('success', 'อัปเดตข้อมูลสำเร็จ!');

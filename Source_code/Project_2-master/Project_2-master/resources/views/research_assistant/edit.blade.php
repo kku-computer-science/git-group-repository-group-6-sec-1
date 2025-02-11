@@ -1,6 +1,5 @@
 @extends('dashboards.users.layouts.user-dash-layout')
 
-
 @section('content')
 <div class="container">
     @if ($message = Session::get('success'))
@@ -51,6 +50,16 @@
                     <label for="member_count">จำนวนผู้ช่วยวิจัย</label>
                     <input type="number" class="form-control" id="member_count" name="member_count" value="{{ $researchAssistant->member_count }}" required>
                 </div>
+
+                <!-- Form Link -->
+                <div class="form-group">
+                    <label for="form_link">Form Link <span class="text-danger">*</span></label>
+                    <input type="url" class="form-control" id="form_link" name="form_link"
+                        value="{{ old('form_link', $researchAssistant->form_link) }}"
+                        placeholder="กรอกลิงก์ที่เกี่ยวข้อง" required>
+                </div>
+
+
 
                 <button type="submit" class="btn btn-primary mr-2">บันทึก</button>
                 <a href="{{ route('researchAssistant.index') }}" class="btn btn-secondary">กลับ</a>

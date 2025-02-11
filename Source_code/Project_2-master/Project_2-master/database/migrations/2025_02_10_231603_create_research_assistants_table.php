@@ -16,6 +16,7 @@ class CreateResearchAssistantsTable extends Migration
             $table->unsignedBigInteger('research_group_id');
             $table->string('group_name_th', 255);
             $table->string('group_name_en', 255);
+            $table->string('form_link')->nullable();
 
             // กำหนด Foreign Keys ตามโครงสร้างฐานข้อมูล
             $table->foreign('project_id')->references('id')->on('research_projects')->onDelete('cascade');
