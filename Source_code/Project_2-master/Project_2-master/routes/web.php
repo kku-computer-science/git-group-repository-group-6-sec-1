@@ -147,7 +147,9 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     
     Route::resource('researchAssistant', ResearchAssistantController::class);
     
-    // Route::post('/researchAssistant/store', [ResearchAssistantController::class, 'store'])->name('researchAssistant.store');
+    
+
+    
     
 
 

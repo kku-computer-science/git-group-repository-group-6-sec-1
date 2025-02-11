@@ -13,6 +13,8 @@ class ResearchAssistantController extends Controller
     {
         $researchAssistants = ResearchAssistant::all();
         return view('research_assistant.index', compact('researchAssistants'));
+
+        
     }
 
     public function create()
@@ -45,5 +47,59 @@ class ResearchAssistantController extends Controller
         ]);
 
         return redirect()->route('researchAssistant.index')->with('success', 'เพิ่มผู้ช่วยวิจัยสำเร็จ!');
+    }
+
+    //ลบ
+    public function destroy($id)
+    {
+        // ค้นหาข้อมูลที่ต้องการลบ
+        $assistant = ResearchAssistant::find($id);
+
+        // ตรวจสอบว่าพบข้อมูลหรือไม่
+        if (!$assistant) {
+            return redirect()->route('researchAssistant.index')->with('error', 'ไม่พบข้อมูลที่ต้องการลบ');
+        }
+
+        // ทำการลบข้อมูล
+        $assistant->delete();
+
+        // กลับไปที่หน้ารายการ พร้อมแจ้งเตือนว่าลบสำเร็จ
+        return redirect()->route('researchAssistant.index')->with('success', 'ลบข้อมูลสำเร็จ!');
+    }
+
+    //แก้ไข อัพเดท
+
+    // ฟังก์ชันแก้ไขข้อมูล
+    public function edit($id)
+    {
+        $researchAssistant = ResearchAssistant::findOrFail($id);
+        $researchGroups = ResearchGroup::all();
+        $researchProjects = ResearchProject::all();
+        
+        return view('research_assistant.edit', compact('researchAssistant', 'researchGroups', 'researchProjects'));
+    }
+
+    // ฟังก์ชันอัปเดตข้อมูล
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'research_group_id' => 'required|exists:research_groups,id',
+            'group_name_en' => 'required|string',
+            'project_id' => 'required|exists:research_projects,id',
+            'member_count' => 'required|integer|min:1',
+        ]);
+
+        $researchAssistant = ResearchAssistant::findOrFail($id);
+        $researchGroup = ResearchGroup::find($request->research_group_id);
+
+        $researchAssistant->update([
+            'group_name_th' => $researchGroup->group_name_th,
+            'group_name_en' => $request->group_name_en,
+            'research_group_id' => $request->research_group_id,
+            'project_id' => $request->project_id,
+            'member_count' => $request->member_count,
+        ]);
+
+        return redirect()->route('researchAssistant.index')->with('success', 'อัปเดตข้อมูลสำเร็จ!');
     }
 }
