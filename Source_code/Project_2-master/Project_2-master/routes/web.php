@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileuserController;
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ProductController;
 
 use App\Http\Controllers\TeacherController;
@@ -86,6 +87,9 @@ Route::get('docx', [PDFController::class, 'generateInvoiceDOCX'])->name('docx');
 Route::get('excel', [PDFController::class, 'generateInvoiceExcel'])->name('excel');
 
 Route::get('detail/{id}', [ProfileController::class, 'request'])->name('detail');
+Route::get('/research-assistant/apply', [ResearchAssistantController::class, 'apply'])->name('research-assistant.apply');
+Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement');
+
 Route::get('index', [LocalizationController::class, 'index']);
 Route::get('lang/{lang}', ['as' => 'langswitch', 'uses' => 'App\Http\Controllers\LocalizationController@switchLang']);
 Route::get('/export', [ExportPaperController::class, 'exportUsers'])->name('export-papers');
