@@ -24,7 +24,8 @@ class TC15_EditResearchAssistantForm extends DuskTestCase
             $browser->click('a.nav-link[href="http://127.0.0.1:8000/researchAssistant"]')
                     ->waitForLocation('/researchAssistant', 5);
             $browser->click('a.nav-link[href="http://127.0.0.1:8000/researchAssistant/1/edit"]')
-                    ->type('number_count','10');
+                    ->type('number_count','10')
+                    ->type('form_link', 'https://docs.google.com/forms/d/e/1FAIpQLSdHOhP3TFaDe03Q_h6P2ufH7MgbnNFXWokL5GIDaj7dUqTCqw/viewform?usp=sf_link');
             $browser->press('button[type="submit"]')
                     ->assertPathIs('href="http://127.0.0.1:8000/researchAssistant');
         });
