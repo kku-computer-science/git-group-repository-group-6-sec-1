@@ -1,9 +1,9 @@
 {
     "_args": [
-      [
-        "tinymce@5.6.2",
-        "/Users/jyothish/Documents/star-admin2-free/template"
-      ]
+        [
+            "tinymce@5.6.2",
+            "/Users/jyothish/Documents/star-admin2-free/template"
+        ]
     ],
     "_from": "tinymce@5.6.2",
     "_id": "tinymce@5.6.2",
@@ -12,44 +12,47 @@
     "_location": "/tinymce",
     "_phantomChildren": {},
     "_requested": {
-      "type": "version",
-      "registry": true,
-      "raw": "tinymce@5.6.2",
-      "name": "tinymce",
-      "escapedName": "tinymce",
-      "rawSpec": "5.6.2",
-      "saveSpec": null,
-      "fetchSpec": "5.6.2"
+        "type": "version",
+        "registry": true,
+        "raw": "tinymce@5.6.2",
+        "name": "tinymce",
+        "escapedName": "tinymce",
+        "rawSpec": "5.6.2",
+        "saveSpec": null,
+        "fetchSpec": "5.6.2"
     },
     "_requiredBy": [
-      "/"
+        "/"
     ],
     "_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-5.6.2.tgz",
     "_spec": "5.6.2",
     "_where": "/Users/jyothish/Documents/star-admin2-free/template",
     "author": {
-      "name": "Tiny Technologies, Inc"
+        "name": "Tiny Technologies, Inc"
     },
     "bugs": {
-      "url": "https://github.com/tinymce/tinymce/issues"
+        "url": "https://github.com/tinymce/tinymce/issues"
     },
     "description": "Web based JavaScript HTML WYSIWYG editor control.",
     "homepage": "https://github.com/tinymce/tinymce-dist#readme",
     "keywords": [
-      "editor",
-      "wysiwyg",
-      "tinymce",
-      "richtext",
-      "javascript",
-      "html"
+        "editor",
+        "wysiwyg",
+        "tinymce",
+        "richtext",
+        "javascript",
+        "html"
     ],
     "license": "LGPL-2.1",
     "main": "tinymce.js",
     "name": "tinymce",
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/tinymce/tinymce-dist.git"
+        "type": "git",
+        "url": "git+https://github.com/tinymce/tinymce-dist.git"
     },
     "types": "tinymce.d.ts",
-    "version": "5.6.2"
-  }
+    "version": "5.6.2",
+    "dependencies": {
+        "tinymce": "file:"
+    }
+}
