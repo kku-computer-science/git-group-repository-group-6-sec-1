@@ -1,0 +1,51 @@
+<?php
+return [
+    'title'           => '资金',
+    'fund_title'      => '研究资金',
+    'add_button'      => '添加',
+    'no'              => '序号',
+    'fund_name'       => '资金名称',
+    'fund_type'       => '资金类型',
+    'fund_level'      => '资金等级',
+    'action'          => '操作',
+    'view'            => '查看',
+    'edit'            => '编辑',
+    'delete'          => '删除',
+    'confirm_title'   => '你确定吗？',
+    'confirm_text'    => '如果删除，数据将永远消失。',
+    'delete_success'  => '删除成功',
+    'fund_types' => [
+        'ทุนภายใน' => '内部资金',
+        'ทุนภายนอก' => '外部资金',
+    ],
+    'fund_levels'      => [
+        'สูง'       => '高',
+        'กลาง'     => '中',
+        'ล่าง'      => '低',
+        'empty'     => '',
+    ],
+    // สำหรับหน้า edit และ create
+    'edit_title'        => '编辑资金',
+    'edit_description'  => '请填写研究资金的详细信息以进行编辑',
+    'add_fund_title'    => '添加研究资金',
+    'add_fund_description' => '请填写研究资金的详细信息',
+    'label' => [
+        'fund_name'       => '资金名称',
+        'fund_year'       => '年份',
+        'fund_details'    => '资金详情',
+        'fund_type'       => '资金类型',
+        'fund_level'      => '资金等级',
+        'support_resource'=> '支持机构 / 研究项目',
+        'added_by'        => '添加人',
+    ],
+    'placeholder' => [
+        'fund_name'       => '请输入资金名称',
+        'support_resource'=> '请输入支持机构',
+    ],
+    'submit_button'    => '提交',
+    'cancel_button'    => '取消',
+    'back_button'      => '返回',
+    // สำหรับการเลือก
+    'select_fund_type'  => '请指定资金类型',
+    'select_fund_level' => '请指定资金等级',
+];

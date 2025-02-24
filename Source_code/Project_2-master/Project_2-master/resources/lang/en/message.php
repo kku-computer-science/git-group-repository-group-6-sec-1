@@ -10,4 +10,8 @@ return [
 'publications' => 'Publications (In the Last 5 Years)',
 'education'=>'Education',
 'publications2' => 'Publications',
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/Prommin_1406
 ];

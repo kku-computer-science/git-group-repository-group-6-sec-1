@@ -18,4 +18,13 @@ class Degree extends Model
     {
         return $this->hasMany(Course::class);
     }
+<<<<<<< HEAD
+=======
+
+    //เพิ่มเติม
+    public function researchAssistants()
+    {
+    return $this->hasMany(ResearchAssistant::class);
+    }
+>>>>>>> origin/Prommin_1406
 }

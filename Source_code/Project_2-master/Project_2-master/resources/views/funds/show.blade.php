@@ -1,9 +1,15 @@
 @extends('dashboards.users.layouts.user-dash-layout')
 
+<<<<<<< HEAD
+=======
+@section('title', __('funds.detail_title'))
+
+>>>>>>> origin/Prommin_1406
 @section('content')
 <div class="container">
     <div class="card col-md-8" style="padding: 16px;">
         <div class="card-body">
+<<<<<<< HEAD
             <h4 class="card-title">Fund Detail</h4>
             <p class="card-description">ข้อมูลรายละเอียดทุน</p>
             <div class="row">
@@ -44,3 +50,68 @@
 
 </div>
 @endsection
+=======
+            <h4 class="card-title">{{ __('funds.detail_title') }}</h4>
+            <p class="card-description">{{ __('funds.card_description') }}</p>
+            <div class="row">
+                <p class="card-text col-sm-3"><b>{{ __('funds.label.fund_name') }}</b></p>
+                <p class="card-text col-sm-9">{{ $fund->fund_name }}</p>
+            </div>
+            <div class="row">
+                <p class="card-text col-sm-3"><b>{{ __('funds.label.fund_year') }}</b></p>
+                <p class="card-text col-sm-9">{{ $fund->fund_year }}</p>
+            </div>
+            <div class="row">
+                <p class="card-text col-sm-3"><b>{{ __('funds.label.fund_details') }}</b></p>
+                <p class="card-text col-sm-9">{{ $fund->fund_details }}</p>
+            </div>
+            <div class="row">
+                <p class="card-text col-sm-3"><b>{{ __('funds.label.fund_type') }}</b></p>
+                <p class="card-text col-sm-9">{{ __('funds.fund_types.' . $fund->fund_type) }}</p>
+            </div>
+            <div class="row">
+            <p class="card-text col-sm-3"><b>{{ __('funds.label.fund_level') }}</b></p>
+            <p class="card-text col-sm-9">
+                @php
+                    $locale = app()->getLocale();
+                @endphp
+                @if($fund->fund_level)
+                                    @php $locale = app()->getLocale(); @endphp
+                                    @if($locale == 'th')
+                                        {{-- เมื่อเป็นภาษาไทย ใช้ไฟล์แปลภาษาไทย --}}
+                                        {{ __('funds.fund_levels.' . $fund->fund_level) }}
+                                    @elseif($locale == 'en')
+                                        {{-- เมื่อเป็นภาษาอังกฤษ ใช้ไฟล์แปลภาษาอังกฤษ --}}
+                                        {{ __('funds.fund_levels.' . $fund->fund_level) }}
+                                    @elseif($locale == 'zh')
+                                        {{-- เมื่อเป็นภาษาจีน ใช้ไฟล์แปลภาษาจีน --}}
+                                        {{ __('funds.fund_levels.' . $fund->fund_level) }}
+                                    @endif
+                @endif
+            </p>
+            </div>
+            <div class="row">
+                <p class="card-text col-sm-3"><b>{{ __('funds.label.fund_unit') }}</b></p>
+                <p class="card-text col-sm-9">{{ $fund->fund_unit }}</p>
+            </div>
+            <div class="row">
+                <p class="card-text col-sm-3"><b>{{ __('funds.label.added_by') }}</b></p>
+                <p class="card-text col-sm-9">
+                    @php
+                        $locale = app()->getLocale();
+                    @endphp
+                    @if($locale == 'th')
+                        {{ $fund->user->fname_th }} {{ $fund->user->lname_th }}
+                    @elseif($locale == 'en' || $locale == 'zh')
+                        {{ $fund->user->fname_en }} {{ $fund->user->lname_en }}
+                    @endif
+                </p>
+            </div>
+            <div class="pull-right mt-5">
+                <a class="btn btn-primary btn-sm" href="{{ route('funds.index') }}"> {{ __('funds.back_button') }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+>>>>>>> origin/Prommin_1406

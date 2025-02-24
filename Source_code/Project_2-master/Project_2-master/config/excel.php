@@ -14,7 +14,10 @@ return [
         | Here you can specify how big the chunk should be.
         |
         */
+<<<<<<< HEAD
         
+=======
+>>>>>>> origin/Prommin_1406
         'chunk_size'             => 1000,
 
         /*
@@ -49,6 +52,10 @@ return [
             'use_bom'                => false,
             'include_separator_line' => false,
             'excel_compatibility'    => false,
+<<<<<<< HEAD
+=======
+            'output_encoding'        => '',
+>>>>>>> origin/Prommin_1406
         ],
 
         /*
@@ -122,7 +129,11 @@ return [
         |
         */
         'csv'         => [
+<<<<<<< HEAD
             'delimiter'        => ',',
+=======
+            'delimiter'        => null,
+>>>>>>> origin/Prommin_1406
             'enclosure'        => '"',
             'escape_character' => '\\',
             'contiguous'       => false,
@@ -277,6 +288,12 @@ return [
     */
     'transactions' => [
         'handler' => 'db',
+<<<<<<< HEAD
+=======
+        'db'      => [
+            'connection' => null,
+        ],
+>>>>>>> origin/Prommin_1406
     ],
 
     'temporary_files' => [

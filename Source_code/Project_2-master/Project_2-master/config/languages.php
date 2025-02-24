@@ -4,6 +4,7 @@
 return [
     'en' => [
         'display' => 'English',
+<<<<<<< HEAD
         'flag-icon' => 'us'
     ],
     'th' => [
@@ -12,3 +13,17 @@ return [
     ],
     
 ];
+=======
+        'flag-icon' => 'us' // ใช้รหัสไอคอนธงประเทศอังกฤษ
+    ],
+    'th' => [
+        'display' => 'ไทย',
+        'flag-icon' => 'th' // ใช้รหัสไอคอนธงประเทศไทย
+    ],
+    'zh' => [
+        'display' => '中国',
+        'flag-icon' => 'cn'  // ใช้รหัสไอคอนธงประเทศจีน
+    ],
+];
+
+>>>>>>> origin/Prommin_1406

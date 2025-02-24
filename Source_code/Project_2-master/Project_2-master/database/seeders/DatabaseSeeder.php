@@ -4,6 +4,10 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/Prommin_1406
 class DatabaseSeeder extends Seeder
 {
     /**

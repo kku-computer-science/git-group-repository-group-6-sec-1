@@ -26,6 +26,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('vendors/typicons/typicons.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/simple-line-icons/css/simple-line-icons.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.base.css')}}">
+<<<<<<< HEAD
+=======
+    <!-- ธงชาติ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
+
+>>>>>>> origin/Prommin_1406
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- <link rel="stylesheet" href="{{asset('vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}"> -->
@@ -47,6 +53,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <body>
     <div class=" container-scroller sidebar-dark">
+<<<<<<< HEAD
         <!-- navbar ข้างบน 
     -->
         <nav class=" navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
@@ -132,6 +139,81 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </button>
 
         </nav>
+=======
+<!-- navbar ข้างบน-->
+<nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+        <div class="me-3">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
+                <span class="icon-menu"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Left navbar links -->
+    <div class="navbar-menu-wrapper d-flex align-items-top">
+        <ul class="navbar-nav">
+            <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                <h1 class="welcome-text">
+                    {{ __('navbar.system_name') }} <span class="text-black fw-bold"></span>
+                </h1>
+                <h3 class="welcome-sub-text"> </h3>
+            </li>
+        </ul>
+        
+        <ul class="navbar-nav ms-auto">
+            <!-- Dropdown เปลี่ยนภาษา (ที่คุณมีอยู่แล้ว) -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="javascript:void(0)" onclick="event.preventDefault()"
+                   id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="flag-icon flag-icon-{{ Config::get('languages')[App::getLocale()]['flag-icon'] }}"></span>
+                    {{ Config::get('languages')[App::getLocale()]['display'] }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-end" 
+                     style="position: absolute; top: 100% !important; left: auto; transform: none !important; margin-top: 0.125rem; z-index: 9999;" 
+                     aria-labelledby="navbarDropdownMenuLink">
+                    @foreach (Config::get('languages') as $lang => $language)
+                        @if ($lang != App::getLocale())
+                            <a class="dropdown-item" href="{{ route('langswitch', $lang) }}">
+                                <span class="flag-icon flag-icon-{{ $language['flag-icon'] }}"></span>
+                                {{ $language['display'] }}
+                            </a>
+                        @endif
+                    @endforeach
+                </div>
+            </li>
+
+            <li class="nav-item d-none d-lg-block">
+                <div id="datepicker-popup" class="input-group date datepicker navbar-date-picker">
+                    <span class="input-group-addon input-group-prepend border-right">
+                        <span class="icon-calendar input-group-text calendar-icon"></span>
+                    </span>
+                    <input type="text" class="form-control">
+                </div>
+            </li>
+            <li class="nav-item">
+                <form class="search-form" action="#">
+                    <i class="icon-search"></i>
+                    <input type="search" class="form-control" placeholder="Search Here" title="Search here">
+                </form>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a class="nav-link" href="{{ route('logout') }}" 
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    {{ __('navbar.logout') }} <i class="mdi mdi-logout"></i>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+        </button>
+    </div>
+</nav>
+
+>>>>>>> origin/Prommin_1406
         <!-- navbar ข้างบน -->
         <div class="container-fluid page-body-wrapper">
             <!-- Main Sidebar Container -->
@@ -207,6 +289,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </div>
                     </li>
+<<<<<<< HEAD
+=======
+
+                    <!-- เพิ่มส่วนของ Research Assistant -->
+                    @endcan
+                    @can('groups-list')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('researchAssistant.index')}}">
+                            <i  class="menu-icon mdi mdi-account-arrow-right "></i>
+                            <span class="menu-title">Research Assistant</span>
+
+                        </a>
+                    </li>
+
+>>>>>>> origin/Prommin_1406
                     @endcan
                     @can('export')
                     <li class="nav-item">
@@ -328,4 +425,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </body>
 
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> origin/Prommin_1406

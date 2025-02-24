@@ -36,6 +36,10 @@ class PermissionTableSeeder extends Seeder
             'funds-edit',
             'funds-delete',
             'projects-list',
+<<<<<<< HEAD
+=======
+            'assistants-list', // สิทธิ์ใหม่
+>>>>>>> origin/Prommin_1406
             'projects-create',
             'projects-edit',
             'projects-delete',
@@ -57,4 +61,8 @@ class PermissionTableSeeder extends Seeder
              Permission::create(['name' => $permission]);
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/Prommin_1406
