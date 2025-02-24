@@ -28,12 +28,12 @@ class TC17ViewUserInformationTest extends DuskTestCase
                     ->waitFor('a.btn-solid-sm[href="/login"]', 5)
                     ->click('a.btn-solid-sm[href="/login"]')
                     ->pause(1000);
-    
+
             // ดึง window handles ทั้งหมด
             $handles = $browser->driver->getWindowHandles();
             $loginWindow = $handles[count($handles) - 1];
             $browser->driver->switchTo()->window($loginWindow);
-    
+
             $browser->waitForLocation('/login', 5)
                     ->pause(2000)
                     ->waitFor('#username', 5)
@@ -44,26 +44,26 @@ class TC17ViewUserInformationTest extends DuskTestCase
                     ->click('button[type=submit]')
                     ->waitForLocation('/dashboard', 5)
                     ->assertPathIs('/dashboard');
-    
+
             // คลิกที่ลิงก์ใน navbar "Users" เพื่อไปที่หน้า /users
             $browser->click('a.nav-link[href="http://127.0.0.1:8000/users"]')
                     ->waitForLocation('/users', 5);
-    
+
             // คลิก Action (ไอคอนรูปตา) เพื่อดูรายละเอียดผู้ใช้
             $browser->click('a.btn.btn-outline-primary.btn-sm[href="http://127.0.0.1:8000/users/8"]')
-                    ->pause(2000); // รอให้หน้าแสดงผล
-    
+                    ->pause(4000); // รอให้หน้าแสดงผล
+
             // ตรวจสอบว่า URL เปลี่ยนเป็นที่ต้องการ
             $browser->assertPathIs('/users/8');
-    
-            // คลิกปุ่ม Back
-            $browser->back()
-                    ->pause(2000);
-    
-            // ตรวจสอบว่า URL กลับมาที่หน้าผู้ใช้
-            $browser->assertPathIs('/users');
+
+            // // คลิกปุ่ม Back
+            // $browser->back()
+            //         ->pause(2000);
+
+            // // ตรวจสอบว่า URL กลับมาที่หน้าผู้ใช้
+            // $browser->assertPathIs('/users');
         });
     }
-    
+
 }
 

@@ -89,10 +89,18 @@ Route::get('docx', [PDFController::class, 'generateInvoiceDOCX'])->name('docx');
 Route::get('excel', [PDFController::class, 'generateInvoiceExcel'])->name('excel');
 
 Route::get('detail/{id}', [ProfileController::class, 'request'])->name('detail');
-Route::get('index', [LocalizationController::class, 'index']);
-Route::get('lang/{lang}', ['as' => 'langswitch', 'uses' => 'App\Http\Controllers\LocalizationController@switchLang']);
 Route::get('/export', [ExportPaperController::class, 'exportUsers'])->name('export-papers');
 Route::get('bib/{id}', [BibtexController::class, 'getbib'])->name('bibtex');
+
+// Route สำหรับเปลี่ยนภาษาที่เลือก
+Route::get('lang/{lang}', [LocalizationController::class, 'switchLang'])->name('langswitch');
+
+// Route Group ที่มี prefix เป็น {lang} และใช้ middleware "setlocale"
+Route::group(['prefix' => '{lang}', 'middleware' => 'setlocale'], function() {
+    Route::get('index', [LocalizationController::class, 'index'])->name('index');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
 
 //Route::get('bib/{id}', [BibtexController::class, 'index'])->name('bibtex');
 //Route::get('change/lang', [LocalizationController::class,'lang_change'])->name('LangChange');

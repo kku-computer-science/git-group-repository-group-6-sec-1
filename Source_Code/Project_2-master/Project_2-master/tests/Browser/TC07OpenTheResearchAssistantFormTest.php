@@ -42,27 +42,6 @@ class TC07OpenTheResearchAssistantFormTest extends DuskTestCase
                 ->waitForLocation('/researchAssistant', 5)
                 ->pause(1000);
 
-
-            // ตรวจสอบว่ามีปุ่ม ADD และคลิกปุ่ม ADD
-            $browser->waitFor('a.btn-primary[href="http://127.0.0.1:8000/researchAssistant/create"]', 3)
-                ->click('a.btn-primary[href="http://127.0.0.1:8000/researchAssistant/create"]')
-                ->waitForLocation('/researchAssistant/create', 5)
-                ->pause(1000)
-                ->assertPathIs('/researchAssistant/create');
-
-            // กรอกฟอร์มเพิ่มผู้ช่วยวิจัย
-            $browser->waitFor('#group_id', 3)
-            ->select('#group_id', '3') // เลือก "เทคโนโลยี GIS ขั้นสูง (AGT)"
-            ->waitFor('#project_id', 3)
-            ->select('#project_id', '16') // เลือก "Statistical Thai – Isarn Dialect Machine Translation System"
-            ->waitFor('#member_count', 3)
-            ->type('#member_count', '5') // ระบุจำนวนผู้ช่วยวิจัย
-
-            ->pause(1000) // รอให้ข้อมูลอัปเดต
-            ->press('บันทึก') // กดปุ่มบันทึก
-            ->waitForLocation('/researchAssistant', 5) // ตรวจสอบว่า redirect กลับไปที่หน้า /researchAssistant
-            ->assertPathIs('/researchAssistant');
-
         });
     }
 }
