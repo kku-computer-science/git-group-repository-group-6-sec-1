@@ -9,42 +9,41 @@
         @endif
         <div class="card" style="padding: 16px;">
             <div class="card-body">
-                <h4 class="card-title">Roles</h4>
+                <h4 class="card-title">{{ __('roles.title') }}</h4>
                 @can('role-create')
-                <a class="btn btn-primary btn-menu btn-icon-text btn-sm mb-3" href="{{ route('roles.create') }}"><i class="mdi mdi-plus btn-icon-prepend"></i>Add</a>
+                <a class="btn btn-primary btn-menu btn-icon-text btn-sm mb-3" href="{{ route('roles.create') }}">
+                    <i class="mdi mdi-plus btn-icon-prepend"></i>{{ __('roles.add') }}
+                </a>
                 @endcan
 
                 <table class="table table-striped">
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th width="280px">Action</th>
+                            <th>{{ __('roles.name') }}</th>
+                            <th width="280px">{{ __('roles.action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i = 1; ?>
                         @foreach ($data as $key => $role)
-
                         <tr>
                             <td>{{ $i++ }}</td>
                             <td>{{ $role->name }}</td>
                             <td>
                                 <form action="{{ route('roles.destroy',$role->id) }}" method="POST">
-                                    <a class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="view" href="{{ route('roles.show',$role->id) }}"><i class="mdi mdi-eye"></i></a>
+                                    <a class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="{{ __('roles.view') }}" href="{{ route('roles.show',$role->id) }}"><i class="mdi mdi-eye"></i></a>
                                     @can('role-edit')
-                                    <a class="btn btn-outline-success btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Edit" href="{{ route('roles.edit',$role->id) }}"><i class="mdi mdi-pencil"></i></a>
+                                    <a class="btn btn-outline-success btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="{{ __('roles.edit') }}" href="{{ route('roles.edit',$role->id) }}"><i class="mdi mdi-pencil"></i></a>
                                     @endcan
 
-
                                     @can('role-delete')
-
                                     @csrf
                                     @method('DELETE')
 
                                     <li class="list-inline-item">
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-outline-danger btn-sm show_confirm" type="submit" data-toggle="tooltip" title="Delete"><i class="mdi mdi-delete"></i></button>
+                                        <button class="btn btn-outline-danger btn-sm show_confirm" type="submit" data-toggle="tooltip" title="{{ __('roles.delete') }}"><i class="mdi mdi-delete"></i></button>
                                     </li>
                                     @endcan
                                 </form>
@@ -64,15 +63,15 @@
         var name = $(this).data("name");
         event.preventDefault();
         swal({
-                title: `Are you sure?`,
-                text: "If you delete this, it will be gone forever.",
+                title: `{{ __('roles.confirm_title') }}`,
+                text: "{{ __('roles.confirm_text') }}",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {
-                    swal("Delete Successfully", {
+                    swal("{{ __('roles.delete_success') }}", {
                         icon: "success",
                     }).then(function() {
                         location.reload();

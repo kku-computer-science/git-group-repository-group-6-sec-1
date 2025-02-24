@@ -1,11 +1,13 @@
 @extends('dashboards.users.layouts.user-dash-layout')
+
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap4.min.css">
+
 <style type="text/css">
     .dropdown-toggle {
         height: 40px;
-        width: 400px !important;
+        width: 70px !important;
     }
 
     body label:not(.input-group-text) {
@@ -21,6 +23,7 @@
         width: 100%;
     }
 </style>
+
 @section('content')
 <div class="container">
     @if ($message = Session::get('success'))
@@ -30,16 +33,17 @@
     @endif
     <div class="card" style="padding: 16px;">
         <div class="card-body">
-            <h4 class="card-title" style="text-align: center;">หลักสูตร</h4>
-            <a class="btn btn-primary btn-menu btn-icon-text btn-sm mb-3" href="javascript:void(0)" id="new-program" data-toggle="modal"><i class="mdi mdi-plus btn-icon-prepend"></i> ADD </a>
+            <h4 class="card-title" style="text-align: center;">{{ __('programs.title') }}</h4>
+            <a class="btn btn-primary btn-menu btn-icon-text btn-sm mb-3" href="javascript:void(0)" id="new-program" data-toggle="modal">
+                <i class="mdi mdi-plus btn-icon-prepend"></i> {{ __('programs.add') }}
+            </a>
             <table id="example1" class="table table-striped">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>Name (ไทย)</th>
-                        <!-- <th>Name (Eng)</th> -->
-                        <th>Degree</th>
-                        <th>Action</th>
+                        <th>{{ __('programs.id') }}</th>
+                        <th>{{ __('programs.name_th') }}</th>
+                        <th>{{ __('programs.degree') }}</th>
+                        <th>{{ __('programs.action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,25 +51,21 @@
                     <tr id="program_id_{{ $program->id }}">
                         <td>{{ $i+1 }}</td>
                         <td>{{ $program->program_name_th }}</td>
-                        <!-- <td>{{ $program->program_name_en }}</td> -->
-                        <td>{{ $program->degree->degree_name_en}}</td>
+                        <td>{{ $program->degree->degree_name_en }}</td>
                         <td>
-                            <form action="{{ route('programs.destroy',$program->id) }}" method="POST">
-                                <!-- <a class="btn btn-info" id="show-program" data-toggle="modal" data-id="{{ $program->id }}">Show</a> -->
-
-                                <!-- <a class="btn btn-outline-primary btn-sm" id="show-program" type="button" data-toggle="modal" data-placement="top" title="view" data-id="{{ $program->id }}"><i class="mdi mdi-eye"></i></a>
-                                     -->
-                                <!-- <a href="javascript:void(0)" class="btn btn-success" id="edit-program" data-toggle="modal" data-id="{{ $program->id }}">Edit </a> -->
+                            <form action="{{ route('programs.destroy', $program->id) }}" method="POST">
                                 <li class="list-inline-item">
-                                    <a class="btn btn-outline-success btn-sm" id="edit-program" type="button" data-toggle="modal" data-id="{{ $program->id }}" data-placement="top" title="Edit" href="javascript:void(0)"><i class="mdi mdi-pencil"></i></a>
+                                    <a class="btn btn-outline-success btn-sm" id="edit-program" type="button" data-toggle="modal" data-id="{{ $program->id }}" data-placement="top" title="{{ __('programs.edit') }}" href="javascript:void(0)">
+                                        <i class="mdi mdi-pencil"></i>
+                                    </a>
                                 </li>
                                 <meta name="csrf-token" content="{{ csrf_token() }}">
                                 <li class="list-inline-item">
-                                    <button class="btn btn-outline-danger btn-sm " id="delete-program" type="submit" data-id="{{ $program->id }}" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></button>
+                                    <button class="btn btn-outline-danger btn-sm" id="delete-program" type="submit" data-id="{{ $program->id }}" data-toggle="tooltip" data-placement="top" title="{{ __('programs.delete') }}">
+                                        <i class="mdi mdi-delete"></i>
+                                    </button>
                                 </li>
                             </form>
-                            <!-- <a id="delete-program" data-id="{{ $program->id }}" class="btn btn-danger delete-user">Delete</a> -->
-
                         </td>
                     </tr>
                     @endforeach
@@ -74,7 +74,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Add and Edit program modal -->
 <div class="modal fade" id="crud-modal" aria-hidden="true">
@@ -90,7 +89,7 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>ระดับการศึกษา:</strong>
+                                <strong>{{ __('programs.degree') }}:</strong>
                                 <div class="col-sm-8">
                                     <select id="degree" class="custom-select my-select" name="degree">
                                         @foreach($degree as $d)
@@ -100,7 +99,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <strong>สาขาวิชา:</strong>
+                                <strong>{{ __('programs.department') }}:</strong>
                                 <div class="col-sm-8">
                                     <select id="department" class="custom-select my-select" name="department">
                                         @foreach($department as $d)
@@ -110,24 +109,18 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <strong>Name TH:</strong>
-                                <input type="text" name="program_name_th" id="program_name_th" class="form-control" placeholder="program name th" onchange="validate()">
+                                <strong>{{ __('programs.name_th') }}:</strong>
+                                <input type="text" name="program_name_th" id="program_name_th" class="form-control" placeholder="{{ __('programs.placeholder_name_th') }}" onchange="validate()">
                             </div>
                             <div class="form-group">
-                                <strong>Name EH:</strong>
-                                <input type="text" name="program_name_en" id="program_name_en" class="form-control" placeholder="program_name_en" onchange="validate()">
+                                <strong>{{ __('programs.name_en') }}:</strong>
+                                <input type="text" name="program_name_en" id="program_name_en" class="form-control" placeholder="{{ __('programs.placeholder_name_en') }}" onchange="validate()">
                             </div>
-                            <!-- <div class="form-group">
-                                <strong>ระดับการศึกษา:</strong>
-                                <input type="text" name="degree_id" id="degree_id" class="form-control" placeholder="degree_id" onchange="validate()">
-                            </div> -->
-
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                            <button type="submit" id="btn-save" name="btnsave" class="btn btn-primary" disabled>Submit</button>
-                            <a href="{{ route('programs.index') }}" class="btn btn-danger">Cancel</a>
-                            <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+                            <button type="submit" id="btn-save" name="btnsave" class="btn btn-primary" disabled>{{ __('programs.submit') }}</button>
+                            <a href="{{ route('programs.index') }}" class="btn btn-danger">{{ __('programs.cancel') }}</a>
                         </div>
                     </div>
                 </form>
@@ -135,6 +128,8 @@
         </div>
     </div>
 </div>
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer></script>
 <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap4.min.js" defer></script>
@@ -143,6 +138,19 @@
     $(document).ready(function() {
         var table1 = $('#example1').DataTable({
             responsive: true,
+            language: {
+                lengthMenu: "@lang('datatables.lengthMenu')",
+                search: "@lang('datatables.search')",
+                info: "@lang('datatables.info')",
+                infoEmpty: "@lang('datatables.infoEmpty')",
+                zeroRecords: "@lang('datatables.zeroRecords')",
+                paginate: {
+                    first: "@lang('datatables.first')",
+                    last: "@lang('datatables.last')",
+                    next: "@lang('datatables.next')",
+                    previous: "@lang('datatables.previous')"
+                }
+            }
         });
     });
 </script>
@@ -153,7 +161,7 @@
         $('#new-program').click(function() {
             $('#btn-save').val("create-program");
             $('#program').trigger("reset");
-            $('#programCrudModal').html("Add New program");
+            $('#programCrudModal').html("@lang('programs.add')"); // ใช้การแปลภาษา
             $('#crud-modal').modal('show');
         });
 
@@ -161,7 +169,7 @@
         $('body').on('click', '#edit-program', function() {
             var program_id = $(this).data('id');
             $.get('programs/' + program_id + '/edit', function(data) {
-                $('#programCrudModal').html("Edit program");
+                $('#programCrudModal').html("@lang('programs.edit')"); // ใช้การแปลภาษา
                 $('#btn-update').val("Update");
                 $('#btn-save').prop('disabled', false);
                 $('#crud-modal').modal('show');
@@ -225,4 +233,5 @@
             document.proForm.btnsave.disabled = true
     }
 </script>
+
 @stop

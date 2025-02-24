@@ -21,5 +21,11 @@ class ResearchGroup extends Model
         return $this->hasOne(Product::class,'group_id');
     }
 
+    //เพิ่มเติมให้  researchAssistants
+    public function researchAssistants()
+    {
+        return $this->hasMany(ResearchAssistant::class);
+    }
+
 
 }

@@ -4,7 +4,7 @@
     <div class="justify-content-center">
         @if (count($errors) > 0)
             <div class="alert alert-danger">
-                <strong>Opps!</strong> Something went wrong, please check below errors.<br><br>
+                <strong>{{ __('permissions.error_title') }}</strong> {{ __('permissions.error_message') }}<br><br>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -13,18 +13,18 @@
             </div>
         @endif
         <div class="card">
-            <div class="card-header">Create permission
+            <div class="card-header">{{ __('permissions.create_permission') }}
                 <span class="float-right">
-                    <a class="btn btn-primary" href="{{ route('permissions.index') }}">Permissions</a>
+                    <a class="btn btn-primary" href="{{ route('permissions.index') }}">{{ __('permissions.permissions_list') }}</a>
                 </span>
             </div>
             <div class="card-body">
-                {!! Form::open(array('route' => 'permissions.store','method'=>'POST')) !!}
+                {!! Form::open(['route' => 'permissions.store', 'method' => 'POST']) !!}
                     <div class="form-group">
-                        <strong>Name:</strong>
-                        {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                        <strong>{{ __('permissions.name') }}:</strong>
+                        {!! Form::text('name', null, ['placeholder' => __('permissions.placeholder_name'), 'class' => 'form-control']) !!}
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">{{ __('permissions.submit') }}</button>
                 {!! Form::close() !!}
             </div>
         </div>
