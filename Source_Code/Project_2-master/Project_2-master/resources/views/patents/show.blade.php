@@ -6,16 +6,16 @@
 <div class="container">
     <div class="card col-md-8" style="padding: 16px;">
         <div class="card-body">
-            <h4 class="card-title">{{ __('patents.detail_title') }}</h4>
+            <h4 class="card-title">{{ __('patents.title') }}</h4>
             <p class="card-description">{{ __('patents.card_description') }}</p>
-            
+
             <div class="row">
                 <p class="card-text col-sm-3"><b>{{ __('patents.name') }}</b></p>
                 <p class="card-text col-sm-9">{{ $patent->ac_name }}</p>
             </div>
             <div class="row">
                 <p class="card-text col-sm-3"><b>{{ __('patents.type') }}</b></p>
-                <p class="card-text col-sm-9">{{ $patent->ac_type }}</p>
+                <p class="card-text col-sm-9">{{ __('patents.ac_type.' . ($patent->ac_type ?? '')) }}</p>
             </div>
             <div class="row">
                 <p class="card-text col-sm-3"><b>{{ __('patents.registration_date') }}</b></p>

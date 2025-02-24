@@ -8,17 +8,17 @@
         <div class="card-body">
             <h4 class="card-title">{{ __('published_research.title') }}</h4>
             <p class="card-description">{{ __('published_research.card_description') }}</p>
-            
+
             <div class="row mt-3">
                 <p class="card-text col-sm-3"><b>{{ __('published_research.paper_name') }}</b></p>
                 <p class="card-text col-sm-9">{{ $paper->paper_name }}</p>
             </div>
             <div class="row mt-2">
-                <p class="card-text col-sm-3"><b>Abstract</b></p>
+                <p class="card-text col-sm-3"><b>{{ __('published_research.Abstract') }}</b></p>
                 <p class="card-text col-sm-9">{{ $paper->abstract }}</p>
             </div>
             <div class="row mt-2">
-                <p class="card-text col-sm-3"><b>Keyword</b></p>
+                <p class="card-text col-sm-3"><b>{{ __('published_research.Keyword') }}</b></p>
                 <p class="card-text col-sm-9">{{ $paper->keyword }}</p>
             </div>
             <div class="row mt-2">
