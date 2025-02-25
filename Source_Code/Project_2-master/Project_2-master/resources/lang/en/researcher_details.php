@@ -6,7 +6,7 @@ return [
     'author' => 'Author',
     'doc_types' => 'Document Type',
     'pages' => 'Page',
-    'journals' => 'Journals',
+    'journals' => 'Journals/Conferences',
     'citation' => 'Citation',
     'doi' => 'Doi',
     'source' => 'Source',
@@ -15,4 +15,11 @@ return [
     'academic_work_type' => 'Academic Work Type',
     'registration_number' => 'Registration Number',
     'registration_date' => 'Registration Date',
+
+    'paper_type' => [
+        'Journal' => 'Journal',
+        'Conference Proceeding' => 'Conference Proceeding',
+        'Book Series' => 'Book Series',
+        'Book' => 'Book',
+    ],
 ];

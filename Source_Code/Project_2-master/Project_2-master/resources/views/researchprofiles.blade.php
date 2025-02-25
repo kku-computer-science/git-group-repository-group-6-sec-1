@@ -184,16 +184,16 @@
                         <th><a href="{{ route('excel', ['id' => $res->id]) }}" target="_blank">#Export</a></td>
                     </tr> -->
                     <tr>
-                        <th>No.</th>
-                        <th>Year</th>
-                        <th>Paper Name</th>
-                        <th>Author</th>
-                        <th>Document Type</th>
-                        <th>Page</th>
-                        <th>Journals/Transactions</th>
-                        <th>Ciations</th>
-                        <th>Doi</th>
-                        <th>Source</th>
+                        <th>{{__('researcher_details.no')}}</th>
+                        <th>{{__('researcher_details.year')}}</th>
+                        <th>{{__('researcher_details.paper_name')}}</th>
+                        <th>{{__('researcher_details.author')}}</th>
+                        <th>{{__('researcher_details.doc_types')}}</th>
+                        <th>{{__('researcher_details.pages')}}</th>
+                        <th>{{__('researcher_details.journals')}}</th>
+                        <th>{{__('researcher_details.citation')}}</th>
+                        <th>{{__('researcher_details.doi')}}</th>
+                        <th>{{__('researcher_details.source')}}</th>
                     </tr>
                 </thead>
 
@@ -206,18 +206,26 @@
                         <td style="width:90%;">{!! html_entity_decode(preg_replace('<inf>', 'sub', $paper->paper_name)) !!}</td>
                         <td>
                             @foreach ($paper->author as $author)
-                            <span>
+                            <span class= "why-you-not-transalate">
                                 <a>{{$author -> author_fname}} {{$author -> author_lname}}</a>
                             </span>
                             @endforeach
                             @foreach ($paper->teacher as $author)
-                            <span >
-                                <a href="{{ route('detail',Crypt::encrypt($author->id))}}">
-                                    <teacher>{{$author -> fname_en}} {{$author -> lname_en}}</teacher></a>
+                            <span>
+                                <a href="{{ route('detail', Crypt::encrypt($author->id)) }}">
+                                    @if(app()->getLocale() == 'th')
+                                        <teacher>{{ $author->fname_th }} {{ $author->lname_th }}</teacher>
+                                    @elseif(app()->getLocale() == 'zh')
+                                        <teacher>{{ $author->fname_en }} {{ $author->lname_en }}</teacher>
+                                    @else
+                                        <teacher>{{ $author->fname_en }} {{ $author->lname_en }}</teacher>
+                                    @endif
+                                </a>
                             </span>
                             @endforeach
+
                         </td>
-                        <td>{{$paper->paper_type}}</td>
+                        <td>{{__('researcher_details.paper_type.' . $paper->paper_type)}}</td>
                         <td style="width:100%;">{{$paper->paper_page}}</td>
                         <td>{{$paper->paper_sourcetitle}}</td>
                         <td>{{$paper->paper_citation}}</td>
@@ -240,19 +248,19 @@
         <div class="tab-pane fade" id="scopus" role="tabpanel" aria-labelledby="scopus-tab">
 
             <table id="example2" class="table table-striped" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Year</th>
-                        <th style="width:90%;">Paper Name</th>
-                        <th>Author</th>
-                        <th>Document Type</th>
-                        <th style="width:100%;">Page</th>
-                        <th>Journals/Transactions</th>
-                        <th>Ciations</th>
-                        <th>Doi</th>
-                    </tr>
-                </thead>
+            <thead>
+                <tr>
+                    <th>{{__('researcher_details.no')}}</th>
+                    <th>{{__('researcher_details.year')}}</th>
+                    <th>{{__('researcher_details.paper_name')}}</th>
+                    <th>{{__('researcher_details.author')}}</th>
+                    <th>{{__('researcher_details.doc_types')}}</th>
+                    <th>{{__('researcher_details.pages')}}</th>
+                    <th>{{__('researcher_details.journals')}}</th>
+                    <th>{{__('researcher_details.citation')}}</th>
+                    <th>{{__('researcher_details.doi')}}</th>
+                </tr>
+            </thead>
                 <tbody>
                     @foreach ($papers_scopus as $n => $paper)
                     <tr>
@@ -273,13 +281,11 @@
                             </span>
                             @endforeach
                         </td>
-                        <td>{{$paper->paper_type}}</td>
+                        <td>{{__('researcher_details.paper_type.' . $paper->paper_type)}}</td>
                         <td style="width:100%;">{{$paper->paper_page}}</td>
                         <td>{{$paper->paper_sourcetitle}}</td>
                         <td>{{$paper->paper_citation}}</td>
                         <td>{{$paper->paper_doi}}</td>
-
-
                     </tr>
                     @endforeach
                 </tbody>
@@ -293,18 +299,17 @@
             <table id="example3" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>Year</th>
-                        <th style="width:90%;">Paper Name</th>
-                        <th>Author</th>
-                        <th>Document Type</th>
-                        <th style="width:100%;">Page</th>
-                        <th>Journals/Transactions</th>
-                        <th>Ciations</th>
-                        <th>Doi</th>
+                        <th>{{__('researcher_details.no')}}</th>
+                        <th>{{__('researcher_details.year')}}</th>
+                        <th>{{__('researcher_details.paper_name')}}</th>
+                        <th>{{__('researcher_details.author')}}</th>
+                        <th>{{__('researcher_details.doc_types')}}</th>
+                        <th>{{__('researcher_details.pages')}}</th>
+                        <th>{{__('researcher_details.journals')}}</th>
+                        <th>{{__('researcher_details.citation')}}</th>
+                        <th>{{__('researcher_details.doi')}}</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     @foreach ($papers_wos as $n => $paper)
                     <tr>
@@ -325,7 +330,7 @@
                             </span>
                             @endforeach
                         </td>
-                        <td>{{$paper->paper_type}}</td>
+                        <td>{{__('researcher_details.paper_type.' . $paper->paper_type)}}</td>
                         <td style="width:100%;">{{$paper->paper_page}}</td>
                         <td>{{$paper->paper_sourcetitle}}</td>
                         <td>{{$paper->paper_citation}}</td>
@@ -343,17 +348,18 @@
 
         <div class="tab-pane fade" id="tci" role="tabpanel" aria-labelledby="tci-tab">
             <table id="example4" class="table table-striped" style="width:100%">
+
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>Year</th>
-                        <th style="width:90%;">Paper Name</th>
-                        <th>Author</th>
-                        <th>Document Type</th>
-                        <th style="width:100%;">Page</th>
-                        <th>Journals/Transactions</th>
-                        <th>Ciations</th>
-                        <th>Doi</th>
+                        <th>{{__('researcher_details.no')}}</th>
+                        <th>{{__('researcher_details.year')}}</th>
+                        <th>{{__('researcher_details.paper_name')}}</th>
+                        <th>{{__('researcher_details.author')}}</th>
+                        <th>{{__('researcher_details.doc_types')}}</th>
+                        <th>{{__('researcher_details.pages')}}</th>
+                        <th>{{__('researcher_details.journals')}}</th>
+                        <th>{{__('researcher_details.citation')}}</th>
+                        <th>{{__('researcher_details.doi')}}</th>
                     </tr>
                 </thead>
 
@@ -377,7 +383,7 @@
                             </span>
                             @endforeach
                         </td>
-                        <td>{{$paper->paper_type}}</td>
+                        <td>{{__('researcher_details.paper_type.' . $paper->paper_type)}}</td>
                         <td style="width:100%;">{{$paper->paper_page}}</td>
                         <td>{{$paper->paper_sourcetitle}}</td>
                         <td>{{$paper->paper_citation}}</td>
@@ -393,12 +399,12 @@
             <table id="example5" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th scope="col">Number</th>
-                        <th scope="col">Year</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">สถานที่พิมพ์</th>
-                        <th scope="col">Page</th>
+                        <th scope="col">{{__('researcher_details.no')}}</th>
+                        <th scope="col">{{__('researcher_details.year')}}</th>
+                        <th scope="col">{{__('researcher_details.name')}}</th>
+                        <th scope="col">{{__('researcher_details.author')}}</th>
+                        <th scope="col">{{__('researcher_details.place_of_publication')}}</th>
+                        <th scope="col">{{__('researcher_details.pages')}}</th>
 
                     </tr>
                 </thead>
@@ -435,12 +441,12 @@
             <table id="example6" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th scope="col">Number</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">ประเภท</th>
-                        <th scope="col">หมายเลขทะเบียน</th>
-                        <th scope="col">วันที่จดทะเบียน</th>
+                        <th scope="col">{{__('researcher_details.no')}}</th>
+                        <th scope="col">{{__('researcher_details.name')}}</th>
+                        <th scope="col">{{__('researcher_details.author')}}</th>
+                        <th scope="col">{{__('researcher_details.academic_work_type')}}</th>
+                        <th scope="col">{{__('researcher_details.registration_number')}}</th>
+                        <th scope="col">{{__('researcher_details.registration_date')}}</th>
 
                     </tr>
                 </thead>

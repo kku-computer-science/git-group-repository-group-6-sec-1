@@ -1,12 +1,12 @@
 <?php
 return [
-    'no' => 'ลำดับที่',
+    'no' => 'ลำดับ',
     'year' => 'ปี',
     'paper_name' => 'ชื่อบทความ',
     'author' => 'ผู้แต่ง',
     'doc_types' => 'ประเภทเอกสาร',
     'pages' => 'จำนวนหน้า',
-    'journals' => 'วารสาร',
+    'journals' => 'วารสาร/การประชุมวิชาการ',
     'citation' => 'การอ้างอิง',
     'doi' => 'DOI',
     'source' => 'แหล่งที่มา',
@@ -15,4 +15,13 @@ return [
     'academic_work_type' => 'ประเภทผลงานทางวิชาการ',
     'registration_number' => 'หมายเลขทะเบียน',
     'registration_date' => 'วันที่ลงทะเบียน',
+
+
+    'paper_type' => [
+        'Journal' => 'วารสาร',
+        'Conference Proceeding' => 'เอกสารประชุมวิชาการ',
+        'Book Series' => 'ชุดหนังสือ',
+        'Book' => 'หนังสือ',
+    ],
+
 ];

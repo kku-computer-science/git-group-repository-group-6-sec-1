@@ -34,6 +34,8 @@
     <div class="card" style="padding: 16px;">
         <div class="card-body">
             <h4 class="card-title" style="text-align: center;">ความเชี่ยวชาญของอาจารย์</h4>
+            @php use Illuminate\Support\Str; @endphp
+
             <table id="example1" class="table table-striped">
                 <thead>
                     <tr>
@@ -41,8 +43,9 @@
                         @if(Auth::user()->hasRole('admin'))
                         <th>Teacher Name</th>
                         @endif
-                        <th>Name</th>
-
+                        <th>English Name</th>
+                        <th>Thai Name</th>
+                        <th>Chinese Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -50,29 +53,32 @@
                     @foreach ($experts as $i => $expert)
                     <tr id="expert_id_{{ $expert->id }}">
                         <td>{{ $i+1 }}</td>
+
                         @if(Auth::user()->hasRole('admin'))
-                        <td>{{ $expert->user->fname_en }} {{ $expert->user->lname_en }}</td>
+                        <td>
+                            @if(app()->getLocale() == 'th')
+                                {{ Str::limit($expert->user->fname_th . ' ' . $expert->user->lname_th, 20) }}
+                            @else
+                                {{ Str::limit($expert->user->fname_en . ' ' . $expert->user->lname_en, 20) }}
+                            @endif
+                        </td>
                         @endif
-                        <td>{{ $expert->expert_name }}</td>
+
+                        <td>{{ Str::limit($expert->expert_name, 20) }}</td>
+                        <td>{{ Str::limit($expert->expert_name_th, 20) }}</td>
+                        <td>{{ Str::limit($expert->expert_name_zh, 20) }}</td>
 
                         <td>
                             <form action="{{ route('experts.destroy',$expert->id) }}" method="POST">
-                                <!-- <a class="btn btn-info" id="show-expertise" data-toggle="modal" data-id="{{ $expert->id }}">Show</a> -->
                                 <li class="list-inline-item">
-                                    <!-- <a class="btn btn-success btn-sm rounded-0" href="javascript:void(0)" id="edit-expertise" type="button" data-toggle="modal" data-placement="top" data-id="{{ $expert->id }}" title="Edit"><i class="fa fa-edit"></i></a> -->
-                                    <a class="btn btn-outline-success btn-sm" id="edit-expertise" type="button" data-toggle="modal" data-id="{{ $expert->id }}" data-placement="top" title="Edit" href="javascript:void(0)"><i class="mdi mdi-pencil"></i></a>
-
+                                    <a class="btn btn-outline-success btn-sm" id="edit-expertise" type="button" data-toggle="modal" data-id="{{ $expert->id }}" title="Edit"><i class="mdi mdi-pencil"></i></a>
                                 </li>
 
-                                <!-- <a href="javascript:void(0)" class="btn btn-success" id="edit-expertise" data-toggle="modal" data-id="{{ $expert->id }}">Edit </a> -->
                                 @csrf
                                 <meta name="csrf-token" content="{{ csrf_token() }}">
                                 <li class="list-inline-item">
-                                    <button class="btn btn-outline-danger btn-sm show_confirm" id="delete-expertise" type="submit" data-id="{{ $expert->id }}" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></button>
-
+                                    <button class="btn btn-outline-danger btn-sm show_confirm" id="delete-expertise" type="submit" data-id="{{ $expert->id }}" title="Delete"><i class="mdi mdi-delete"></i></button>
                                 </li>
-                                <!-- <a id="delete-expertise" data-id="{{ $expert->id }}" class="btn btn-danger delete-user">Delete</a> -->
-
                             </form>
                         </td>
                     </tr>
@@ -96,8 +102,22 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Name:</strong>
+                                <strong>English Name:</strong>
                                 <input type="text" name="expert_name" id="expert_name" class="form-control" placeholder="Expert_name" onchange="validate()">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Thai Name:</strong>
+                                <input type="text" name="expert_name_th" id="expert_name_th" class="form-control" placeholder="Expert_name" onchange="validate()">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Chinese Name:</strong>
+                                <input type="text" name="expert_name_zh" id="expert_name_zh" class="form-control" placeholder="Expert_name" onchange="validate()">
                             </div>
                         </div>
 
@@ -154,6 +174,8 @@
                 $('#crud-modal').modal('show');
                 $('#exp_id').val(data.id);
                 $('#expert_name').val(data.expert_name);
+                $('#expert_name_th').val(data.expert_name_th);
+                $('#expert_name_zh').val(data.expert_name_zh);
 
             })
         });
