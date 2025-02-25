@@ -39,7 +39,12 @@
                             <td>{{ Str::limit($paper->ac_refnumber,50) }}</td>
                             <td>
                                 @foreach($paper->user as $a)
-                                    {{ $a->fname_th }} {{ $a->lname_th }}@if(!$loop->last),@endif
+                                    @if(app()->getLocale() == 'th')
+                                        {{ $a->fname_th }} {{ $a->lname_th }}
+                                    @else
+                                        {{ $a->fname_en }} {{ $a->lname_en }}
+                                    @endif
+                                    @if(!$loop->last),@endif
                                 @endforeach
                             </td>
                             <td>

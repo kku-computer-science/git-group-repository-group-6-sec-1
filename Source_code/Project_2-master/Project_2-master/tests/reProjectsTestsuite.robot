@@ -1,7 +1,7 @@
 *** Settings ***
 Library         SeleniumLibrary
 Suite Setup     Open Browser And Login
-Suite Teardown  Close Browser
+Suite Teardown  Logout And Close Browser
 
 *** Variables ***
 ${BROWSER}              Chrome
@@ -56,6 +56,16 @@ Verify Table Data
     ${actual_text}=    Get Text    xpath=//table//tr[${row}]/td[${column}]
     Should Contain    ${actual_text}    ${expected_text}
     Log To Console    Verified table data at row ${row}, column ${column}: ${expected_text}
+
+Logout
+    # กดปุ่มหรือลิงค์สำหรับ Logout (ปรับ xpath ตามที่ระบบใช้งานจริง)
+    Click Element    xpath=//a[contains(@href, '/logout')]
+    Wait Until Page Contains    Login    10s
+    Log To Console    Logged out successfully
+
+Logout And Close Browser
+    Logout
+    Close Browser
 
 *** Test Cases ***
 TC37_REResearchProject_Form - ตรวจสอบภาษาของฟอร์มเพิ่มข้อมูล
@@ -234,3 +244,4 @@ TC38_REResearchProject_Table - ตรวจสอบภาษาข้อมู�
     Verify Page Language    项目成员
     Verify Page Language    操作
     Verify Table Data    1    4    Pusadee
+

@@ -1,7 +1,7 @@
 *** Settings ***
 Library         SeleniumLibrary
 Suite Setup     Open Browser And Login
-Suite Teardown  Close Browser
+Suite Teardown  Logout And Close Browser
 
 *** Variables ***
 ${BROWSER}              Chrome
@@ -36,7 +36,6 @@ Reset Language To English
     Wait Until Page Contains Element    xpath=//a[@class='nav-link dropdown-toggle' and .//span[contains(@class, 'flag-icon')]]    15s
     # ถ้าภาษาอังกฤษเป็น default และไม่มี /lang/en ให้คลิกที่ English ใน dropdown
     Click Element    xpath=//a[@class='nav-link dropdown-toggle' and .//span[contains(@class, 'flag-icon')]]
-    # หา <a> ที่มีข้อความ English
     ${english_present}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//a[@class='dropdown-item' and contains(., 'English')]
     Run Keyword If    ${english_present}    Click Element    xpath=//a[@class='dropdown-item' and contains(., 'English')]
     Wait Until Page Contains Element    xpath=//span[contains(@class, 'flag-icon-us')]    10s
@@ -57,6 +56,16 @@ Verify Page Language
     [Arguments]    ${expected_text}
     Page Should Contain    ${expected_text}
     Log To Console    Verified text: ${expected_text}
+
+Logout
+    # คลิกที่ปุ่มหรือลิงค์สำหรับ Logout (ปรับ xpath ตามระบบของคุณ)
+    Click Element    xpath=//a[contains(@href, '/logout')]
+    Wait Until Page Contains    Login    10s
+    Log To Console    Logged out successfully
+
+Logout And Close Browser
+    Logout
+    Close Browser
 
 *** Test Cases ***
 TC40_REFunds_Form - ตรวจสอบภาษาของฟอร์มเพิ่ม Funds
@@ -87,7 +96,7 @@ TC40_REFunds_Form - ตรวจสอบภาษาของฟอร์มเ
     Verify Page Language    资金名称
     Verify Page Language    支持机构 / 研究项目
 
-TC41_REFunds_View - ตรวจสอบภาษาข้อมูลในตาราง
+TC41_REFunds_View - ตรวจสอบภาษาของข้อมูลในตาราง
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาของข้อมูลในหน้ารายละเอียด Funds ที่ /funds/{Id}
     Go To    ${VIEW_URL}
@@ -151,25 +160,25 @@ TC43_REFunds - ตรวจสอบภาษาส่วนต่างๆ ข�
     Log To Console    Verified fund_type: Internal Fund
 
     Switch Language    th
-    Verify Page Language    ทุนวิจัย  
-    Verify Page Language    เพิ่ม  
-    Verify Page Language    ลำดับ  
-    Verify Page Language    ชื่อทุน  
-    Verify Page Language    ประเภททุน  
-    Verify Page Language    ระดับทุน  
-    Verify Page Language    การกระทำ  
+    Verify Page Language    ทุนวิจัย
+    Verify Page Language    เพิ่ม
+    Verify Page Language    ลำดับ
+    Verify Page Language    ชื่อทุน
+    Verify Page Language    ประเภททุน
+    Verify Page Language    ระดับทุน
+    Verify Page Language    การกระทำ
     # ตรวจสอบ fund_type ในตาราง (สมมติแถวแรก)
-    Page Should Contain Element    xpath=//table//tr[1]/td[3][contains(., 'ทุนภายใน')]  
+    Page Should Contain Element    xpath=//table//tr[1]/td[3][contains(., 'ทุนภายใน')]
     Log To Console    Verified fund_type: ทุนภายใน
 
     Switch Language    zh
-    Verify Page Language    研究资金  
-    Verify Page Language    添加  
-    Verify Page Language    序号  
-    Verify Page Language    资金名称  
-    Verify Page Language    资金类型  
-    Verify Page Language    资金等级  
-    Verify Page Language    操作  
+    Verify Page Language    研究资金
+    Verify Page Language    添加
+    Verify Page Language    序号
+    Verify Page Language    资金名称
+    Verify Page Language    资金类型
+    Verify Page Language    资金等级
+    Verify Page Language    操作
     # ตรวจสอบ fund_type ในตาราง (สมมติแถวแรก)
-    Page Should Contain Element    xpath=//table//tr[1]/td[3][contains(., '内部资金')]  
+    Page Should Contain Element    xpath=//table//tr[1]/td[3][contains(., '内部资金')]
     Log To Console    Verified fund_type: 内部资金

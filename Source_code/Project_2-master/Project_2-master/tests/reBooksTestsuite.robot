@@ -1,7 +1,7 @@
 *** Settings ***
 Library         SeleniumLibrary
 Suite Setup     Open Browser And Login
-Suite Teardown  Close Browser
+Suite Teardown  Logout And Close Browser    # เปลี่ยนจาก Close Browser เป็น Logout And Close Browser
 
 *** Variables ***
 ${BROWSER}              Chrome
@@ -58,6 +58,14 @@ Verify Table Header
     ${actual_text}=    Get Text    xpath=//table//thead//th[${column}]
     Should Contain    ${actual_text}    ${expected_text}
     Log To Console    Verified table header column ${column}: ${expected_text}
+
+Logout And Close Browser
+    Go To    ${DASHBOARD_URL}
+    Wait Until Page Contains Element    xpath=//a[@class='nav-link' and contains(@href, '/logout')]    15s
+    Click Element    xpath=//a[@class='nav-link' and contains(@href, '/logout')]
+    Wait Until Location Contains    ${LOGIN_URL}    15s
+    Log To Console    Logged out successfully
+    Close Browser
 
 *** Test Cases ***
 TC54_REBooks - ตรวจสอบภาษาส่วนต่างๆ ของ UI16
@@ -137,7 +145,7 @@ TC55_REBooks_Table - ตรวจสอบภาษาในตารางข�
 TC56_REBooks_View - ตรวจสอบภาษาข้อมูลในหน้ารายละเอียดของ UI16
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาข้อมูลในหน้ารายละเอียด Books ที่ /books/15
-    Go To    http://127.0.0.1:8000/books/15    # เปลี่ยนมาใช้ path ตามที่ระบุ
+    Go To    http://127.0.0.1:8000/books/15
     Wait Until Page Contains    Book Detail    15s
     # ภาษาอังกฤษ
     Verify Page Language    Book Detail
@@ -208,7 +216,7 @@ TC57_REBooks_Form - ตรวจสอบภาษาของฟอร์มเ
 TC58_REBook_FormEdit - ตรวจสอบภาษาของฟอร์มแก้ไข Books ของ UI16
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาในฟอร์มแก้ไข Books ที่ /books/15/edit
-    Go To    http://127.0.0.1:8000/books/15/edit    # เปลี่ยนมาใช้ path ตามที่ระบุ
+    Go To    http://127.0.0.1:8000/books/15/edit
     Wait Until Page Contains    Edit Book Detail    15s
     # ภาษาอังกฤษ
     Verify Page Language    Edit Book Detail

@@ -29,7 +29,12 @@
                 <p class="card-text col-sm-3"><b>{{ __('patents.creator') }}</b></p>
                 <p class="card-text col-sm-9">
                     @foreach($patent->user as $a)
-                        {{ $a->fname_th }} {{ $a->lname_th }}@if(!$loop->last),@endif
+                        @if(app()->getLocale() == 'th')
+                            {{ $a->fname_th }} {{ $a->lname_th }}
+                        @else
+                            {{ $a->fname_en }} {{ $a->lname_en }}
+                        @endif
+                        @if(!$loop->last),@endif
                     @endforeach
                 </p>
             </div>

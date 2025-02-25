@@ -39,15 +39,28 @@
             </div>
             <div class="row">
                 <p class="card-text col-sm-3"><b>{{ __('funds.label.support_resource') }}</b></p>
-                <p class="card-text col-sm-9">{{ $fund->support_resource ?? '-' }}</p>
+                <p class="card-text col-sm-9">
+                    @if($fund->support_resource && array_key_exists($fund->support_resource, __('funds.support_resources')))
+                        {{ __('funds.support_resources.' . $fund->support_resource) }}
+                    @else
+                        {{ $fund->support_resource ?? '-' }}
+                    @endif
+                </p>
             </div>
             <div class="row">
                 <p class="card-text col-sm-3"><b>{{ __('funds.label.added_by') }}</b></p>
                 <p class="card-text col-sm-9">
-                    {{ $fund->user->{'fname_' . $locale} ?? '-' }} {{ $fund->user->{'lname_' . $locale} ?? '-' }}
+                    @if($fund->user)
+                        @if(app()->getLocale() == 'th')
+                            {{ $fund->user->fname_th ?? '-' }} {{ $fund->user->lname_th ?? '-' }}
+                        @else
+                            {{ $fund->user->fname_en ?? '-' }} {{ $fund->user->lname_en ?? '-' }}
+                        @endif
+                    @else
+                        -
+                    @endif
                 </p>
             </div>
-
             <div class="pull-right mt-5">
                 <a class="btn btn-primary btn-sm" href="{{ route('funds.index') }}"> {{ __('funds.back_button') }}</a>
             </div>

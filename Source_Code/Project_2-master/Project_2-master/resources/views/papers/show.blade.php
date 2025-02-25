@@ -27,7 +27,13 @@
             </div>
             <div class="row mt-2">
                 <p class="card-text col-sm-3"><b>{{ __('published_research.paper_subtype') }}</b></p>
-                <p class="card-text col-sm-9">{{ $paper->paper_subtype }}</p>
+                <p class="card-text col-sm-9">
+                    @if($paper->paper_subtype && array_key_exists($paper->paper_subtype, __('published_research.subtypes')))
+                        {{ __('published_research.subtypes.' . $paper->paper_subtype) }}
+                    @else
+                        {{ $paper->paper_subtype ?? 'N/A' }}
+                    @endif
+                </p>
             </div>
             <div class="row mt-2">
                 <p class="card-text col-sm-3"><b>{{ __('published_research.publication') }}</b></p>
