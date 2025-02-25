@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 
 use App\Http\Controllers\HomeController;
@@ -158,8 +161,18 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     Route::resource('researchAssistant', ResearchAssistantController::class);
 
     Route::resource('researchAssistant', ResearchAssistantController::class);
+
 });
 
+
+    //ensure language switch
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'th', 'zh'])) { // Allowed languages
+        Session::put('locale', $locale);
+        App::setLocale($locale);
+    }
+    return Redirect::back();
+});
 
 
 // Route::get('/example/pdf', 'ExampleController@pdf_index');

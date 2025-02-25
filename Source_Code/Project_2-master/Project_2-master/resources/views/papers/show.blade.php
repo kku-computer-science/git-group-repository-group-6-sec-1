@@ -14,20 +14,20 @@
                 <p class="card-text col-sm-9">{{ $paper->paper_name }}</p>
             </div>
             <div class="row mt-2">
-                <p class="card-text col-sm-3"><b>Abstract</b></p>
-                <p class="card-text col-sm-9">{{ $paper->abstract }}</p>
+                <p class="card-text col-sm-3">Abstract ({{ strtoupper(app()->getLocale()) }})</p>
+                <p class="col-sm-9">{{ $translatedAbstract }}</p>
             </div>
             <div class="row mt-2">
-                <p class="card-text col-sm-3"><b>Keyword</b></p>
-                <p class="card-text col-sm-9">{{ $paper->keyword }}</p>
+                <p class="card-text col-sm-3">{{ __('paper_keyword.keyword') }}</p>
+                <p class="card-text col-sm-9">{{ $translatedKeywords }}</p>
             </div>
             <div class="row mt-2">
                 <p class="card-text col-sm-3"><b>{{ __('published_research.paper_type') }}</b></p>
                 <p class="card-text col-sm-9">{{ __('published_research.paper_types.' . $paper->paper_type) }}</p>
             </div>
             <div class="row mt-2">
-                <p class="card-text col-sm-3"><b>{{ __('published_research.paper_subtype') }}</b></p>
-                <p class="card-text col-sm-9">{{ $paper->paper_subtype }}</p>
+                <p class="card-text col-sm-3"><b>{{ __('paper_keyword.paper_subtype') }}</b></p>
+                <p class="card-text col-sm-9">{{ __('paper_keyword.subtypes.' . $paper->paper_subtype) }}</p>
             </div>
             <div class="row mt-2">
                 <p class="card-text col-sm-3"><b>{{ __('published_research.publication') }}</b></p>
