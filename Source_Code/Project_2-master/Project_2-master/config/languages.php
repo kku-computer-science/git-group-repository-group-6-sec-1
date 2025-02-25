@@ -13,16 +13,5 @@ return [
     'zh' => [
         'display' => '中国',
         'flag-icon' => 'cn'  // ใช้รหัสไอคอนธงประเทศจีน
-    ],
-<<<<<<< HEAD
-<<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/config/languages.php
-    'zh' => [
-        'display' => '中文',
-        'flag-icon' => 'cn'
     ]
-========
->>>>>>>> origin/Prommin_1406:Source_code/Project_2-master/Project_2-master/config/languages.php
-=======
->>>>>>> origin/Prommin_1406
-];
-
+    ];

@@ -48,20 +48,42 @@
             <div class="col-md-6">
                 <div class="card-body">
                     <h6 class="card-text"><b>{{$res->position_th}} {{$res->fname_th}} {{$res->lname_th}}</b></h6>
-                    @if($res->doctoral_degree == 'Ph.D.')
-                    <h6 class="card-text"><b>{{$res->fname_en}} {{$res->lname_en}}, {{$res->doctoral_degree}} </b>
-                        @else
-                        <h6 class="card-text"><b>{{$res->fname_en}} {{$res->lname_en}}</b>
-                            @endif</h6>
-                        <h6 class="card-text1"><b>{{$res->academic_ranks_en}}</b></h6>
+                    @if(app()->getLocale() == 'en')
+                        <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}, Ph.D.</b></h6>
+                    @elseif(app()->getLocale() == 'zh')
+                        <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}, 博士</b></h6>
+                    @else
+                        <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}, Ph.D.</b></h6>
+                    @endif
+
+                        <h6 class="card-text1"><b>{{ __('academic_ranks.' . $res->academic_ranks_en) }}</b></h6>
                         <!-- <h6 class="card-text1">Department of {{$res->program->program_name_en}}</h6> -->
                         <!-- <h6 class="card-text1">College of Computing</h6>
                     <h6 class="card-text1">Khon Kaen University</h6> -->
-                        <h6 class="card-text1">E-mail: {{$res->email}}</h6>
+                        <h6 class="card-text1">{{__('researchers.Email')}} {{$res->email}}</h6>
                         <h6 class="card-title">{{ trans('message.education') }}</h6>
-                        @foreach( $res->education as $edu)
-                        <h6 class="card-text2 col-sm-10"> {{$edu->year}} {{$edu->qua_name}} {{$edu->uname}}</h6>
+                        @foreach($res->education as $edu)
+                            <h6 class="card-text2 col-sm-10">
+                                <!-- Display Year based on language -->
+                                @if(app()->getLocale() == 'en')
+                                    {{ $edu->year_anno_domini }}  <!-- English Year -->
+                                @elseif(app()->getLocale() == 'zh')
+                                    {{ $edu->year_anno_domini }}  <!-- Chinese Year -->
+                                @else
+                                    {{ $edu->year }}  <!-- Thai Year -->
+                                @endif
+
+                                <!-- Display University name based on language -->
+                                {{ $edu->{'university_' . app()->getLocale()} ?? $edu->uname }} <!-- Default to Thai if no translation -->
+
+                                <!-- Display Qualification name based on language -->
+                                {{ $edu->{'qua_name_' . app()->getLocale()} ?? $edu->qua_name }} <!-- Default to Thai if no translation -->
+                            </h6>
                         @endforeach
+
+
+
+
                         <!-- <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
                             {{ trans('message.expertise') }}
@@ -131,7 +153,7 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Summary</button>
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">{{__('researchers.Summary')}}</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="scopus-tab" data-bs-toggle="tab" data-bs-target="#scopus" type="button" role="tab" aria-controls="scopus" aria-selected="false">SCOPUS</button>
@@ -143,10 +165,10 @@
             <button class="nav-link" id="tci-tab" data-bs-toggle="tab" data-bs-target="#tci" type="button" role="tab" aria-controls="tci" aria-selected="false">TCI</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="book-tab" data-bs-toggle="tab" data-bs-target="#book" type="button" role="tab" aria-controls="book" aria-selected="false">หนังสือ</button>
+            <button class="nav-link" id="book-tab" data-bs-toggle="tab" data-bs-target="#book" type="button" role="tab" aria-controls="book" aria-selected="false">{{__('researchers.Books')}}</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="patent-tab" data-bs-toggle="tab" data-bs-target="#patent" type="button" role="tab" aria-controls="patent" aria-selected="false">ผลงานวิชาการด้านอื่นๆ</button>
+            <button class="nav-link" id="patent-tab" data-bs-toggle="tab" data-bs-target="#patent" type="button" role="tab" aria-controls="patent" aria-selected="false">{{__('researchers.ACD')}}</button>
         </li>
     </ul>
     <br>
@@ -154,7 +176,7 @@
 
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="tab-content" style="padding-bottom: 20px;">
-                <a class="btn btn-success" href="{{ route('excel', ['id' => $res->id]) }}" target="_blank">Export To Excel</a>
+                <a class="btn btn-success" href="{{ route('excel', ['id' => $res->id]) }}" target="_blank">{{__('datatables.ETX')}}</a>
             </div>
             <table id="example1" class="table table-striped" style="width:100%">
                 <thead>
@@ -676,6 +698,7 @@
         document.getElementById("tci_sum").innerHTML += `  
                 <h2 class="timer count-title count-number" data-to="${sumtci}" data-speed="1500"></h2>
                 <p class="count-text ">TCI</p>`
+            
 
 
         //document.getElementById("scopus").appendChild('data-to="100"');

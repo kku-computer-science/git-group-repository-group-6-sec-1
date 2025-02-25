@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}">
     <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 
+
     <script src="{{asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('vendors/mdi/css/materialdesignicons.min.css')}}">
@@ -75,11 +76,14 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @foreach($dn as $department)
-                            <li><a class="dropdown-item" href="{{ route('researchers',['id'=>$department->id])}}">
-                                    {{$department->program_name_en}}</a>
-                            </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('researchers', ['id' => $department->id]) }}">
+                                        {{ __('programs.program_name_en.' . $department->program_name_en) }}
+                                    </a>
+                                </li>
                             @endforeach
                         </ul>
+
                     </li>
                     <li class="nav-item {{ request()->is('researchproject') ? 'active' : ''}} ">
                         <a class="nav-link" href="/researchproject">{{ trans('message.ResearchProj') }}</a>
@@ -119,7 +123,7 @@
                 </span>
                 @else
                 <span class="nav-item">
-                    <a class="btn-solid-sm" href="/login" target="_blank">Login</a>
+                    <a class="btn-solid-sm" href="/login" target="_blank">{{__('datatables.LoginBtn')}}</a>
                 </span>
                 @endauth
                 @endif

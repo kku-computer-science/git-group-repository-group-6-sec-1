@@ -421,17 +421,11 @@
 </script>
 <script>
     $(document).on('click', '.open_modal', function() {
-        //var url = "domain.com/yoururl";
         var tour_id = $(this).val();
         $.get('/bib/' + tour_id, function(data) {
-            //success data
             console.log(data);
             $( ".bibtex-biblio" ).remove();
             document.getElementById("name").innerHTML += `${data}`
-            // $('#tour_id').val(data.id);
-            // $('#name').val(data);
-            // $('#details').val(data.details);
-            // $('#btn-save').val("update");
             $('#myModal').modal('show');
         })
     });

@@ -19,7 +19,6 @@ class ProfileController extends Controller
         $id = Crypt::decrypt($id);
         $res = User::where('id',$id)->first();
         $teachers = User::role('teacher')->get();
-        
         $papers = Paper::with('teacher','author','source')->whereHas('teacher', function($query) use($id) {
             $query->where('users.id', '=', $id);
         })->orderBy('paper_yearpub', 'desc')-> get();

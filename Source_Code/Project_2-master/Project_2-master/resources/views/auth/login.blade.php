@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
+@extends('layouts.layout')
 <head>
 	<title>Login</title>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="img/Newlogo.png" rel="shortcut icon" type="image/x-icon" />
 	<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
@@ -15,7 +12,6 @@
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 	<!--===============================================================================================-->
-
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -311,7 +307,22 @@
 			color: #4285f4 !important;
 		}
 
-		ul li {
+		/* ul li {
+			color: red;
+			list-style: square;
+			padding: 0;
+			margin-left: 0px;
+			font-size: 12px;
+		} */
+		.username-hint{
+			color: red;
+			list-style: square;
+			padding: 0;
+			margin-left: 0px;
+			font-size: 12px;
+		}
+
+		.first-hint{
 			color: red;
 			list-style: square;
 			padding: 0;
@@ -320,79 +331,25 @@
 		}
 	</style>
 </head>
-
-<body>
-
-	<!-- <div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-100">
-				<form method="POST" class="login100-form validate-form" autocomplete="off" action="{{ route('login') }}">
-					@csrf
-					<span class="login100-form-title p-b-55">
-						Login
-					</span>
-					@if($errors->any())
-					<div class="alert alert-danger alert-block ">
-						<button type="button" class="close" data-dismiss="alert"></button>
-						<strong><a>{{$errors->first()}}</a></strong>
-					</div>
-					@endif
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Valid email is required: ex@abc.xyz">
-
-						<input id="email" class="input100" type="text" name="email" placeholder="Email">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<span class="lnr lnr-envelope"></span>
-						</span>
-
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
-						<input id="password" class="input100" type="password" name="password" placeholder="Password">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<span class="lnr lnr-lock"></span>
-						</span>
-
-					</div>
-
-					<div class="contact100-form-checkbox m-l-4">
-						<input  class="input-checkbox100" id="ckb1" type="checkbox" name="remember">
-						<label class="label-checkbox100" for="ckb1">
-							Remember me
-						</label>
-					</div>
-
-					<div class="container-login100-form-btn p-t-30">
-						<button class="login100-form-btn">
-							Login
-						</button>
-					</div>
-
-
-				</form>
-			</div>
-		</div>
-	</div> -->
-
+	@section('content')
 	<div class="form">
 		<div class="form-toggle"></div>
 		<div class="form-panel one">
 			<div class="form-header">
-				<h1>Account Login</h1>
+				<h1>{{ __('login.Login') }}</h1>
 			</div>
 			<div class="form-content">
 				<form method="POST" class="validate-form" autocomplete="off" action="{{ route('login') }}">
 					@csrf
 					@if($errors->any())
-					<div class=" alert alert-danger alert-block ">
-						<button type=" button" class="close" data-dismiss="alert"></button>
-						<strong><a>{{$errors->first()}}</a></strong>
-					</div>
+						<div class="alert alert-danger alert-block">
+							<button type="button" class="close" data-dismiss="alert"></button>
+							<strong>{{ __('login.Login-failed')  }}</strong>
+						</div>
 					@endif
 					<!-- <div class="form-group validate-input" data-validate="Valid email is required: ex@abc.xyz"> -->
 					<div class="form-group validate-input">
-						<label for="email">Username</label>
+						<label for="email">{{ __('login.Username') }}</label>
 						<input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autofocus>
 						@error('username')
 						<span class="invalid-feedback" role="alert">
@@ -401,23 +358,23 @@
 						@enderror
 					</div>
 					<div class="form-group validate-input" data-validate="Password is required">
-						<label for="password">Password</label>
+						<label for="password">{{ __('login.Password') }}</label>
 						<input id="password" class="input" type="password" name="password" required="required" />
 					</div>
 					<div class="form-group">
 						<label class="form-remember">
-							<input id="ckb1" name="remember" type="checkbox" />Remember Me
+							<input id="ckb1" name="remember" type="checkbox" />{{ __('login.Remember Me') }}
 						</label>
 					</div>
 					<div class="form-group">
-						<button type="submit">Log In</button>
+						<button type="submit">{{ __('login.Login') }}</button>
 					</div>
 					<div class="form-remember pb-3">
-							<p style="color: red; text-align: right;"> *** หากลืมรหัสผ่าน ให้ติดต่อผู้ดูแลระบบ</p>
+							<p style="color: red; text-align: right;">{{ __('login.If you forgot your password, please contact the system administrator.') }}</p>
 					</div>
 					<ul>
-						<li>สำหรับ Username ใช้ KKU-Mail ในการเข้าสู่ระบบ</li>
-						<li>สำหรับนักศึกษาที่เข้าระบบเป็นครั้งแรกให้เข้าสู่ระด้วยรหัสนักศึกษา</li>
+						<li class="username-hint">{{ __('login.For first-time students, log in with your student ID.') }}</li>
+						<li class="first-hint">{{ __('login.Login-failed') }}</li>
 					</ul>
 				</form>
 			</div>
@@ -425,14 +382,15 @@
 
 
 	</div>
+	@endsection
+
+	@section('scripts')
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script>
 		(function($) {
 			"use strict";
-
-
 			/*==================================================================
 			[ Validate ]*/
 			var input = $('.validate-input .input');
@@ -483,10 +441,6 @@
 				$(thisAlert).removeClass('alert-validate');
 			}
 
-
-
 		})(jQuery);
 	</script>
-</body>
-
-</html>
+@endsection
