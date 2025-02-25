@@ -26,8 +26,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('vendors/typicons/typicons.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/simple-line-icons/css/simple-line-icons.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.base.css')}}">
+
+
     <!-- ธงชาติ -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
+
 
     <!-- endinject -->
     <!-- Plugin css for this page -->
@@ -50,6 +53,93 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <body>
     <div class=" container-scroller sidebar-dark">
+
+        <!-- navbar ข้างบน 
+    -->
+        <nav class=" navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+                <div class="me-3">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                        data-bs-toggle="minimize">
+                        <span class="icon-menu"></span>
+                    </button>
+                </div>
+            </div>
+            <!-- {{ Auth::user()->fname }} {{ Auth::user()->lname }} -->
+            <!-- Left navbar links -->
+            <div class="navbar-menu-wrapper d-flex align-items-top">
+                <ul class="navbar-nav">
+                    <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                        <h1 class="welcome-text">Research Information Management System <span
+                                class="text-black fw-bold"></span></h1>
+                        <h3 class="welcome-sub-text"> </h3>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item d-none d-lg-block">
+                        <div id="datepicker-popup" class="input-group date datepicker navbar-date-picker">
+                            <span class="input-group-addon input-group-prepend border-right">
+                                <span class="icon-calendar input-group-text calendar-icon"></span>
+                            </span>
+                            <input type="text" class="form-control">
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <form class="search-form" action="#">
+                            <i class="icon-search"></i>
+                            <input type="search" class="form-control" placeholder="Search Here" title="Search here">
+                        </form>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="icon-bell"></i>
+                            <span class="count"></span>
+                        </a>
+                    </li> -->
+                    <!-- <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+                        <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="img-xs rounded-circle" src="{{ Auth::user()->picture }}"
+                                alt="User profile picture">
+                        </a>
+                    </li> -->
+                    <!-- <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                            <div class="dropdown-header text-center">
+                                <img class="img-md rounded-circle" src="{{ Auth::user()->picture }}"
+                                    alt="Profile image">
+                                <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }}</p>
+                                <p class="fw-light text-muted mb-0"></p>
+                            </div>
+                            <a class="dropdown-item"><i
+                                    class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My
+                                Profile <span class="badge badge-pill badge-danger">1</span></a>
+                            <a class="dropdown-item"><i
+                                    class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i>
+                                Messages</a>
+                            <a class="dropdown-item"><i
+                                    class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i>
+                                Activity</a>
+                            <a class="dropdown-item"><i
+                                    class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>
+                                FAQ</a>
+                            <a class="dropdown-item"><i
+                                    class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a> -->
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); 
+                        document.getElementById ('logout-form').submit();"> {{ __('Logout') }} <i class="mdi mdi-logout"></i></a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+            </div>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                data-bs-toggle="offcanvas">
+                <span class="mdi mdi-menu"></span>
+            </button>
+
+        </nav>
+
 <!-- navbar ข้างบน-->
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
@@ -122,6 +212,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </button>
     </div>
 </nav>
+
 
         <!-- navbar ข้างบน -->
         <div class="container-fluid page-body-wrapper">
@@ -199,6 +290,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     </li>
 
+
+
                     <!-- เพิ่มส่วนของ Research Assistant -->
                     @endcan
                     @can('groups-list')
@@ -209,6 +302,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </a>
                     </li>
+
 
                     @endcan
                     @can('export')
@@ -331,4 +425,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </body>
 
 
+
 </html>
+
+</html>
+

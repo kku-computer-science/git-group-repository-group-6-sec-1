@@ -150,7 +150,6 @@
     </div>
 </div>
 @stop
-
 @section('javascript')
 <script>
     $(document).ready(function() {

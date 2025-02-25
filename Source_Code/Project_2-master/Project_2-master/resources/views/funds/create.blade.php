@@ -1,6 +1,9 @@
 @extends('dashboards.users.layouts.user-dash-layout')
 
+
+
 @section('title', __('funds.title'))
+
 
 @section('content')
 <style>
