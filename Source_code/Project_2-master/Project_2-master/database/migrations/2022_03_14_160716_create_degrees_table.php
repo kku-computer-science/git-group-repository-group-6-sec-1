@@ -21,12 +21,13 @@ class CreateDegreesTable extends Migration
             /*$table->unsignedBigInteger('program_id');
             $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade');*/
 
-            $table->unsignedBigInteger('department_id')->nullable();  
+            $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
-            
+
             $table->timestamps();
         });
         }
+
     }
 
     /**

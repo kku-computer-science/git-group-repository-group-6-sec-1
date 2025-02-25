@@ -6,47 +6,27 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateResearchAssistantsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('research_assistants', function (Blueprint $table) {
             $table->id();
-            $table->string('group_name_th');
-            $table->string('group_name_en');
-            $table->string('research_title_th');
-            $table->string('research_title_en');
-            $table->integer('members_count');
-            $table->string('form_link');
+            $table->integer('member_count');
+            $table->unsignedBigInteger('project_id'); 
+            $table->unsignedBigInteger('group_id'); // แก้จาก research_group_id เป็น group_id
+            $table->unsignedBigInteger('research_group_id');
+            $table->string('group_name_th', 255);
+            $table->string('group_name_en', 255);
+            $table->string('form_link')->nullable();
 
-
-
-            $table->unsignedBigInteger('degree_id'); // FK ไปยังตาราง degrees
-            $table->unsignedBigInteger('research_group_id'); // FK ไปยัง research_groups
-            $table->unsignedBigInteger('project_id')->nullable();
-
-            $table->timestamps();
-
-
-            // Foreign key constraint
-            $table->foreign('research_group_id')->references('id')->on('research_groups')->onDelete('cascade');
-            $table->foreign('degree_id')->references('id')->on('degrees')->onDelete('cascade');
-
+            // กำหนด Foreign Keys ตามโครงสร้างฐานข้อมูล
             $table->foreign('project_id')->references('id')->on('research_projects')->onDelete('cascade');
+            $table->foreign('group_id')->references('id')->on('research_groups')->onDelete('cascade');
+            $table->foreign('research_group_id')->references('id')->on('research_groups')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('research_assistants');
     }
-    
 }

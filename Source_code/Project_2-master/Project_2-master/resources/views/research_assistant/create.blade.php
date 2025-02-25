@@ -10,57 +10,66 @@
     <div class="card" style="padding: 16px;">
         <div class="card-body">
             <h4 class="card-title">เพิ่มผู้ช่วยวิจัย</h4>
-            <p class="card-description">กรอกข้อมูลผู้รับสมัคร และแก้ไขผู้ช่วยวิจัย</p>
-            <form action="{{ route('researchAssistant.store') }}" method="POST" class="forms-sample">
+            <p class="card-description">กรอกข้อมูลผู้ช่วยวิจัย</p>
+            <form action="{{ route('researchAssistant.store') }}" method="POST">
                 @csrf
+
+                <!-- เลือกกลุ่มวิจัย -->
                 <div class="form-group">
-                    <label for="group_name_th">ชื่อกลุ่มวิจัย (ภาษาไทย)</label>
-                    <select class="form-control" id="group_name_th" name="group_name_th" required>
-                        <option value="" disabled selected>เลือกชื่อกลุ่มวิจัย (ภาษาไทย)</option>
+                    <label for="group_id">ชื่อกลุ่มวิจัย (ภาษาไทย)</label>
+                    <select class="form-control" id="group_id" name="group_id" required>
+                        <option value="" disabled selected>เลือกชื่อกลุ่มวิจัย</option>
                         @foreach($researchGroups as $group)
-                        <option value="{{ $group->group_name_th }}">{{ $group->group_name_th }}</option>
+                        <option value="{{ $group->id }}" data-group-en="{{ $group->group_name_en }}">
+                            {{ $group->group_name_th }}
+                        </option>
                         @endforeach
                     </select>
                 </div>
+
+                <!-- แสดงชื่อกลุ่มวิจัย (ภาษาอังกฤษ) อัตโนมัติ -->
                 <div class="form-group">
                     <label for="group_name_en">ชื่อกลุ่มวิจัย (ภาษาอังกฤษ)</label>
-                    <select class="form-control" id="group_name_en" name="group_name_en" required>
-                        <option value="" disabled selected>เลือกชื่อกลุ่มวิจัย (ภาษาอังกฤษ)</option>
-                        @foreach($researchGroups as $group)
-                        <option value="{{ $group->group_name_en }}">{{ $group->group_name_en }}</option>
-                        @endforeach
-                    </select>
+                    <input type="text" class="form-control" id="group_name_en" name="group_name_en" readonly>
                 </div>
-                
+
+                <!-- เลือกงานวิจัย -->
                 <div class="form-group">
-                    <label for="project_name">ชื่องานวิจัย</label>
-                    <select class="form-control" id="project_name" name="project_name" required>
+                    <label for="project_id">ชื่องานวิจัย</label>
+                    <select class="form-control" id="project_id" name="project_id" required>
                         <option value="" disabled selected>เลือกชื่องานวิจัย</option>
                         @foreach($researchProjects as $project)
                         <option value="{{ $project->id }}">{{ $project->project_name }}</option>
                         @endforeach
                     </select>
                 </div>
+
+                <!-- ระบุจำนวนผู้ช่วยวิจัย -->
                 <div class="form-group">
-                    <label for="research_title_th">ชื่องานวิจัย (ภาษาไทย)</label>
-                    <textarea class="form-control" id="research_title_th" name="research_title_th" rows="3" placeholder="กรอกชื่องานวิจัย (ภาษาไทย)" required></textarea>
+                    <label for="member_count">จำนวนผู้ช่วยวิจัย</label>
+                    <input type="number" class="form-control" id="member_count" name="member_count" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="research_title_en">ชื่องานวิจัย (ภาษาอังกฤษ)</label>
-                    <textarea class="form-control" id="research_title_en" name="research_title_en" rows="3" placeholder="กรอกชื่องานวิจัย (ภาษาอังกฤษ)" required></textarea>
+                    <label for="form_link">Form Link <span class="text-danger">*</span></label>
+                    <input type="url" class="form-control" id="form_link" name="form_link"
+                        value="{{ old('form_link') }}"
+                        placeholder="กรอกลิงก์ที่เกี่ยวข้อง" required>
                 </div>
-                <div class="form-group">
-                    <label for="members_count">จำนวนผู้ช่วยวิจัย</label>
-                    <input type="number" class="form-control" id="members_count" name="members_count" placeholder="ระบุจำนวนผู้ช่วยวิจัย" required>
-                </div>
-                <div class="form-group">
-                    <label for="form_link">Form Link</label>
-                    <input type="url" class="form-control" id="form_link" name="form_link" placeholder="ระบุลิงก์ฟอร์ม" required>
-                </div>
-                <button type="submit" class="btn btn-primary mr-2">บันทึก</button>
+
+                <button type="submit" class="btn btn-primary">บันทึก</button>
                 <a href="{{ route('researchAssistant.index') }}" class="btn btn-secondary">กลับ</a>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+document.getElementById('group_id').addEventListener('change', function() {
+    let selectedOption = this.options[this.selectedIndex];
+    let groupNameEn = selectedOption.getAttribute('data-group-en');
+    document.getElementById('group_name_en').value = groupNameEn;
+});
+</script>
+
 @endsection

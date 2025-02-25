@@ -41,6 +41,7 @@ use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TcicallController;
 //เพิ่มเติม
 use App\Http\Controllers\ResearchAssistantController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,13 +90,26 @@ Route::get('docx', [PDFController::class, 'generateInvoiceDOCX'])->name('docx');
 Route::get('excel', [PDFController::class, 'generateInvoiceExcel'])->name('excel');
 
 Route::get('detail/{id}', [ProfileController::class, 'request'])->name('detail');
+<<<<<<< HEAD
 Route::get('/research-assistant/apply', [ResearchAssistantController::class, 'apply'])->name('research-assistant.apply');
 Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement');
 
 Route::get('index', [LocalizationController::class, 'index']);
 Route::get('lang/{lang}', ['as' => 'langswitch', 'uses' => 'App\Http\Controllers\LocalizationController@switchLang']);
+=======
+>>>>>>> origin/Prommin_1406
 Route::get('/export', [ExportPaperController::class, 'exportUsers'])->name('export-papers');
 Route::get('bib/{id}', [BibtexController::class, 'getbib'])->name('bibtex');
+
+// Route สำหรับเปลี่ยนภาษาที่เลือก
+Route::get('lang/{lang}', [LocalizationController::class, 'switchLang'])->name('langswitch');
+
+// Route Group ที่มี prefix เป็น {lang} และใช้ middleware "setlocale"
+Route::group(['prefix' => '{lang}', 'middleware' => 'setlocale'], function() {
+    Route::get('index', [LocalizationController::class, 'index'])->name('index');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
 
 //Route::get('bib/{id}', [BibtexController::class, 'index'])->name('bibtex');
 //Route::get('change/lang', [LocalizationController::class,'lang_change'])->name('LangChange');
@@ -105,7 +119,7 @@ Route::get('/callscopus/{id}', [App\Http\Controllers\ScopuscallController::class
 
 Route::group(['middleware' => ['isAdmin', 'auth', 'PreventBackHistory']], function () {
     //Route::post('change-profile-picture',[ProfileuserController::class,'updatePicture'])->name('adminPictureUpdate');
-    
+
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
@@ -148,11 +162,10 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     //เพิ่มส่วนของresearch-assistant
     Route::get('/research-assistant', [ResearchAssistantController::class, 'index'])->name('researchAssistant.index');
     Route::get('/research-assistant/create', [ResearchAssistantController::class, 'create'])->name('researchAssistant.create');
-    Route::post('/research-assistant', [ResearchAssistantController::class, 'store'])->name('researchAssistant.store');
+
     Route::resource('researchAssistant', ResearchAssistantController::class);
-    
 
-
+    Route::resource('researchAssistant', ResearchAssistantController::class);
 });
 
 
