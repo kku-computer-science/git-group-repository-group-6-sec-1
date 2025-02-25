@@ -10,11 +10,11 @@
 @endphp
 
 @if($locale == 'th')
-    <h4>{{ __('dashboard.greeting') }} {{ Auth::user()->position_th }} {{ Auth::user()->fname_th }} {{ Auth::user()->lname_th }}</h4>
+    <h4>{{ __('dashboard.greeting') }} {{ Auth::user()->position_th }} {{ Auth::user()->fname_th }} {{ Auth::user()->lname_th }} -</h4>
 @elseif($locale == 'zh')
-    <h4>{{ __('dashboard.greeting') }} {{ Auth::user()->position_en }} {{ Auth::user()->fname_en }} {{ Auth::user()->lname_en }}</h4>
+    <h4>{{ __('dashboard.greeting') }} 行政 - -</h4>
 @else
-    <h4>{{ __('dashboard.greeting') }} {{ Auth::user()->position_en }} {{ Auth::user()->fname_en }} {{ Auth::user()->lname_en }}</h4>
+    <h4>{{ __('dashboard.greeting') }} {{ Auth::user()->position_en }} {{ Auth::user()->fname_en }} {{ Auth::user()->lname_en }} -</h4>
 @endif
 
 @endsection

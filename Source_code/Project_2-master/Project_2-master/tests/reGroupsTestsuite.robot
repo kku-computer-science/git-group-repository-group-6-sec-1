@@ -75,165 +75,7 @@ Logout And Close Browser
     Close Browser
 
 *** Test Cases ***
-TC44_REReseachGroup - ตรวจสอบภาษาส่วนต่างๆ
-    [Setup]    Reset Language To English
-    [Documentation]    ตรวจสอบภาษาส่วนต่างๆ ในหน้า Research Groups
-    Go To    ${RESEARCH_GROUPS_URL}
-    Wait Until Page Contains    Research Groups    15s
-    # ภาษาอังกฤษ
-    Verify Page Language    Research Groups
-    Verify Page Language    ADD
-    Verify Page Language    No.
-    Verify Page Language    Group Name
-    Verify Page Language    Head
-    Verify Page Language    Member
-    Verify Page Language    Action
-    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-eye')]]  # ปุ่ม View
-    ${edit_present}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-pencil')]]  # ปุ่ม Edit
-    Run Keyword If    ${edit_present}    Log To Console    Edit button found
-    ...    ELSE    Log To Console    Edit button not found, possibly due to permissions or no data
-    ${delete_present}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//button[contains(@class, 'btn') and .//i[contains(@class, 'mdi-delete')]]  # ปุ่ม Delete
-    Run Keyword If    ${delete_present}    Log To Console    Delete button found
-    ...    ELSE    Log To Console    Delete button not found, possibly due to permissions or no data
-    ${row_count}=    Get Element Count    xpath=//table//tbody/tr
-    Log To Console    Number of rows in table: ${row_count}
-    Verify Page Language    Are you sure?
-    Verify Page Language    If you delete this, it will be gone forever.
-    Verify Page Language    Deleted Successfully
-    Verify Page Language    Search:
-
-    Switch Language    th
-    Verify Page Language    กลุ่มวิจัย
-    Verify Page Language    เพิ่ม
-    Verify Page Language    ลำดับ
-    Verify Page Language    ชื่อกลุ่ม
-    Verify Page Language    หัวหน้า
-    Verify Page Language    สมาชิก
-    Verify Page Language    การกระทำ
-    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-eye')]]  # ปุ่ม ดู
-    ${edit_present}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-pencil')]]  # ปุ่ม แก้ไข
-    Run Keyword If    ${edit_present}    Log To Console    Edit button found
-    ...    ELSE    Log To Console    Edit button not found, possibly due to permissions or no data
-    ${delete_present}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//button[contains(@class, 'btn') and .//i[contains(@class, 'mdi-delete')]]  # ปุ่ม ลบ
-    Run Keyword If    ${delete_present}    Log To Console    Delete button found
-    ...    ELSE    Log To Console    Delete button not found, possibly due to permissions or no data
-    Verify Page Language    คุณแน่ใจหรือไม่?
-    Verify Page Language    หากลบแล้ว ข้อมูลจะหายไปตลอดกาล
-    Verify Page Language    ลบสำเร็จ
-    Verify Page Language    ค้นหา:
-
-    Switch Language    zh
-    Verify Page Language    研究小组
-    Verify Page Language    添加
-    Verify Page Language    序号
-    Verify Page Language    小组名称
-    Verify Page Language    负责人
-    Verify Page Language    成员
-    Verify Page Language    操作
-    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-eye')]]  # ปุ่ม 查看
-    ${edit_present}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-pencil')]]  # ปุ่ม 编辑
-    Run Keyword If    ${edit_present}    Log To Console    Edit button found
-    ...    ELSE    Log To Console    Edit button not found, possibly due to permissions or no data
-    ${delete_present}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//button[contains(@class, 'btn') and .//i[contains(@class, 'mdi-delete')]]  # ปุ่ม 删除
-    Run Keyword If    ${delete_present}    Log To Console    Delete button found
-    ...    ELSE    Log To Console    Delete button not found, possibly due to permissions or no data
-    Verify Page Language    你确定吗？
-    Verify Page Language    如果删除，数据将永远消失。
-    Verify Page Language    删除成功
-    Verify Page Language    搜索:
-
-TC45_REReseachGroup_Table - ตรวจสอบภาษาของตาราง Research Groups
-    [Setup]    Reset Language To English
-    [Documentation]    ตรวจสอบภาษาของตาราง Research Groups
-    Go To    ${RESEARCH_GROUPS_URL}
-    Wait Until Page Contains    Research Groups    15s
-    # ภาษาอังกฤษ (หัวตาราง)
-    Verify Table Header    1    No.
-    Verify Table Header    2    Group Name
-    Verify Table Header    3    Head
-    Verify Table Header    4    Member
-    Verify Table Header    5    Action
-
-    Switch Language    th
-    Verify Table Header    1    ลำดับ
-    Verify Table Header    2    ชื่อกลุ่ม
-    Verify Table Header    3    หัวหน้า
-    Verify Table Header    4    สมาชิก
-    Verify Table Header    5    การกระทำ
-
-    Switch Language    zh
-    Verify Table Header    1    序号
-    Verify Table Header    2    小组名称
-    Verify Table Header    3    负责人
-    Verify Table Header    4    成员
-    Verify Table Header    5    操作
-
-TC46_REReseachGroup_View - ตรวจสอบภาษาข้อมูลในหน้ารายละเอียด
-    [Setup]    Reset Language To English
-    [Documentation]    ตรวจสอบภาษาข้อมูลในหน้ารายละเอียด Research Group โดยคลิกปุ่ม View
-    Go To    ${RESEARCH_GROUPS_URL}
-    Wait Until Page Contains    Research Groups    15s
-    Wait Until Page Contains Element    xpath=//table//tbody/tr[1]//a[contains(@class, 'btn-outline-primary') and .//i[contains(@class, 'mdi-eye')]]    15s
-    Click Element    xpath=//table//tbody/tr[1]//a[contains(@class, 'btn-outline-primary') and .//i[contains(@class, 'mdi-eye')]]
-    Wait Until Page Contains    Research Groups    15s
-    ${current_url}=    Get Location
-    Log To Console    Current URL after clicking View: ${current_url}
-    # ภาษาอังกฤษ
-    Verify Page Language    Research Groups
-    Verify Page Language    Research group details information
-    Verify Page Language    Group Name (Thai)
-    Verify Page Language    Group Name (English)
-    Verify Page Language    Group Description (Thai)
-    Verify Page Language    Group Description (English)
-    Verify Page Language    Group Description (China)
-    Verify Page Language    Group Detail (Thai)
-    Verify Page Language    Group Detail (English)
-    Verify Page Language    Group Detail (China)
-    Verify Page Language    Group Image
-    Verify Page Language    Group Head
-    Verify Page Language    Group Member (Internal)
-    Verify Page Language    Group Member (External)
-    Verify Page Language    Back
-
-    Switch Language    th
-    Reload Page    # เพิ่มการ reload เพื่อให้ภาษาไทยอัปเดต
-    ${current_url}=    Get Location
-    Log To Console    Current URL after switching to Thai: ${current_url}
-    Verify Page Language    กลุ่มวิจัย
-    Verify Page Language    ข้อมูลรายละเอียดกลุ่มวิจัย
-    Verify Page Language    ชื่อกลุ่มวิจัย (ภาษาไทย)
-    Verify Page Language    ชื่อกลุ่มวิจัย (ภาษาอังกฤษ)
-    Verify Page Language    คำอธิบายกลุ่มวิจัย (ภาษาไทย)
-    Verify Page Language    คำอธิบายกลุ่มวิจัย (ภาษาอังกฤษ)
-    Verify Page Language    คำอธิบายกลุ่มวิจัย (ภาษาจีน)
-    Verify Page Language    รายละเอียดกลุ่มวิจัย (ภาษาไทย)
-    Verify Page Language    รายละเอียดกลุ่มวิจัย (ภาษาอังกฤษ)
-    Verify Page Language    รายละเอียดกลุ่มวิจัย (ภาษาจีน)
-    Verify Page Language    รูปภาพกลุ่มวิจัย
-    Verify Page Language    หัวหน้ากลุ่มวิจัย
-    Verify Page Language    สมาชิกกลุ่มวิจัย (ภายใน)
-    Verify Page Language    สมาชิกกลุ่มวิจัย (ภายนอก)
-    Verify Page Language    กลับ
-
-    Switch Language    zh
-    Reload Page    # เพิ่มการ reload เพื่อให้ภาษาจีนอัปเดต
-    Verify Page Language    研究小组
-    Verify Page Language    研究小组详细信息
-    Verify Page Language    小组名称 (泰语)
-    Verify Page Language    小组名称 (英文)
-    Verify Page Language    小组描述 (泰语)
-    Verify Page Language    小组描述 (英文)
-    Verify Page Language    小组描述 (中国人)
-    Verify Page Language    小组详情 (泰语)
-    Verify Page Language    小组详情 (英文)
-    Verify Page Language    小组详情 (中国人)
-    Verify Page Language    小组图片
-    Verify Page Language    小组负责人
-    Verify Page Language    小组成员 (内部)
-    Verify Page Language    小组成员 (外部)
-    Verify Page Language    返回
-
-TC47_REReseachGroup_Form - ตรวจสอบภาษาของฟอร์มเพิ่ม Research Group
+TC01_REReseachGroup_Form - ตรวจสอบภาษาของฟอร์มเพิ่ม Research Group
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาในฟอร์มเพิ่ม Research Group
     Go To    ${CREATE_URL}
@@ -306,3 +148,162 @@ TC47_REReseachGroup_Form - ตรวจสอบภาษาของฟอร�
     Verify Page Language    提交
     Verify Page Language    返回
     Verify Page Language    选择成员
+
+TC02_REReseachGroup_View - ตรวจสอบภาษาข้อมูลในหน้ารายละเอียด
+    [Setup]    Reset Language To English
+    [Documentation]    ตรวจสอบภาษาข้อมูลในหน้ารายละเอียด Research Group โดยคลิกปุ่ม View
+    Go To    ${RESEARCH_GROUPS_URL}
+    Wait Until Page Contains    Research Groups    15s
+    Wait Until Page Contains Element    xpath=//table//tbody/tr[1]//a[contains(@class, 'btn-outline-primary') and .//i[contains(@class, 'mdi-eye')]]    15s
+    Click Element    xpath=//table//tbody/tr[1]//a[contains(@class, 'btn-outline-primary') and .//i[contains(@class, 'mdi-eye')]]
+    Wait Until Page Contains    Research Groups    15s
+    ${current_url}=    Get Location
+    Log To Console    Current URL after clicking View: ${current_url}
+    # ภาษาอังกฤษ
+    Verify Page Language    Research Groups
+    Verify Page Language    Research group details information
+    Verify Page Language    Group Name (Thai)
+    Verify Page Language    Group Name (English)
+    Verify Page Language    Group Description (Thai)
+    Verify Page Language    Group Description (English)
+    Verify Page Language    Group Description (China)
+    Verify Page Language    Group Detail (Thai)
+    Verify Page Language    Group Detail (English)
+    Verify Page Language    Group Detail (China)
+    Verify Page Language    Group Image
+    Verify Page Language    Group Head
+    Verify Page Language    Group Member (Internal)
+    Verify Page Language    Group Member (External)
+    Verify Page Language    Back
+
+    Switch Language    th
+    Reload Page    # เพิ่มการ reload เพื่อให้ภาษาไทยอัปเดต
+    ${current_url}=    Get Location
+    Log To Console    Current URL after switching to Thai: ${current_url}
+    Verify Page Language    กลุ่มวิจัย
+    Verify Page Language    ข้อมูลรายละเอียดกลุ่มวิจัย
+    Verify Page Language    ชื่อกลุ่มวิจัย (ภาษาไทย)
+    Verify Page Language    ชื่อกลุ่มวิจัย (ภาษาอังกฤษ)
+    Verify Page Language    คำอธิบายกลุ่มวิจัย (ภาษาไทย)
+    Verify Page Language    คำอธิบายกลุ่มวิจัย (ภาษาอังกฤษ)
+    Verify Page Language    คำอธิบายกลุ่มวิจัย (ภาษาจีน)
+    Verify Page Language    รายละเอียดกลุ่มวิจัย (ภาษาไทย)
+    Verify Page Language    รายละเอียดกลุ่มวิจัย (ภาษาอังกฤษ)
+    Verify Page Language    รายละเอียดกลุ่มวิจัย (ภาษาจีน)
+    Verify Page Language    รูปภาพกลุ่มวิจัย
+    Verify Page Language    หัวหน้ากลุ่มวิจัย
+    Verify Page Language    สมาชิกกลุ่มวิจัย (ภายใน)
+    Verify Page Language    สมาชิกกลุ่มวิจัย (ภายนอก)
+    Verify Page Language    กลับ
+
+    Switch Language    zh
+    Reload Page    # เพิ่มการ reload เพื่อให้ภาษาจีนอัปเดต
+    Verify Page Language    研究小组
+    Verify Page Language    研究小组详细信息
+    Verify Page Language    小组名称 (泰语)
+    Verify Page Language    小组名称 (英文)
+    Verify Page Language    小组描述 (泰语)
+    Verify Page Language    小组描述 (英文)
+    Verify Page Language    小组描述 (中国人)
+    Verify Page Language    小组详情 (泰语)
+    Verify Page Language    小组详情 (英文)
+    Verify Page Language    小组详情 (中国人)
+    Verify Page Language    小组图片
+    Verify Page Language    小组负责人
+    Verify Page Language    小组成员 (内部)
+    Verify Page Language    小组成员 (外部)
+    Verify Page Language    返回
+
+TC03_REReseachGroup_Table - ตรวจสอบภาษาของตาราง Research Groups
+    [Setup]    Reset Language To English
+    [Documentation]    ตรวจสอบภาษาของตาราง Research Groups
+    Go To    ${RESEARCH_GROUPS_URL}
+    Wait Until Page Contains    Research Groups    15s
+    # ภาษาอังกฤษ (หัวตาราง)
+    Verify Table Header    1    No.
+    Verify Table Header    2    Group Name
+    Verify Table Header    3    Head
+    Verify Table Header    4    Member
+    Verify Table Header    5    Action
+
+    Switch Language    th
+    Verify Table Header    1    ลำดับ
+    Verify Table Header    2    ชื่อกลุ่ม
+    Verify Table Header    3    หัวหน้า
+    Verify Table Header    4    สมาชิก
+    Verify Table Header    5    การกระทำ
+
+    Switch Language    zh
+    Verify Table Header    1    序号
+    Verify Table Header    2    小组名称
+    Verify Table Header    3    负责人
+    Verify Table Header    4    成员
+    Verify Table Header    5    操作
+    
+TC04_REReseachGroup - ตรวจสอบภาษาส่วนต่างๆ
+    [Setup]    Reset Language To English
+    [Documentation]    ตรวจสอบภาษาส่วนต่างๆ ในหน้า Research Groups
+    Go To    ${RESEARCH_GROUPS_URL}
+    Wait Until Page Contains    Research Groups    15s
+    # ภาษาอังกฤษ
+    Verify Page Language    Research Groups
+    Verify Page Language    ADD
+    Verify Page Language    No.
+    Verify Page Language    Group Name
+    Verify Page Language    Head
+    Verify Page Language    Member
+    Verify Page Language    Action
+    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-eye')]]  # ปุ่ม View
+    ${edit_present}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-pencil')]]  # ปุ่ม Edit
+    Run Keyword If    ${edit_present}    Log To Console    Edit button found
+    ...    ELSE    Log To Console    Edit button not found, possibly due to permissions or no data
+    ${delete_present}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//button[contains(@class, 'btn') and .//i[contains(@class, 'mdi-delete')]]  # ปุ่ม Delete
+    Run Keyword If    ${delete_present}    Log To Console    Delete button found
+    ...    ELSE    Log To Console    Delete button not found, possibly due to permissions or no data
+    ${row_count}=    Get Element Count    xpath=//table//tbody/tr
+    Log To Console    Number of rows in table: ${row_count}
+    Verify Page Language    Are you sure?
+    Verify Page Language    If you delete this, it will be gone forever.
+    Verify Page Language    Deleted Successfully
+    Verify Page Language    Search:
+
+    Switch Language    th
+    Verify Page Language    กลุ่มวิจัย
+    Verify Page Language    เพิ่ม
+    Verify Page Language    ลำดับ
+    Verify Page Language    ชื่อกลุ่ม
+    Verify Page Language    หัวหน้า
+    Verify Page Language    สมาชิก
+    Verify Page Language    การกระทำ
+    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-eye')]]  # ปุ่ม ดู
+    ${edit_present}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-pencil')]]  # ปุ่ม แก้ไข
+    Run Keyword If    ${edit_present}    Log To Console    Edit button found
+    ...    ELSE    Log To Console    Edit button not found, possibly due to permissions or no data
+    ${delete_present}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//button[contains(@class, 'btn') and .//i[contains(@class, 'mdi-delete')]]  # ปุ่ม ลบ
+    Run Keyword If    ${delete_present}    Log To Console    Delete button found
+    ...    ELSE    Log To Console    Delete button not found, possibly due to permissions or no data
+    Verify Page Language    คุณแน่ใจหรือไม่?
+    Verify Page Language    หากลบแล้ว ข้อมูลจะหายไปตลอดกาล
+    Verify Page Language    ลบสำเร็จ
+    Verify Page Language    ค้นหา:
+
+    Switch Language    zh
+    Verify Page Language    研究小组
+    Verify Page Language    添加
+    Verify Page Language    序号
+    Verify Page Language    小组名称
+    Verify Page Language    负责人
+    Verify Page Language    成员
+    Verify Page Language    操作
+    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-eye')]]  # ปุ่ม 查看
+    ${edit_present}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-pencil')]]  # ปุ่ม 编辑
+    Run Keyword If    ${edit_present}    Log To Console    Edit button found
+    ...    ELSE    Log To Console    Edit button not found, possibly due to permissions or no data
+    ${delete_present}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//button[contains(@class, 'btn') and .//i[contains(@class, 'mdi-delete')]]  # ปุ่ม 删除
+    Run Keyword If    ${delete_present}    Log To Console    Delete button found
+    ...    ELSE    Log To Console    Delete button not found, possibly due to permissions or no data
+    Verify Page Language    你确定吗？
+    Verify Page Language    如果删除，数据将永远消失。
+    Verify Page Language    删除成功
+    Verify Page Language    搜索:
+
