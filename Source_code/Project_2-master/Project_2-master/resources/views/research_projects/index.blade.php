@@ -145,4 +145,8 @@ $(document).ready(function() {
             });
     });
 </script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/Thanakrit_2664
 @stop

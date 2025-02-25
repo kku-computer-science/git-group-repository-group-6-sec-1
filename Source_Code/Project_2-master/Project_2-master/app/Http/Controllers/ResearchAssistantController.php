@@ -77,7 +77,6 @@ class ResearchAssistantController extends Controller
         $researchAssistant = ResearchAssistant::findOrFail($id);
         $researchGroups = ResearchGroup::all();
         $researchProjects = ResearchProject::all();
-
         return view('research_assistant.edit', compact('researchAssistant', 'researchGroups', 'researchProjects'));
     }
 
@@ -90,7 +89,6 @@ class ResearchAssistantController extends Controller
             'project_id' => 'required|exists:research_projects,id',
             'member_count' => 'required|integer|min:1',
             'form_link' => 'required|url',
-
         ]);
 
         $researchAssistant = ResearchAssistant::findOrFail($id);

@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap4.min.css">
-<<<<<<< HEAD
+
 @section('title','Dashboard')
 @section('content')
 <div class="container">
@@ -93,7 +93,7 @@
     $(document).ready(function() {
         var table1 = $('#example1').DataTable({
             responsive: true,
-=======
+
 @section('title', __('published_research.title'))
 
 @section('content')
@@ -166,14 +166,14 @@
             language: {
                 search: "{{ __('published_research.search') }}"
             }
->>>>>>> origin/Prommin_1406
+
         });
     });
 </script>
 <script type="text/javascript">
     $('.show_confirm').click(function(event) {
         var form = $(this).closest("form");
-<<<<<<< HEAD
+
         var name = $(this).data("name");
         event.preventDefault();
         swal({
@@ -196,7 +196,7 @@
     });
 </script>
 @stop
-=======
+
         event.preventDefault();
         swal({
             title: `{{ __('published_research.confirm_title') }}`,
@@ -217,4 +217,4 @@
     });
 </script>
 @stop
->>>>>>> origin/Prommin_1406
+

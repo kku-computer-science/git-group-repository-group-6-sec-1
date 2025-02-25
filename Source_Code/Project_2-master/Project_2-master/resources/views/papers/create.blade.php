@@ -1,9 +1,13 @@
 @extends('dashboards.users.layouts.user-dash-layout')
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 @section('title', __('published_research.title'))
 >>>>>>> origin/Prommin_1406
+=======
+@section('title', __('published_research.title'))
+>>>>>>> origin/Thanakrit_2664
 @section('content')
 <style type="text/css">
     .dropdown-toggle .filter-option {
@@ -18,9 +22,12 @@
         padding: 4px 10px;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> origin/Prommin_1406
+=======
+>>>>>>> origin/Thanakrit_2664
     .my-select {
         background-color: #fff;
         color: #212529;
@@ -32,6 +39,7 @@
     }
 </style>
 <div class="container">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -49,6 +57,11 @@
     <div class="alert alert-danger">
         <strong>{{ __('published_research.confirm_title') }}</strong> {{ __('published_research.confirm_text') }}<br><br>
 >>>>>>> origin/Prommin_1406
+=======
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>{{ __('published_research.confirm_title') }}</strong> {{ __('published_research.confirm_text') }}<br><br>
+>>>>>>> origin/Thanakrit_2664
         <ul>
             @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
@@ -56,6 +69,7 @@
         </ul>
     </div>
     @endif
+<<<<<<< HEAD
 <<<<<<< HEAD
     <!-- <a class="btn btn-primary" href="{{ route('papers.index') }}"> Back </a> -->
 
@@ -393,6 +407,8 @@
     </form>
 </div> -->
 =======
+=======
+>>>>>>> origin/Thanakrit_2664
     <div class="card" style="padding: 16px;">
         <div class="card-body">
             <h4 class="card-title">{{ __('published_research.add_button') }} {{ __('published_research.title') }}</h4>
@@ -658,4 +674,7 @@ $(document).ready(function() {
 </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 @stop
+<<<<<<< HEAD
 >>>>>>> origin/Prommin_1406
+=======
+>>>>>>> origin/Thanakrit_2664

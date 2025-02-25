@@ -1,27 +1,41 @@
 @extends('dashboards.users.layouts.user-dash-layout')
+<<<<<<< HEAD
 
 
 @section('title', __('books.edit_title'))
 
 
+=======
+
+@section('title', __('books.edit_title'))
+
+>>>>>>> origin/Thanakrit_2664
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-lg-12 margin-tb">
+<<<<<<< HEAD
 
 
             <!-- Header or breadcrumb (ถ้ามี) -->
 
+=======
+            <!-- Header or breadcrumb (ถ้ามี) -->
+>>>>>>> origin/Thanakrit_2664
         </div>
     </div>
 
     @if ($errors->any())
     <div class="alert alert-danger">
+<<<<<<< HEAD
 
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
 
         <strong>{{ __('books.error_title') }}</strong> {{ __('books.error_text') }}<br><br>
 
+=======
+        <strong>{{ __('books.error_title') }}</strong> {{ __('books.error_text') }}<br><br>
+>>>>>>> origin/Thanakrit_2664
         <ul>
             @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
@@ -29,6 +43,7 @@
         </ul>
     </div>
     @endif
+<<<<<<< HEAD
 
     <div class="col-md-8 grid-margin stretch-card">
         <div class="card" style="padding: 16px;">
@@ -66,6 +81,8 @@
                     <button type="submit" class="btn btn-primary me-2">Submit</button>
                     <a class="btn btn-light" href="{{ route('books.index') }}" >Cancel</a>
 
+=======
+>>>>>>> origin/Thanakrit_2664
 
     <div class="col-md-8 grid-margin stretch-card">
         <div class="card" style="padding: 16px;">
@@ -106,11 +123,15 @@
 
                     <button type="submit" class="btn btn-primary me-2">{{ __('books.submit_button') }}</button>
                     <a class="btn btn-light" href="{{ route('books.index') }}">{{ __('books.cancel_button') }}</a>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Thanakrit_2664
                 </form>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
 
 </div>
@@ -142,3 +163,7 @@
 </div>
 @endsection
 
+=======
+</div>
+@endsection
+>>>>>>> origin/Thanakrit_2664

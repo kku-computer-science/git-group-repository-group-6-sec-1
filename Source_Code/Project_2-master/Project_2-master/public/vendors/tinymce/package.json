@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "_args": [
     [
       "tinymce@5.6.2",
@@ -54,6 +55,8 @@
   "types": "tinymce.d.ts",
   "version": "5.6.2"
 =======
+=======
+>>>>>>> origin/Thanakrit_2664
     "_args": [
         [
             "tinymce@5.6.2",
@@ -110,5 +113,8 @@
     "dependencies": {
         "tinymce": "file:"
     }
+<<<<<<< HEAD
 >>>>>>> origin/Prommin_1406
+=======
+>>>>>>> origin/Thanakrit_2664
 }

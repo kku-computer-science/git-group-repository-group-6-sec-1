@@ -31,6 +31,8 @@ TC02_Home_NavBarTranslation
     Check Text Case Insensitive    xpath://a[contains(@class, 'nav-link') and contains(., 'โครงการวิจัย')]    โครงการวิจัย
     Check Text Case Insensitive    xpath://a[contains(@class, 'nav-link') and contains(., 'กลุ่มวิจัย')]    กลุ่มวิจัย
     Check Text Case Insensitive    xpath://a[contains(@class, 'nav-link') and contains(., 'รายงาน')]    รายงาน
+    Check Text Case Insensitive    xpath://a[@href='/login']    เข้าสู่ระบบ
+
     Switch Language    en
     Wait Until Element Is Visible    xpath://nav[@id='navbar']
     Check Text Case Insensitive    xpath://a[contains(@class, 'nav-link') and contains(., 'Home')]    Home
@@ -38,6 +40,8 @@ TC02_Home_NavBarTranslation
     Check Text Case Insensitive    xpath://a[contains(@class, 'nav-link') and contains(., 'Research Project')]    Research Project
     Check Text Case Insensitive    xpath://a[contains(@class, 'nav-link') and contains(., 'Research Group')]    Research Group
     Check Text Case Insensitive    xpath://a[contains(@class, 'nav-link') and contains(., 'Reports')]    Reports
+    Check Text Case Insensitive    xpath://a[@href='/login']    Login
+
     Switch Language    zh
     Wait Until Element Is Visible    xpath://nav[@id='navbar']
     Check Text Case Insensitive    xpath://a[contains(@class, 'nav-link') and contains(., '首页')]    首页
@@ -45,6 +49,7 @@ TC02_Home_NavBarTranslation
     Check Text Case Insensitive    xpath://a[contains(@class, 'nav-link') and contains(., '研究项目')]    研究项目
     Check Text Case Insensitive    xpath://a[contains(@class, 'nav-link') and contains(., '研究小组')]    研究小组
     Check Text Case Insensitive    xpath://a[contains(@class, 'nav-link') and contains(., '报告')]    报告
+    Check Text Case Insensitive    xpath://a[@href='/login']    登入
 
 TC03_Home_BannerTranslation
     [Documentation]    ตรวจสอบภาษาของภาพ Banner

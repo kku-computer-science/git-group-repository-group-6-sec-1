@@ -1,1020 +1,1418 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.1.1 (Python 3.13.1 on win32)" generated="2025-02-26T03:01:00.646069" rpa="false" schemaversion="5">
-<suite id="s1" name="reProfileTestsuite" source="D:\university\software\git-group-repository-group-6-sec-1\Source_code\Project_2-master\Project_2-master\tests\reProfileTestsuite.robot">
-<kw name="Open Browser And Login" type="SETUP">
+<robot generator="Robot 7.1.1 (Python 3.13.1 on win32)" generated="2025-02-26T06:52:26.237595" rpa="false" schemaversion="5">
+<suite id="s1" name="researchProjectsTestsuite" source="D:\university\software\git-group-repository-group-6-sec-1\Source_code\Project_2-master\Project_2-master\tests\researchProjectsTestsuite.robot">
+<kw name="Open Browser To Research Project" type="SETUP">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:00.919246" level="INFO">Opening browser 'Chrome' to base url 'http://127.0.0.1:8000/login'.</msg>
-<arg>${LOGIN_URL}</arg>
+<msg time="2025-02-26T06:52:26.489858" level="INFO">Opening browser 'Chrome' to base url 'http://127.0.0.1:8000/researchproject'.</msg>
+<arg>${RESEARCH_PROJECT_URL}</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:00.918994" elapsed="2.302610"/>
+<status status="PASS" start="2025-02-26T06:52:26.489609" elapsed="2.214285"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-02-26T03:01:03.222086" elapsed="0.100700"/>
+<status status="PASS" start="2025-02-26T06:52:28.704435" elapsed="0.069717"/>
 </kw>
-<kw name="Login To System">
-<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
-<arg>id=username</arg>
-<arg>15s</arg>
-<doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:03.323730" elapsed="0.016189"/>
+<status status="PASS" start="2025-02-26T06:52:26.489028" elapsed="2.285240"/>
 </kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Found username field</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:03.340209" elapsed="0.000469"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:03.341280" level="INFO">Typing text 'punhor1@kku.ac.th' into text field 'id=username'.</msg>
-<arg>id=username</arg>
-<arg>${USERNAME}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:03.340911" elapsed="0.125188"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:03.466530" level="INFO">Typing text '123456789' into text field 'id=password'.</msg>
-<arg>id=password</arg>
-<arg>${PASSWORD}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:03.466294" elapsed="0.097011"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:03.564113" level="INFO">Clicking button 'xpath=//button[@type='submit']'.</msg>
-<arg>xpath=//button[@type='submit']</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:03.563656" elapsed="1.598673"/>
-</kw>
-<kw name="Wait Until Location Contains" owner="SeleniumLibrary">
-<arg>${DASHBOARD_URL}</arg>
-<arg>15s</arg>
-<doc>Waits until the current URL contains ``expected``.</doc>
-<status status="PASS" start="2025-02-26T03:01:05.162548" elapsed="0.007063"/>
-</kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Login successful, redirected to: ${DASHBOARD_URL}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:05.169793" elapsed="0.000640"/>
-</kw>
-<status status="PASS" start="2025-02-26T03:01:03.323293" elapsed="1.847304"/>
-</kw>
-<status status="PASS" start="2025-02-26T03:01:00.918447" elapsed="4.252228"/>
-</kw>
-<test id="s1-t1" name="TC30_REProfile_Dashboard" line="15">
+<test id="s1-t1" name="TC22_ResearcherProject_DetailTableTranslation" line="12">
 <kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:05.171582" level="INFO">Opening url 'http://127.0.0.1:8000/dashboard'</msg>
-<arg>${URL}/dashboard</arg>
+<msg time="2025-02-26T06:52:28.775881" level="INFO">Opening url 'http://127.0.0.1:8000/researchproject'</msg>
+<arg>${RESEARCH_PROJECT_URL}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:05.171440" elapsed="0.381243"/>
+<status status="PASS" start="2025-02-26T06:52:28.775696" elapsed="0.548709"/>
 </kw>
-<kw name="Check Dashboard Translations">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>โครงการบริการวิชาการ/ โครงการวิจัย</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-26T06:52:29.324896" elapsed="0.013966"/>
+</kw>
+<kw name="Check Research Project Translations">
 <kw name="Set Selenium Timeout" owner="SeleniumLibrary">
-<arg>15s</arg>
+<arg>10s</arg>
 <doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" start="2025-02-26T03:01:05.553782" elapsed="0.001834"/>
+<status status="PASS" start="2025-02-26T06:52:29.339602" elapsed="0.001079"/>
 </kw>
 <kw name="Switch Language">
 <kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:05.556812" level="INFO">Opening url 'http://127.0.0.1:8000/lang/th'</msg>
+<msg time="2025-02-26T06:52:29.341215" level="INFO">Opening url 'http://127.0.0.1:8000/lang/th'</msg>
 <arg>${URL}/lang/${lang}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:05.556532" elapsed="0.543573"/>
+<status status="PASS" start="2025-02-26T06:52:29.341064" elapsed="0.631530"/>
 </kw>
 <kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
 <arg>xpath://body</arg>
-<arg>timeout=15s</arg>
+<arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:06.100319" elapsed="0.015900"/>
+<status status="PASS" start="2025-02-26T06:52:29.972838" elapsed="0.031021"/>
 </kw>
-<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
-<arg>${lang}</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until ``text`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:06.116400" elapsed="0.011661"/>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Switched to language: ${lang}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.004015" elapsed="0.000459"/>
 </kw>
 <arg>th</arg>
-<status status="PASS" start="2025-02-26T03:01:05.556031" elapsed="0.572192"/>
+<status status="PASS" start="2025-02-26T06:52:29.340830" elapsed="0.663737"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath://h3</arg>
-<arg>timeout=15s</arg>
+<arg>xpath://p</arg>
+<arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-26T03:01:06.128434" elapsed="0.023976"/>
+<status status="PASS" start="2025-02-26T06:52:30.004684" elapsed="0.022272"/>
 </kw>
 <kw name="Check Text Case Insensitive">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.027548" elapsed="0.016695"/>
+</kw>
+<msg time="2025-02-26T06:52:30.044387" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.027407" elapsed="0.017008"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Log To Console</arg>
+<arg>Element ${locator} not visible after 10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.044551" elapsed="0.000176"/>
+</kw>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:06.175395" level="INFO">${actual_text} = </msg>
+<msg time="2025-02-26T06:52:30.065323" level="INFO">${actual_text} = โครงการบริการวิชาการ/ โครงการวิจัย</msg>
 <var>${actual_text}</var>
 <arg>${locator}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:06.152934" elapsed="0.022501"/>
+<status status="PASS" start="2025-02-26T06:52:30.044838" elapsed="0.020526"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
-<arg>Actual text found: ${actual_text}</arg>
+<arg>Actual text found at ${locator}: ${actual_text}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:06.175576" elapsed="0.000436"/>
+<status status="PASS" start="2025-02-26T06:52:30.065500" elapsed="0.000510"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${actual_text}' == ''</arg>
+<arg>Fail</arg>
+<arg>Empty text found at ${locator}, expected '${expected_text}'</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.066141" elapsed="0.000193"/>
 </kw>
 <kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2025-02-26T03:01:06.176427" level="FAIL"> != แดชบอร์ด</msg>
 <arg>${actual_text}</arg>
 <arg>${expected_text}</arg>
 <arg>ignore_case=True</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="FAIL" start="2025-02-26T03:01:06.176133" elapsed="0.000435"> != แดชบอร์ด</status>
+<status status="PASS" start="2025-02-26T06:52:30.066437" elapsed="0.000225"/>
 </kw>
-<arg>xpath://title</arg>
-<arg>แดชบอร์ด</arg>
-<status status="FAIL" start="2025-02-26T03:01:06.152628" elapsed="0.024097"> != แดชบอร์ด</status>
+<arg>xpath://p</arg>
+<arg>โครงการบริการวิชาการ/ โครงการวิจัย</arg>
+<status status="PASS" start="2025-02-26T06:52:30.027145" elapsed="0.039595"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<arg>xpath://h3</arg>
-<arg>ยินดีต้อนรับเข้าสู่ระบบจัดการข้อมูลวิจัยของสาขาวิชาวิทยาการคอมพิวเตอร์</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:06.176970" elapsed="0.000044"/>
-</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath://h4</arg>
-<arg>timeout=15s</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2025-02-26T03:01:06.177170" elapsed="0.000040"/>
+<status status="PASS" start="2025-02-26T06:52:30.067258" elapsed="0.020509"/>
 </kw>
-<kw name="Element Should Contain" owner="SeleniumLibrary">
-<arg>xpath://h4</arg>
-<arg>สวัสดี</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<status status="NOT RUN" start="2025-02-26T03:01:06.177343" elapsed="0.000027"/>
+<msg time="2025-02-26T06:52:30.087901" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.067119" elapsed="0.020808"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Log To Console</arg>
+<arg>Element ${locator} not visible after 10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.088084" elapsed="0.000180"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-02-26T06:52:30.106925" level="INFO">${actual_text} = ลำดับ</msg>
+<var>${actual_text}</var>
+<arg>${locator}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.088373" elapsed="0.018596"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Actual text found at ${locator}: ${actual_text}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.107104" elapsed="0.000486"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${actual_text}' == ''</arg>
+<arg>Fail</arg>
+<arg>Empty text found at ${locator}, expected '${expected_text}'</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.107706" elapsed="0.000165"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${actual_text}</arg>
+<arg>${expected_text}</arg>
+<arg>ignore_case=True</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.107989" elapsed="0.000238"/>
+</kw>
+<arg>xpath://table[@id='example1']//th[1]</arg>
+<arg>ลำดับ</arg>
+<status status="PASS" start="2025-02-26T06:52:30.066878" elapsed="0.041517"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.108912" elapsed="0.019309"/>
+</kw>
+<msg time="2025-02-26T06:52:30.128367" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.108777" elapsed="0.019619"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Log To Console</arg>
+<arg>Element ${locator} not visible after 10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.128554" elapsed="0.000177"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-02-26T06:52:30.144912" level="INFO">${actual_text} = ปี</msg>
+<var>${actual_text}</var>
+<arg>${locator}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.128854" elapsed="0.016099"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Actual text found at ${locator}: ${actual_text}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.145091" elapsed="0.000509"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${actual_text}' == ''</arg>
+<arg>Fail</arg>
+<arg>Empty text found at ${locator}, expected '${expected_text}'</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.145763" elapsed="0.000272"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${actual_text}</arg>
+<arg>${expected_text}</arg>
+<arg>ignore_case=True</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.146213" elapsed="0.000319"/>
+</kw>
+<arg>xpath://table[@id='example1']//th[2]</arg>
+<arg>ปี</arg>
+<status status="PASS" start="2025-02-26T06:52:30.108552" elapsed="0.038085"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.147155" elapsed="0.018800"/>
+</kw>
+<msg time="2025-02-26T06:52:30.166087" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.147017" elapsed="0.019096"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Log To Console</arg>
+<arg>Element ${locator} not visible after 10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.166247" elapsed="0.000163"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-02-26T06:52:30.182835" level="INFO">${actual_text} = ชื่อโครงการ</msg>
+<var>${actual_text}</var>
+<arg>${locator}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.166514" elapsed="0.016359"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Actual text found at ${locator}: ${actual_text}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.183008" elapsed="0.000457"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${actual_text}' == ''</arg>
+<arg>Fail</arg>
+<arg>Empty text found at ${locator}, expected '${expected_text}'</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.183593" elapsed="0.000165"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${actual_text}</arg>
+<arg>${expected_text}</arg>
+<arg>ignore_case=True</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.183859" elapsed="0.000194"/>
+</kw>
+<arg>xpath://table[@id='example1']//th[3]</arg>
+<arg>ชื่อโครงการ</arg>
+<status status="PASS" start="2025-02-26T06:52:30.146779" elapsed="0.037347"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.184940" elapsed="0.017373"/>
+</kw>
+<msg time="2025-02-26T06:52:30.202452" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.184497" elapsed="0.017983"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Log To Console</arg>
+<arg>Element ${locator} not visible after 10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.202693" elapsed="0.000324"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-02-26T06:52:30.239961" level="INFO">${actual_text} = รายละเอียด</msg>
+<var>${actual_text}</var>
+<arg>${locator}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.203223" elapsed="0.036777"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Actual text found at ${locator}: ${actual_text}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.240147" elapsed="0.000440"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${actual_text}' == ''</arg>
+<arg>Fail</arg>
+<arg>Empty text found at ${locator}, expected '${expected_text}'</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.240768" elapsed="0.000179"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${actual_text}</arg>
+<arg>${expected_text}</arg>
+<arg>ignore_case=True</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.241057" elapsed="0.000204"/>
+</kw>
+<arg>xpath://table[@id='example1']//th[4]</arg>
+<arg>รายละเอียด</arg>
+<status status="PASS" start="2025-02-26T06:52:30.184256" elapsed="0.057079"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.241825" elapsed="0.018569"/>
+</kw>
+<msg time="2025-02-26T06:52:30.260521" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.241699" elapsed="0.018849"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Log To Console</arg>
+<arg>Element ${locator} not visible after 10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.260769" elapsed="0.000170"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-02-26T06:52:30.275268" level="INFO">${actual_text} = ผู้รับผิดชอบโครงการ</msg>
+<var>${actual_text}</var>
+<arg>${locator}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.261043" elapsed="0.014266"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Actual text found at ${locator}: ${actual_text}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.275443" elapsed="0.000493"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${actual_text}' == ''</arg>
+<arg>Fail</arg>
+<arg>Empty text found at ${locator}, expected '${expected_text}'</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.276067" elapsed="0.000170"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${actual_text}</arg>
+<arg>${expected_text}</arg>
+<arg>ignore_case=True</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.276339" elapsed="0.000194"/>
+</kw>
+<arg>xpath://table[@id='example1']//th[5]</arg>
+<arg>ผู้รับผิดชอบโครงการ</arg>
+<status status="PASS" start="2025-02-26T06:52:30.241466" elapsed="0.035142"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.277075" elapsed="0.016939"/>
+</kw>
+<msg time="2025-02-26T06:52:30.294162" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.276953" elapsed="0.017236"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Log To Console</arg>
+<arg>Element ${locator} not visible after 10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.294323" elapsed="0.000172"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-02-26T06:52:30.308598" level="INFO">${actual_text} = สถานะ</msg>
+<var>${actual_text}</var>
+<arg>${locator}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.294600" elapsed="0.014041"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Actual text found at ${locator}: ${actual_text}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.308774" elapsed="0.000480"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${actual_text}' == ''</arg>
+<arg>Fail</arg>
+<arg>Empty text found at ${locator}, expected '${expected_text}'</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.309380" elapsed="0.000167"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${actual_text}</arg>
+<arg>${expected_text}</arg>
+<arg>ignore_case=True</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.309649" elapsed="0.000200"/>
+</kw>
+<arg>xpath://table[@id='example1']//th[6]</arg>
+<arg>สถานะ</arg>
+<status status="PASS" start="2025-02-26T06:52:30.276739" elapsed="0.033186"/>
 </kw>
 <kw name="Switch Language">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-02-26T06:52:30.310361" level="INFO">Opening url 'http://127.0.0.1:8000/lang/en'</msg>
+<arg>${URL}/lang/${lang}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.310236" elapsed="0.604052"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath://body</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.914515" elapsed="0.027548"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Switched to language: ${lang}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.942217" elapsed="0.000544"/>
+</kw>
 <arg>en</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:06.177491" elapsed="0.000027"/>
+<status status="PASS" start="2025-02-26T06:52:30.310045" elapsed="0.632806"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath://h3</arg>
-<arg>timeout=15s</arg>
+<arg>xpath://p</arg>
+<arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2025-02-26T03:01:06.177601" elapsed="0.000024"/>
+<status status="PASS" start="2025-02-26T06:52:30.942951" elapsed="0.016428"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<arg>xpath://title</arg>
-<arg>Dashboard</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:06.177735" elapsed="0.000033"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://h3</arg>
-<arg>Welcome to the Research Information Management System for the Department of Computer Science</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:06.177883" elapsed="0.000025"/>
-</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath://h4</arg>
-<arg>timeout=15s</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2025-02-26T03:01:06.177992" elapsed="0.000147"/>
+<status status="PASS" start="2025-02-26T06:52:30.959983" elapsed="0.015115"/>
 </kw>
-<kw name="Element Should Contain" owner="SeleniumLibrary">
-<arg>xpath://h4</arg>
-<arg>Hello</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<status status="NOT RUN" start="2025-02-26T03:01:06.178244" elapsed="0.000035"/>
+<msg time="2025-02-26T06:52:30.975224" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.959852" elapsed="0.015399"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Log To Console</arg>
+<arg>Element ${locator} not visible after 10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.975381" elapsed="0.000168"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-02-26T06:52:30.989163" level="INFO">${actual_text} = โครงการบริการวิชาการ/ โครงการวิจัย</msg>
+<var>${actual_text}</var>
+<arg>${locator}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.975652" elapsed="0.013551"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Actual text found at ${locator}: ${actual_text}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.989335" elapsed="0.000445"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${actual_text}' == ''</arg>
+<arg>Fail</arg>
+<arg>Empty text found at ${locator}, expected '${expected_text}'</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:30.989910" elapsed="0.000160"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2025-02-26T06:52:30.990423" level="FAIL">โครงการบริการวิชาการ/ โครงการวิจัย != academic service projects/ research projects</msg>
+<arg>${actual_text}</arg>
+<arg>${expected_text}</arg>
+<arg>ignore_case=True</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="FAIL" start="2025-02-26T06:52:30.990173" elapsed="0.000381">โครงการบริการวิชาการ/ โครงการวิจัย != academic service projects/ research projects</status>
+</kw>
+<arg>xpath://p</arg>
+<arg>Academic Service Projects/ Research Projects</arg>
+<status status="FAIL" start="2025-02-26T06:52:30.959584" elapsed="0.031140">โครงการบริการวิชาการ/ โครงการวิจัย != academic service projects/ research projects</status>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[1]</arg>
+<arg>No.</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:30.990876" elapsed="0.000028"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[2]</arg>
+<arg>Year</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:30.991015" elapsed="0.000025"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[3]</arg>
+<arg>Project Name</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:30.991145" elapsed="0.000024"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[4]</arg>
+<arg>Details</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:30.991290" elapsed="0.000028"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[5]</arg>
+<arg>Project Leader</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:30.991420" elapsed="0.000023"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[6]</arg>
+<arg>Status</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:30.991563" elapsed="0.000024"/>
 </kw>
 <kw name="Switch Language">
 <arg>zh</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:06.178451" elapsed="0.000049"/>
+<status status="NOT RUN" start="2025-02-26T06:52:30.991690" elapsed="0.000025"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath://h3</arg>
-<arg>timeout=15s</arg>
+<arg>xpath://p</arg>
+<arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2025-02-26T03:01:06.178633" elapsed="0.000037"/>
+<status status="NOT RUN" start="2025-02-26T06:52:30.991804" elapsed="0.000024"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<arg>xpath://title</arg>
-<arg>仪表板</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:06.178796" elapsed="0.000031"/>
+<arg>xpath://p</arg>
+<arg>学术服务项目/研究项目</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:30.991946" elapsed="0.000023"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<arg>xpath://h3</arg>
-<arg>欢迎来到计算机科学系研究信息管理系统</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:06.178930" elapsed="0.000024"/>
+<arg>xpath://table[@id='example1']//th[1]</arg>
+<arg>编号</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:30.992071" elapsed="0.000022"/>
 </kw>
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath://h4</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2025-02-26T03:01:06.179055" elapsed="0.000029"/>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[2]</arg>
+<arg>年份</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:30.992205" elapsed="0.000023"/>
 </kw>
-<kw name="Element Should Contain" owner="SeleniumLibrary">
-<arg>xpath://h4</arg>
-<arg>你好</arg>
-<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<status status="NOT RUN" start="2025-02-26T03:01:06.179166" elapsed="0.000023"/>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[3]</arg>
+<arg>项目名称</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:30.992329" elapsed="0.000024"/>
 </kw>
-<status status="FAIL" start="2025-02-26T03:01:05.553408" elapsed="0.625885"> != แดชบอร์ด</status>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[4]</arg>
+<arg>详情</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:30.992453" elapsed="0.000031"/>
 </kw>
-<doc>ตรวจสอบภาษาที่ Dashboard</doc>
-<status status="FAIL" start="2025-02-26T03:01:05.170770" elapsed="1.008902"> != แดชบอร์ด</status>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[5]</arg>
+<arg>项目负责人</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:30.992587" elapsed="0.000024"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[6]</arg>
+<arg>状态</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:30.992709" elapsed="0.000025"/>
+</kw>
+<status status="FAIL" start="2025-02-26T06:52:29.339364" elapsed="1.653467">โครงการบริการวิชาการ/ โครงการวิจัย != academic service projects/ research projects</status>
+</kw>
+<doc>ตรวจสอบภาษาข้อมูลต่างๆ ในหน้าโครงการวิจัย/บริการวิชาการ</doc>
+<status status="FAIL" start="2025-02-26T06:52:28.774370" elapsed="2.218747">โครงการบริการวิชาการ/ โครงการวิจัย != academic service projects/ research projects</status>
 </test>
-<test id="s1-t2" name="TC31_REProfile" line="20">
+<test id="s1-t2" name="TC23_ResearcherProject_TableTranslations" line="18">
 <kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:06.181813" level="INFO">Opening url 'http://127.0.0.1:8000/profile'</msg>
-<arg>${URL}/profile</arg>
+<msg time="2025-02-26T06:52:30.995827" level="INFO">Opening url 'http://127.0.0.1:8000/researchproject'</msg>
+<arg>${RESEARCH_PROJECT_URL}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:06.181646" elapsed="0.423395"/>
+<status status="PASS" start="2025-02-26T06:52:30.995667" elapsed="0.436974"/>
 </kw>
-<kw name="Check Profile Translations">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>โครงการบริการวิชาการ/ โครงการวิจัย</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-26T06:52:31.433144" elapsed="0.010186"/>
+</kw>
+<kw name="Check Research Project Table Translations">
 <kw name="Set Selenium Timeout" owner="SeleniumLibrary">
-<arg>15s</arg>
+<arg>10s</arg>
 <doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" start="2025-02-26T03:01:06.605800" elapsed="0.000994"/>
+<status status="PASS" start="2025-02-26T06:52:31.444148" elapsed="0.000971"/>
 </kw>
 <kw name="Switch Language">
 <kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:06.607320" level="INFO">Opening url 'http://127.0.0.1:8000/lang/th'</msg>
+<msg time="2025-02-26T06:52:31.445610" level="INFO">Opening url 'http://127.0.0.1:8000/lang/th'</msg>
 <arg>${URL}/lang/${lang}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:06.607178" elapsed="0.570829"/>
+<status status="PASS" start="2025-02-26T06:52:31.445481" elapsed="0.648156"/>
 </kw>
 <kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
 <arg>xpath://body</arg>
-<arg>timeout=15s</arg>
+<arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.178286" elapsed="0.007586"/>
+<status status="PASS" start="2025-02-26T06:52:32.093882" elapsed="0.009051"/>
 </kw>
-<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
-<arg>${lang}</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until ``text`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.186052" elapsed="0.010923"/>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Switched to language: ${lang}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.103103" elapsed="0.000511"/>
 </kw>
 <arg>th</arg>
-<status status="PASS" start="2025-02-26T03:01:06.606956" elapsed="0.590127"/>
+<status status="PASS" start="2025-02-26T06:52:31.445259" elapsed="0.658475"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath://h4[contains(@class, 'text-center')]</arg>
-<arg>timeout=15s</arg>
+<arg>xpath://table[@id='example1']</arg>
+<arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.197218" elapsed="0.016964"/>
+<status status="PASS" start="2025-02-26T06:52:32.103868" elapsed="0.018286"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:07.232932" level="INFO">${actual_text} = บัญชี</msg>
-<var>${actual_text}</var>
-<arg>${locator}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.214630" elapsed="0.018346"/>
-</kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Actual text found: ${actual_text}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.233133" elapsed="0.000458"/>
-</kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${actual_text}</arg>
-<arg>${expected_text}</arg>
-<arg>ignore_case=True</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.233764" elapsed="0.000262"/>
-</kw>
-<arg>xpath://a[@id='account-tab']//span</arg>
-<arg>บัญชี</arg>
-<status status="PASS" start="2025-02-26T03:01:07.214363" elapsed="0.019741"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:07.252910" level="INFO">${actual_text} = รหัสผ่าน</msg>
-<var>${actual_text}</var>
-<arg>${locator}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.234469" elapsed="0.018482"/>
-</kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Actual text found: ${actual_text}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.253091" elapsed="0.000625"/>
-</kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${actual_text}</arg>
-<arg>${expected_text}</arg>
-<arg>ignore_case=True</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.253933" elapsed="0.000381"/>
-</kw>
-<arg>xpath://a[@id='password-tab']//span</arg>
-<arg>รหัสผ่าน</arg>
-<status status="PASS" start="2025-02-26T03:01:07.234242" elapsed="0.020230"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:07.275879" level="INFO">${actual_text} = ความเชี่ยวชาญ</msg>
-<var>${actual_text}</var>
-<arg>${locator}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.255224" elapsed="0.020730"/>
-</kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Actual text found: ${actual_text}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.276132" elapsed="0.000543"/>
-</kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${actual_text}</arg>
-<arg>${expected_text}</arg>
-<arg>ignore_case=True</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.276885" elapsed="0.000269"/>
-</kw>
-<arg>xpath://a[@id='expertise-tab']//span</arg>
-<arg>ความเชี่ยวชาญ</arg>
-<status status="PASS" start="2025-02-26T03:01:07.254766" elapsed="0.022478"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:07.297667" level="INFO">${actual_text} = การศึกษา</msg>
-<var>${actual_text}</var>
-<arg>${locator}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.277606" elapsed="0.020131"/>
-</kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Actual text found: ${actual_text}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.297886" elapsed="0.000524"/>
-</kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${actual_text}</arg>
-<arg>${expected_text}</arg>
-<arg>ignore_case=True</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.298532" elapsed="0.000207"/>
-</kw>
-<arg>xpath://a[@id='education-tab']//span</arg>
-<arg>การศึกษา</arg>
-<status status="PASS" start="2025-02-26T03:01:07.277375" elapsed="0.021549"/>
-</kw>
-<kw name="Switch Language">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:07.299409" level="INFO">Opening url 'http://127.0.0.1:8000/lang/en'</msg>
-<arg>${URL}/lang/${lang}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.299271" elapsed="0.555977"/>
-</kw>
-<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
-<arg>xpath://body</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.855500" elapsed="0.010154"/>
-</kw>
-<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
-<arg>${lang}</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until ``text`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.865867" elapsed="0.013519"/>
-</kw>
-<arg>en</arg>
-<status status="PASS" start="2025-02-26T03:01:07.299068" elapsed="0.580422"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:07.897677" level="INFO">${actual_text} = Account</msg>
-<var>${actual_text}</var>
-<arg>${locator}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.879907" elapsed="0.017809"/>
-</kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Actual text found: ${actual_text}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.897859" elapsed="0.000467"/>
-</kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${actual_text}</arg>
-<arg>${expected_text}</arg>
-<arg>ignore_case=True</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.898430" elapsed="0.000193"/>
-</kw>
-<arg>xpath://a[@id='account-tab']//span</arg>
-<arg>Account</arg>
-<status status="PASS" start="2025-02-26T03:01:07.879633" elapsed="0.019064"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:07.918927" level="INFO">${actual_text} = Password</msg>
-<var>${actual_text}</var>
-<arg>${locator}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.899045" elapsed="0.019920"/>
-</kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Actual text found: ${actual_text}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.919098" elapsed="0.000496"/>
-</kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${actual_text}</arg>
-<arg>${expected_text}</arg>
-<arg>ignore_case=True</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.919716" elapsed="0.000424"/>
-</kw>
-<arg>xpath://a[@id='password-tab']//span</arg>
-<arg>Password</arg>
-<status status="PASS" start="2025-02-26T03:01:07.898829" elapsed="0.021444"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:07.938322" level="INFO">${actual_text} = Expertise</msg>
-<var>${actual_text}</var>
-<arg>${locator}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.920735" elapsed="0.017627"/>
-</kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Actual text found: ${actual_text}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.938508" elapsed="0.000481"/>
-</kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${actual_text}</arg>
-<arg>${expected_text}</arg>
-<arg>ignore_case=True</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.939110" elapsed="0.000208"/>
-</kw>
-<arg>xpath://a[@id='expertise-tab']//span</arg>
-<arg>Expertise</arg>
-<status status="PASS" start="2025-02-26T03:01:07.920476" elapsed="0.018921"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:07.957536" level="INFO">${actual_text} = Education</msg>
-<var>${actual_text}</var>
-<arg>${locator}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.939756" elapsed="0.017827"/>
-</kw>
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Actual text found: ${actual_text}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.957734" elapsed="0.000514"/>
-</kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${actual_text}</arg>
-<arg>${expected_text}</arg>
-<arg>ignore_case=True</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.958441" elapsed="0.000310"/>
-</kw>
-<arg>xpath://a[@id='education-tab']//span</arg>
-<arg>Education</arg>
-<status status="PASS" start="2025-02-26T03:01:07.939526" elapsed="0.019324"/>
-</kw>
-<kw name="Switch Language">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:07.959453" level="INFO">Opening url 'http://127.0.0.1:8000/lang/zh'</msg>
-<arg>${URL}/lang/${lang}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:07.959307" elapsed="0.574500"/>
-</kw>
-<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
-<arg>xpath://body</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:08.534040" elapsed="0.008765"/>
-</kw>
-<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:23.827242" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-29.png"&gt;&lt;img src="selenium-screenshot-29.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg time="2025-02-26T03:01:23.827437" level="FAIL">Text 'zh' did not appear in 15 seconds.</msg>
-<arg>${lang}</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until ``text`` appears on the current page.</doc>
-<status status="FAIL" start="2025-02-26T03:01:08.542955" elapsed="15.289036">Text 'zh' did not appear in 15 seconds.</status>
-</kw>
-<arg>zh</arg>
-<status status="FAIL" start="2025-02-26T03:01:07.959029" elapsed="15.873115">Text 'zh' did not appear in 15 seconds.</status>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://a[@id='account-tab']//span</arg>
-<arg>账户</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:23.832312" elapsed="0.000032"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://a[@id='password-tab']//span</arg>
-<arg>密码</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:23.832451" elapsed="0.000025"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://a[@id='expertise-tab']//span</arg>
-<arg>专长</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:23.832593" elapsed="0.000026"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://a[@id='education-tab']//span</arg>
-<arg>教育</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:23.832716" elapsed="0.000024"/>
-</kw>
-<status status="FAIL" start="2025-02-26T03:01:06.605547" elapsed="17.227275">Text 'zh' did not appear in 15 seconds.</status>
-</kw>
-<doc>ตรวจสอบภาษาที่ Profile</doc>
-<status status="FAIL" start="2025-02-26T03:01:06.180974" elapsed="17.652216">Text 'zh' did not appear in 15 seconds.</status>
-</test>
-<test id="s1-t3" name="TC32_REProfile_Account" line="25">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:23.835352" level="INFO">Opening url 'http://127.0.0.1:8000/profile'</msg>
-<arg>${URL}/profile</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:23.835177" elapsed="0.369594"/>
-</kw>
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:24.205755" level="INFO">Clicking element 'xpath://a[@id='account-tab']'.</msg>
-<arg>xpath://a[@id='account-tab']</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:24.205501" elapsed="0.087934"/>
-</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath://div[@id='account']</arg>
-<arg>timeout=15s</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-26T03:01:24.293785" elapsed="0.023495"/>
+<status status="PASS" start="2025-02-26T06:52:32.122876" elapsed="0.014312"/>
 </kw>
-<kw name="Check Account Tab Translations">
-<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
-<arg>15s</arg>
-<doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" start="2025-02-26T03:01:24.318011" elapsed="0.001204"/>
+<msg time="2025-02-26T06:52:32.137314" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.122742" elapsed="0.014599"/>
 </kw>
-<kw name="Switch Language">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:24.319827" level="INFO">Opening url 'http://127.0.0.1:8000/lang/th'</msg>
-<arg>${URL}/lang/${lang}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:24.319664" elapsed="0.563340"/>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Log To Console</arg>
+<arg>Element ${locator} not visible after 10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.137481" elapsed="0.000164"/>
 </kw>
-<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
-<arg>xpath://body</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:24.883276" elapsed="0.010356"/>
-</kw>
-<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
-<arg>${lang}</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until ``text`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:24.893924" elapsed="0.009589"/>
-</kw>
-<arg>th</arg>
-<status status="PASS" start="2025-02-26T03:01:24.319369" elapsed="0.584245"/>
-</kw>
-<kw name="Check Text Case Insensitive">
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:24.922522" level="INFO">${actual_text} = </msg>
+<msg time="2025-02-26T06:52:32.151605" level="INFO">${actual_text} = ลำดับ</msg>
 <var>${actual_text}</var>
 <arg>${locator}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:24.903999" elapsed="0.018561"/>
+<status status="PASS" start="2025-02-26T06:52:32.137749" elapsed="0.013895"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
-<arg>Actual text found: ${actual_text}</arg>
+<arg>Actual text found at ${locator}: ${actual_text}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:24.922696" elapsed="0.000508"/>
+<status status="PASS" start="2025-02-26T06:52:32.151780" elapsed="0.000483"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${actual_text}' == ''</arg>
+<arg>Fail</arg>
+<arg>Empty text found at ${locator}, expected '${expected_text}'</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.152394" elapsed="0.000291"/>
 </kw>
 <kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2025-02-26T03:01:24.923578" level="FAIL"> != การตั้งค่าโปรไฟล์</msg>
 <arg>${actual_text}</arg>
 <arg>${expected_text}</arg>
 <arg>ignore_case=True</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="FAIL" start="2025-02-26T03:01:24.923331" elapsed="0.000316"> != การตั้งค่าโปรไฟล์</status>
+<status status="PASS" start="2025-02-26T06:52:32.152889" elapsed="0.000214"/>
 </kw>
-<arg>xpath://div[@id='account']//h3</arg>
-<arg>การตั้งค่าโปรไฟล์</arg>
-<status status="FAIL" start="2025-02-26T03:01:24.903756" elapsed="0.020000"> != การตั้งค่าโปรไฟล์</status>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://label[contains(text(), 'ชื่อ')]</arg>
-<arg>ชื่อ (ภาษาอังกฤษ)</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:24.923926" elapsed="0.000031"/>
+<arg>xpath://table[@id='example1']//th[1]</arg>
+<arg>ลำดับ</arg>
+<status status="PASS" start="2025-02-26T06:52:32.122430" elapsed="0.030755"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<arg>xpath://button[@type='submit']</arg>
-<arg>อัปเดต</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:24.924069" elapsed="0.000033"/>
-</kw>
-<kw name="Switch Language">
-<arg>en</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:24.924238" elapsed="0.000027"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://div[@id='account']//h3</arg>
-<arg>Profile Settings</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:24.924364" elapsed="0.000023"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://label[contains(text(), 'First Name')]</arg>
-<arg>First Name (English)</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:24.924483" elapsed="0.000023"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://button[@type='submit']</arg>
-<arg>Update</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:24.924600" elapsed="0.000021"/>
-</kw>
-<kw name="Switch Language">
-<arg>zh</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:24.924712" elapsed="0.000022"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://div[@id='account']//h3</arg>
-<arg>个人资料设置</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:24.924822" elapsed="0.000026"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://label[contains(text(), '名字')]</arg>
-<arg>名字 (英文)</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:24.924941" elapsed="0.000021"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://button[@type='submit']</arg>
-<arg>更新</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:24.925053" elapsed="0.000021"/>
-</kw>
-<status status="FAIL" start="2025-02-26T03:01:24.317758" elapsed="0.607401"> != การตั้งค่าโปรไฟล์</status>
-</kw>
-<doc>ตรวจสอบภาษาที่ Profile tab Account</doc>
-<status status="FAIL" start="2025-02-26T03:01:23.834557" elapsed="1.090847"> != การตั้งค่าโปรไฟล์</status>
-</test>
-<test id="s1-t4" name="TC33_REProfile_Password" line="32">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:24.927134" level="INFO">Opening url 'http://127.0.0.1:8000/profile'</msg>
-<arg>${URL}/profile</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:24.926976" elapsed="0.397026"/>
-</kw>
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:25.324769" level="INFO">Clicking element 'xpath://a[@id='password-tab']'.</msg>
-<arg>xpath://a[@id='password-tab']</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:25.324471" elapsed="0.060345"/>
-</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath://div[@id='password']</arg>
-<arg>timeout=15s</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-26T03:01:25.385564" elapsed="0.021090"/>
+<status status="PASS" start="2025-02-26T06:52:32.153672" elapsed="0.013643"/>
 </kw>
-<kw name="Check Password Tab Translations">
-<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
-<arg>15s</arg>
-<doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" start="2025-02-26T03:01:25.408100" elapsed="0.001402"/>
+<msg time="2025-02-26T06:52:32.167444" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.153548" elapsed="0.013934"/>
 </kw>
-<kw name="Switch Language">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:25.410624" level="INFO">Opening url 'http://127.0.0.1:8000/lang/th'</msg>
-<arg>${URL}/lang/${lang}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:25.410055" elapsed="0.599798"/>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Log To Console</arg>
+<arg>Element ${locator} not visible after 10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.167615" elapsed="0.000175"/>
 </kw>
-<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
-<arg>xpath://body</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:26.010092" elapsed="0.009713"/>
-</kw>
-<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
-<arg>${lang}</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until ``text`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:26.019999" elapsed="0.009140"/>
-</kw>
-<arg>th</arg>
-<status status="PASS" start="2025-02-26T03:01:25.409787" elapsed="0.619459"/>
-</kw>
-<kw name="Check Text Case Insensitive">
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:26.047959" level="INFO">${actual_text} = </msg>
+<msg time="2025-02-26T06:52:32.182677" level="INFO">${actual_text} = ปี</msg>
 <var>${actual_text}</var>
 <arg>${locator}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:26.029627" elapsed="0.018371"/>
+<status status="PASS" start="2025-02-26T06:52:32.167897" elapsed="0.014828"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
-<arg>Actual text found: ${actual_text}</arg>
+<arg>Actual text found at ${locator}: ${actual_text}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:26.048135" elapsed="0.000435"/>
+<status status="PASS" start="2025-02-26T06:52:32.182886" elapsed="0.000583"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${actual_text}' == ''</arg>
+<arg>Fail</arg>
+<arg>Empty text found at ${locator}, expected '${expected_text}'</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.183630" elapsed="0.000190"/>
 </kw>
 <kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2025-02-26T03:01:26.048909" level="FAIL"> != การตั้งค่ารหัสผ่าน</msg>
 <arg>${actual_text}</arg>
 <arg>${expected_text}</arg>
 <arg>ignore_case=True</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="FAIL" start="2025-02-26T03:01:26.048680" elapsed="0.000293"> != การตั้งค่ารหัสผ่าน</status>
+<status status="PASS" start="2025-02-26T06:52:32.183949" elapsed="0.000219"/>
 </kw>
-<arg>xpath://div[@id='password']//h3</arg>
-<arg>การตั้งค่ารหัสผ่าน</arg>
-<status status="FAIL" start="2025-02-26T03:01:26.029385" elapsed="0.019693"> != การตั้งค่ารหัสผ่าน</status>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://label[contains(text(), 'รหัสผ่านเก่า')]</arg>
-<arg>รหัสผ่านเก่า</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:26.049217" elapsed="0.000027"/>
+<arg>xpath://table[@id='example1']//th[2]</arg>
+<arg>ปี</arg>
+<status status="PASS" start="2025-02-26T06:52:32.153317" elapsed="0.030943"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<arg>xpath://button[@type='submit']</arg>
-<arg>อัปเดต</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:26.049345" elapsed="0.000026"/>
-</kw>
-<kw name="Switch Language">
-<arg>en</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:26.049466" elapsed="0.000024"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://div[@id='password']//h3</arg>
-<arg>Password Settings</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:26.049581" elapsed="0.000024"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://label[contains(text(), 'Old Password')]</arg>
-<arg>Old Password</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:26.049698" elapsed="0.000022"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://button[@type='submit']</arg>
-<arg>Update</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:26.049813" elapsed="0.000022"/>
-</kw>
-<kw name="Switch Language">
-<arg>zh</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:26.049926" elapsed="0.000022"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://div[@id='password']//h3</arg>
-<arg>密码设置</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:26.050035" elapsed="0.000022"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://label[contains(text(), '旧密码')]</arg>
-<arg>旧密码</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:26.050169" elapsed="0.000024"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://button[@type='submit']</arg>
-<arg>更新</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:26.050287" elapsed="0.000023"/>
-</kw>
-<status status="FAIL" start="2025-02-26T03:01:25.407624" elapsed="0.642768"> != การตั้งค่ารหัสผ่าน</status>
-</kw>
-<doc>ตรวจสอบภาษาที่ Profile tab Password</doc>
-<status status="FAIL" start="2025-02-26T03:01:24.926458" elapsed="1.124213"> != การตั้งค่ารหัสผ่าน</status>
-</test>
-<test id="s1-t5" name="TC34_REProfile_Expertise" line="39">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:26.052446" level="INFO">Opening url 'http://127.0.0.1:8000/profile'</msg>
-<arg>${URL}/profile</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:26.052280" elapsed="0.372689"/>
-</kw>
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:26.425438" level="INFO">Clicking element 'xpath://a[@id='expertise-tab']'.</msg>
-<arg>xpath://a[@id='expertise-tab']</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:26.425250" elapsed="0.068150"/>
-</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath://div[@id='expertise']</arg>
-<arg>timeout=15s</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-26T03:01:26.493754" elapsed="0.019300"/>
+<status status="PASS" start="2025-02-26T06:52:32.184796" elapsed="0.012624"/>
 </kw>
-<kw name="Check Expertise Tab Translations">
-<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
-<arg>15s</arg>
-<doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" start="2025-02-26T03:01:26.513869" elapsed="0.001294"/>
+<msg time="2025-02-26T06:52:32.197607" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.184667" elapsed="0.012971"/>
 </kw>
-<kw name="Switch Language">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:26.515741" level="INFO">Opening url 'http://127.0.0.1:8000/lang/th'</msg>
-<arg>${URL}/lang/${lang}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:26.515608" elapsed="0.560977"/>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Log To Console</arg>
+<arg>Element ${locator} not visible after 10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.197804" elapsed="0.000179"/>
 </kw>
-<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
-<arg>xpath://body</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:27.077068" elapsed="0.018409"/>
-</kw>
-<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
-<arg>${lang}</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until ``text`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:27.095635" elapsed="0.008728"/>
-</kw>
-<arg>th</arg>
-<status status="PASS" start="2025-02-26T03:01:26.515351" elapsed="0.589133"/>
-</kw>
-<kw name="Check Text Case Insensitive">
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:27.121838" level="INFO">${actual_text} = </msg>
+<msg time="2025-02-26T06:52:32.210942" level="INFO">${actual_text} = ชื่อโครงการ</msg>
 <var>${actual_text}</var>
 <arg>${locator}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:27.104887" elapsed="0.016992"/>
+<status status="PASS" start="2025-02-26T06:52:32.198107" elapsed="0.012874"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
-<arg>Actual text found: ${actual_text}</arg>
+<arg>Actual text found at ${locator}: ${actual_text}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:27.122016" elapsed="0.000352"/>
+<status status="PASS" start="2025-02-26T06:52:32.211112" elapsed="0.000471"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${actual_text}' == ''</arg>
+<arg>Fail</arg>
+<arg>Empty text found at ${locator}, expected '${expected_text}'</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.211710" elapsed="0.000165"/>
 </kw>
 <kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2025-02-26T03:01:27.122730" level="FAIL"> != ความเชี่ยวชาญ</msg>
 <arg>${actual_text}</arg>
 <arg>${expected_text}</arg>
 <arg>ignore_case=True</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="FAIL" start="2025-02-26T03:01:27.122487" elapsed="0.000311"> != ความเชี่ยวชาญ</status>
+<status status="PASS" start="2025-02-26T06:52:32.211973" elapsed="0.000191"/>
 </kw>
-<arg>xpath://div[@id='expertise']//h3</arg>
-<arg>ความเชี่ยวชาญ</arg>
-<status status="FAIL" start="2025-02-26T03:01:27.104630" elapsed="0.018276"> != ความเชี่ยวชาญ</status>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://button[contains(@class, 'btn-menu1')]</arg>
-<arg>เพิ่มความเชี่ยวชาญ</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:27.123055" elapsed="0.000029"/>
-</kw>
-<kw name="Switch Language">
-<arg>en</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:27.123220" elapsed="0.000040"/>
+<arg>xpath://table[@id='example1']//th[3]</arg>
+<arg>ชื่อโครงการ</arg>
+<status status="PASS" start="2025-02-26T06:52:32.184410" elapsed="0.027827"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<arg>xpath://div[@id='expertise']//h3</arg>
-<arg>Expertise</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:27.123388" elapsed="0.000025"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://button[contains(@class, 'btn-menu1')]</arg>
-<arg>Add Expertise</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:27.123510" elapsed="0.000024"/>
-</kw>
-<kw name="Switch Language">
-<arg>zh</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:27.123637" elapsed="0.000024"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://div[@id='expertise']//h3</arg>
-<arg>专长</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:27.123752" elapsed="0.000023"/>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://button[contains(@class, 'btn-menu1')]</arg>
-<arg>添加专长</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:27.123929" elapsed="0.000026"/>
-</kw>
-<status status="FAIL" start="2025-02-26T03:01:26.513581" elapsed="0.610459"> != ความเชี่ยวชาญ</status>
-</kw>
-<doc>ตรวจสอบภาษาที่ Profile tab Expertise</doc>
-<status status="FAIL" start="2025-02-26T03:01:26.051644" elapsed="1.072639"> != ความเชี่ยวชาญ</status>
-</test>
-<test id="s1-t6" name="TC35_REProfile_Education" line="46">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:27.125780" level="INFO">Opening url 'http://127.0.0.1:8000/profile'</msg>
-<arg>${URL}/profile</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:27.125663" elapsed="0.383904"/>
-</kw>
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:27.510786" level="INFO">Clicking element 'xpath://a[@id='education-tab']'.</msg>
-<arg>xpath://a[@id='education-tab']</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:27.510268" elapsed="0.079684"/>
-</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath://div[@id='education']</arg>
-<arg>timeout=15s</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-02-26T03:01:27.590331" elapsed="0.023025"/>
+<status status="PASS" start="2025-02-26T06:52:32.212694" elapsed="0.015062"/>
 </kw>
-<kw name="Check Education Tab Translations">
-<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
-<arg>15s</arg>
-<doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" start="2025-02-26T03:01:27.614022" elapsed="0.001687"/>
+<msg time="2025-02-26T06:52:32.227883" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.212574" elapsed="0.015335"/>
 </kw>
-<kw name="Switch Language">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:27.616371" level="INFO">Opening url 'http://127.0.0.1:8000/lang/th'</msg>
-<arg>${URL}/lang/${lang}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-02-26T03:01:27.616236" elapsed="0.548865"/>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Log To Console</arg>
+<arg>Element ${locator} not visible after 10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.228039" elapsed="0.000255"/>
 </kw>
-<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
-<arg>xpath://body</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:28.165429" elapsed="0.009770"/>
-</kw>
-<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
-<arg>${lang}</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until ``text`` appears on the current page.</doc>
-<status status="PASS" start="2025-02-26T03:01:28.175351" elapsed="0.008131"/>
-</kw>
-<arg>th</arg>
-<status status="PASS" start="2025-02-26T03:01:27.615970" elapsed="0.567617"/>
-</kw>
-<kw name="Check Text Case Insensitive">
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-02-26T03:01:28.200699" level="INFO">${actual_text} = </msg>
+<msg time="2025-02-26T06:52:32.244548" level="INFO">${actual_text} = รายละเอียด</msg>
 <var>${actual_text}</var>
 <arg>${locator}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-26T03:01:28.184133" elapsed="0.016605"/>
+<status status="PASS" start="2025-02-26T06:52:32.228450" elapsed="0.016140"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
-<arg>Actual text found: ${actual_text}</arg>
+<arg>Actual text found at ${locator}: ${actual_text}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-02-26T03:01:28.200871" elapsed="0.000513"/>
+<status status="PASS" start="2025-02-26T06:52:32.244739" elapsed="0.000495"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${actual_text}' == ''</arg>
+<arg>Fail</arg>
+<arg>Empty text found at ${locator}, expected '${expected_text}'</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.245407" elapsed="0.000188"/>
 </kw>
 <kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2025-02-26T03:01:28.201763" level="FAIL"> != ประวัติการศึกษา</msg>
 <arg>${actual_text}</arg>
 <arg>${expected_text}</arg>
 <arg>ignore_case=True</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="FAIL" start="2025-02-26T03:01:28.201520" elapsed="0.000320"> != ประวัติการศึกษา</status>
+<status status="PASS" start="2025-02-26T06:52:32.245724" elapsed="0.000215"/>
 </kw>
-<arg>xpath://div[@id='education']//h3</arg>
-<arg>ประวัติการศึกษา</arg>
-<status status="FAIL" start="2025-02-26T03:01:28.183727" elapsed="0.018231"> != ประวัติการศึกษา</status>
-</kw>
-<kw name="Check Text Case Insensitive">
-<arg>xpath://label[contains(text(), 'ปริญญาตรี')]</arg>
-<arg>ปริญญาตรี</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:28.202091" elapsed="0.000039"/>
+<arg>xpath://table[@id='example1']//th[4]</arg>
+<arg>รายละเอียด</arg>
+<status status="PASS" start="2025-02-26T06:52:32.212363" elapsed="0.033674"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<arg>xpath://button[@type='submit']</arg>
-<arg>อัปเดต</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:28.202235" elapsed="0.000024"/>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.246522" elapsed="0.014830"/>
 </kw>
+<msg time="2025-02-26T06:52:32.261532" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.246401" elapsed="0.015159"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Log To Console</arg>
+<arg>Element ${locator} not visible after 10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.261691" elapsed="0.000159"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-02-26T06:52:32.275985" level="INFO">${actual_text} = ผู้รับผิดชอบโครงการ</msg>
+<var>${actual_text}</var>
+<arg>${locator}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.261953" elapsed="0.014073"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Actual text found at ${locator}: ${actual_text}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.276168" elapsed="0.000436"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${actual_text}' == ''</arg>
+<arg>Fail</arg>
+<arg>Empty text found at ${locator}, expected '${expected_text}'</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.276758" elapsed="0.000189"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${actual_text}</arg>
+<arg>${expected_text}</arg>
+<arg>ignore_case=True</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.277059" elapsed="0.000212"/>
+</kw>
+<arg>xpath://table[@id='example1']//th[5]</arg>
+<arg>ผู้รับผิดชอบโครงการ</arg>
+<status status="PASS" start="2025-02-26T06:52:32.246178" elapsed="0.031170"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.277901" elapsed="0.014628"/>
+</kw>
+<msg time="2025-02-26T06:52:32.292657" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.277728" elapsed="0.014954"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Log To Console</arg>
+<arg>Element ${locator} not visible after 10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.292811" elapsed="0.000179"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-02-26T06:52:32.328657" level="INFO">${actual_text} = สถานะ</msg>
+<var>${actual_text}</var>
+<arg>${locator}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.293097" elapsed="0.035600"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Actual text found at ${locator}: ${actual_text}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.328830" elapsed="0.000530"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${actual_text}' == ''</arg>
+<arg>Fail</arg>
+<arg>Empty text found at ${locator}, expected '${expected_text}'</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.329485" elapsed="0.000168"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${actual_text}</arg>
+<arg>${expected_text}</arg>
+<arg>ignore_case=True</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.329753" elapsed="0.000193"/>
+</kw>
+<arg>xpath://table[@id='example1']//th[6]</arg>
+<arg>สถานะ</arg>
+<status status="PASS" start="2025-02-26T06:52:32.277484" elapsed="0.052536"/>
+</kw>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2025-02-26T06:52:32.341539" level="INFO">${rows} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="cdb162d25c0f985d7e70ac8864f98f89", element="f.3F9D7B24E64D20AF8996D48DCDA9B7E5.d.4BDE719D78FE150A3BF9512231D4F883.e.209")&gt;, &lt;selenium.webdri...</msg>
+<var>${rows}</var>
+<arg>xpath://table[@id='example1']//tbody/tr</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.330114" elapsed="0.011469"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2025-02-26T06:52:32.456608" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-53.png"&gt;&lt;img src="selenium-screenshot-53.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-02-26T06:52:32.456799" level="FAIL">InvalidSelectorException: Message: invalid selector: Unable to locate an element with the xpath expression //table[@id='example1']//tbody/tr[&lt;selenium.webdriver.remote.webelement.WebElement (session="cdb162d25c0f985d7e70ac8864f98f89", element="f.3F9D7B24E64D20AF8996D48DCDA9B7E5.d.4BDE719D78FE150A3BF9512231D4F883.e.209")&gt;]/td because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//table[@id='example1']//tbody/tr[&lt;selenium.webdriver.remote.webelement.WebElement (session="cdb162d25c0f985d7e70ac8864f98f89", element="f.3F9D7B24E64D20AF8996D48DCDA9B7E5.d.4BDE719D78FE150A3BF9512231D4F883.e.209")&gt;]/td' is not a valid XPath expression.
+  (Session info: chrome=133.0.6943.127); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6A40FC6A5+28789]
+	(No symbol) [0x00007FF6A4065B20]
+	(No symbol) [0x00007FF6A3EF8F9A]
+	(No symbol) [0x00007FF6A3F009A9]
+	(No symbol) [0x00007FF6A3F0376C]
+	(No symbol) [0x00007FF6A3F0383F]
+	(No symbol) [0x00007FF6A3F4EC00]
+	(No symbol) [0x00007FF6A3F4F57C]
+	(No symbol) [0x00007FF6A3FA2B47]
+	(No symbol) [0x00007FF6A3F7736F]
+	(No symbol) [0x00007FF6A3F9F7E3]
+	(No symbol) [0x00007FF6A3F77103]
+	(No symbol) [0x00007FF6A3F3FFC0]
+	(No symbol) [0x00007FF6A3F41273]
+	GetHandleVerifier [0x00007FF6A4441AED+3458237]
+	GetHandleVerifier [0x00007FF6A445829C+3550316]
+	GetHandleVerifier [0x00007FF6A444DB9D+3507565]
+	GetHandleVerifier [0x00007FF6A41C2C6A+841274]
+	(No symbol) [0x00007FF6A40709EF]
+	(No symbol) [0x00007FF6A406CB34]
+	(No symbol) [0x00007FF6A406CCD6]
+	(No symbol) [0x00007FF6A405C119]
+	BaseThreadInitThunk [0x00007FF813A37374+20]
+	RtlUserThreadStart [0x00007FF8147FCC91+33]
+</msg>
+<var>${cells}</var>
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="FAIL" start="2025-02-26T06:52:32.341997" elapsed="0.118416">InvalidSelectorException: Message: invalid selector: Unable to locate an element with the xpath expression //table[@id='example1']//tbody/tr[&lt;selenium.webdriver.remote.webelement.WebElement (session="cdb162d25c0f985d7e70ac8864f98f89", element="f.3F9D7B24E64D20AF8996D48DCDA9B7E5.d.4BDE719D78FE150A3BF9512231D4F883.e.209")&gt;]/td because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//table[@id='example1']//tbody/tr[&lt;selenium.webdriver.remote.webelement.WebElement (session="cdb162d25c0f985d7e70ac8864f98f89", element="f.3F9D7B24E64D20AF8996D48DCDA9B7E5.d.4BDE719D78FE150A3BF9512231D4F883.e.209")&gt;]/td' is not a valid XPath expression.
+  (Session info: chrome=133.0.6943.127); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6A40FC6A5+28789]
+	(No symbol) [0x00007FF6A4065B20]
+	(No symbol) [0x00007FF6A3EF8F9A]
+	(No symbol) [0x00007FF6A3F009A9]
+	(No symbol) [0x00007FF6A3F0376C]
+	(No symbol) [0x00007FF6A3F0383F]
+	(No symbol) [0x00007FF6A3F4EC00]
+	(No symbol) [0x00007FF6A3F4F57C]
+	(No symbol) [0x00007FF6A3FA2B47]
+	(No symbol) [0x00007FF6A3F7736F]
+	(No symbol) [0x00007FF6A3F9F7E3]
+	(No symbol) [0x00007FF6A3F77103]
+	(No symbol) [0x00007FF6A3F3FFC0]
+	(No symbol) [0x00007FF6A3F41273]
+	GetHandleVerifier [0x00007FF6A4441AED+3458237]
+	GetHandleVerifier [0x00007FF6A445829C+3550316]
+	GetHandleVerifier [0x00007FF6A444DB9D+3507565]
+	GetHandleVerifier [0x00007FF6A41C2C6A+841274]
+	(No symbol) [0x00007FF6A40709EF]
+	(No symbol) [0x00007FF6A406CB34]
+	(No symbol) [0x00007FF6A406CCD6]
+	(No symbol) [0x00007FF6A405C119]
+	BaseThreadInitThunk [0x00007FF813A37374+20]
+	RtlUserThreadStart [0x00007FF8147FCC91+33]
+</status>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), 'ระยะเวลาโครงการ')]</arg>
+<arg>ระยะเวลาโครงการ</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.460697" elapsed="0.000048"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), 'ประเภททุนวิจัย')]</arg>
+<arg>ประเภททุนวิจัย</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.460868" elapsed="0.000027"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), 'หน่วยงานที่สนันสนุนทุน')]</arg>
+<arg>หน่วยงานที่สนันสนุนทุน</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.461005" elapsed="0.000034"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), 'หน่วยงานที่รับผิดชอบ')]</arg>
+<arg>หน่วยงานที่รับผิดชอบ</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.461150" elapsed="0.000033"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), 'งบประมาณที่ได้รับจัดสรร')]</arg>
+<arg>งบประมาณที่ได้รับจัดสรร</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.461292" elapsed="0.000024"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<var>${status}</var>
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[6]//label</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-02-26T06:52:32.461427" elapsed="0.000025"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${status}' == 'ยื่นขอ'</arg>
+<arg>Log To Console</arg>
+<arg>Status Thai: ยื่นขอ</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" start="2025-02-26T06:52:32.461553" elapsed="0.000026"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${status}' == 'ดำเนินการ'</arg>
+<arg>Log To Console</arg>
+<arg>Status Thai: ดำเนินการ</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" start="2025-02-26T06:52:32.461677" elapsed="0.000025"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${status}' == 'ปิดโครงการ'</arg>
+<arg>Log To Console</arg>
+<arg>Status Thai: ปิดโครงการ</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" start="2025-02-26T06:52:32.461788" elapsed="0.000023"/>
+</kw>
+<var name="${row}">&lt;selenium.webdriver.remote.webelement.WebElement (session="cdb162d25c0f985d7e70ac8864f98f89", element="f.3F9D7B24E64D20AF8996D48DCDA9B7E5.d.4BDE719D78FE150A3BF9512231D4F883.e.209")&gt;</var>
+<status status="FAIL" start="2025-02-26T06:52:32.341877" elapsed="0.120003">InvalidSelectorException: Message: invalid selector: Unable to locate an element with the xpath expression //table[@id='example1']//tbody/tr[&lt;selenium.webdriver.remote.webelement.WebElement (session="cdb162d25c0f985d7e70ac8864f98f89", element="f.3F9D7B24E64D20AF8996D48DCDA9B7E5.d.4BDE719D78FE150A3BF9512231D4F883.e.209")&gt;]/td because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//table[@id='example1']//tbody/tr[&lt;selenium.webdriver.remote.webelement.WebElement (session="cdb162d25c0f985d7e70ac8864f98f89", element="f.3F9D7B24E64D20AF8996D48DCDA9B7E5.d.4BDE719D78FE150A3BF9512231D4F883.e.209")&gt;]/td' is not a valid XPath expression.
+  (Session info: chrome=133.0.6943.127); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6A40FC6A5+28789]
+	(No symbol) [0x00007FF6A4065B20]
+	(No symbol) [0x00007FF6A3EF8F9A]
+	(No symbol) [0x00007FF6A3F009A9]
+	(No symbol) [0x00007FF6A3F0376C]
+	(No symbol) [0x00007FF6A3F0383F]
+	(No symbol) [0x00007FF6A3F4EC00]
+	(No symbol) [0x00007FF6A3F4F57C]
+	(No symbol) [0x00007FF6A3FA2B47]
+	(No symbol) [0x00007FF6A3F7736F]
+	(No symbol) [0x00007FF6A3F9F7E3]
+	(No symbol) [0x00007FF6A3F77103]
+	(No symbol) [0x00007FF6A3F3FFC0]
+	(No symbol) [0x00007FF6A3F41273]
+	GetHandleVerifier [0x00007FF6A4441AED+3458237]
+	GetHandleVerifier [0x00007FF6A445829C+3550316]
+	GetHandleVerifier [0x00007FF6A444DB9D+3507565]
+	GetHandleVerifier [0x00007FF6A41C2C6A+841274]
+	(No symbol) [0x00007FF6A40709EF]
+	(No symbol) [0x00007FF6A406CB34]
+	(No symbol) [0x00007FF6A406CCD6]
+	(No symbol) [0x00007FF6A405C119]
+	BaseThreadInitThunk [0x00007FF813A37374+20]
+	RtlUserThreadStart [0x00007FF8147FCC91+33]
+</status>
+</iter>
+<var>${row}</var>
+<value>@{rows}</value>
+<status status="FAIL" start="2025-02-26T06:52:32.341679" elapsed="0.120318">InvalidSelectorException: Message: invalid selector: Unable to locate an element with the xpath expression //table[@id='example1']//tbody/tr[&lt;selenium.webdriver.remote.webelement.WebElement (session="cdb162d25c0f985d7e70ac8864f98f89", element="f.3F9D7B24E64D20AF8996D48DCDA9B7E5.d.4BDE719D78FE150A3BF9512231D4F883.e.209")&gt;]/td because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//table[@id='example1']//tbody/tr[&lt;selenium.webdriver.remote.webelement.WebElement (session="cdb162d25c0f985d7e70ac8864f98f89", element="f.3F9D7B24E64D20AF8996D48DCDA9B7E5.d.4BDE719D78FE150A3BF9512231D4F883.e.209")&gt;]/td' is not a valid XPath expression.
+  (Session info: chrome=133.0.6943.127); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6A40FC6A5+28789]
+	(No symbol) [0x00007FF6A4065B20]
+	(No symbol) [0x00007FF6A3EF8F9A]
+	(No symbol) [0x00007FF6A3F009A9]
+	(No symbol) [0x00007FF6A3F0376C]
+	(No symbol) [0x00007FF6A3F0383F]
+	(No symbol) [0x00007FF6A3F4EC00]
+	(No symbol) [0x00007FF6A3F4F57C]
+	(No symbol) [0x00007FF6A3FA2B47]
+	(No symbol) [0x00007FF6A3F7736F]
+	(No symbol) [0x00007FF6A3F9F7E3]
+	(No symbol) [0x00007FF6A3F77103]
+	(No symbol) [0x00007FF6A3F3FFC0]
+	(No symbol) [0x00007FF6A3F41273]
+	GetHandleVerifier [0x00007FF6A4441AED+3458237]
+	GetHandleVerifier [0x00007FF6A445829C+3550316]
+	GetHandleVerifier [0x00007FF6A444DB9D+3507565]
+	GetHandleVerifier [0x00007FF6A41C2C6A+841274]
+	(No symbol) [0x00007FF6A40709EF]
+	(No symbol) [0x00007FF6A406CB34]
+	(No symbol) [0x00007FF6A406CCD6]
+	(No symbol) [0x00007FF6A405C119]
+	BaseThreadInitThunk [0x00007FF813A37374+20]
+	RtlUserThreadStart [0x00007FF8147FCC91+33]
+</status>
+</for>
 <kw name="Switch Language">
 <arg>en</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:28.202357" elapsed="0.000024"/>
+<status status="NOT RUN" start="2025-02-26T06:52:32.462148" elapsed="0.000034"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<arg>xpath://div[@id='education']//h3</arg>
-<arg>Educational History</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:28.202486" elapsed="0.000024"/>
+<arg>xpath://table[@id='example1']//th[1]</arg>
+<arg>No.</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.462301" elapsed="0.000026"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<arg>xpath://label[contains(text(), 'Bachelor')]</arg>
-<arg>Bachelor Degree</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:28.202603" elapsed="0.000024"/>
+<arg>xpath://table[@id='example1']//th[2]</arg>
+<arg>Year</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.462434" elapsed="0.000023"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<arg>xpath://button[@type='submit']</arg>
-<arg>Update</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:28.202719" elapsed="0.000032"/>
+<arg>xpath://table[@id='example1']//th[3]</arg>
+<arg>Project Name</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.462559" elapsed="0.000033"/>
 </kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[4]</arg>
+<arg>Details</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.462696" elapsed="0.000023"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[5]</arg>
+<arg>Project Leader</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.462891" elapsed="0.000051"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[6]</arg>
+<arg>Status</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.463062" elapsed="0.000025"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), 'Project Duration')]</arg>
+<arg>Project Duration</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.463347" elapsed="0.000027"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), 'Research Fund Type')]</arg>
+<arg>Research Fund Type</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.463484" elapsed="0.000025"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), 'Funding Agency')]</arg>
+<arg>Funding Agency</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.463625" elapsed="0.000025"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), 'Responsible Department')]</arg>
+<arg>Responsible Department</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.463757" elapsed="0.000023"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), 'Allocated Budget')]</arg>
+<arg>Allocated Budget</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.463888" elapsed="0.000034"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<var>${status}</var>
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[6]//label</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-02-26T06:52:32.464012" elapsed="0.000023"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${status}' == 'Submitted'</arg>
+<arg>Log To Console</arg>
+<arg>Status English: Submitted</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" start="2025-02-26T06:52:32.464127" elapsed="0.000027"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${status}' == 'In Progress'</arg>
+<arg>Log To Console</arg>
+<arg>Status English: In Progress</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" start="2025-02-26T06:52:32.464260" elapsed="0.000026"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${status}' == 'Closed'</arg>
+<arg>Log To Console</arg>
+<arg>Status English: Closed</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" start="2025-02-26T06:52:32.464375" elapsed="0.000024"/>
+</kw>
+<var name="${row}"/>
+<status status="NOT RUN" start="2025-02-26T06:52:32.463241" elapsed="0.001200"/>
+</iter>
+<var>${row}</var>
+<value>@{rows}</value>
+<status status="NOT RUN" start="2025-02-26T06:52:32.463144" elapsed="0.001340"/>
+</for>
 <kw name="Switch Language">
 <arg>zh</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:28.202843" elapsed="0.000023"/>
+<status status="NOT RUN" start="2025-02-26T06:52:32.464695" elapsed="0.000025"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<arg>xpath://div[@id='education']//h3</arg>
-<arg>教育历史</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:28.202955" elapsed="0.000022"/>
+<arg>xpath://table[@id='example1']//th[1]</arg>
+<arg>编号</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.464821" elapsed="0.000023"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<arg>xpath://label[contains(text(), '学士')]</arg>
-<arg>学士学位</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:28.203080" elapsed="0.000023"/>
+<arg>xpath://table[@id='example1']//th[2]</arg>
+<arg>年份</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.464956" elapsed="0.000024"/>
 </kw>
 <kw name="Check Text Case Insensitive">
-<arg>xpath://button[@type='submit']</arg>
-<arg>更新</arg>
-<status status="NOT RUN" start="2025-02-26T03:01:28.203200" elapsed="0.000022"/>
+<arg>xpath://table[@id='example1']//th[3]</arg>
+<arg>项目名称</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.465081" elapsed="0.000022"/>
 </kw>
-<status status="FAIL" start="2025-02-26T03:01:27.613732" elapsed="0.589577"> != ประวัติการศึกษา</status>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[4]</arg>
+<arg>详情</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.465221" elapsed="0.000025"/>
 </kw>
-<doc>ตรวจสอบภาษาที่ Profile tab Education</doc>
-<status status="FAIL" start="2025-02-26T03:01:27.125144" elapsed="1.078429"> != ประวัติการศึกษา</status>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[5]</arg>
+<arg>项目负责人</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.465346" elapsed="0.000023"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//th[6]</arg>
+<arg>状态</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.465467" elapsed="0.000109"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), '项目期限')]</arg>
+<arg>项目期限</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.465895" elapsed="0.000025"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), '研究基金类型')]</arg>
+<arg>研究基金类型</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.466038" elapsed="0.000116"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), '资助机构')]</arg>
+<arg>资助机构</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.466270" elapsed="0.000024"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), '负责部门')]</arg>
+<arg>负责部门</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.466405" elapsed="0.000023"/>
+</kw>
+<kw name="Check Text Case Insensitive">
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[4]//span[contains(text(), '分配预算')]</arg>
+<arg>分配预算</arg>
+<status status="NOT RUN" start="2025-02-26T06:52:32.466529" elapsed="0.000023"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<var>${status}</var>
+<arg>xpath://table[@id='example1']//tbody/tr[${row}]/td[6]//label</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-02-26T06:52:32.466722" elapsed="0.000027"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${status}' == '提交'</arg>
+<arg>Log To Console</arg>
+<arg>Status Chinese: 提交</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" start="2025-02-26T06:52:32.466997" elapsed="0.000029"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${status}' == '进行中'</arg>
+<arg>Log To Console</arg>
+<arg>Status Chinese: 进行中</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" start="2025-02-26T06:52:32.467121" elapsed="0.000025"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${status}' == '已关闭'</arg>
+<arg>Log To Console</arg>
+<arg>Status Chinese: 已关闭</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" start="2025-02-26T06:52:32.467254" elapsed="0.000025"/>
+</kw>
+<var name="${row}"/>
+<status status="NOT RUN" start="2025-02-26T06:52:32.465801" elapsed="0.001520"/>
+</iter>
+<var>${row}</var>
+<value>@{rows}</value>
+<status status="NOT RUN" start="2025-02-26T06:52:32.465640" elapsed="0.001722"/>
+</for>
+<status status="FAIL" start="2025-02-26T06:52:31.443926" elapsed="1.023631">InvalidSelectorException: Message: invalid selector: Unable to locate an element with the xpath expression //table[@id='example1']//tbody/tr[&lt;selenium.webdriver.remote.webelement.WebElement (session="cdb162d25c0f985d7e70ac8864f98f89", element="f.3F9D7B24E64D20AF8996D48DCDA9B7E5.d.4BDE719D78FE150A3BF9512231D4F883.e.209")&gt;]/td because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//table[@id='example1']//tbody/tr[&lt;selenium.webdriver.remote.webelement.WebElement (session="cdb162d25c0f985d7e70ac8864f98f89", element="f.3F9D7B24E64D20AF8996D48DCDA9B7E5.d.4BDE719D78FE150A3BF9512231D4F883.e.209")&gt;]/td' is not a valid XPath expression.
+  (Session info: chrome=133.0.6943.127); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6A40FC6A5+28789]
+	(No symbol) [0x00007FF6A4065B20]
+	(No symbol) [0x00007FF6A3EF8F9A]
+	(No symbol) [0x00007FF6A3F009A9]
+	(No symbol) [0x00007FF6A3F0376C]
+	(No symbol) [0x00007FF6A3F0383F]
+	(No symbol) [0x00007FF6A3F4EC00]
+	(No symbol) [0x00007FF6A3F4F57C]
+	(No symbol) [0x00007FF6A3FA2B47]
+	(No symbol) [0x00007FF6A3F7736F]
+	(No symbol) [0x00007FF6A3F9F7E3]
+	(No symbol) [0x00007FF6A3F77103]
+	(No symbol) [0x00007FF6A3F3FFC0]
+	(No symbol) [0x00007FF6A3F41273]
+	GetHandleVerifier [0x00007FF6A4441AED+3458237]
+	GetHandleVerifier [0x00007FF6A445829C+3550316]
+	GetHandleVerifier [0x00007FF6A444DB9D+3507565]
+	GetHandleVerifier [0x00007FF6A41C2C6A+841274]
+	(No symbol) [0x00007FF6A40709EF]
+	(No symbol) [0x00007FF6A406CB34]
+	(No symbol) [0x00007FF6A406CCD6]
+	(No symbol) [0x00007FF6A405C119]
+	BaseThreadInitThunk [0x00007FF813A37374+20]
+	RtlUserThreadStart [0x00007FF8147FCC91+33]
+</status>
+</kw>
+<kw name="Navigate All Table Pages">
+<status status="NOT RUN" start="2025-02-26T06:52:32.467939" elapsed="0.000031"/>
+</kw>
+<doc>ตรวจสอบภาษาในตารางโครงการวิจัย/บริการวิชาการ และเปิดให้ครบทุกหน้า</doc>
+<status status="FAIL" start="2025-02-26T06:52:30.994265" elapsed="1.473943">InvalidSelectorException: Message: invalid selector: Unable to locate an element with the xpath expression //table[@id='example1']//tbody/tr[&lt;selenium.webdriver.remote.webelement.WebElement (session="cdb162d25c0f985d7e70ac8864f98f89", element="f.3F9D7B24E64D20AF8996D48DCDA9B7E5.d.4BDE719D78FE150A3BF9512231D4F883.e.209")&gt;]/td because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//table[@id='example1']//tbody/tr[&lt;selenium.webdriver.remote.webelement.WebElement (session="cdb162d25c0f985d7e70ac8864f98f89", element="f.3F9D7B24E64D20AF8996D48DCDA9B7E5.d.4BDE719D78FE150A3BF9512231D4F883.e.209")&gt;]/td' is not a valid XPath expression.
+  (Session info: chrome=133.0.6943.127); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6A40FC6A5+28789]
+	(No symbol) [0x00007FF6A4065B20]
+	(No symbol) [0x00007FF6A3EF8F9A]
+	(No symbol) [0x00007FF6A3F009A9]
+	(No symbol) [0x00007FF6A3F0376C]
+	(No symbol) [0x00007FF6A3F0383F]
+	(No symbol) [0x00007FF6A3F4EC00]
+	(No symbol) [0x00007FF6A3F4F57C]
+	(No symbol) [0x00007FF6A3FA2B47]
+	(No symbol) [0x00007FF6A3F7736F]
+	(No symbol) [0x00007FF6A3F9F7E3]
+	(No symbol) [0x00007FF6A3F77103]
+	(No symbol) [0x00007FF6A3F3FFC0]
+	(No symbol) [0x00007FF6A3F41273]
+	GetHandleVerifier [0x00007FF6A4441AED+3458237]
+	GetHandleVerifier [0x00007FF6A445829C+3550316]
+	GetHandleVerifier [0x00007FF6A444DB9D+3507565]
+	GetHandleVerifier [0x00007FF6A41C2C6A+841274]
+	(No symbol) [0x00007FF6A40709EF]
+	(No symbol) [0x00007FF6A406CB34]
+	(No symbol) [0x00007FF6A406CCD6]
+	(No symbol) [0x00007FF6A405C119]
+	BaseThreadInitThunk [0x00007FF813A37374+20]
+	RtlUserThreadStart [0x00007FF8147FCC91+33]
+</status>
 </test>
-<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
-<doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-02-26T03:01:28.204924" elapsed="2.179062"/>
+<kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-02-26T06:52:32.472578" elapsed="2.140473"/>
 </kw>
-<status status="FAIL" start="2025-02-26T03:01:00.647558" elapsed="29.736557"/>
+<status status="FAIL" start="2025-02-26T06:52:26.239007" elapsed="8.374401"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="6" skip="0">All Tests</stat>
+<stat pass="0" fail="2" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="0" fail="6" skip="0" id="s1" name="reProfileTestsuite">reProfileTestsuite</stat>
+<stat pass="0" fail="2" skip="0" id="s1" name="researchProjectsTestsuite">researchProjectsTestsuite</stat>
 </suite>
 </statistics>
 <errors>

@@ -13,6 +13,7 @@ class CreateDegreesTable extends Migration
      */
     public function up()
     {
+<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/database/migrations/2022_03_14_160716_create_degrees_table.php
 <<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/database/migrations/2022_03_14_160716_create_degrees_table.php
 <<<<<<< HEAD
 =======
@@ -21,6 +22,9 @@ class CreateDegreesTable extends Migration
 =======
         if (!Schema::hasTable('degrees')) {
 >>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/database/migrations/2022_03_14_160716_create_degrees_table.php
+=======
+        if (!Schema::hasTable('degrees')) {
+>>>>>>> origin/Thanakrit_2664:Source_code/Project_2-master/Project_2-master/database/migrations/2022_03_14_160716_create_degrees_table.php
         Schema::create('degrees', function (Blueprint $table) {
             $table->id();
             $table->string('degree_name_th');
@@ -28,6 +32,7 @@ class CreateDegreesTable extends Migration
             /*$table->unsignedBigInteger('program_id');
             $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade');*/
 
+<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/database/migrations/2022_03_14_160716_create_degrees_table.php
 <<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/database/migrations/2022_03_14_160716_create_degrees_table.php
 <<<<<<< HEAD
             $table->unsignedBigInteger('department_id')->nullable();  
@@ -38,6 +43,8 @@ class CreateDegreesTable extends Migration
 =======
 =======
 >>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/database/migrations/2022_03_14_160716_create_degrees_table.php
+=======
+>>>>>>> origin/Thanakrit_2664:Source_code/Project_2-master/Project_2-master/database/migrations/2022_03_14_160716_create_degrees_table.php
             $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
 
@@ -45,10 +52,13 @@ class CreateDegreesTable extends Migration
         });
         }
 
+<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/database/migrations/2022_03_14_160716_create_degrees_table.php
 <<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/database/migrations/2022_03_14_160716_create_degrees_table.php
 >>>>>>> origin/Prommin_1406
 =======
 >>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/database/migrations/2022_03_14_160716_create_degrees_table.php
+=======
+>>>>>>> origin/Thanakrit_2664:Source_code/Project_2-master/Project_2-master/database/migrations/2022_03_14_160716_create_degrees_table.php
     }
 
     /**

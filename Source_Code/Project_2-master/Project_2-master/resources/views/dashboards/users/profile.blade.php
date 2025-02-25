@@ -181,6 +181,7 @@
                     </div>
                 </form>
             </div>
+
             <div class="tab-pane fade" id="education" role="tabpanel" aria-labelledby="education-tab">
                 <form class="form-horizontal" method="POST" action="{{ route('updateEdInfo') }}" id="EdInfoForm">
                     <h3 class="mb-4">{{ trans('reference.educational_history') }}</h3>
@@ -510,6 +511,7 @@
         });
     });
 </script>
+
 <script>
     $(document).ready(function() {
         /* When click New expertise button */

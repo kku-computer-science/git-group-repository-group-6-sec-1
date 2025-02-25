@@ -150,6 +150,10 @@
     </div>
 </div>
 @stop
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/Thanakrit_2664
 @section('javascript')
 <script>
     $(document).ready(function() {

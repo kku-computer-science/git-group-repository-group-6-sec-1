@@ -15,10 +15,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
+<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
 <<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
 =======
 
 >>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
+=======
+
+>>>>>>> origin/Thanakrit_2664:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
 <
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('vendors/feather/feather.css')}}">
@@ -100,6 +104,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="dropdown-header text-center">
                                     <img class="img-md rounded-circle" src="{{ Auth::user()->picture }}"
                                         alt="Profile image">
+<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
                                     <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }}</p>
                                     <p class="fw-light text-muted mb-0"></p>
                                 </div>
@@ -424,3 +429,6 @@ $(function() {
 
 
 </html>
+=======
+                                    <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }}</p>
+>>>>>>> origin/Thanakrit_2664:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
