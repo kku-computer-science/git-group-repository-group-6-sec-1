@@ -18,4 +18,7 @@ return [
     'delete_msg' => 'Expertise entry deleted successfully',
     'add' => 'Add New Expertise',
     'edit' => 'Edit Expertise',
+
+    'ok' => 'OK', // "OK" in English
+    'cancel' => 'Cancel', // "Cancel" in English
 ];

@@ -23,7 +23,7 @@ return [
 
 
     'permissions' => [
-        'user-list'     => '用户列表',
+        'user-listt'     => '用户列表',
         'user-create'   => '创建用户',
         'user-edit'     => '编辑用户',
         'user-delete'   => '删除用户',
@@ -78,7 +78,7 @@ return [
     'error_message'    => '出现了一些错误，请检查以下内容。',
     'edit_role'        => '编辑角色',
     'name'            => '角色名称',
-    'placeholder_name' => '输入角色名称',
+    
     'permission'      => '权限',
     'submit'         => '提交',
     'back'           => '返回',

@@ -179,13 +179,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </a>
                 </li>
                 @can('user-list')
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users.index')}}">
-                        <i class="menu-icon mdi mdi-account-multiple-outline"></i>
-                        <span class="menu-title">Users</span>
-
-                    </a>
-                </li>
+                    <li class="nav-item nav-category">Admin</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.index')}}">
+                            <i class="menu-icon mdi mdi-account-multiple-outline"></i>
+                            <span class="menu-title">Users</span>
+                        </a>
+                    </li>
                 @endcan
                 @can('role-list')
                 <li class="nav-item">

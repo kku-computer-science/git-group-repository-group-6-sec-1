@@ -22,7 +22,7 @@ return [
     'submit'         => 'บันทึก',
 
     'permissions' => [
-        'user-list'     => 'รายการผู้ใช้',
+        'user-listt'     => 'รายการผู้ใช้',
         'user-create'   => 'สร้างผู้ใช้',
         'user-edit'     => 'แก้ไขผู้ใช้',
         'user-delete'   => 'ลบผู้ใช้',
@@ -77,7 +77,7 @@ return [
     'error_message'    => 'มีบางอย่างผิดพลาด กรุณาตรวจสอบข้อผิดพลาดด้านล่าง',
     'edit_role'        => 'แก้ไขบทบาท',
     'name'            => 'ชื่อบทบาท',
-    'placeholder_name' => 'กรอกชื่อบทบาท',
+    
     'permission'      => 'สิทธิ์การเข้าถึง',
     'submit'         => 'บันทึก',
     'back'           => 'ย้อนกลับ',

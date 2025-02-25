@@ -2,7 +2,7 @@
 return [
     'title'         => '部门',
     'name'          => '部门名称',
-    'new_department'=> '创建新部门',
+    'new_department'=> '新建部门',
     'action'        => '操作',
     'view'          => '查看',
     'edit'          => '编辑',

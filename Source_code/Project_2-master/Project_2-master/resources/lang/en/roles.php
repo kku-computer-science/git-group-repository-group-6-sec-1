@@ -23,7 +23,7 @@ return [
 
 
     'permissions' => [
-        'user-list'     => 'User List',
+        'user-listt'     => 'User List',
         'user-create'   => 'Create User',
         'user-edit'     => 'Edit User',
         'user-delete'   => 'Delete User',
@@ -78,7 +78,7 @@ return [
     'error_message'    => 'Something went wrong, please check below errors.',
     'edit_role'        => 'Edit Role',
     'name'            => 'Role Name',
-    'placeholder_name' => 'Enter Role Name',
+    
     'permission'      => 'Permissions',
     'submit'         => 'Submit',
     'back'           => 'Back',

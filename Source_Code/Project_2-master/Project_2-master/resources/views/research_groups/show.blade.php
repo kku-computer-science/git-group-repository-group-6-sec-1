@@ -8,7 +8,7 @@
         <div class="card-body">
             <h4 class="card-title">{{ __('research_groups.title') }}</h4>
             <p class="card-description">{{ __('research_groups.card_description') }}</p>
-            
+
             <div class="row mt-2">
                 <p class="card-text col-sm-3"><b>{{ __('research_groups.label.group_name_th') }}</b></p>
                 <p class="card-text col-sm-9">{{ $researchGroup->group_name_th }}</p>
@@ -26,12 +26,20 @@
                 <p class="card-text col-sm-9">{{ $researchGroup->group_desc_en }}</p>
             </div>
             <div class="row mt-2">
+                <p class="card-text col-sm-3"><b>{{ __('research_groups.label.group_desc_zh') }}</b></p>
+                <p class="card-text col-sm-9">{{ $researchGroup->group_desc_zh }}</p>
+            </div>
+            <div class="row mt-2">
                 <p class="card-text col-sm-3"><b>{{ __('research_groups.label.group_detail_th') }}</b></p>
                 <p class="card-text col-sm-9">{{ $researchGroup->group_detail_th }}</p>
             </div>
             <div class="row mt-2">
                 <p class="card-text col-sm-3"><b>{{ __('research_groups.label.group_detail_en') }}</b></p>
                 <p class="card-text col-sm-9">{{ $researchGroup->group_detail_en }}</p>
+            </div>
+            <div class="row mt-2">
+                <p class="card-text col-sm-3"><b>{{ __('research_groups.label.group_detail_zh') }}</b></p>
+                <p class="card-text col-sm-9">{{ $researchGroup->group_detail_zh }}</p>
             </div>
             <div class="row mt-2">
                 <p class="card-text col-sm-3"><b>{{ __('research_groups.label.group_image') }}</b></p>

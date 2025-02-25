@@ -8,7 +8,7 @@
 <div class="container">
     @if ($message = Session::get('success'))
     <div class="alert alert-success">
-        <p>{{ __('users.expertise_data_updated_successfully') }}</p>
+        <p>{{ __($message) }}</p> <!-- แปลข้อความจาก Session -->
     </div>
     @endif
     <div class="card" style="padding: 16px;">
@@ -34,18 +34,14 @@
                         @endif
                         <td>{{ $expert->expert_name }}</td>
                         <td>
-                            <form action="{{ route('experts.destroy', $expert->id) }}" method="POST">
+                            <form action="{{ route('experts.destroy',$expert->id) }}" method="POST">
                                 <li class="list-inline-item">
-                                    <a class="btn btn-outline-success btn-sm" id="edit-expertise" type="button" data-toggle="modal" data-id="{{ $expert->id }}" data-placement="top" title="{{ __('experts.edit') }}" href="javascript:void(0)">
-                                        <i class="mdi mdi-pencil"></i>
-                                    </a>
+                                    <a class="btn btn-outline-success btn-sm" id="edit-expertise" type="button" data-toggle="modal" data-id="{{ $expert->id }}" data-placement="top" title="{{ __('experts.edit') }}" href="javascript:void(0)"><i class="mdi mdi-pencil"></i></a>
                                 </li>
                                 @csrf
                                 <meta name="csrf-token" content="{{ csrf_token() }}">
                                 <li class="list-inline-item">
-                                    <button class="btn btn-outline-danger btn-sm show_confirm" type="submit" data-id="{{ $expert->id }}" data-toggle="tooltip" data-placement="top" title="{{ __('experts.delete') }}">
-                                        <i class="mdi mdi-delete"></i>
-                                    </button>
+                                    <button class="btn btn-outline-danger btn-sm show_confirm" id="delete-expertise" type="submit" data-id="{{ $expert->id }}" data-toggle="tooltip" data-placement="top" title="{{ __('experts.delete') }}"><i class="mdi mdi-delete"></i></button>
                                 </li>
                             </form>
                         </td>
@@ -91,26 +87,32 @@
 <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap4.min.js" defer></script>
 <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js" defer></script>
 <script src="https://cdn.datatables.net/rowgroup/1.2.0/js/dataTables.rowGroup.min.js" defer></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script>
     $(document).ready(function() {
         var table1 = $('#example1').DataTable({
-            responsive: true,
+            order: [[1, 'asc']],
+            rowGroup: {
+                dataSrc: 1
+            },
             language: {
-                lengthMenu: "@lang('datatables.lengthMenu')",
-                search: "@lang('datatables.search')",
-                info: "@lang('datatables.info')",
-                infoEmpty: "@lang('datatables.infoEmpty')",
-                zeroRecords: "@lang('datatables.zeroRecords')",
+                lengthMenu: "{{ __('datatables.lengthMenu') }}",
+                search: "{{ __('datatables.search') }}",
+                info: "{{ __('datatables.info') }}",
+                infoEmpty: "{{ __('datatables.infoEmpty') }}",
+                zeroRecords: "{{ __('datatables.zeroRecords') }}",
                 paginate: {
-                    first: "@lang('datatables.first')",
-                    last: "@lang('datatables.last')",
-                    next: "@lang('datatables.next')",
-                    previous: "@lang('datatables.previous')"
+                    first: "{{ __('datatables.first') }}",
+                    last: "{{ __('datatables.last') }}",
+                    next: "{{ __('datatables.next') }}",
+                    previous: "{{ __('datatables.previous') }}"
                 }
             }
         });
     });
 </script>
+
 <script>
     $(document).ready(function() {
         $.ajaxSetup({
@@ -123,7 +125,7 @@
         $('#new-expertise').click(function() {
             $('#btn-save').val("create-expertise");
             $('#expertise').trigger("reset");
-            $('#expertiseCrudModal').html("{{ __('experts.add') }}"); // ใช้การแปลภาษา
+            $('#expertiseCrudModal').html("{{ __('experts.add') }}");
             $('#crud-modal').modal('show');
         });
 
@@ -131,7 +133,7 @@
         $('body').on('click', '#edit-expertise', function() {
             var expert_id = $(this).data('id');
             $.get('experts/' + expert_id + '/edit', function(data) {
-                $('#expertiseCrudModal').html("{{ __('experts.edit') }}"); // ใช้การแปลภาษา
+                $('#expertiseCrudModal').html("{{ __('experts.edit') }}");
                 $('#btn-update').val("Update");
                 $('#btn-save').prop('disabled', false);
                 $('#crud-modal').modal('show');
@@ -143,18 +145,32 @@
         /* Delete expertise */
         $('body').on('click', '#delete-expertise', function(e) {
             var expert_id = $(this).data("id");
-            
             var token = $("meta[name='csrf-token']").attr("content");
             e.preventDefault();
             swal({
-                title: "{{ __('experts.confirm_title') }}", // แปลข้อความ "Are you sure?"
-                text: "{{ __('experts.confirm_text') }}", // แปลข้อความ "You will not be able to recover this imaginary file!"
+                title: "{{ __('experts.confirm_title') }}",
+                text: "{{ __('experts.confirm_text') }}",
                 icon: "warning",
-                buttons: true,
+                buttons: {
+                    cancel: {
+                        text: "{{ __('experts.cancel') }}",
+                        value: null,
+                        visible: true,
+                        className: "btn btn-secondary",
+                        closeModal: true
+                    },
+                    confirm: {
+                        text: "{{ __('experts.ok') }}",
+                        value: true,
+                        visible: true,
+                        className: "btn btn-primary",
+                        closeModal: true
+                    }
+                },
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    swal("{{ __('experts.delete_success') }}", { // แปลข้อความ "Delete Successfully"
+                    swal("{{ __('experts.delete_success') }}", {
                         icon: "success",
                     }).then(function() {
                         location.reload();
@@ -166,7 +182,7 @@
                                 "_token": token,
                             },
                             success: function(data) {
-                                $('#msg').html('{{ __('experts.delete_msg') }}'); // แปลข้อความ "program entry deleted successfully"
+                                $('#msg').html('{{ __('experts.delete_msg') }}');
                                 $("#expert_id_" + expert_id).remove();
                             },
                             error: function(data) {
@@ -202,54 +218,14 @@
                 icon: "warning",
                 buttons: {
                     cancel: {
-                        text: "{{ __('confirm.cancel') }}",  // ใช้คำว่า "Cancel" ที่แปล
+                        text: "{{ __('confirm.cancel') }}",  
                         value: null,
                         visible: true,
                         className: "btn btn-secondary",
                         closeModal: true
                     },
                     confirm: {
-                        text: "{{ __('confirm.ok') }}",  // ใช้คำว่า "OK" ที่แปล
-                        value: true,
-                        visible: true,
-                        className: "btn btn-primary",
-                        closeModal: true
-                    }
-                },
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal("{{ __('confirm.delete_success') }}", {
-                        icon: "success",
-                    }).then(function() {
-                        location.reload();
-                        form.submit();
-                    });
-                }
-            });
-    });
-</script>
-
-<!-- เพิ่มสคริปต์ใหม่สำหรับ .show_confirm (ตามที่ระบุ) -->
-<script type="text/javascript">
-    $('.show_confirm').click(function(event) {
-        var form = $(this).closest("form");
-        event.preventDefault();
-        swal({
-                title: "{{ __('confirm.delete_title') }}", 
-                text: "{{ __('confirm.delete_text') }}", 
-                icon: "warning",
-                buttons: {
-                    cancel: {
-                        text: "{{ __('confirm.cancel') }}",  // ใช้คำว่า "Cancel" ที่แปล
-                        value: null,
-                        visible: true,
-                        className: "btn btn-secondary",
-                        closeModal: true
-                    },
-                    confirm: {
-                        text: "{{ __('confirm.ok') }}",  // ใช้คำว่า "OK" ที่แปล
+                        text: "{{ __('confirm.ok') }}",  
                         value: true,
                         visible: true,
                         className: "btn btn-primary",

@@ -48,6 +48,14 @@
                         <textarea name="group_desc_en" class="form-control" style="height:90px" placeholder="{{ __('research_groups.placeholder.group_desc_en') }}">{{ old('group_desc_en') }}</textarea>
                     </div>
                 </div>
+                <!-- Group Description (China) -->
+                <div class="form-group row mt-2">
+                    <label class="col-sm-3"><b>{{ __('research_groups.label.group_desc_zh') }}</b></label>
+                    <div class="col-sm-8">
+                        <textarea name="group_desc_zh" class="form-control" style="height:90px" placeholder="{{ __('research_groups.placeholder.group_desc_zh') }}">{{ old('group_desc_zh') }}</textarea>
+                    </div>
+                </div>
+
                 <!-- Group Detail (Thai) -->
                 <div class="form-group row mt-2">
                     <label class="col-sm-3"><b>{{ __('research_groups.label.group_detail_th') }}</b></label>
@@ -62,6 +70,14 @@
                         <textarea name="group_detail_en" class="form-control" style="height:90px" placeholder="{{ __('research_groups.placeholder.group_detail_en') }}">{{ old('group_detail_en') }}</textarea>
                     </div>
                 </div>
+                <!-- Group Detail (China) -->
+                <div class="form-group row mt-2">
+                    <label class="col-sm-3"><b>{{ __('research_groups.label.group_detail_zh') }}</b></label>
+                    <div class="col-sm-8">
+                        <textarea name="group_detail_zh" class="form-control" style="height:90px" placeholder="{{ __('research_groups.placeholder.group_detail_zh') }}">{{ old('group_detail_zh') }}</textarea>
+                    </div>
+                </div>
+
                 <!-- Group Image -->
                 <div class="form-group row mt-2">
                     <label class="col-sm-3"><b>{{ __('research_groups.label.group_image') }}</b></label>

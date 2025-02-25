@@ -219,7 +219,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
                     @endcan
-                    @can('user-list')
+                    @can('role-list')
                     <li class="nav-item nav-category">Admin</li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index')}}">
