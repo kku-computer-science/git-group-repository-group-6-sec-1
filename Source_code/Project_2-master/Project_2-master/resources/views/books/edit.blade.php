@@ -1,28 +1,27 @@
 @extends('dashboards.users.layouts.user-dash-layout')
-<<<<<<< HEAD
-=======
+
 
 @section('title', __('books.edit_title'))
 
->>>>>>> origin/Prommin_1406
+
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-lg-12 margin-tb">
-<<<<<<< HEAD
-=======
+
+
             <!-- Header or breadcrumb (ถ้ามี) -->
->>>>>>> origin/Prommin_1406
+
         </div>
     </div>
 
     @if ($errors->any())
     <div class="alert alert-danger">
-<<<<<<< HEAD
+
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
-=======
+
         <strong>{{ __('books.error_title') }}</strong> {{ __('books.error_text') }}<br><br>
->>>>>>> origin/Prommin_1406
+
         <ul>
             @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
@@ -30,7 +29,7 @@
         </ul>
     </div>
     @endif
-<<<<<<< HEAD
+
     <div class="col-md-8 grid-margin stretch-card">
         <div class="card" style="padding: 16px;">
             <div class="card-body">
@@ -66,7 +65,7 @@
 
                     <button type="submit" class="btn btn-primary me-2">Submit</button>
                     <a class="btn btn-light" href="{{ route('books.index') }}" >Cancel</a>
-=======
+
 
     <div class="col-md-8 grid-margin stretch-card">
         <div class="card" style="padding: 16px;">
@@ -107,12 +106,12 @@
 
                     <button type="submit" class="btn btn-primary me-2">{{ __('books.submit_button') }}</button>
                     <a class="btn btn-light" href="{{ route('books.index') }}">{{ __('books.cancel_button') }}</a>
->>>>>>> origin/Prommin_1406
+
                 </form>
             </div>
         </div>
     </div>
-<<<<<<< HEAD
+
 
 </div>
 @endsection
@@ -139,7 +138,7 @@
         </div>
    
     </form> -->
-=======
+
 </div>
 @endsection
->>>>>>> origin/Prommin_1406
+

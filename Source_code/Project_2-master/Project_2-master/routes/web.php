@@ -38,12 +38,11 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TcicallController;
-<<<<<<< HEAD
-=======
+
 //เพิ่มเติม
 use App\Http\Controllers\ResearchAssistantController;
 
->>>>>>> origin/Prommin_1406
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -92,13 +91,13 @@ Route::get('docx', [PDFController::class, 'generateInvoiceDOCX'])->name('docx');
 Route::get('excel', [PDFController::class, 'generateInvoiceExcel'])->name('excel');
 
 Route::get('detail/{id}', [ProfileController::class, 'request'])->name('detail');
-<<<<<<< HEAD
+
 Route::get('index', [LocalizationController::class, 'index']);
 Route::get('lang/{lang}', ['as' => 'langswitch', 'uses' => 'App\Http\Controllers\LocalizationController@switchLang']);
 Route::get('/export', [ExportPaperController::class, 'exportUsers'])->name('export-papers');
 Route::get('bib/{id}', [BibtexController::class, 'getbib'])->name('bibtex');
 
-=======
+
 Route::get('/export', [ExportPaperController::class, 'exportUsers'])->name('export-papers');
 Route::get('bib/{id}', [BibtexController::class, 'getbib'])->name('bibtex');
 
@@ -112,7 +111,7 @@ Route::group(['prefix' => '{lang}', 'middleware' => 'setlocale'], function() {
 });
 
 
->>>>>>> origin/Prommin_1406
+
 //Route::get('bib/{id}', [BibtexController::class, 'index'])->name('bibtex');
 //Route::get('change/lang', [LocalizationController::class,'lang_change'])->name('LangChange');
 
@@ -121,11 +120,9 @@ Route::get('/callscopus/{id}', [App\Http\Controllers\ScopuscallController::class
 
 Route::group(['middleware' => ['isAdmin', 'auth', 'PreventBackHistory']], function () {
     //Route::post('change-profile-picture',[ProfileuserController::class,'updatePicture'])->name('adminPictureUpdate');
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> origin/Prommin_1406
+    
+
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
@@ -165,8 +162,7 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     Route::get('tests', [TestController::class, 'index']); //call department
     Route::get('tests/{id}', [TestController::class, 'getCategory'])->name('tests'); //call program
 
-<<<<<<< HEAD
-=======
+
     //เพิ่มส่วนของresearch-assistant
     Route::get('/research-assistant', [ResearchAssistantController::class, 'index'])->name('researchAssistant.index');
     Route::get('/research-assistant/create', [ResearchAssistantController::class, 'create'])->name('researchAssistant.create');
@@ -174,7 +170,7 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     Route::resource('researchAssistant', ResearchAssistantController::class);
 
     Route::resource('researchAssistant', ResearchAssistantController::class);
->>>>>>> origin/Prommin_1406
+
 });
 
 

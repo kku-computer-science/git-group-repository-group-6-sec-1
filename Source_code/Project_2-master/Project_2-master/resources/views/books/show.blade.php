@@ -1,15 +1,15 @@
 @extends('dashboards.users.layouts.user-dash-layout')
 
-<<<<<<< HEAD
-=======
+
+
 @section('title', __('books.detail_title'))
 
->>>>>>> origin/Prommin_1406
+
 @section('content')
 <div class="container">
     <div class="card col-md-8" style="padding: 16px;">
         <div class="card-body">
-<<<<<<< HEAD
+
             <h4 class="card-title">Book Detail</h4>
             <p class="card-description">ข้อมูลรายละเอียดหนังสือ</p>
             <div class="row">
@@ -39,7 +39,7 @@
 
 </div>
 @endsection
-=======
+
             <h4 class="card-title">{{ __('books.detail_title') }}</h4>
             <p class="card-description">{{ __('books.card_description') }}</p>
             
@@ -72,4 +72,4 @@
     </div>
 </div>
 @endsection
->>>>>>> origin/Prommin_1406
+

@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap4.min.css">
-<<<<<<< HEAD
+
 @section('title','Dashboard')
 
 @section('content')
@@ -81,7 +81,7 @@
     $(document).ready(function() {
         var table1 = $('#example1').DataTable({
             responsive: true,
-=======
+
 
 @section('title', __('books.title'))
 
@@ -162,36 +162,36 @@
             language: {
                 search: "{{ __('books.search') }}"
             }
->>>>>>> origin/Prommin_1406
+
         });
     });
 </script>
 <script type="text/javascript">
     $('.show_confirm').click(function(event) {
         var form = $(this).closest("form");
-<<<<<<< HEAD
+
         var name = $(this).data("name");
         event.preventDefault();
         swal({
                 title: `Are you sure?`,
                 text: "If you delete this, it will be gone forever.",
-=======
+
         event.preventDefault();
         swal({
                 title: `{{ __('books.confirm_title') }}`,
                 text: "{{ __('books.confirm_text') }}",
->>>>>>> origin/Prommin_1406
+
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {
-<<<<<<< HEAD
+
                     swal("Delete Successfully", {
-=======
+
                     swal("{{ __('books.delete_success') }}", {
->>>>>>> origin/Prommin_1406
+
                         icon: "success",
                     }).then(function() {
                         location.reload();
@@ -201,8 +201,8 @@
             });
     });
 </script>
-<<<<<<< HEAD
+
 @stop
-=======
+
 @stop
->>>>>>> origin/Prommin_1406
+

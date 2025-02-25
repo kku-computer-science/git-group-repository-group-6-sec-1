@@ -156,11 +156,7 @@
                                     @method('DELETE')
 
                                     <li class="list-inline-item">
-<<<<<<< HEAD
-                                        <button class="btn btn-outline-danger btn-sm show_confirm" type="submit" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></button>
-=======
                                         <button id="deleted" class="btn btn-outline-danger btn-sm show_confirm" type="submit" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></button>
->>>>>>> origin/Prommin_1406
                                     </li>
                                     @endcan
                                 </form>
@@ -169,11 +165,6 @@
                         @endforeach
                     </tbody>
                 </table>
-<<<<<<< HEAD
-                
-=======
-
->>>>>>> origin/Prommin_1406
             </div>
         </div>
     </div>
@@ -213,8 +204,4 @@
             });
     });
 </script>
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> origin/Prommin_1406

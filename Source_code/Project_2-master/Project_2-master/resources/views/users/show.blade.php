@@ -9,7 +9,7 @@
     @endif
     <div class="col-md-8 grid-margin stretch-card">
         <div class="card" style="padding: 16px;">
-            <div class="card-body">
+            <div class="card-body" >
                 <h4 class="card-title">ข้อมูลผู้ใช้งาน</h4>
                 <p class="card-description">ข้อมูลรายละเอียดผู้ใช้งาน</p>
                 <div class="row mt-2">

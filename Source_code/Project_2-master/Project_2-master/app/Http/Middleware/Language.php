@@ -5,11 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
->>>>>>> origin/Prommin_1406
 
 class Language
 {
@@ -22,17 +19,6 @@ class Language
      */
     public function handle($request, Closure $next)
     {
-<<<<<<< HEAD
-        if (Session()->has('applocale') AND array_key_exists(Session()->get('applocale'), config('languages'))) {
-            App::setLocale(Session()->get('applocale'));
-        }
-        else { // This is optional as Laravel will automatically set the fallback language if there is none specified
-            App::setLocale(config('app.fallback_locale'));
-        }
-        return $next($request);
-    }
-}
-=======
         // เพิ่มการตรวจสอบพารามิเตอร์ lang จาก URL ถ้ามี
         $localeParam = $request->route('lang');
 
@@ -55,4 +41,3 @@ class Language
         return $next($request);
     }
 }
->>>>>>> origin/Prommin_1406

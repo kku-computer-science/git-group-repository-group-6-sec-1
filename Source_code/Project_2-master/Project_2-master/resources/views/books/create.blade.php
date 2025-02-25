@@ -1,7 +1,7 @@
 @extends('dashboards.users.layouts.user-dash-layout')
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<<<<<<< HEAD
-=======
+
+
 @section('title', __('books.title'))
 >>>>>>> origin/Prommin_1406
 @section('content')
@@ -10,8 +10,8 @@
         height: 40px;
         width: 400px !important;
     }
-<<<<<<< HEAD
-=======
+
+
     .my-select {
         background-color: #fff;
         color: #212529;
@@ -21,28 +21,28 @@
         width: 100%;
         font-size: 14px;
     }
->>>>>>> origin/Prommin_1406
+
 </style>
 <div class="container">
     <div class="row">
         <div class="col-lg-12 margin-tb">
-<<<<<<< HEAD
+
             <div class="pull-right">
 
             </div>
-=======
+
             <!-- สามารถเพิ่ม breadcrumb หรือ header ได้ตามต้องการ -->
->>>>>>> origin/Prommin_1406
+
         </div>
     </div>
 
     @if ($errors->any())
     <div class="alert alert-danger">
-<<<<<<< HEAD
+
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
-=======
+
         <strong>{{ __('books.error_title') }}</strong> {{ __('books.error_text') }}<br><br>
->>>>>>> origin/Prommin_1406
+
         <ul>
             @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
@@ -50,15 +50,14 @@
         </ul>
     </div>
     @endif
-<<<<<<< HEAD
+
     <!-- <a class="btn btn-primary" href="{{ route('books.index') }}"> Back </a> -->
-=======
->>>>>>> origin/Prommin_1406
+
 
     <div class="col-md-8 grid-margin stretch-card">
         <div class="card" style="padding: 16px;">
             <div class="card-body">
-<<<<<<< HEAD
+
                 <h4 class="card-title">เพิ่มหนังสือ</h4>
                 <p class="card-description">กรอกข้อมูลรายละเอียดหนังสือ</p>
                 <form class="forms-sample" action="{{ route('books.store') }}" method="POST">
@@ -95,7 +94,7 @@
                     
                     <button type="submit" name="submit" id="submit" class="btn btn-primary me-2">Submit</button>
                     <a class="btn btn-light" href="{{ route('books.index')}}">Cancel</a>
-=======
+
                 <h4 class="card-title">{{ __('books.add_button') }} {{ __('books.title') }}</h4>
                 <p class="card-description">{{ __('books.card_description') }}</p>
                 <form action="{{ route('books.store') }}" method="POST">
@@ -130,7 +129,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary me-2">{{ __('books.submit_button') }}</button>
                     <a class="btn btn-light" href="{{ route('books.index') }}">{{ __('books.cancel_button') }}</a>
->>>>>>> origin/Prommin_1406
+
                 </form>
             </div>
         </div>
@@ -138,7 +137,7 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-<<<<<<< HEAD
+
         var postURL = "<?php echo url('addmore'); ?>";
         var i = 1;
 
@@ -236,9 +235,9 @@
 
     </form>
 </div> -->
-=======
+
         // ถ้ามีโค้ด JavaScript เพิ่มเติมให้ใส่ที่นี่
     });
 </script>
 @endsection
->>>>>>> origin/Prommin_1406
+

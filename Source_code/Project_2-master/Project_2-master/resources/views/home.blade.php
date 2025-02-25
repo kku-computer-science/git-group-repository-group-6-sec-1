@@ -4,8 +4,6 @@
         background-color: #f5f5f5;
         padding: 20px 0;
         border-radius: 5px;
-
-
     }
 
     .count-title {
@@ -22,7 +20,6 @@
         margin-top: 10px;
         margin-bottom: 0;
         text-align: center;
-
     }
 
     .fa-2x {
@@ -39,19 +36,14 @@
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button> -->
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{asset('img/Banner1.png')}}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('img/Banner1_' . (app()->getLocale() == 'th' ? 'th' : (app()->getLocale() == 'en' ? 'en' : 'zh')) . '.png') }}" class="d-block w-100" alt="Banner 1">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{asset('img/Banner2.png')}}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('img/Banner2_' . (app()->getLocale() == 'th' ? 'th' : (app()->getLocale() == 'en' ? 'en' : 'zh')) . '.png') }}" class="d-block w-100" alt="Banner 2">
                 </div>
-                <!-- <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-            </div> -->
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -64,11 +56,6 @@
         </div>
     </div>
 
-
-    <!-- Modal -->
-
-
-
     <div class="container card-cart d-sm-flex justify-content-center mt-5">
         <div class="col-md-8">
             <div class="card">
@@ -79,32 +66,22 @@
                 </div>
             </div>
         </div>
-
     </div>
     <br>
 
     <div class="container mt-3">
-
         <div class="row text-center">
             <div class="col">
-                <div class="count" id='all'>
-
-                </div>
+                <div class="count" id='all'></div>
             </div>
             <div class="col">
-                <div class="count" id='scopus'>
-
-                </div>
+                <div class="count" id='scopus'></div>
             </div>
             <div class="col">
-                <div class="count" id='wos'>
-
-                </div>
+                <div class="count" id='wos'></div>
             </div>
             <div class="col">
-                <div class="count" id='tci'>
-
-                </div>
+                <div class="count" id='tci'></div>
             </div>
         </div>
     </div>
@@ -113,22 +90,16 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Reference (APA)</h5>
+                    <h5 class="modal-title">{{ trans('reference.reference_apa') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" id="name">
-                    <!-- <p>Modal body text goes here.</p> -->
-                </div>
+                <div class="modal-body" id="name"></div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ trans('reference.close') }}</button>
                 </div>
             </div>
         </div>
     </div>
-
-
-
 
     <div class="container mixpaper pb-10 mt-3">
         <h3>{{ trans('message.publications') }}</h3>
@@ -142,7 +113,6 @@
                         @else
                         Before {{$n}}
                         @endif
-
                     </button>
                 </h2>
                 <div id="collapse{{$n}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -157,26 +127,22 @@
                                     <b>{{$p['paper_name']}}</b> (
                                     <link>{{$p['author']}}</link>), {{$p['paper_sourcetitle']}}, {{$p['paper_volume']}},
                                     {{$p['paper_yearpub']}}.
-                                    <a href="{{$p['paper_url']}} " target="_blank">[url]</a> <a href="https://doi.org/{{$p['paper_doi']}}" target="_blank">[doi]</a>
-                                    <!-- <a href="{{ route('bibtex',['id'=>$p['id']])}}">
-                                        [อ้างอิง]
-                                    </a> -->
-                                    <button style="padding: 0;"class="btn btn-link open_modal" value="{{$p['id']}}">[อ้างอิง]</button>
+                                    <a href="{{$p['paper_url']}}" target="_blank">[url]</a> 
+                                    <a href="https://doi.org/{{$p['paper_doi']}}" target="_blank">[doi]</a>
+                                    <button style="padding: 0;" class="btn btn-link open_modal" value="{{$p['id']}}">[{{ trans('reference.label') }}]</button>
                                 </p>
                             </div>
                         </div>
                         @endforeach
                     </div>
                 </div>
-
             </div>
-
         </div>
         @endforeach
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <script>
     $(document).ready(function() {
         $(".moreBox").slice(0, 1).show();
@@ -198,9 +164,7 @@
     var paper_scopus = <?php echo $paper_scopus; ?>;
     var paper_wos = <?php echo $paper_wos; ?>;
     var areaChartData = {
-
         labels: year,
-
         datasets: [{
                 label: 'SCOPUS',
                 backgroundColor: '#3994D6',
@@ -237,11 +201,6 @@
         ]
     }
 
-
-
-    //-------------
-    //- BAR CHART -
-    //-------------
     var barChartCanvas = $('#barChart1').get(0).getContext('2d')
     var barChartData = $.extend(true, {}, areaChartData)
     var temp0 = areaChartData.datasets[0]
@@ -260,8 +219,7 @@
                 },
                 scaleLabel: {
                     display: true,
-                    labelString: 'Number',
-
+                    labelString: '{{ trans('reference.number') }}',
                 },
                 ticks: {
                     reverse: false,
@@ -271,18 +229,15 @@
             xAxes: [{
                 scaleLabel: {
                     display: true,
-                    labelString: 'Year'
+                    labelString: '{{ trans('reference.year') }}'
                 }
             }]
         },
-
         title: {
             display: true,
-            text: 'Report the total number of articles ( 5 years : cumulative)',
+            text: '{{ trans('reference.report_title') }}',
             fontSize: 20
         }
-
-
     }
 
     new Chart(barChartCanvas, {
@@ -295,37 +250,31 @@
     var paper_tci = <?php echo $paper_tci_numall; ?>;
     var paper_scopus = <?php echo $paper_scopus_numall; ?>;
     var paper_wos = <?php echo $paper_wos_numall; ?>;
-    //console.log(paper_scopus)
     let sumtci = paper_tci;
     let sumsco = paper_scopus;
     let sumwos = paper_wos;
     (function($) {
-        
         let sum = paper_wos + paper_tci + paper_scopus;
-        //console.log(sum);
-        //$("#scopus").append('data-to="100"');
         document.getElementById("all").innerHTML += `
                 <i class="count-icon fa fa-book fa-2x"></i>
                 <h2 class="timer count-title count-number" data-to="${sum}" data-speed="1500"></h2>
-                <p class="count-text ">SUMMARY</p>`
+                <p class="count-text ">{{ trans('reference.summary') }}</p>`
         document.getElementById("scopus").innerHTML += `
                 <i class="count-icon fa fa-book fa-2x"></i>
                 <h2 class="timer count-title count-number" data-to="${sumsco}" data-speed="1500"></h2>
-                <p class="count-text ">SCOPUS</p>`
+                <p class="count-text ">{{ trans('reference.scopus') }}</p>`
         document.getElementById("wos").innerHTML += `
                 <i class="count-icon fa fa-book fa-2x"></i>
                 <h2 class="timer count-title count-number" data-to="${sumwos}" data-speed="1500"></h2>
-                <p class="count-text ">WOS</p>`
+                <p class="count-text ">{{ trans('reference.wos') }}</p>`
         document.getElementById("tci").innerHTML += `
                 <i class="count-icon fa fa-book fa-2x"></i>
                 <h2 class="timer count-title count-number" data-to="${sumtci}" data-speed="1500"></h2>
-                <p class="count-text ">TCI</p>`
-        //document.getElementById("scopus").appendChild('data-to="100"');
+                <p class="count-text ">{{ trans('reference.tci') }}</p>`
+
         $.fn.countTo = function(options) {
             options = options || {};
-
             return $(this).each(function() {
-                // set options for current element
                 var settings = $.extend({}, $.fn.countTo.defaults, {
                     from: $(this).data('from'),
                     to: $(this).data('to'),
@@ -334,11 +283,9 @@
                     decimals: $(this).data('decimals')
                 }, options);
 
-                // how many times to update the value, and how much to increment the value on each update
                 var loops = Math.ceil(settings.speed / settings.refreshInterval),
                     increment = (settings.to - settings.from) / loops;
 
-                // references & variables that will change with each update
                 var self = this,
                     $self = $(this),
                     loopCount = 0,
@@ -347,19 +294,16 @@
 
                 $self.data('countTo', data);
 
-                // if an existing interval can be found, clear it first
                 if (data.interval) {
                     clearInterval(data.interval);
                 }
                 data.interval = setInterval(updateTimer, settings.refreshInterval);
 
-                // initialize the element with the starting value
                 render(value);
 
                 function updateTimer() {
                     value += increment;
                     loopCount++;
-
                     render(value);
 
                     if (typeof(settings.onUpdate) == 'function') {
@@ -367,7 +311,6 @@
                     }
 
                     if (loopCount >= loops) {
-                        // remove the interval
                         $self.removeData('countTo');
                         clearInterval(data.interval);
                         value = settings.to;
@@ -386,14 +329,14 @@
         };
 
         $.fn.countTo.defaults = {
-            from: 0, // the number the element should start at
-            to: 0, // the number the element should end at
-            speed: 1000, // how long it should take to count between the target numbers
-            refreshInterval: 100, // how often the element should be updated
-            decimals: 0, // the number of decimal places to show
-            formatter: formatter, // handler for formatting the value before rendering
-            onUpdate: null, // callback method for every time the element is updated
-            onComplete: null // callback method for when the element finishes updating
+            from: 0,
+            to: 0,
+            speed: 1000,
+            refreshInterval: 100,
+            decimals: 0,
+            formatter: formatter,
+            onUpdate: null,
+            onComplete: null
         };
 
         function formatter(value, settings) {
@@ -402,14 +345,12 @@
     }(jQuery));
 
     jQuery(function($) {
-        // custom formatting example
         $('.count-number').data('countToOptions', {
             formatter: function(value, options) {
                 return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
             }
         });
 
-        // start all the timers
         $('.timer').each(count);
 
         function count(options) {
@@ -421,19 +362,13 @@
 </script>
 <script>
     $(document).on('click', '.open_modal', function() {
-        //var url = "domain.com/yoururl";
         var tour_id = $(this).val();
         $.get('/bib/' + tour_id, function(data) {
-            //success data
             console.log(data);
-            $( ".bibtex-biblio" ).remove();
-            document.getElementById("name").innerHTML += `${data}`
-            // $('#tour_id').val(data.id);
-            // $('#name').val(data);
-            // $('#details').val(data.details);
-            // $('#btn-save').val("update");
+            $(".bibtex-biblio").remove();
+            document.getElementById("name").innerHTML += `${data}`;
             $('#myModal').modal('show');
-        })
+        });
     });
 </script>
 @endsection

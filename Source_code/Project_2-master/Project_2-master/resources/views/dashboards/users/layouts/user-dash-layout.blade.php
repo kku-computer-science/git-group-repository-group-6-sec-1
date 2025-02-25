@@ -26,12 +26,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('vendors/typicons/typicons.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/simple-line-icons/css/simple-line-icons.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.base.css')}}">
-<<<<<<< HEAD
-=======
+
+
     <!-- ธงชาติ -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
 
->>>>>>> origin/Prommin_1406
+
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- <link rel="stylesheet" href="{{asset('vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}"> -->
@@ -53,7 +53,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <body>
     <div class=" container-scroller sidebar-dark">
-<<<<<<< HEAD
+
         <!-- navbar ข้างบน 
     -->
         <nav class=" navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
@@ -139,7 +139,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </button>
 
         </nav>
-=======
+
 <!-- navbar ข้างบน-->
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
@@ -213,7 +213,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
 </nav>
 
->>>>>>> origin/Prommin_1406
+
         <!-- navbar ข้างบน -->
         <div class="container-fluid page-body-wrapper">
             <!-- Main Sidebar Container -->
@@ -289,8 +289,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </div>
                     </li>
-<<<<<<< HEAD
-=======
+
+
 
                     <!-- เพิ่มส่วนของ Research Assistant -->
                     @endcan
@@ -303,7 +303,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
 
->>>>>>> origin/Prommin_1406
+
                     @endcan
                     @can('export')
                     <li class="nav-item">
@@ -425,8 +425,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </body>
 
 
-<<<<<<< HEAD
+
 </html>
-=======
+
 </html>
->>>>>>> origin/Prommin_1406
+
