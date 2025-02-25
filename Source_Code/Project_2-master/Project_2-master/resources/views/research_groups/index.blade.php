@@ -104,15 +104,30 @@
         var form = $(this).closest("form");
         event.preventDefault();
         swal({
-                title: `{{ __('research_groups.confirm_title') }}`,
-                text: "{{ __('research_groups.confirm_text') }}",
+                title: `@lang('confirm.delete_title')`, 
+                text: "@lang('confirm.delete_text')", 
                 icon: "warning",
-                buttons: true,
+                buttons: {
+                    cancel: {
+                        text: "@lang('confirm.cancel')",  // ใช้คำว่า "Cancel" ที่แปล
+                        value: null,
+                        visible: true,
+                        className: "btn btn-secondary",
+                        closeModal: true
+                    },
+                    confirm: {
+                        text: "@lang('confirm.ok')",  // ใช้คำว่า "OK" ที่แปล
+                        value: true,
+                        visible: true,
+                        className: "btn btn-primary",
+                        closeModal: true
+                    }
+                },
                 dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {
-                    swal("{{ __('research_groups.delete_success') }}", {
+                    swal("@lang('confirm.delete_success')", {
                         icon: "success",
                     }).then(function() {
                         location.reload();

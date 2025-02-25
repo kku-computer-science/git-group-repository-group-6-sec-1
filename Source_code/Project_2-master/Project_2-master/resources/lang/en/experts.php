@@ -10,8 +10,12 @@ return [
     'submit'        => 'Submit',
     'cancel'        => 'Cancel',
     'placeholder_name' => 'Enter expertise name',
-    'confirm_title' => 'Are you sure?',
-    'confirm_text'  => 'If you delete this, it will be gone forever.',
-    'delete_success'=> 'Deleted Successfully',
     
+    
+    'confirm_title' => 'Are you sure?',
+    'confirm_text' => 'You will not be able to recover this imaginary file!',
+    'delete_success' => 'Delete Successfully',
+    'delete_msg' => 'Expertise entry deleted successfully',
+    'add' => 'Add New Expertise',
+    'edit' => 'Edit Expertise',
 ];

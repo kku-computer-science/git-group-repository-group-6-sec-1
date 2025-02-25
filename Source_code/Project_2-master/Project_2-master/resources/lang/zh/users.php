@@ -71,4 +71,16 @@ return [
     'import_excel_csv' => '导入 Excel, CSV 文件',
     'choose_file' => '选择文件',
     'submit' => '提交',
+
+    'user_updated_successfully' => '用户更新成功。',
+
+    'fund_updated_successfully' => '基金已成功更新',
+
+    'permission_updated_successfully' => '权限已成功更新',
+
+    'department_updated_successfully' => '部门已成功更新',
+
+    'program_data_updated_successfully' => '程序数据已成功更新',
+
+    'expertise_data_updated_successfully' => '专业数据已成功更新',
 ];

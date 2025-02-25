@@ -8,7 +8,7 @@ return [
     'edit'          => 'แก้ไข',
     'delete'        => 'ลบ',
     'confirm_title' => 'คุณแน่ใจหรือไม่?',
-    'confirm_text'  => 'หากลบแล้ว ข้อมูลจะหายไปตลอดกาล',
+    'confirm_text'  => 'คุณจะไม่สามารถกู้คืนไฟล์นี้ได้!',
     'delete_success'=> 'ลบสำเร็จ',
 
     //create.blade

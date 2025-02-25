@@ -10,7 +10,12 @@ return [
     'submit'        => '提交',
     'cancel'        => '取消',
     'placeholder_name' => '请输入专长名称',
-    'confirm_title' => '你确定吗？',
-    'confirm_text'  => '如果删除，将无法恢复。',
-    'delete_success'=> '删除成功',
+    
+
+    'confirm_title' => '您确定吗？',
+    'confirm_text' => '您将无法恢复此虚拟文件！',
+    'delete_success' => '删除成功',
+    'delete_msg' => '专业条目已成功删除',
+    'add' => '新增专业',
+    'edit' => '编辑专业',
 ];

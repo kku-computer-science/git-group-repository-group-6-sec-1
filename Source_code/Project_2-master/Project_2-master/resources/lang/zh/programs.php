@@ -14,4 +14,11 @@ return [
     'placeholder_name_en' => '请输入英语课程名称',
     'submit'           => '提交',
     'cancel'           => '取消',
+
+    'confirm_title' => '您确定吗？',
+    'confirm_text' => '您将无法恢复此虚拟文件！',
+    'delete_success' => '删除成功',
+    'delete_msg' => '程序条目已成功删除',
+    'add' => '添加程序',
+    'edit' => '编辑程序',
 ];

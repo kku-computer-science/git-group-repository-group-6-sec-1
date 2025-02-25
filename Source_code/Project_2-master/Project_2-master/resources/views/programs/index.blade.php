@@ -26,11 +26,11 @@
 
 @section('content')
 <div class="container">
-    @if ($message = Session::get('success'))
+@if ($message = Session::get('success'))
     <div class="alert alert-success">
-        <p>{{ $message }}</p>
+        <p>{{ __('users.program_data_updated_successfully') }}</p>
     </div>
-    @endif
+@endif
     <div class="card" style="padding: 16px;">
         <div class="card-body">
             <h4 class="card-title" style="text-align: center;">{{ __('programs.title') }}</h4>
@@ -61,7 +61,7 @@
                                 </li>
                                 <meta name="csrf-token" content="{{ csrf_token() }}">
                                 <li class="list-inline-item">
-                                    <button class="btn btn-outline-danger btn-sm" id="delete-program" type="submit" data-id="{{ $program->id }}" data-toggle="tooltip" data-placement="top" title="{{ __('programs.delete') }}">
+                                    <button class="btn btn-outline-danger btn-sm show_confirm" type="submit" data-id="{{ $program->id }}" data-toggle="tooltip" data-placement="top" title="{{ __('programs.delete') }}">
                                         <i class="mdi mdi-delete"></i>
                                     </button>
                                 </li>
@@ -129,7 +129,6 @@
     </div>
 </div>
 
-
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer></script>
 <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap4.min.js" defer></script>
@@ -161,7 +160,7 @@
         $('#new-program').click(function() {
             $('#btn-save').val("create-program");
             $('#program').trigger("reset");
-            $('#programCrudModal').html("@lang('programs.add')"); // ใช้การแปลภาษา
+            $('#programCrudModal').html("{{ __('programs.add') }}"); // ใช้การแปลภาษา
             $('#crud-modal').modal('show');
         });
 
@@ -169,7 +168,7 @@
         $('body').on('click', '#edit-program', function() {
             var program_id = $(this).data('id');
             $.get('programs/' + program_id + '/edit', function(data) {
-                $('#programCrudModal').html("@lang('programs.edit')"); // ใช้การแปลภาษา
+                $('#programCrudModal').html("{{ __('programs.edit') }}"); // ใช้การแปลภาษา
                 $('#btn-update').val("Update");
                 $('#btn-save').prop('disabled', false);
                 $('#crud-modal').modal('show');
@@ -181,23 +180,21 @@
             })
         });
 
-
         /* Delete program */
         $('body').on('click', '#delete-program', function(e) {
             var program_id = $(this).data("id");
 
             var token = $("meta[name='csrf-token']").attr("content");
             e.preventDefault();
-            //confirm("Are You sure want to delete !");
             swal({
-                title: "Are you sure?",
-                text: "You will not be able to recover this imaginary file!",
-                type: "warning",
+                title: "{{ __('programs.confirm_title') }}", // แปลข้อความ "Are you sure?"
+                text: "{{ __('programs.confirm_text') }}", // แปลข้อความ "You will not be able to recover this imaginary file!"
+                icon: "warning",
                 buttons: true,
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    swal("Delete Successfully", {
+                    swal("{{ __('programs.delete_success') }}", { // แปลข้อความ "Delete Successfully"
                         icon: "success",
                     }).then(function() {
                         location.reload();
@@ -209,7 +206,7 @@
                                 "_token": token,
                             },
                             success: function(data) {
-                                $('#msg').html('program entry deleted successfully');
+                                $('#msg').html('{{ __('programs.delete_msg') }}'); // แปลข้อความ "program entry deleted successfully"
                                 $("#program_id_" + program_id).remove();
                             },
                             error: function(data) {
@@ -217,21 +214,60 @@
                             }
                         });
                     });
-
                 }
             });
         });
     });
 </script>
 <script>
-    error = false
+    error = false;
 
     function validate() {
-        if (document.proForm.program_name_th.value != '' && document.proForm.program_name_en.value != '')
-            document.proForm.btnsave.disabled = false
-        else
-            document.proForm.btnsave.disabled = true
+    if (document.expForm.expert_name.value != '')
+        document.expForm.btnsave.disabled = false
+    else
+        document.expForm.btnsave.disabled = true
     }
+</script>
+
+<!-- เพิ่มสคริปต์สำหรับ .show_confirm -->
+<script type="text/javascript">
+    $('.show_confirm').click(function(event) {
+        var form = $(this).closest("form");
+        event.preventDefault();
+        swal({
+                title: "{{ __('confirm.delete_title') }}", 
+                text: "{{ __('confirm.delete_text') }}", 
+                icon: "warning",
+                buttons: {
+                    cancel: {
+                        text: "{{ __('confirm.cancel') }}",  // ใช้คำว่า "Cancel" ที่แปล
+                        value: null,
+                        visible: true,
+                        className: "btn btn-secondary",
+                        closeModal: true
+                    },
+                    confirm: {
+                        text: "{{ __('confirm.ok') }}",  // ใช้คำว่า "OK" ที่แปล
+                        value: true,
+                        visible: true,
+                        className: "btn btn-primary",
+                        closeModal: true
+                    }
+                },
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("{{ __('confirm.delete_success') }}", {
+                        icon: "success",
+                    }).then(function() {
+                        location.reload();
+                        form.submit();
+                    });
+                }
+            });
+    });
 </script>
 
 @stop

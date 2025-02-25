@@ -8,7 +8,7 @@ return [
     'edit'          => 'Edit',
     'delete'        => 'Delete',
     'confirm_title' => 'Are you sure?',
-    'confirm_text'  => 'Once deleted, this data cannot be recovered.',
+    'confirm_text'  => 'You will not be able to recover this file!',
     'delete_success'=> 'Deleted Successfully',
 
 

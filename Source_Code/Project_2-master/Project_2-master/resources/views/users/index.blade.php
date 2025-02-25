@@ -92,11 +92,11 @@
     });
 </script>
 <div class="container">
-    @if (\Session::has('success'))
+@if ($message = Session::get('success'))
     <div class="alert alert-success">
-        <p>{{ \Session::get('success') }}</p>
+        <p>{{ __('users.user_updated_successfully') }}</p>
     </div>
-    @endif
+@endif
     <div class="card" style="padding: 16px;">
         <div class="card-body">
             <h4 class="card-title">{{ __('users.title') }}</h4>
@@ -135,6 +135,7 @@
                                 <li class="list-inline-item">
                                     <a class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="{{ __('users.view') }}" href="{{ route('users.show',$user->id) }}"><i class="mdi mdi-eye"></i></a>
                                 </li>
+                                
                                     @can('user-edit')
                                     <li class="list-inline-item">
                                     <a class="btn btn-outline-success btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="{{ __('users.edit') }}" href="{{ route('users.edit',$user->id) }}"><i class="mdi mdi-pencil"></i></a>
@@ -187,18 +188,32 @@
 <script type="text/javascript">
     $('.show_confirm').click(function(event) {
         var form = $(this).closest("form");
-        var name = $(this).data("name");
         event.preventDefault();
         swal({
-                title: `Are you sure?`,
-                text: "If you delete this, it will be gone forever.",
+                title: `@lang('confirm.delete_title')`, 
+                text: "@lang('confirm.delete_text')", 
                 icon: "warning",
-                buttons: true,
+                buttons: {
+                    cancel: {
+                        text: "@lang('confirm.cancel')",  // ใช้คำว่า "Cancel" ที่แปล
+                        value: null,
+                        visible: true,
+                        className: "btn btn-secondary",
+                        closeModal: true
+                    },
+                    confirm: {
+                        text: "@lang('confirm.ok')",  // ใช้คำว่า "OK" ที่แปล
+                        value: true,
+                        visible: true,
+                        className: "btn btn-primary",
+                        closeModal: true
+                    }
+                },
                 dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {
-                    swal("Delete Successfully", {
+                    swal("@lang('confirm.delete_success')", {
                         icon: "success",
                     }).then(function() {
                         location.reload();
@@ -208,4 +223,6 @@
             });
     });
 </script>
+
+
 @endsection

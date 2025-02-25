@@ -2,11 +2,11 @@
 @section('content')
 <div class="container">
     <div class="justify-content-center">
-        @if (\Session::has('success'))
-        <div class="alert alert-success">
-            <p>{{ \Session::get('success') }}</p>
-        </div>
-        @endif
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ __('users.department_updated_successfully') }}</p>
+    </div>
+    @endif
         <div class="card">
             <div class="card-header">{{ __('departments.title') }}
                 @can('departments-create')
@@ -65,15 +65,30 @@
         var form = $(this).closest("form");
         event.preventDefault();
         swal({
-                title: `{{ __('departments.confirm_title') }}`,
-                text: "{{ __('departments.confirm_text') }}",
+                title: `@lang('confirm.delete_title')`, 
+                text: "@lang('confirm.delete_text')", 
                 icon: "warning",
-                buttons: true,
+                buttons: {
+                    cancel: {
+                        text: "@lang('confirm.cancel')",  // ใช้คำว่า "Cancel" ที่แปล
+                        value: null,
+                        visible: true,
+                        className: "btn btn-secondary",
+                        closeModal: true
+                    },
+                    confirm: {
+                        text: "@lang('confirm.ok')",  // ใช้คำว่า "OK" ที่แปล
+                        value: true,
+                        visible: true,
+                        className: "btn btn-primary",
+                        closeModal: true
+                    }
+                },
                 dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {
-                    swal("{{ __('departments.delete_success') }}", {
+                    swal("@lang('confirm.delete_success')", {
                         icon: "success",
                     }).then(function() {
                         location.reload();

@@ -71,4 +71,17 @@ return [
     'import_excel_csv' => 'Import Excel, CSV File',
     'choose_file' => 'Choose File',
     'submit' => 'Submit',
+
+    //success
+    'user_updated_successfully' => 'User updated successfully',
+
+    'fund_updated_successfully' => 'Fund updated successfully',
+
+    'permission_updated_successfully' => 'Permission updated successfully',
+
+    'department_updated_successfully' => 'Department updated successfully',
+
+    'program_data_updated_successfully' => 'Program data is updated successfully',
+
+    'expertise_data_updated_successfully' => 'Expertise data is updated successfully',
 ];

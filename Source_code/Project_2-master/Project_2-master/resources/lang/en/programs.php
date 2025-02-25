@@ -14,4 +14,11 @@ return [
     'placeholder_name_en' => 'Enter program name in English',
     'submit'           => 'Submit',
     'cancel'           => 'Cancel',
+
+    'confirm_title' => 'Are you sure?',
+    'confirm_text' => 'You will not be able to recover this imaginary file!',
+    'delete_success' => 'Delete Successfully',
+    'delete_msg' => 'Program entry deleted successfully',
+    'add' => 'Add Program',
+    'edit' => 'Edit Program',
 ];

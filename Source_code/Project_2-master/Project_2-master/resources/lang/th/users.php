@@ -71,4 +71,16 @@ return [
     'import_excel_csv' => 'นำเข้าไฟล์ Excel, CSV',
     'choose_file' => 'เลือกไฟล์',
     'submit' => 'ส่งข้อมูล',
+
+    'user_updated_successfully' => 'อัปเดตข้อมูลผู้ใช้สำเร็จ',
+
+    'fund_updated_successfully' => 'ข้อมูลงบประมาณได้รับการอัปเดตเรียบร้อยแล้ว',
+
+    'permission_updated_successfully' => 'สิทธิ์ได้รับการอัปเดตเรียบร้อยแล้ว',
+
+    'department_updated_successfully' => 'ข้อมูลแผนกได้รับการอัปเดตเรียบร้อยแล้ว',
+
+    'program_data_updated_successfully' => 'ข้อมูลโปรแกรมได้รับการอัปเดตเรียบร้อยแล้ว',
+
+    'expertise_data_updated_successfully' => 'ข้อมูลความเชี่ยวชาญได้รับการอัปเดตเรียบร้อยแล้ว',
 ];

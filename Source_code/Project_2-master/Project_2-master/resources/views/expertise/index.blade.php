@@ -8,7 +8,7 @@
 <div class="container">
     @if ($message = Session::get('success'))
     <div class="alert alert-success">
-        <p>{{ $message }}</p>
+        <p>{{ __('users.expertise_data_updated_successfully') }}</p>
     </div>
     @endif
     <div class="card" style="padding: 16px;">
@@ -34,7 +34,7 @@
                         @endif
                         <td>{{ $expert->expert_name }}</td>
                         <td>
-                            <form action="{{ route('experts.destroy',$expert->id) }}" method="POST">
+                            <form action="{{ route('experts.destroy', $expert->id) }}" method="POST">
                                 <li class="list-inline-item">
                                     <a class="btn btn-outline-success btn-sm" id="edit-expertise" type="button" data-toggle="modal" data-id="{{ $expert->id }}" data-placement="top" title="{{ __('experts.edit') }}" href="javascript:void(0)">
                                         <i class="mdi mdi-pencil"></i>
@@ -43,7 +43,7 @@
                                 @csrf
                                 <meta name="csrf-token" content="{{ csrf_token() }}">
                                 <li class="list-inline-item">
-                                    <button class="btn btn-outline-danger btn-sm show_confirm" id="delete-expertise" type="submit" data-id="{{ $expert->id }}" data-toggle="tooltip" data-placement="top" title="{{ __('experts.delete') }}">
+                                    <button class="btn btn-outline-danger btn-sm show_confirm" type="submit" data-id="{{ $expert->id }}" data-toggle="tooltip" data-placement="top" title="{{ __('experts.delete') }}">
                                         <i class="mdi mdi-delete"></i>
                                     </button>
                                 </li>
@@ -85,6 +85,7 @@
         </div>
     </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer></script>
 <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap4.min.js" defer></script>
@@ -117,11 +118,12 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         /* When click New expertise button */
         $('#new-expertise').click(function() {
             $('#btn-save').val("create-expertise");
             $('#expertise').trigger("reset");
-            $('#expertiseCrudModal').html("Add New Expertise");
+            $('#expertiseCrudModal').html("{{ __('experts.add') }}"); // ใช้การแปลภาษา
             $('#crud-modal').modal('show');
         });
 
@@ -129,16 +131,14 @@
         $('body').on('click', '#edit-expertise', function() {
             var expert_id = $(this).data('id');
             $.get('experts/' + expert_id + '/edit', function(data) {
-                $('#expertiseCrudModal').html("@lang('experts.edit')");
+                $('#expertiseCrudModal').html("{{ __('experts.edit') }}"); // ใช้การแปลภาษา
                 $('#btn-update').val("Update");
                 $('#btn-save').prop('disabled', false);
                 $('#crud-modal').modal('show');
                 $('#exp_id').val(data.id);
                 $('#expert_name').val(data.expert_name);
-
             })
         });
-
 
         /* Delete expertise */
         $('body').on('click', '#delete-expertise', function(e) {
@@ -146,16 +146,15 @@
             
             var token = $("meta[name='csrf-token']").attr("content");
             e.preventDefault();
-            //confirm("Are You sure want to delete !");
             swal({
-                title: "Are you sure?",
-                text: "You will not be able to recover this imaginary file!",
-                type: "warning",
+                title: "{{ __('experts.confirm_title') }}", // แปลข้อความ "Are you sure?"
+                text: "{{ __('experts.confirm_text') }}", // แปลข้อความ "You will not be able to recover this imaginary file!"
+                icon: "warning",
                 buttons: true,
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    swal("Delete Successfully", {
+                    swal("{{ __('experts.delete_success') }}", { // แปลข้อความ "Delete Successfully"
                         icon: "success",
                     }).then(function() {
                         location.reload();
@@ -167,7 +166,7 @@
                                 "_token": token,
                             },
                             success: function(data) {
-                                $('#msg').html('program entry deleted successfully');
+                                $('#msg').html('{{ __('experts.delete_msg') }}'); // แปลข้อความ "program entry deleted successfully"
                                 $("#expert_id_" + expert_id).remove();
                             },
                             error: function(data) {
@@ -175,16 +174,14 @@
                             }
                         });
                     });
-
                 }
-
-                });
+            });
         });
     });
 </script>
 
 <script>
-    error = false
+    error = false;
 
     function validate() {
         if (document.expForm.expert_name.value != '')
@@ -193,4 +190,85 @@
             document.expForm.btnsave.disabled = true
     }
 </script>
+
+<!-- เพิ่มสคริปต์สำหรับ .show_confirm -->
+<script type="text/javascript">
+    $('.show_confirm').click(function(event) {
+        var form = $(this).closest("form");
+        event.preventDefault();
+        swal({
+                title: "{{ __('confirm.delete_title') }}", 
+                text: "{{ __('confirm.delete_text') }}", 
+                icon: "warning",
+                buttons: {
+                    cancel: {
+                        text: "{{ __('confirm.cancel') }}",  // ใช้คำว่า "Cancel" ที่แปล
+                        value: null,
+                        visible: true,
+                        className: "btn btn-secondary",
+                        closeModal: true
+                    },
+                    confirm: {
+                        text: "{{ __('confirm.ok') }}",  // ใช้คำว่า "OK" ที่แปล
+                        value: true,
+                        visible: true,
+                        className: "btn btn-primary",
+                        closeModal: true
+                    }
+                },
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("{{ __('confirm.delete_success') }}", {
+                        icon: "success",
+                    }).then(function() {
+                        location.reload();
+                        form.submit();
+                    });
+                }
+            });
+    });
+</script>
+
+<!-- เพิ่มสคริปต์ใหม่สำหรับ .show_confirm (ตามที่ระบุ) -->
+<script type="text/javascript">
+    $('.show_confirm').click(function(event) {
+        var form = $(this).closest("form");
+        event.preventDefault();
+        swal({
+                title: "{{ __('confirm.delete_title') }}", 
+                text: "{{ __('confirm.delete_text') }}", 
+                icon: "warning",
+                buttons: {
+                    cancel: {
+                        text: "{{ __('confirm.cancel') }}",  // ใช้คำว่า "Cancel" ที่แปล
+                        value: null,
+                        visible: true,
+                        className: "btn btn-secondary",
+                        closeModal: true
+                    },
+                    confirm: {
+                        text: "{{ __('confirm.ok') }}",  // ใช้คำว่า "OK" ที่แปล
+                        value: true,
+                        visible: true,
+                        className: "btn btn-primary",
+                        closeModal: true
+                    }
+                },
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("{{ __('confirm.delete_success') }}", {
+                        icon: "success",
+                    }).then(function() {
+                        location.reload();
+                        form.submit();
+                    });
+                }
+            });
+    });
+</script>
+
 @stop
