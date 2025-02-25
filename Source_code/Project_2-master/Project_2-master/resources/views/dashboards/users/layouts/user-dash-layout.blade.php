@@ -130,153 +130,141 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div id="settings-trigger"><i class="mdi mdi-home"></i></div>
             </div> -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link {{ (request()->is('dashboard*')) ? 'active' : '' }}"
-                            href="{{ route('dashboard')}}">
-                            <i class="menu-icon mdi mdi-grid-large"></i>
-                            <span class="menu-title">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item nav-category">Profile</li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ (request()->is('admin/profile*')) ? 'active' : '' }}"
-                            href="{{ route('profile')}}">
-                            <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                            <span class="menu-title">User Profile</span>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link {{ (request()->is('dashboard*')) ? 'active' : '' }}" href="{{ route('dashboard')}}">
+                <i class="menu-icon mdi mdi-grid-large"></i>
+                <span class="menu-title">{{ __('sidebar.dashboard') }}</span>
+            </a>
+        </li>
+        <li class="nav-item nav-category">{{ __('sidebar.profile') }}</li>
+        <li class="nav-item">
+            <a class="nav-link {{ (request()->is('admin/profile*')) ? 'active' : '' }}" href="{{ route('profile')}}">
+                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                <span class="menu-title">{{ __('sidebar.user_profile') }}</span>
+            </a>
+        </li>
+        
+        <li class="nav-item nav-category">{{ __('sidebar.option') }}</li>
+        @can('funds-list')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('funds.index')}}">
+                <i class="menu-icon mdi mdi-file-document-box-outline"></i>
+                <span class="menu-title">{{ __('sidebar.manage_fund') }}</span>
+            </a>
+        </li>
+        @endcan
 
-                        </a>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link {{ (request()->is('admin/settings*')) ? 'active' : '' }}"
-                            href="{{ route('settings')}}">
-                            <i class="menu-icon mdi mdi mdi-settings-outline"></i>
-                            <span class="menu-title">Settings</span>
+        @can('projects-list')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('researchProjects.index')}}">
+                <i class="menu-icon mdi mdi-book-outline"></i>
+                <span class="menu-title">{{ __('sidebar.research_project') }}</span>
+            </a>
+        </li>
+        @endcan
 
-                        </a>
-                    </li> -->
-                    <li class="nav-item nav-category">Option</li>
-                    @can('funds-list')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('funds.index')}}">
-                            <i class="menu-icon mdi mdi-file-document-box-outline"></i>
-                            <span class="menu-title">Manage Fund</span>
+        @can('groups-list')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('researchGroups.index')}}">
+                <i class="menu-icon mdi mdi-view-dashboard-outline"></i>
+                <span class="menu-title">{{ __('sidebar.research_group') }}</span>
+            </a>
+        </li>
+        @endcan
 
-                        </a>
-                    </li>
-                    @endcan
-                    @can('projects-list')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('researchProjects.index')}}">
-                            <i class="menu-icon mdi mdi-book-outline"></i>
-                            <span class="menu-title">Research Project</span>
-
-                        </a>
-                    </li>
-                    @endcan
-                    @can('groups-list')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('researchGroups.index')}}">
-                            <i class="menu-icon mdi mdi-view-dashboard-outline"></i>
-                            <span class="menu-title">Research Group</span>
-
-                        </a>
-                    </li>
-                    @endcan
-                    @can('papers-list')
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#ManagePublications" aria-expanded="false" aria-controls="ManagePublications">
-                            <i class="menu-icon mdi mdi-book-open-page-variant"></i>
-                            <span class="menu-title">Manage Publications</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ManagePublications">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="{{ route('papers.index')}}">Published research</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/books">Book</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/patents">ผลงานวิชาการอื่นๆ</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <!-- เพิ่มส่วนของ Research Assistant -->
-                    @endcan
-                    @can('groups-list')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('researchAssistant.index')}}">
-                            <i  class="menu-icon mdi mdi-account-arrow-right "></i>
-                            <span class="menu-title">Research Assistant</span>
-
-                        </a>
-                    </li>
-
-                    @endcan
-                    @can('export')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('exportfile')}}" >
-                            <i class="menu-icon mdi mdi-file-export"></i>
-                            <span class="menu-title">Export</span>
-                        </a>
-                    </li>
-                    @endcan
-                    @can('user-list')
-                    <li class="nav-item nav-category">Admin</li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('users.index')}}">
-                            <i class="menu-icon mdi mdi-account-multiple-outline"></i>
-                            <span class="menu-title">Users</span>
-
-                        </a>
-                    </li>
-                    @endcan
-                    @can('role-list')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('roles.index')}}">
-                            <i class="menu-icon mdi mdi-chart-gantt"></i>
-                            <span class="menu-title">Roles</span>
-
-                        </a>
-                    </li>
-                    @endcan
-                    @can('permission-list')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('permissions.index')}}">
-                            <i class="menu-icon mdi mdi-checkbox-marked-circle-outline"></i>
-                            <span class="menu-title">Permission</span>
-
-                        </a>
-                    </li>
-                    @endcan
-                    @can('departments-list')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('departments.index')}}">
-                            <i class="menu-icon mdi mdi-animation-outline"></i>
-                            <span class="menu-title">Departments</span>
-
-                        </a>
-                    </li>
-                    @endcan
-
-                    @can('programs-list')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('programs.index')}}">
-                            <i class="menu-icon mdi mdi-format-list-bulleted"></i>
-                            <span class="menu-title">Manage Programs</span>
-
-                        </a>
-                    </li>
-                    @endcan
-                    @can('expertises-list')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('experts.index')}}">
-                            <i class="menu-icon mdi mdi-buffer"></i>
-                            <span class="menu-title">Manage Expertise</span>
-
-                        </a>
-                    </li>
-                    @endcan
+        @can('papers-list')
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ManagePublications" aria-expanded="false" aria-controls="ManagePublications">
+                <i class="menu-icon mdi mdi-book-open-page-variant"></i>
+                <span class="menu-title">{{ __('sidebar.manage_publications') }}</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ManagePublications">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('papers.index')}}">{{ __('sidebar.published_research') }}</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/books">{{ __('sidebar.book') }}</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/patents">{{ __('sidebar.other_academic_works') }}</a></li>
                 </ul>
-            </nav>
+            </div>
+        </li>
+        @endcan
+
+        @can('groups-list')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('researchAssistant.index')}}">
+                <i  class="menu-icon mdi mdi-account-arrow-right "></i>
+                <span class="menu-title">{{ __('sidebar.research_assistant') }}</span>
+            </a>
+        </li>
+        @endcan
+
+        @can('export')
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('exportfile')}}" >
+                <i class="menu-icon mdi mdi-file-export"></i>
+                <span class="menu-title">{{ __('sidebar.export') }}</span>
+            </a>
+        </li>
+        @endcan
+
+        @can('user-list')
+        <li class="nav-item nav-category">{{ __('sidebar.admin') }}</li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('users.index')}}">
+                <i class="menu-icon mdi mdi-account-multiple-outline"></i>
+                <span class="menu-title">{{ __('sidebar.users') }}</span>
+            </a>
+        </li>
+        @endcan
+
+        @can('role-list')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('roles.index')}}">
+                <i class="menu-icon mdi mdi-chart-gantt"></i>
+                <span class="menu-title">{{ __('sidebar.roles') }}</span>
+            </a>
+        </li>
+        @endcan
+
+        @can('permission-list')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('permissions.index')}}">
+                <i class="menu-icon mdi mdi-checkbox-marked-circle-outline"></i>
+                <span class="menu-title">{{ __('sidebar.permission') }}</span>
+            </a>
+        </li>
+        @endcan
+
+        @can('departments-list')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('departments.index')}}">
+                <i class="menu-icon mdi mdi-animation-outline"></i>
+                <span class="menu-title">{{ __('sidebar.departments') }}</span>
+            </a>
+        </li>
+        @endcan
+
+        @can('programs-list')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('programs.index')}}">
+                <i class="menu-icon mdi mdi-format-list-bulleted"></i>
+                <span class="menu-title">{{ __('sidebar.manage_programs') }}</span>
+            </a>
+        </li>
+        @endcan
+
+        @can('expertises-list')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('experts.index')}}">
+                <i class="menu-icon mdi mdi-buffer"></i>
+                <span class="menu-title">{{ __('sidebar.manage_expertise') }}</span>
+            </a>
+        </li>
+        @endcan
+    </ul>
+</nav>
+
 
             <!-- Content Wrapper. Contains page content -->
             <div class="main-panel">

@@ -28,18 +28,18 @@
                     </div>
                     <h4 class="text-center p-2">{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h4>
                     <input type="file" name="admin_image" id="admin_image" style="opacity: 0;height:1px;display:none">
-                    <a href="javascript:void(0)" class="btn btn-primary btn-block btn-sm" id="change_picture_btn"><b>Change picture</b></a>
+                    <a href="javascript:void(0)" class="btn btn-primary btn-block btn-sm" id="change_picture_btn"><b>{{ __('profile.change_picture') }}</b></a>
                 </div>
 
             </div>
             <div class="nav flex-column nav-pills-1" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link " id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
                     <i class="mdi mdi-account-card-details"></i>
-                    <span class="menu-title"> Account </span>
+                    <span class="menu-title"> {{ __('profile.account') }} </span>
                 </a>
                 <a class="nav-link " id="password-tab" data-toggle="pill" href="#password" role="tab" aria-controls="password" aria-selected="false">
                     <i class="mdi mdi-key-variant"></i>
-                    <span class="menu-title"> Password </span>
+                    <span class="menu-title"> {{ __('profile.password') }} </span>
                 </a>
                 @if(Auth::user()->hasRole('teacher'))
                 <a class="nav-link {{old('tab') == 'expertise' ? ' active' : null}}" id="expertise-tab" data-toggle="pill" href="#expertise" role="tab" aria-controls="expertise" aria-selected="false">
@@ -56,54 +56,61 @@
         <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
             <!-- <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab"> -->
             <div class="tab-pane " id="account" role="tabpanel" aria-labelledby="account-tab">
-                <h3 class="mb-4">Profile Settings</h3>
+                <h3 class="mb-4">{{ __('profile.profile_settings') }}</h3>
                 <form class="form-horizontal" method="POST" action="{{ route('adminUpdateInfo') }}" id="AdminInfoForm">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group col-sm-4">
-                                <label>Name title</label>
-                                <select class="custom-select my-select " name="title_name_en">
-                                    <option value="Mr." {{ Auth::user()->title_name_en == 'Mr.' ? 'selected' : '' }}>Mr.</option>
-                                    <option value="Miss" {{ Auth::user()->title_name_en == 'Miss' ? 'selected' : '' }}>Miss</option>
-                                    <option value="Mrs." {{ Auth::user()->title_name_en == 'Mrs.' ? 'selected' : '' }}>Mrs.</option>
-                                </select>
+                                <label>{{ __('profile.name_title') }}</label>
+                                <select class="custom-select my-select" name="title_name_en">
+    <option value="Mr." {{ Auth::user()->title_name_en == 'Mr.' ? 'selected' : '' }}>
+        {{ __('profile.mr') }}
+    </option>
+    <option value="Miss" {{ Auth::user()->title_name_en == 'Miss' ? 'selected' : '' }}>
+        {{ __('profile.miss') }}
+    </option>
+    <option value="Mrs." {{ Auth::user()->title_name_en == 'Mrs.' ? 'selected' : '' }}>
+        {{ __('profile.mrs') }}
+    </option>
+</select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>First name (English)</label>
+                                <label>{{ __('profile.first_name_en') }}</label>
                                 <input type="text" class="form-control" id="inputfNameEN" placeholder="Name" value="{{ Auth::user()->fname_en }}" name="fname_en">
                                 <span class="text-danger error-text name_error"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Last name (English)</label>
+                                <label>{{ __('profile.last_name_en') }}</label>
                                 <input type="text" class="form-control" id="inputlNameEN" placeholder="Name" value="{{ Auth::user()->lname_en }}" name="lname_en">
                                 <span class="text-danger error-text name_error"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label>ชื่อ (ภาษาไทย)</label>
-                                <input type="text" class="form-control" id="inputfNameTH" placeholder="Name" value="{{ Auth::user()->fname_th }}" name="fname_th">
-                                <span class="text-danger error-text name_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>นามสกุล (ภาษาไทย)</label>
-                                <input type="text" class="form-control" id="inputlNameTH" placeholder="Name" value="{{ Auth::user()->lname_th }}" name="lname_th">
-                                <span class="text-danger error-text name_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Email" value="{{ Auth::user()->email }}" name="email">
-                                <span class="text-danger error-text email_error"></span>
-                            </div>
-                        </div>
+    <div class="form-group">
+        <label>{{ __('profile.first_name_th') }}</label>
+        <input type="text" class="form-control" id="inputfNameTH" placeholder="{{ __('profile.first_name_th') }}" value="{{ Auth::user()->fname_th }}" name="fname_th">
+        <span class="text-danger error-text name_error"></span>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label>{{ __('profile.last_name_th') }}</label>
+        <input type="text" class="form-control" id="inputlNameTH" placeholder="{{ __('profile.last_name_th') }}" value="{{ Auth::user()->lname_th }}" name="lname_th">
+        <span class="text-danger error-text name_error"></span>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label>{{ __('profile.email') }}</label>
+        <input type="text" class="form-control" id="inputEmail" placeholder="{{ __('profile.email') }}" value="{{ Auth::user()->email }}" name="email">
+        <span class="text-danger error-text email_error"></span>
+    </div>
+</div>
+
                         <div class="col-md-6">
                         </div>
                         @if(Auth::user()->hasRole('teacher'))
@@ -148,47 +155,45 @@
                         @endif
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-primary">{{ __('profile.update') }}</button>
                     </div>
                 </form>
             </div>
 
 
             <div class="tab-pane fade " id="password" role="tabpanel" aria-labelledby="password-tab">
-                <form class="form-horizontal" action="{{ route('adminChangePassword') }}" method="POST" id="changePasswordAdminForm">
-                    <h3 class="mb-4">Password Settings</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Old password</label>
-                                <input type="password" class="form-control" id="inputpassword" placeholder="Enter current password" name="oldpassword">
-                                <span class="text-danger error-text oldpassword_error"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>New password</label>
-                                <input type="password" class="form-control" id="newpassword" placeholder="Enter new password" name="newpassword">
-                                <span class="text-danger error-text newpassword_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Confirm new password</label>
-                                <input type="password" class="form-control" id="cnewpassword" placeholder="ReEnter new password" name="cnewpassword">
-                                <span class="text-danger error-text cnewpassword_error"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="btn btn-primary">Update!!</button>
-                        <!-- <button class="btn btn-light">Cancel</button> -->
-                    </div>
-
-                </form>
+    <form class="form-horizontal" action="{{ route('adminChangePassword') }}" method="POST" id="changePasswordAdminForm">
+        <h3 class="mb-4">{{ __('profile.password_settings') }}</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>{{ __('profile.old_password') }}</label>
+                    <input type="password" class="form-control" id="inputpassword" placeholder="{{ __('profile.enter_current_password') }}" name="oldpassword">
+                    <span class="text-danger error-text oldpassword_error"></span>
+                </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>{{ __('profile.new_password') }}</label>
+                    <input type="password" class="form-control" id="newpassword" placeholder="{{ __('profile.enter_new_password') }}" name="newpassword">
+                    <span class="text-danger error-text newpassword_error"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>{{ __('profile.confirm_new_password') }}</label>
+                    <input type="password" class="form-control" id="cnewpassword" placeholder="{{ __('profile.reenter_new_password') }}" name="cnewpassword">
+                    <span class="text-danger error-text cnewpassword_error"></span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary">{{ __('profile.update') }}</button>
+        </div>
+    </form>
+</div>
             <div class="tab-pane fade" id="education" role="tabpanel" aria-labelledby="education-tab">
                 <form class="form-horizontal" method="POST" action="{{ route('updateEdInfo') }}" id="EdInfoForm">
                     <h3 class="mb-4">ประวัติการศึกษา</h3>

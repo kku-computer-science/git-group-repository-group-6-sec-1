@@ -90,14 +90,6 @@ Route::get('docx', [PDFController::class, 'generateInvoiceDOCX'])->name('docx');
 Route::get('excel', [PDFController::class, 'generateInvoiceExcel'])->name('excel');
 
 Route::get('detail/{id}', [ProfileController::class, 'request'])->name('detail');
-<<<<<<< HEAD
-Route::get('/research-assistant/apply', [ResearchAssistantController::class, 'apply'])->name('research-assistant.apply');
-Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement');
-
-Route::get('index', [LocalizationController::class, 'index']);
-Route::get('lang/{lang}', ['as' => 'langswitch', 'uses' => 'App\Http\Controllers\LocalizationController@switchLang']);
-=======
->>>>>>> origin/Prommin_1406
 Route::get('/export', [ExportPaperController::class, 'exportUsers'])->name('export-papers');
 Route::get('bib/{id}', [BibtexController::class, 'getbib'])->name('bibtex');
 

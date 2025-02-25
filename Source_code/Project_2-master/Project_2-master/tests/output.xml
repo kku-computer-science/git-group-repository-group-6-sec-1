@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.13.2 on win32)" generated="2025-02-25T18:35:16.145349" rpa="false" schemaversion="5">
+<suite id="s1" name="adminProfileTestsuite" source="C:\Users\pond2\Soft engineer\sprint2\git-group-repository-group-6-sec-1\Source_code\Project_2-master\Project_2-master\tests\adminProfileTestsuite.robot">
+<test id="s1-t1" name="Start At Main Page And Go To Login" line="14">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:16.419335" level="INFO">Opening browser 'Edge' to base url 'http://127.0.0.1:8000/'.</msg>
+<arg>${MAIN_PAGE_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-02-25T18:35:16.419056" elapsed="3.273323"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-02-25T18:35:19.693689" elapsed="0.088316"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:19.782848" level="INFO">Clicking link 'xpath=//a[contains(text(), 'Login')]'.</msg>
+<arg>xpath=//a[contains(text(), 'Login')]</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:19.782427" elapsed="0.222002"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:20.506119" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:20.005321" elapsed="0.500926"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Login</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T18:35:20.506843" elapsed="0.048159"/>
+</kw>
+<kw name="Switch Window" owner="SeleniumLibrary">
+<arg>NEW</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:20.555524" elapsed="0.010624"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:21.067982" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:20.566566" elapsed="0.501706"/>
+</kw>
+<status status="PASS" start="2025-02-25T18:35:16.418090" elapsed="4.651036"/>
+</test>
+<test id="s1-t2" name="Admin User Can Login Successfully" line="23">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:21.071129" level="INFO">Typing text 'admin@gmail.com' into text field 'name=username'.</msg>
+<arg>name=username</arg>
+<arg>${USERNAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:21.070852" elapsed="0.121430"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:21.193390" level="INFO">Typing text '12345678' into text field 'name=password'.</msg>
+<arg>name=password</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:21.192898" elapsed="0.112780"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:21.306365" level="INFO">Clicking button 'xpath=//button[@type='submit' and contains(text(), 'Log In')]'.</msg>
+<arg>xpath=//button[@type='submit' and contains(text(), 'Log In')]</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:21.306119" elapsed="1.645221"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:23.452581" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:22.951776" elapsed="0.501014"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Dashboard</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T18:35:23.453537" elapsed="0.017506"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:23.972494" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:23.471564" elapsed="0.501165"/>
+</kw>
+<status status="PASS" start="2025-02-25T18:35:21.070353" elapsed="2.903087"/>
+</test>
+<test id="s1-t3" name="Navigate To Profile Page" line="31">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[@class='nav-link ' and contains(@href, '/profile')]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T18:35:23.975371" elapsed="0.030571"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:24.006588" level="INFO">Clicking link 'xpath=//a[@class='nav-link ' and contains(@href, '/profile')]'.</msg>
+<arg>xpath=//a[@class='nav-link ' and contains(@href, '/profile')]</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:24.006318" elapsed="0.551133"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:25.058944" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:24.558105" elapsed="0.501155"/>
+</kw>
+<status status="PASS" start="2025-02-25T18:35:23.974622" elapsed="1.085182"/>
+</test>
+<test id="s1-t4" name="Click To Account Tab" line="36">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[@id='account-tab' and contains(@class, 'nav-link')]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T18:35:25.061726" elapsed="0.030917"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:25.093418" level="INFO">Clicking link 'xpath=//a[@id='account-tab' and contains(@class, 'nav-link')]'.</msg>
+<arg>xpath=//a[@id='account-tab' and contains(@class, 'nav-link')]</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:25.093126" elapsed="0.096396"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:25.691225" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:25.190130" elapsed="0.501342"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T18:35:25.692060" elapsed="0.025974"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:25.718769" level="INFO">Clicking element 'xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]'.</msg>
+<arg>xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:25.718378" elapsed="0.085010"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:26.304757" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:25.803811" elapsed="0.501083"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[contains(@href, '/lang/zh')]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T18:35:26.305517" elapsed="0.029046"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:26.335623" level="INFO">Clicking link 'xpath=//a[contains(@href, '/lang/zh')]'.</msg>
+<arg>xpath=//a[contains(@href, '/lang/zh')]</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:26.335164" elapsed="1.045683"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:27.881990" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:27.381359" elapsed="0.500890"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>中国</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T18:35:27.883216" elapsed="0.019714"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:28.404049" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:27.903326" elapsed="0.500952"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[@id='account-tab' and contains(@class, 'nav-link')]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T18:35:28.404928" elapsed="0.023103"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:28.428808" level="INFO">Clicking link 'xpath=//a[@id='account-tab' and contains(@class, 'nav-link')]'.</msg>
+<arg>xpath=//a[@id='account-tab' and contains(@class, 'nav-link')]</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:28.428516" elapsed="0.087156"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:29.017132" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:28.516219" elapsed="0.501073"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T18:35:29.017808" elapsed="0.022669"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:29.041102" level="INFO">Clicking element 'xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]'.</msg>
+<arg>xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:29.040853" elapsed="0.076046"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:29.618171" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:29.117294" elapsed="0.501101"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[contains(@href, '/lang/th')]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T18:35:29.619440" elapsed="0.027571"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:29.647583" level="INFO">Clicking link 'xpath=//a[contains(@href, '/lang/th')]'.</msg>
+<arg>xpath=//a[contains(@href, '/lang/th')]</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:29.647373" elapsed="0.649083"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:30.797895" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:30.296916" elapsed="0.501130"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>ไทย</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T18:35:30.798506" elapsed="0.020710"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:31.320228" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:30.819654" elapsed="0.500728"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[@id='account-tab' and contains(@class, 'nav-link')]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T18:35:31.320986" elapsed="0.023610"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:31.345310" level="INFO">Clicking link 'xpath=//a[@id='account-tab' and contains(@class, 'nav-link')]'.</msg>
+<arg>xpath=//a[@id='account-tab' and contains(@class, 'nav-link')]</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:31.345052" elapsed="0.084914"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:31.931470" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:31.430578" elapsed="0.501106"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T18:35:31.932881" elapsed="0.024843"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:31.958752" level="INFO">Clicking element 'xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]'.</msg>
+<arg>xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:31.958460" elapsed="0.079782"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:32.539344" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:32.038725" elapsed="0.500831"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[contains(@href, '/lang/en')]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T18:35:32.540275" elapsed="0.027050"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:32.568351" level="INFO">Clicking link 'xpath=//a[contains(@href, '/lang/en')]'.</msg>
+<arg>xpath=//a[contains(@href, '/lang/en')]</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:32.567946" elapsed="0.663557"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:33.732770" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:33.232049" elapsed="0.500931"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>English</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T18:35:33.733656" elapsed="0.021644"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:34.256516" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:33.755858" elapsed="0.500818"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[@id='account-tab' and contains(@class, 'nav-link')]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-02-25T18:35:34.257533" elapsed="0.023634"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2025-02-25T18:35:34.281733" level="INFO">Clicking link 'xpath=//a[@id='account-tab' and contains(@class, 'nav-link')]'.</msg>
+<arg>xpath=//a[@id='account-tab' and contains(@class, 'nav-link')]</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-25T18:35:34.281442" elapsed="0.091687"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:34.874499" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:34.373574" elapsed="0.501076"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>User Profile</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-02-25T18:35:34.875198" elapsed="0.018225"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-02-25T18:35:35.394925" level="INFO">Slept 500 milliseconds.</msg>
+<arg>${DELAY}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-02-25T18:35:34.893943" elapsed="0.501167"/>
+</kw>
+<status status="PASS" start="2025-02-25T18:35:25.061034" elapsed="10.334822"/>
+</test>
+<doc>Test suite for Admin Profile Page</doc>
+<status status="PASS" start="2025-02-25T18:35:16.147106" elapsed="19.250155"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="adminProfileTestsuite">adminProfileTestsuite</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

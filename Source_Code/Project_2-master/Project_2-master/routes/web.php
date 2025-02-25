@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileuserController;
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ProductController;
 
 use App\Http\Controllers\TeacherController;
