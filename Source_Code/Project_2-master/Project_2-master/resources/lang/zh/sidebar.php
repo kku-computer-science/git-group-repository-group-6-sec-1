@@ -1,0 +1,23 @@
+<?php
+return [
+    'dashboard' => '仪表板',
+    'profile' => '个人资料',
+    'user_profile' => '用户资料',
+    'option' => '选项',
+    'admin' => '管理员',
+    'manage_fund' => '管理资金',
+    'research_project' => '研究项目',
+    'research_group' => '研究小组',
+    'manage_publications' => '管理出版物',
+    'published_research' => '已发表的研究',
+    'book' => '书籍',
+    'other_academic_works' => '其他学术作品',
+    'research_assistant' => '研究助理',
+    'export' => '导出',
+    'users' => '用户',
+    'roles' => '角色',
+    'permission' => '权限',
+    'departments' => '部门',
+    'manage_programs' => '管理项目',
+    'manage_expertise' => '管理专业知识',
+];

@@ -12,7 +12,7 @@ return [
     'edit'            => 'Edit',
     'delete'          => 'Delete',
     'confirm_title'   => 'Are you sure?',
-    'confirm_text'    => 'If you delete this, it will be gone forever.',
+    'confirm_text'    => 'You will not be able to recover this file!',
     'delete_success'  => 'Deleted Successfully',
     'fund_types' => [
         'ทุนภายใน' => 'Internal Fund',
@@ -48,4 +48,16 @@ return [
     // สำหรับการเลือก
     'select_fund_type'  => 'Please specify fund type',
     'select_fund_level' => 'Please specify fund level',
+    'support_resources' => [
+        'มหาวิทยาลัยขอนแก่น' => 'Khon Kaen University',
+        'สำนักงานคณะกรรมการนโยบายวิทยาศาสตร์ เทคโนโลยีและนวัตกรรมแห่งชาติ' => 'National Science, Technology and Innovation Policy Office',
+        'สำนักงานปลัดกระทรวงอุดมศึกษา วิทยาศาสตร์ วิจัยและนวัตกรรม' => 'Office of the Permanent Secretary, Ministry of Higher Education, Science, Research and Innovation',
+        'สำนักงานคณะกรรมการวิจัยแห่งชาติ' => 'National Research Council of Thailand',
+        '-' => '-',
+        'OU, BOKU, JU, ITC, AIT, YNNU, FNU' => 'OU, BOKU, JU, ITC, AIT, YNNU, FNU',
+        'กระทรวงวิทยาศาสตร์และเทคโนโลยี' => 'Ministry of Science and Technology',
+        'ศูนย์ภูมิสารสนเทศเพื่อการพัฒนาภาคตะวันออกเฉียงเหนือ' => 'Northeast Geoinformatics Center for Development',
+        'คณะวิทยาศาสตร์ มข.' => 'Faculty of Science, KKU',
+        'วิทยาลัยการคอมพิวเตอร์' => 'College of Computing',
+    ],
 ];

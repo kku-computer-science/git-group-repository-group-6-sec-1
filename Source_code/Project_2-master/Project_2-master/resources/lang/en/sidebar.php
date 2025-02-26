@@ -1,0 +1,23 @@
+<?php
+return [
+    'dashboard' => 'Dashboard',
+    'profile' => 'Profile',
+    'user_profile' => 'User Profile',
+    'option' => 'Option',
+    'admin' => 'Admin',
+    'manage_fund' => 'Manage Fund',
+    'research_project' => 'Research Project',
+    'research_group' => 'Research Group',
+    'manage_publications' => 'Manage Publications',
+    'published_research' => 'Published Research',
+    'book' => 'Book',
+    'other_academic_works' => 'Other Academic Works',
+    'research_assistant' => 'Research Assistant',
+    'export' => 'Export',
+    'users' => 'Users',
+    'roles' => 'Roles',
+    'permission' => 'Permission',
+    'departments' => 'Departments',
+    'manage_programs' => 'Manage Programs',
+    'manage_expertise' => 'Manage Expertise',
+];

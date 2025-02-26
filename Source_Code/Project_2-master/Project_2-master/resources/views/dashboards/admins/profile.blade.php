@@ -27,7 +27,7 @@
                     </div>
                     <h4 class="text-center p-2">{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h4>
                     <input type="file" name="admin_image" id="admin_image" style="opacity: 0;height:1px;display:none">
-                    <a href="javascript:void(0)" class="btn btn-primary btn-block btn-sm" id="change_picture_btn"><b>Change picture</b></a>
+                    <a href="javascript:void(0)" class="btn btn-primary btn-block btn-sm" id="change_picture_btn"><b>{{ __('profile.change_picture') }}</b></a>
                 </div>
 
             </div>
