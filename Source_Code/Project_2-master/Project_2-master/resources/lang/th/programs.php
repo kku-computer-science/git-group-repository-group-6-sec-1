@@ -1,13 +1,5 @@
 <?php
 return [
-<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/lang/th/programs.php
-    'program_name_en' => [
-        'Computer Science' => 'วิทยาการคอมพิวเตอร์',
-        'Infomation Technology' => 'เทคโนโลยีสารสนเทศ',
-        'Geo-Informatics' => 'ภูมิสารสนเทศ',
-    ],
-];
-=======
     'title'            => 'หลักสูตร',
     'add'              => 'เพิ่มหลักสูตร',
     'id'               => 'รหัส',
@@ -29,5 +21,10 @@ return [
     'delete_msg' => 'รายการโปรแกรมถูกลบสำเร็จแล้ว',
     'add' => 'เพิ่มโปรแกรม',
     'edit' => 'แก้ไขโปรแกรม',
+
+    'program_name_en' => [
+        'Computer Science' => 'วิทยาการคอมพิวเตอร์',
+        'Infomation Technology' => 'เทคโนโลยีสารสนเทศ',
+        'Geo-Informatics' => 'ภูมิสารสนเทศ',
+    ],
 ];
->>>>>>> origin/Thanachai_0183:Source_code/Project_2-master/Project_2-master/resources/lang/th/programs.php

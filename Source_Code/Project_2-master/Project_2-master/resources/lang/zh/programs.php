@@ -1,13 +1,5 @@
 <?php
 return [
-<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/lang/zh/programs.php
-    'program_name_en' => [
-        'Computer Science' => '计算机科学',
-        'Infomation Technology' => '信息技术',
-        'Geo-Informatics' => '地理信息学',
-    ],
-];
-=======
     'title'            => '课程',
     'add'              => '添加课程',
     'id'               => '编号',
@@ -29,5 +21,10 @@ return [
     'delete_msg' => '程序条目已成功删除',
     'add' => '添加程序',
     'edit' => '编辑程序',
+
+    'program_name_en' => [
+        'Computer Science' => '计算机科学',
+        'Infomation Technology' => '信息技术',
+        'Geo-Informatics' => '地理信息学',
+    ],
 ];
->>>>>>> origin/Thanachai_0183:Source_code/Project_2-master/Project_2-master/resources/lang/zh/programs.php

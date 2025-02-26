@@ -14,11 +14,8 @@
         height: 40px;
         width: 400px !important;
     }
-<<<<<<< HEAD
 
 
-=======
->>>>>>> origin/Thanakrit_2664
     .my-select {
         background-color: #fff;
         color: #212529;
@@ -28,15 +25,10 @@
         width: 100%;
         font-size: 14px;
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/Thanakrit_2664
 </style>
 <div class="container">
     <div class="row">
         <div class="col-lg-12 margin-tb">
-<<<<<<< HEAD
 
             <div class="pull-right">
 
@@ -44,23 +36,16 @@
 
             <!-- สามารถเพิ่ม breadcrumb หรือ header ได้ตามต้องการ -->
 
-=======
-            <!-- สามารถเพิ่ม breadcrumb หรือ header ได้ตามต้องการ -->
->>>>>>> origin/Thanakrit_2664
         </div>
     </div>
 
     @if ($errors->any())
     <div class="alert alert-danger">
-<<<<<<< HEAD
 
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
 
         <strong>{{ __('books.error_title') }}</strong> {{ __('books.error_text') }}<br><br>
 
-=======
-        <strong>{{ __('books.error_title') }}</strong> {{ __('books.error_text') }}<br><br>
->>>>>>> origin/Thanakrit_2664
         <ul>
             @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
@@ -68,57 +53,13 @@
         </ul>
     </div>
     @endif
-<<<<<<< HEAD
 
     <!-- <a class="btn btn-primary" href="{{ route('books.index') }}"> Back </a> -->
 
-=======
->>>>>>> origin/Thanakrit_2664
 
     <div class="col-md-8 grid-margin stretch-card">
         <div class="card" style="padding: 16px;">
             <div class="card-body">
-<<<<<<< HEAD
-
-                <h4 class="card-title">เพิ่มหนังสือ</h4>
-                <p class="card-description">กรอกข้อมูลรายละเอียดหนังสือ</p>
-                <form class="forms-sample" action="{{ route('books.store') }}" method="POST">
-                    @csrf
-                    
-
-                    <div class="form-group row">
-                        <label for="exampleInputac_name" class="col-sm-3 col-form-label">ชื่อหนังสือ</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="ac_name" class="form-control" placeholder="name">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group row">
-                        <label for="exampleInputac_sourcetitle" class="col-sm-3 col-form-label">สถานที่ตีพิมพ์</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="ac_sourcetitle" class="form-control" placeholder="สถานที่ตีพิมพ์">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="exampleInputac_year" class="col-sm-3 col-form-label">ปี (ค.ศ.)</label>
-                        <div class="col-sm-9">
-                            <input type="date" name="ac_year" class="form-control" placeholder="ปี (พ.ศ.)">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group row">
-                        <label for="exampleInputac_page" class="col-sm-3 col-form-label">จำนวนหน้า (Page)</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="ac_page" class="form-control" placeholder="จำนวนหน้า (Page)">
-                        </div>
-                    </div>
-                    
-                    
-                    <button type="submit" name="submit" id="submit" class="btn btn-primary me-2">Submit</button>
-                    <a class="btn btn-light" href="{{ route('books.index')}}">Cancel</a>
-
-=======
->>>>>>> origin/Thanakrit_2664
                 <h4 class="card-title">{{ __('books.add_button') }} {{ __('books.title') }}</h4>
                 <p class="card-description">{{ __('books.card_description') }}</p>
                 <form action="{{ route('books.store') }}" method="POST">
@@ -153,10 +94,6 @@
                     </div>
                     <button type="submit" class="btn btn-primary me-2">{{ __('books.submit_button') }}</button>
                     <a class="btn btn-light" href="{{ route('books.index') }}">{{ __('books.cancel_button') }}</a>
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/Thanakrit_2664
                 </form>
             </div>
         </div>
@@ -164,7 +101,6 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-<<<<<<< HEAD
 
         var postURL = "<?php echo url('addmore'); ?>";
         var i = 1;
@@ -263,14 +199,3 @@
 
     </form>
 </div> -->
-
-=======
->>>>>>> origin/Thanakrit_2664
-        // ถ้ามีโค้ด JavaScript เพิ่มเติมให้ใส่ที่นี่
-    });
-</script>
-@endsection
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/Thanakrit_2664

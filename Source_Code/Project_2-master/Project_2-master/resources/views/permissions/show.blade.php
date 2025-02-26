@@ -8,19 +8,17 @@
             </div>
         @endif
         <div class="card">
-            <div class="card-header">{{ __('permissions.title') }}
+            <div class="card-header">Permission
                 @can('role-create')
                     <span class="float-right">
-                        <a class="btn btn-primary" href="{{ route('permissions.index') }}">{{ __('permissions.back') }}</a>
+                        <a class="btn btn-primary" href="{{ route('permissions.index') }}">Back</a>
                     </span>
                 @endcan
             </div>
             <div class="card-body">
                 <div class="lead">
-                    <strong>{{ __('permissions.name') }}:</strong>
-                    {{ __('permissions.'.$permission->name) !== 'permissions.'.$permission->name 
-                        ? __('permissions.'.$permission->name) 
-                        : $permission->name }}
+                    <strong>Name:</strong>
+                    {{ $permission->name }}
                 </div>
             </div>
         </div>

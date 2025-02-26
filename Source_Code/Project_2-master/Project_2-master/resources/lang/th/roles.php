@@ -22,7 +22,7 @@ return [
     'submit'         => 'บันทึก',
 
     'permissions' => [
-        'user-listt'     => 'รายการผู้ใช้',
+        'user-list'     => 'รายการผู้ใช้',
         'user-create'   => 'สร้างผู้ใช้',
         'user-edit'     => 'แก้ไขผู้ใช้',
         'user-delete'   => 'ลบผู้ใช้',

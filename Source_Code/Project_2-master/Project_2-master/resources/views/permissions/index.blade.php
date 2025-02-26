@@ -31,7 +31,7 @@
                         @foreach ($data as $key => $permission)
                         <tr>
                             <td>{{ $permission->id }}</td>
-                            <td>{{ __('permissions.'.$permission->name, [], app()->getLocale()) ?? $permission->name }}</td>
+                            <td>{{ $permission->name }}</td>
                             <td>
                                 <form action="{{ route('permissions.destroy',$permission->id) }}" method="POST">
                                     <li class="list-inline-item">

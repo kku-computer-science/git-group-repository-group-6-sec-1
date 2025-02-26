@@ -15,15 +15,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
-<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
-<<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
-=======
 
->>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
-=======
 
->>>>>>> origin/Thanakrit_2664:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
-<
+
+
+
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('vendors/feather/feather.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/mdi/css/materialdesignicons.min.css')}}">
@@ -104,7 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="dropdown-header text-center">
                                     <img class="img-md rounded-circle" src="{{ Auth::user()->picture }}"
                                         alt="Profile image">
-<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
+
                                     <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }}</p>
                                     <p class="fw-light text-muted mb-0"></p>
                                 </div>
@@ -160,10 +156,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         href="{{ route('profile')}}">
                         <i class="menu-icon mdi mdi-account-circle-outline"></i>
                         <span class="menu-title">User Profile</span>
-<<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
-=======
-
->>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
                     </a>
                 </li>
                 <li class="nav-item">
@@ -171,10 +163,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         href="{{ route('settings')}}">
                         <i class="menu-icon mdi mdi mdi-settings-outline"></i>
                         <span class="menu-title">Settings</span>
-<<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
-=======
-
->>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
                     </a>
                 </li>
                 <li class="nav-item nav-category">Option</li>
@@ -189,25 +177,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="nav-link" href="{{ route('researchProjects.index')}}">
                         <i class="menu-icon mdi mdi-book-outline"></i>
                         <span class="menu-title">Research Project</span>
-<<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
-=======
-
->>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
                     </a>
                 </li>
                 @can('user-list')
-<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index')}}">
                         <i class="menu-icon mdi mdi-account-multiple-outline"></i>
                         <span class="menu-title">Users</span>
-<<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
-=======
-
->>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
                     </a>
                 </li>
-=======
+
                     <li class="nav-item nav-category">Admin</li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index')}}">
@@ -215,17 +195,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <span class="menu-title">Users</span>
                         </a>
                     </li>
->>>>>>> origin/Thanachai_0183:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
+
                 @endcan
                 @can('role-list')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('roles.index')}}">
                         <i class="menu-icon mdi mdi-chart-gantt"></i>
                         <span class="menu-title">Roles</span>
-<<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
-=======
-
->>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
                     </a>
                 </li>
                 @endcan
@@ -234,10 +210,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="nav-link" href="{{ route('permissions.index')}}">
                         <i class="menu-icon mdi mdi-checkbox-marked-circle-outline"></i>
                         <span class="menu-title">Permission</span>
-<<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
-=======
-
->>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
                     </a>
                 </li>
                 @endcan
@@ -246,10 +218,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="nav-link" href="{{ route('departments.index')}}">
                         <i class="menu-icon mdi mdi-animation-outline"></i>
                         <span class="menu-title">Departments</span>
-<<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
-=======
-
->>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
                     </a>
                 </li>
                 @endcan
@@ -258,10 +226,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="nav-link" href="{{ route('researchGroups.index')}}">
                         <i class="menu-icon mdi mdi-view-dashboard-outline"></i>
                         <span class="menu-title">Research Group</span>
-<<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
-=======
-
->>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
                     </a>
                 </li>
                 @endcan
@@ -306,10 +270,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     </div>
     </div>
-<<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
-=======
-
->>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
 
     <!-- plugins:js -->
     <script src="{{asset('vendors/js/vendor.bundle.base.js')}}"></script>

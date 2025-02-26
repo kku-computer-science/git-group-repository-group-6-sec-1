@@ -23,7 +23,7 @@ return [
 
 
     'permissions' => [
-        'user-listt'     => '用户列表',
+        'user-list'     => '用户列表',
         'user-create'   => '创建用户',
         'user-edit'     => '编辑用户',
         'user-delete'   => '删除用户',

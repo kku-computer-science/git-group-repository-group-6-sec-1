@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap4.min.css">
-<<<<<<< HEAD
 
 @section('title','Dashboard')
 
@@ -83,8 +82,6 @@
         var table1 = $('#example1').DataTable({
             responsive: true,
 
-=======
->>>>>>> origin/Thanakrit_2664
 
 @section('title', __('books.title'))
 
@@ -175,49 +172,27 @@
                     previous: "@lang('datatables.previous')"
                 }
             }
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/Thanakrit_2664
         });
     });
 </script>
 <script type="text/javascript">
     $('.show_confirm').click(function(event) {
         var form = $(this).closest("form");
-<<<<<<< HEAD
-
-        var name = $(this).data("name");
-        event.preventDefault();
-        swal({
-                title: `Are you sure?`,
-                text: "If you delete this, it will be gone forever.",
-
-=======
->>>>>>> origin/Thanakrit_2664
         event.preventDefault();
         swal({
                 title: `{{ __('books.confirm_title') }}`,
                 text: "{{ __('books.confirm_text') }}",
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/Thanakrit_2664
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {
-<<<<<<< HEAD
 
                     swal("Delete Successfully", {
 
                     swal("{{ __('books.delete_success') }}", {
 
-=======
-                    swal("{{ __('books.delete_success') }}", {
->>>>>>> origin/Thanakrit_2664
                         icon: "success",
                     }).then(function() {
                         location.reload();
@@ -227,12 +202,8 @@
             });
     });
 </script>
-<<<<<<< HEAD
 
 @stop
 
 @stop
 
-=======
-@stop
->>>>>>> origin/Thanakrit_2664

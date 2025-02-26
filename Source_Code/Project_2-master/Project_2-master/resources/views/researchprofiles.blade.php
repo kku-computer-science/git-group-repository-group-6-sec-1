@@ -494,25 +494,25 @@
 <script>
     $(document).ready(function() {
 
-        var table1 = $('#example1').DataTable({
-            responsive: true,
-        });
+        // var table1 = $('#example1').DataTable({
+        //     responsive: true,
+        // });
 
-        var table2 = $('#example2').DataTable({
-            responsive: true,
-        });
-        var table3 = $('#example3').DataTable({
-            responsive: true,
-        });
-        var table4 = $('#example4').DataTable({
-            responsive: true,
-        });
-        var table5 = $('#example5').DataTable({
-            responsive: true,
-        });
-        var table6 = $('#example6').DataTable({
-            responsive: true,
-        });
+        // var table2 = $('#example2').DataTable({
+        //     responsive: true,
+        // });
+        // var table3 = $('#example3').DataTable({
+        //     responsive: true,
+        // });
+        // var table4 = $('#example4').DataTable({
+        //     responsive: true,
+        // });
+        // var table5 = $('#example5').DataTable({
+        //     responsive: true,
+        // });
+        // var table6 = $('#example6').DataTable({
+        //     responsive: true,
+        // });
 
 
         $('button[data-bs-toggle="tab"]').on('shown.bs.tab', function(event) {
@@ -670,15 +670,6 @@
     let sumwos = 0;
     let sumbook = 0;
     let sumpatent = 0;
-
-    // กำหนดตัวแปร JavaScript สำหรับคำแปลจาก Laravel
-    var translations = {
-        summary: '{{ trans('reference.summary') }}',
-        scopus: '{{ trans('reference.scopus') }}',
-        wos: '{{ trans('reference.wos') }}',
-        tci: '{{ trans('reference.tci') }}'
-    };
-
     (function($) {
         for (let i = 0; i < paper_scopus_s.length; i++) {
             sumsco += paper_scopus_s[i];
@@ -697,23 +688,26 @@
         }
         let sum = sumsco + sumtci + sumwos + sumbook + sumpatent;
 
+        //$("#scopus").append('data-to="100"');
         document.getElementById("all").innerHTML += `   
                 <h2 class="timer count-title count-number" data-to="${sum}" data-speed="1500"></h2>
-                <p class="count-text ">${translations.summary}</p>`
+                <p class="count-text ">SUMMARY</p>`
 
         document.getElementById("scopus_sum").innerHTML += `   
                 <h2 class="timer count-title count-number" data-to="${sumsco}" data-speed="1500"></h2>
-                <p class="count-text">${translations.scopus}</p>`
+                <p class="count-text">SCOPUS</p>`
 
         document.getElementById("wos_sum").innerHTML += `    
                 <h2 class="timer count-title count-number" data-to="${sumwos}" data-speed="1500"></h2>
-                <p class="count-text ">${translations.wos}</p>`
+                <p class="count-text ">WOS</p>`
 
         document.getElementById("tci_sum").innerHTML += `  
                 <h2 class="timer count-title count-number" data-to="${sumtci}" data-speed="1500"></h2>
-                <p class="count-text ">${translations.tci}</p>`
+                <p class="count-text ">TCI</p>`
             
-        // ต่อไปนี้เป็นโค้ด countTo เดิมทั้งหมด...
+
+
+        //document.getElementById("scopus").appendChild('data-to="100"');
         $.fn.countTo = function(options) {
             options = options || {};
 
@@ -812,15 +806,24 @@
         }
     });
 </script>
-<!-- <script>
-    // get the p element
+<script>
     $(document).ready(function() {
-    const a = document.getElementById('authtd');
-    console.log(a.text)
-    const myArray =  a.text.toString().split(" ");
-    console.log(myArray)
-    document.getElementById("authtd").innerHTML = "name :"+ myArray;
-    
-});
-</script> -->
+        var table1 = $('#example1').DataTable({
+            responsive: true,
+            language: {
+                lengthMenu: "@lang('datatables.lengthMenu')",
+                search: "@lang('datatables.search')",
+                info: "@lang('datatables.info')",
+                infoEmpty: "@lang('datatables.infoEmpty')",
+                zeroRecords: "@lang('datatables.zeroRecords')",
+                paginate: {
+                    first: "@lang('datatables.first')",
+                    last: "@lang('datatables.last')",
+                    next: "@lang('datatables.next')",
+                    previous: "@lang('datatables.previous')"
+                }
+            }
+        });
+    });
+</script>
 @endsection

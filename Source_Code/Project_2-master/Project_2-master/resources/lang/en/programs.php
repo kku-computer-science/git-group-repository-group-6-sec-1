@@ -21,4 +21,10 @@ return [
     'delete_msg' => 'Program entry deleted successfully',
     'add' => 'Add Program',
     'edit' => 'Edit Program',
+
+    'program_name_en' => [
+        'Computer Science' => 'Computer Science',
+        'Infomation Technology' => 'Information Technology',
+        'Geo-Informatics' => 'Geo-Informatics',
+    ],
 ];

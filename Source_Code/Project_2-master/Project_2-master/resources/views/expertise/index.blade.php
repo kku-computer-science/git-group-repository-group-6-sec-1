@@ -13,13 +13,7 @@
     @endif
     <div class="card" style="padding: 16px;">
         <div class="card-body">
-<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/views/expertise/index.blade.php
-            <h4 class="card-title" style="text-align: center;">ความเชี่ยวชาญของอาจารย์</h4>
-            @php use Illuminate\Support\Str; @endphp
-
-=======
             <h4 class="card-title" style="text-align: center;">{{ __('experts.title') }}</h4>
->>>>>>> origin/Thanachai_0183:Source_code/Project_2-master/Project_2-master/resources/views/expertise/index.blade.php
             <table id="example1" class="table table-striped">
                 <thead>
                     <tr>
@@ -27,15 +21,8 @@
                         @if(Auth::user()->hasRole('admin'))
                         <th>{{ __('experts.teacher_name') }}</th>
                         @endif
-<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/views/expertise/index.blade.php
-                        <th>English Name</th>
-                        <th>Thai Name</th>
-                        <th>Chinese Name</th>
-                        <th>Action</th>
-=======
                         <th>{{ __('experts.name') }}</th>
                         <th>{{ __('experts.action') }}</th>
->>>>>>> origin/Thanachai_0183:Source_code/Project_2-master/Project_2-master/resources/views/expertise/index.blade.php
                     </tr>
                 </thead>
                 <tbody>
@@ -52,23 +39,6 @@
                             @endif
                         </td>
                         @endif
-<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/views/expertise/index.blade.php
-
-                        <td>{{ Str::limit($expert->expert_name, 20) }}</td>
-                        <td>{{ Str::limit($expert->expert_name_th, 20) }}</td>
-                        <td>{{ Str::limit($expert->expert_name_zh, 20) }}</td>
-
-                        <td>
-                            <form action="{{ route('experts.destroy',$expert->id) }}" method="POST">
-                                <li class="list-inline-item">
-                                    <a class="btn btn-outline-success btn-sm" id="edit-expertise" type="button" data-toggle="modal" data-id="{{ $expert->id }}" title="Edit"><i class="mdi mdi-pencil"></i></a>
-                                </li>
-
-                                @csrf
-                                <meta name="csrf-token" content="{{ csrf_token() }}">
-                                <li class="list-inline-item">
-                                    <button class="btn btn-outline-danger btn-sm show_confirm" id="delete-expertise" type="submit" data-id="{{ $expert->id }}" title="Delete"><i class="mdi mdi-delete"></i></button>
-=======
                         <td>{{ $expert->expert_name }}</td>
                         <td>
                             <form action="{{ route('experts.destroy',$expert->id) }}" method="POST">
@@ -79,7 +49,6 @@
                                 <meta name="csrf-token" content="{{ csrf_token() }}">
                                 <li class="list-inline-item">
                                     <button class="btn btn-outline-danger btn-sm show_confirm" id="delete-expertise" type="submit" data-id="{{ $expert->id }}" data-toggle="tooltip" data-placement="top" title="{{ __('experts.delete') }}"><i class="mdi mdi-delete"></i></button>
->>>>>>> origin/Thanachai_0183:Source_code/Project_2-master/Project_2-master/resources/views/expertise/index.blade.php
                                 </li>
                             </form>
                         </td>
@@ -105,32 +74,10 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/views/expertise/index.blade.php
-                                <strong>English Name:</strong>
-                                <input type="text" name="expert_name" id="expert_name" class="form-control" placeholder="Expert_name" onchange="validate()">
-                            </div>
-                        </div>
-
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Thai Name:</strong>
-                                <input type="text" name="expert_name_th" id="expert_name_th" class="form-control" placeholder="Expert_name" onchange="validate()">
-                            </div>
-                        </div>
-
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Chinese Name:</strong>
-                                <input type="text" name="expert_name_zh" id="expert_name_zh" class="form-control" placeholder="Expert_name" onchange="validate()">
-                            </div>
-                        </div>
-
-=======
                                 <strong>{{ __('experts.name') }}:</strong>
                                 <input type="text" name="expert_name" id="expert_name" class="form-control" placeholder="{{ __('experts.placeholder_name') }}" onchange="validate()">
                             </div>
                         </div>
->>>>>>> origin/Thanachai_0183:Source_code/Project_2-master/Project_2-master/resources/views/expertise/index.blade.php
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                             <button type="submit" id="btn-save" name="btnsave" class="btn btn-primary" disabled>{{ __('experts.submit') }}</button>
                             <a href="{{ route('experts.index') }}" class="btn btn-danger">{{ __('experts.cancel') }}</a>
@@ -199,12 +146,6 @@
                 $('#crud-modal').modal('show');
                 $('#exp_id').val(data.id);
                 $('#expert_name').val(data.expert_name);
-<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/views/expertise/index.blade.php
-                $('#expert_name_th').val(data.expert_name_th);
-                $('#expert_name_zh').val(data.expert_name_zh);
-
-=======
->>>>>>> origin/Thanachai_0183:Source_code/Project_2-master/Project_2-master/resources/views/expertise/index.blade.php
             })
         });
 
