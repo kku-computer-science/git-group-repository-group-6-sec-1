@@ -54,4 +54,10 @@ return [
     ],
 
     'select_type'  => 'Please select a type',
+
+    'ac_type'     => [
+        'ลิขสิทธิ์'     => 'Copyright',
+        'อนุสิทธิบัตร' => 'Utility Model',
+        'สิทธิบัตร'     => 'Patent',
+    ],
 ];

@@ -435,14 +435,14 @@
                 </div>
                 <!-- Abstract -->
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label"><b>Abstract</b></label>
+                    <label class="col-sm-3 col-form-label"><b>{{ __('published_research.Abstract') }}</b></label>
                     <div class="col-sm-9">
                         <textarea name="abstract" class="form-control form-control-lg" style="height:150px" placeholder="Abstract"></textarea>
                     </div>
                 </div>
                 <!-- Keyword -->
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label"><b>Keyword</b></label>
+                    <label class="col-sm-3 col-form-label"><b>{{ __('published_research.Keyword') }}</b></label>
                     <div class="col-sm-9">
                         <input type="text" name="keyword" class="form-control" placeholder="Keyword">
                         <p class="text-danger">{{ __('published_research.keyword_instruction') }}</p>
@@ -675,6 +675,10 @@ $(document).ready(function() {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 @stop
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/Prommin_1406
 =======
 >>>>>>> origin/Thanakrit_2664
+=======
+
+>>>>>>> origin/Prommin_1406

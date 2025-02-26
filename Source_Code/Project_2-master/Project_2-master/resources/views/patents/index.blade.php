@@ -21,8 +21,8 @@
                 <thead>
                     <tr>
                         <th>{{ __('patents.no') }}</th>
-                        <th>{{ __('patents.paper_name') }}</th>
-                        <th>{{ __('patents.paper_type') }}</th>
+                        <th>{{ __('patents.name') }}</th>
+                        <th>{{ __('patents.type') }}</th>
                         <th>{{ __('patents.registration_date') }}</th>
                         <th>{{ __('patents.ref_number') }}</th>
                         <th>{{ __('patents.creator') }}</th>
@@ -34,12 +34,17 @@
                         <tr>
                             <td>{{ $i + 1 }}</td>
                             <td>{{ Str::limit($paper->ac_name,50) }}</td>
-                            <td>{{ $paper->ac_type }}</td>
+                            <td>{{ __('patents.ac_type.' . ($paper->ac_type ?? '')) }}</td>
                             <td>{{ $paper->ac_year }}</td>
                             <td>{{ Str::limit($paper->ac_refnumber,50) }}</td>
                             <td>
                                 @foreach($paper->user as $a)
-                                    {{ $a->fname_th }} {{ $a->lname_th }}@if(!$loop->last),@endif
+                                    @if(app()->getLocale() == 'th')
+                                        {{ $a->fname_th }} {{ $a->lname_th }}
+                                    @else
+                                        {{ $a->fname_en }} {{ $a->lname_en }}
+                                    @endif
+                                    @if(!$loop->last),@endif
                                 @endforeach
                             </td>
                             <td>

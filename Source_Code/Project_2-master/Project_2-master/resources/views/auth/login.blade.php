@@ -443,4 +443,10 @@
 
 		})(jQuery);
 	</script>
+<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/views/auth/login.blade.php
 @endsection
+=======
+</body>
+
+</html>
+>>>>>>> origin/Prommin_1406:Source_code/Project_2-master/Project_2-master/resources/views/auth/login.blade.php
