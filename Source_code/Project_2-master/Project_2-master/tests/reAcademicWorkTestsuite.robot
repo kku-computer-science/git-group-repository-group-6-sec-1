@@ -4,7 +4,7 @@ Suite Setup     Open Browser And Login
 Suite Teardown  Logout And Close Browser
 
 *** Variables ***
-${BROWSER}              Chrome
+${BROWSER}              Firefox
 ${PATENTS_URL}          http://127.0.0.1:8000/patents
 ${CREATE_URL}           http://127.0.0.1:8000/patents/create
 ${VALID_PATENT_ID}      1    # เปลี่ยนเป็น ID ที่มีอยู่ในฐานข้อมูลจริง

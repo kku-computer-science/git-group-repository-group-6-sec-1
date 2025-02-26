@@ -196,6 +196,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </a>
                 </li>
                 @can('user-list')
+<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index')}}">
                         <i class="menu-icon mdi mdi-account-multiple-outline"></i>
@@ -206,6 +207,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 >>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
                     </a>
                 </li>
+=======
+                    <li class="nav-item nav-category">Admin</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.index')}}">
+                            <i class="menu-icon mdi mdi-account-multiple-outline"></i>
+                            <span class="menu-title">Users</span>
+                        </a>
+                    </li>
+>>>>>>> origin/Thanachai_0183:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
                 @endcan
                 @can('role-list')
                 <li class="nav-item">

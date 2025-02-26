@@ -156,8 +156,17 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     Route::get('/research-assistant/create', [ResearchAssistantController::class, 'create'])->name('researchAssistant.create');
 
     Route::resource('researchAssistant', ResearchAssistantController::class);
+<<<<<<< HEAD
 
     Route::resource('researchAssistant', ResearchAssistantController::class);
+=======
+
+    
+
+
+    Route::resource('researchAssistant', ResearchAssistantController::class);
+
+>>>>>>> origin/Thanachai_0183
 });
 
 

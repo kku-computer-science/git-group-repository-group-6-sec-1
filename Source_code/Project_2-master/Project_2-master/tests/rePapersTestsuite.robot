@@ -4,7 +4,7 @@ Suite Setup     Open Browser And Login
 Suite Teardown  Logout And Close Browser
 
 *** Variables ***
-${BROWSER}              Chrome
+${BROWSER}              Firefox
 ${PAPERS_URL}           http://127.0.0.1:8000/papers
 ${CREATE_URL}           http://127.0.0.1:8000/papers/create
 ${VALID_PAPER_ID}       121

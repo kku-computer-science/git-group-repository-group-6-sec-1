@@ -92,33 +92,27 @@
     });
 </script>
 <div class="container">
-    @if (\Session::has('success'))
+@if ($message = Session::get('success'))
     <div class="alert alert-success">
-        <p>{{ \Session::get('success') }}</p>
+        <p>{{ __('users.user_updated_successfully') }}</p>
     </div>
-    @endif
+@endif
     <div class="card" style="padding: 16px;">
         <div class="card-body">
-            <h4 class="card-title">Users</h4>
-            <a class="btn btn-primary btn-icon-text btn-sm" href="{{ route('users.create')}}"><i class="ti-plus btn-icon-prepend icon-sm"></i>New User</a>
-            <a class="btn btn-primary btn-icon-text btn-sm" href="{{ route('importfiles')}}"><i class="ti-download btn-icon-prepend icon-sm"></i>Import New User</a>
-            <!-- <div class="search-box">
-                <div class="input-group">
-                    <input type="text" id="search" class="form-control" placeholder="Search by Name">
-                    <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
-                </div>
-            </div> -->
+            <h4 class="card-title">{{ __('users.title') }}</h4>
+            <a class="btn btn-primary btn-icon-text btn-sm" href="{{ route('users.create')}}"><i class="ti-plus btn-icon-prepend icon-sm"></i> {{ __('users.new_user') }}</a>
+            <a class="btn btn-primary btn-icon-text btn-sm" href="{{ route('importfiles')}}"><i class="ti-download btn-icon-prepend icon-sm"></i> {{ __('users.import_user') }}</a>
 
             <div class="table-responsive">
                 <table id="example1" class="table table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Department</th>
-                            <th>Email</th>
-                            <th>Roles</th>
-                            <th width="280px">Action</th>
+                            <th>{{ __('users.name') }}</th>
+                            <th>{{ __('users.department') }}</th>
+                            <th>{{ __('users.email') }}</th>
+                            <th>{{ __('users.roles') }}</th>
+                            <th width="280px">{{ __('users.action') }}</th>
                         </tr>
                     </thead>
 
@@ -139,24 +133,20 @@
                             <td>
                                 <form action="{{ route('users.destroy',$user->id) }}" method="POST">
                                 <li class="list-inline-item">
-                                    <a class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="view" href="{{ route('users.show',$user->id) }}"><i class="mdi mdi-eye"></i></a>
+                                    <a class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="{{ __('users.view') }}" href="{{ route('users.show',$user->id) }}"><i class="mdi mdi-eye"></i></a>
                                 </li>
+                                
                                     @can('user-edit')
                                     <li class="list-inline-item">
-                                    <a class="btn btn-outline-success btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="Edit" href="{{ route('users.edit',$user->id) }}"><i class="mdi mdi-pencil"></i></a>
+                                    <a class="btn btn-outline-success btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="{{ __('users.edit') }}" href="{{ route('users.edit',$user->id) }}"><i class="mdi mdi-pencil"></i></a>
                                     </li>
                                     @endcan
                                     @can('user-delete')
-                                    <!-- {!! Form::open(['method' => 'DELETE','route' => ['users.destroy',
-                                $user->id],'style'=>'display:inline']) !!}
-                                {!! Form::button('<i class="mdi mdi-delete"></i>', ['type' => 'submit','class' => 'btn btn-outline-danger btn-sm','type'=>'button','data-toggle'=>'tooltip'
-                                ,'data-placement'=>'top', 'title'=>'Delete']) !!}
-                                {!! Form::close() !!} -->
                                     @csrf
                                     @method('DELETE')
 
                                     <li class="list-inline-item">
-                                        <button id="deleted" class="btn btn-outline-danger btn-sm show_confirm" type="submit" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></button>
+                                        <button id="deleted" class="btn btn-outline-danger btn-sm show_confirm" type="submit" data-toggle="tooltip" data-placement="top" title="{{ __('users.delete') }}"><i class="mdi mdi-delete"></i></button>
                                     </li>
                                     @endcan
                                 </form>
@@ -173,32 +163,60 @@
         </div>
     </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer></script>
 <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap4.min.js" defer></script>
 <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js" defer></script>
 <script>
     $(document).ready(function() {
-        var table = $('#example1').DataTable({
-            fixedHeader: true
+        var table1 = $('#example1').DataTable({
+            responsive: true,
+            language: {
+                lengthMenu: "@lang('datatables.lengthMenu')",
+                search: "@lang('datatables.search')",
+                info: "@lang('datatables.info')",
+                infoEmpty: "@lang('datatables.infoEmpty')",
+                zeroRecords: "@lang('datatables.zeroRecords')",
+                paginate: {
+                    first: "@lang('datatables.first')",
+                    last: "@lang('datatables.last')",
+                    next: "@lang('datatables.next')",
+                    previous: "@lang('datatables.previous')"
+                }
+            }
         });
     });
 </script>
 <script type="text/javascript">
     $('.show_confirm').click(function(event) {
         var form = $(this).closest("form");
-        var name = $(this).data("name");
         event.preventDefault();
         swal({
-                title: `Are you sure?`,
-                text: "If you delete this, it will be gone forever.",
+                title: `@lang('confirm.delete_title')`, 
+                text: "@lang('confirm.delete_text')", 
                 icon: "warning",
-                buttons: true,
+                buttons: {
+                    cancel: {
+                        text: "@lang('confirm.cancel')",  // ใช้คำว่า "Cancel" ที่แปล
+                        value: null,
+                        visible: true,
+                        className: "btn btn-secondary",
+                        closeModal: true
+                    },
+                    confirm: {
+                        text: "@lang('confirm.ok')",  // ใช้คำว่า "OK" ที่แปล
+                        value: true,
+                        visible: true,
+                        className: "btn btn-primary",
+                        closeModal: true
+                    }
+                },
                 dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {
-                    swal("Delete Successfully", {
+                    swal("@lang('confirm.delete_success')", {
                         icon: "success",
                     }).then(function() {
                         location.reload();
@@ -208,4 +226,6 @@
             });
     });
 </script>
+
+
 @endsection

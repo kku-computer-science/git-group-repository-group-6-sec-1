@@ -4,7 +4,7 @@ Suite Setup     Open Browser And Login
 Suite Teardown  Logout And Close Browser
 
 *** Variables ***
-${BROWSER}              Chrome
+${BROWSER}              Firefox
 ${FUNDS_URL}            http://127.0.0.1:8000/funds
 ${CREATE_URL}           http://127.0.0.1:8000/funds/create
 ${RESEARCH_URL}         http://127.0.0.1:8000/researchProjects

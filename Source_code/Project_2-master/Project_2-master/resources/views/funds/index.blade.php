@@ -8,11 +8,11 @@
 @section('content')
 
 <div class="container">
-    @if ($message = Session::get('success'))
+@if ($message = Session::get('success'))
     <div class="alert alert-success">
-        <p>{{ $message }}</p>
+        <p>{{ __('users.fund_updated_successfully') }}</p>
     </div>
-    @endif
+@endif
     <div class="card" style="padding: 16px;">
         <div class="card-body">
             <h4 class="card-title">{{ __('funds.fund_title') }}</h4>
@@ -94,30 +94,54 @@
 <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap4.min.js" defer></script>
 <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js" defer></script>
 <script>
-$(document).ready(function() {
-    var table = $('#example1').DataTable({
-        fixedHeader: true,
-        language: {
-            search: "{{ __('datatables.search') }}"
-        }
+    $(document).ready(function() {
+        var table1 = $('#example1').DataTable({
+            responsive: true,
+            language: {
+                lengthMenu: "@lang('datatables.lengthMenu')",
+                search: "@lang('datatables.search')",
+                info: "@lang('datatables.info')",
+                infoEmpty: "@lang('datatables.infoEmpty')",
+                zeroRecords: "@lang('datatables.zeroRecords')",
+                paginate: {
+                    first: "@lang('datatables.first')",
+                    last: "@lang('datatables.last')",
+                    next: "@lang('datatables.next')",
+                    previous: "@lang('datatables.previous')"
+                }
+            }
+        });
     });
-});
-
 </script>
 <script type="text/javascript">
     $('.show_confirm').click(function(event) {
         var form = $(this).closest("form");
         event.preventDefault();
         swal({
-                title: `{{ __('funds.confirm_title') }}`,
-                text: "{{ __('funds.confirm_text') }}",
+                title: `@lang('confirm.delete_title')`, 
+                text: "@lang('confirm.delete_text')", 
                 icon: "warning",
-                buttons: true,
+                buttons: {
+                    cancel: {
+                        text: "@lang('confirm.cancel')",  // ใช้คำว่า "Cancel" ที่แปล
+                        value: null,
+                        visible: true,
+                        className: "btn btn-secondary",
+                        closeModal: true
+                    },
+                    confirm: {
+                        text: "@lang('confirm.ok')",  // ใช้คำว่า "OK" ที่แปล
+                        value: true,
+                        visible: true,
+                        className: "btn btn-primary",
+                        closeModal: true
+                    }
+                },
                 dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {
-                    swal("{{ __('funds.delete_success') }}", {
+                    swal("@lang('confirm.delete_success')", {
                         icon: "success",
                     }).then(function() {
                         location.reload();

@@ -4,7 +4,7 @@ Suite Setup     Open Browser And Login
 Suite Teardown  Logout And Close Browser    # เปลี่ยนจาก Close Browser เป็น Logout And Close Browser
 
 *** Variables ***
-${BROWSER}              Chrome
+${BROWSER}              Firefox
 ${BOOKS_URL}            http://127.0.0.1:8000/books
 ${CREATE_URL}           http://127.0.0.1:8000/books/create
 ${VALID_BOOK_ID}        1    # เปลี่ยนเป็น ID ที่มีอยู่ในฐานข้อมูลจริง (ยังคงไว้เพื่อ TC อื่น)
