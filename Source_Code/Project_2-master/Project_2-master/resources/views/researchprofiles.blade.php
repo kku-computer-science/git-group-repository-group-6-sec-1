@@ -48,20 +48,42 @@
             <div class="col-md-6">
                 <div class="card-body">
                     <h6 class="card-text"><b>{{$res->position_th}} {{$res->fname_th}} {{$res->lname_th}}</b></h6>
-                    @if($res->doctoral_degree == 'Ph.D.')
-                    <h6 class="card-text"><b>{{$res->fname_en}} {{$res->lname_en}}, {{$res->doctoral_degree}} </b>
-                        @else
-                        <h6 class="card-text"><b>{{$res->fname_en}} {{$res->lname_en}}</b>
-                            @endif</h6>
-                        <h6 class="card-text1"><b>{{$res->academic_ranks_en}}</b></h6>
+                    @if(app()->getLocale() == 'en')
+                        <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}, Ph.D.</b></h6>
+                    @elseif(app()->getLocale() == 'zh')
+                        <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}, 博士</b></h6>
+                    @else
+                        <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}, Ph.D.</b></h6>
+                    @endif
+
+                        <h6 class="card-text1"><b>{{ __('academic_ranks.' . $res->academic_ranks_en) }}</b></h6>
                         <!-- <h6 class="card-text1">Department of {{$res->program->program_name_en}}</h6> -->
                         <!-- <h6 class="card-text1">College of Computing</h6>
                     <h6 class="card-text1">Khon Kaen University</h6> -->
-                        <h6 class="card-text1">E-mail: {{$res->email}}</h6>
+                        <h6 class="card-text1">{{__('researchers.Email')}} {{$res->email}}</h6>
                         <h6 class="card-title">{{ trans('message.education') }}</h6>
-                        @foreach( $res->education as $edu)
-                        <h6 class="card-text2 col-sm-10"> {{$edu->year}} {{$edu->qua_name}} {{$edu->uname}}</h6>
+                        @foreach($res->education as $edu)
+                            <h6 class="card-text2 col-sm-10">
+                                <!-- Display Year based on language -->
+                                @if(app()->getLocale() == 'en')
+                                    {{ $edu->year_anno_domini }}  <!-- English Year -->
+                                @elseif(app()->getLocale() == 'zh')
+                                    {{ $edu->year_anno_domini }}  <!-- Chinese Year -->
+                                @else
+                                    {{ $edu->year }}  <!-- Thai Year -->
+                                @endif
+
+                                <!-- Display University name based on language -->
+                                {{ $edu->{'university_' . app()->getLocale()} ?? $edu->uname }} <!-- Default to Thai if no translation -->
+
+                                <!-- Display Qualification name based on language -->
+                                {{ $edu->{'qua_name_' . app()->getLocale()} ?? $edu->qua_name }} <!-- Default to Thai if no translation -->
+                            </h6>
                         @endforeach
+
+
+
+
                         <!-- <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
                             {{ trans('message.expertise') }}
@@ -131,7 +153,7 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Summary</button>
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">{{__('researchers.Summary')}}</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="scopus-tab" data-bs-toggle="tab" data-bs-target="#scopus" type="button" role="tab" aria-controls="scopus" aria-selected="false">SCOPUS</button>
@@ -143,10 +165,10 @@
             <button class="nav-link" id="tci-tab" data-bs-toggle="tab" data-bs-target="#tci" type="button" role="tab" aria-controls="tci" aria-selected="false">TCI</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="book-tab" data-bs-toggle="tab" data-bs-target="#book" type="button" role="tab" aria-controls="book" aria-selected="false">หนังสือ</button>
+            <button class="nav-link" id="book-tab" data-bs-toggle="tab" data-bs-target="#book" type="button" role="tab" aria-controls="book" aria-selected="false">{{__('researchers.Books')}}</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="patent-tab" data-bs-toggle="tab" data-bs-target="#patent" type="button" role="tab" aria-controls="patent" aria-selected="false">ผลงานวิชาการด้านอื่นๆ</button>
+            <button class="nav-link" id="patent-tab" data-bs-toggle="tab" data-bs-target="#patent" type="button" role="tab" aria-controls="patent" aria-selected="false">{{__('researchers.ACD')}}</button>
         </li>
     </ul>
     <br>
@@ -154,7 +176,7 @@
 
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="tab-content" style="padding-bottom: 20px;">
-                <a class="btn btn-success" href="{{ route('excel', ['id' => $res->id]) }}" target="_blank">Export To Excel</a>
+                <a class="btn btn-success" href="{{ route('excel', ['id' => $res->id]) }}" target="_blank">{{__('datatables.ETX')}}</a>
             </div>
             <table id="example1" class="table table-striped" style="width:100%">
                 <thead>
@@ -162,16 +184,16 @@
                         <th><a href="{{ route('excel', ['id' => $res->id]) }}" target="_blank">#Export</a></td>
                     </tr> -->
                     <tr>
-                        <th>No.</th>
-                        <th>Year</th>
-                        <th>Paper Name</th>
-                        <th>Author</th>
-                        <th>Document Type</th>
-                        <th>Page</th>
-                        <th>Journals/Transactions</th>
-                        <th>Ciations</th>
-                        <th>Doi</th>
-                        <th>Source</th>
+                        <th>{{__('researcher_details.no')}}</th>
+                        <th>{{__('researcher_details.year')}}</th>
+                        <th>{{__('researcher_details.paper_name')}}</th>
+                        <th>{{__('researcher_details.author')}}</th>
+                        <th>{{__('researcher_details.doc_types')}}</th>
+                        <th>{{__('researcher_details.pages')}}</th>
+                        <th>{{__('researcher_details.journals')}}</th>
+                        <th>{{__('researcher_details.citation')}}</th>
+                        <th>{{__('researcher_details.doi')}}</th>
+                        <th>{{__('researcher_details.source')}}</th>
                     </tr>
                 </thead>
 
@@ -184,18 +206,26 @@
                         <td style="width:90%;">{!! html_entity_decode(preg_replace('<inf>', 'sub', $paper->paper_name)) !!}</td>
                         <td>
                             @foreach ($paper->author as $author)
-                            <span>
+                            <span class= "why-you-not-transalate">
                                 <a>{{$author -> author_fname}} {{$author -> author_lname}}</a>
                             </span>
                             @endforeach
                             @foreach ($paper->teacher as $author)
-                            <span >
-                                <a href="{{ route('detail',Crypt::encrypt($author->id))}}">
-                                    <teacher>{{$author -> fname_en}} {{$author -> lname_en}}</teacher></a>
+                            <span>
+                                <a href="{{ route('detail', Crypt::encrypt($author->id)) }}">
+                                    @if(app()->getLocale() == 'th')
+                                        <teacher>{{ $author->fname_th }} {{ $author->lname_th }}</teacher>
+                                    @elseif(app()->getLocale() == 'zh')
+                                        <teacher>{{ $author->fname_en }} {{ $author->lname_en }}</teacher>
+                                    @else
+                                        <teacher>{{ $author->fname_en }} {{ $author->lname_en }}</teacher>
+                                    @endif
+                                </a>
                             </span>
                             @endforeach
+
                         </td>
-                        <td>{{$paper->paper_type}}</td>
+                        <td>{{__('researcher_details.paper_type.' . $paper->paper_type)}}</td>
                         <td style="width:100%;">{{$paper->paper_page}}</td>
                         <td>{{$paper->paper_sourcetitle}}</td>
                         <td>{{$paper->paper_citation}}</td>
@@ -218,19 +248,19 @@
         <div class="tab-pane fade" id="scopus" role="tabpanel" aria-labelledby="scopus-tab">
 
             <table id="example2" class="table table-striped" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Year</th>
-                        <th style="width:90%;">Paper Name</th>
-                        <th>Author</th>
-                        <th>Document Type</th>
-                        <th style="width:100%;">Page</th>
-                        <th>Journals/Transactions</th>
-                        <th>Ciations</th>
-                        <th>Doi</th>
-                    </tr>
-                </thead>
+            <thead>
+                <tr>
+                    <th>{{__('researcher_details.no')}}</th>
+                    <th>{{__('researcher_details.year')}}</th>
+                    <th>{{__('researcher_details.paper_name')}}</th>
+                    <th>{{__('researcher_details.author')}}</th>
+                    <th>{{__('researcher_details.doc_types')}}</th>
+                    <th>{{__('researcher_details.pages')}}</th>
+                    <th>{{__('researcher_details.journals')}}</th>
+                    <th>{{__('researcher_details.citation')}}</th>
+                    <th>{{__('researcher_details.doi')}}</th>
+                </tr>
+            </thead>
                 <tbody>
                     @foreach ($papers_scopus as $n => $paper)
                     <tr>
@@ -251,13 +281,11 @@
                             </span>
                             @endforeach
                         </td>
-                        <td>{{$paper->paper_type}}</td>
+                        <td>{{__('researcher_details.paper_type.' . $paper->paper_type)}}</td>
                         <td style="width:100%;">{{$paper->paper_page}}</td>
                         <td>{{$paper->paper_sourcetitle}}</td>
                         <td>{{$paper->paper_citation}}</td>
                         <td>{{$paper->paper_doi}}</td>
-
-
                     </tr>
                     @endforeach
                 </tbody>
@@ -271,18 +299,17 @@
             <table id="example3" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>Year</th>
-                        <th style="width:90%;">Paper Name</th>
-                        <th>Author</th>
-                        <th>Document Type</th>
-                        <th style="width:100%;">Page</th>
-                        <th>Journals/Transactions</th>
-                        <th>Ciations</th>
-                        <th>Doi</th>
+                        <th>{{__('researcher_details.no')}}</th>
+                        <th>{{__('researcher_details.year')}}</th>
+                        <th>{{__('researcher_details.paper_name')}}</th>
+                        <th>{{__('researcher_details.author')}}</th>
+                        <th>{{__('researcher_details.doc_types')}}</th>
+                        <th>{{__('researcher_details.pages')}}</th>
+                        <th>{{__('researcher_details.journals')}}</th>
+                        <th>{{__('researcher_details.citation')}}</th>
+                        <th>{{__('researcher_details.doi')}}</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     @foreach ($papers_wos as $n => $paper)
                     <tr>
@@ -303,7 +330,7 @@
                             </span>
                             @endforeach
                         </td>
-                        <td>{{$paper->paper_type}}</td>
+                        <td>{{__('researcher_details.paper_type.' . $paper->paper_type)}}</td>
                         <td style="width:100%;">{{$paper->paper_page}}</td>
                         <td>{{$paper->paper_sourcetitle}}</td>
                         <td>{{$paper->paper_citation}}</td>
@@ -321,17 +348,18 @@
 
         <div class="tab-pane fade" id="tci" role="tabpanel" aria-labelledby="tci-tab">
             <table id="example4" class="table table-striped" style="width:100%">
+
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>Year</th>
-                        <th style="width:90%;">Paper Name</th>
-                        <th>Author</th>
-                        <th>Document Type</th>
-                        <th style="width:100%;">Page</th>
-                        <th>Journals/Transactions</th>
-                        <th>Ciations</th>
-                        <th>Doi</th>
+                        <th>{{__('researcher_details.no')}}</th>
+                        <th>{{__('researcher_details.year')}}</th>
+                        <th>{{__('researcher_details.paper_name')}}</th>
+                        <th>{{__('researcher_details.author')}}</th>
+                        <th>{{__('researcher_details.doc_types')}}</th>
+                        <th>{{__('researcher_details.pages')}}</th>
+                        <th>{{__('researcher_details.journals')}}</th>
+                        <th>{{__('researcher_details.citation')}}</th>
+                        <th>{{__('researcher_details.doi')}}</th>
                     </tr>
                 </thead>
 
@@ -355,7 +383,7 @@
                             </span>
                             @endforeach
                         </td>
-                        <td>{{$paper->paper_type}}</td>
+                        <td>{{__('researcher_details.paper_type.' . $paper->paper_type)}}</td>
                         <td style="width:100%;">{{$paper->paper_page}}</td>
                         <td>{{$paper->paper_sourcetitle}}</td>
                         <td>{{$paper->paper_citation}}</td>
@@ -371,12 +399,12 @@
             <table id="example5" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th scope="col">Number</th>
-                        <th scope="col">Year</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">สถานที่พิมพ์</th>
-                        <th scope="col">Page</th>
+                        <th scope="col">{{__('researcher_details.no')}}</th>
+                        <th scope="col">{{__('researcher_details.year')}}</th>
+                        <th scope="col">{{__('researcher_details.name')}}</th>
+                        <th scope="col">{{__('researcher_details.author')}}</th>
+                        <th scope="col">{{__('researcher_details.place_of_publication')}}</th>
+                        <th scope="col">{{__('researcher_details.pages')}}</th>
 
                     </tr>
                 </thead>
@@ -413,12 +441,12 @@
             <table id="example6" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th scope="col">Number</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">ประเภท</th>
-                        <th scope="col">หมายเลขทะเบียน</th>
-                        <th scope="col">วันที่จดทะเบียน</th>
+                        <th scope="col">{{__('researcher_details.no')}}</th>
+                        <th scope="col">{{__('researcher_details.name')}}</th>
+                        <th scope="col">{{__('researcher_details.author')}}</th>
+                        <th scope="col">{{__('researcher_details.academic_work_type')}}</th>
+                        <th scope="col">{{__('researcher_details.registration_number')}}</th>
+                        <th scope="col">{{__('researcher_details.registration_date')}}</th>
 
                     </tr>
                 </thead>
@@ -466,25 +494,25 @@
 <script>
     $(document).ready(function() {
 
-        var table1 = $('#example1').DataTable({
-            responsive: true,
-        });
+        // var table1 = $('#example1').DataTable({
+        //     responsive: true,
+        // });
 
-        var table2 = $('#example2').DataTable({
-            responsive: true,
-        });
-        var table3 = $('#example3').DataTable({
-            responsive: true,
-        });
-        var table4 = $('#example4').DataTable({
-            responsive: true,
-        });
-        var table5 = $('#example5').DataTable({
-            responsive: true,
-        });
-        var table6 = $('#example6').DataTable({
-            responsive: true,
-        });
+        // var table2 = $('#example2').DataTable({
+        //     responsive: true,
+        // });
+        // var table3 = $('#example3').DataTable({
+        //     responsive: true,
+        // });
+        // var table4 = $('#example4').DataTable({
+        //     responsive: true,
+        // });
+        // var table5 = $('#example5').DataTable({
+        //     responsive: true,
+        // });
+        // var table6 = $('#example6').DataTable({
+        //     responsive: true,
+        // });
 
 
         $('button[data-bs-toggle="tab"]').on('shown.bs.tab', function(event) {
@@ -676,6 +704,7 @@
         document.getElementById("tci_sum").innerHTML += `  
                 <h2 class="timer count-title count-number" data-to="${sumtci}" data-speed="1500"></h2>
                 <p class="count-text ">TCI</p>`
+            
 
 
         //document.getElementById("scopus").appendChild('data-to="100"');
@@ -777,15 +806,24 @@
         }
     });
 </script>
-<!-- <script>
-    // get the p element
+<script>
     $(document).ready(function() {
-    const a = document.getElementById('authtd');
-    console.log(a.text)
-    const myArray =  a.text.toString().split(" ");
-    console.log(myArray)
-    document.getElementById("authtd").innerHTML = "name :"+ myArray;
-    
-});
-</script> -->
+        var table1 = $('#example1').DataTable({
+            responsive: true,
+            language: {
+                lengthMenu: "@lang('datatables.lengthMenu')",
+                search: "@lang('datatables.search')",
+                info: "@lang('datatables.info')",
+                infoEmpty: "@lang('datatables.infoEmpty')",
+                zeroRecords: "@lang('datatables.zeroRecords')",
+                paginate: {
+                    first: "@lang('datatables.first')",
+                    last: "@lang('datatables.last')",
+                    next: "@lang('datatables.next')",
+                    previous: "@lang('datatables.previous')"
+                }
+            }
+        });
+    });
+</script>
 @endsection

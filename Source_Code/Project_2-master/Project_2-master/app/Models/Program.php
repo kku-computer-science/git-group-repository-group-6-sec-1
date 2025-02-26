@@ -24,6 +24,17 @@ class Program extends Model
 
     public function department()
     {
-        return $this->belongsTo(department::class);
+        return $this->belongsTo(Department::class);
+    }
+
+    public static function getProgramCode($name)
+    {
+        $map = [
+            'Computer Science' => 'CS',
+            'Infomation Technology' => 'IT',
+            'Geo-Informatics' => 'GIS',
+        ];
+
+        return $map[$name] ?? $name;
     }
 }

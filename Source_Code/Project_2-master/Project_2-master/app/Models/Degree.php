@@ -19,9 +19,13 @@ class Degree extends Model
         return $this->hasMany(Course::class);
     }
 
+
     //เพิ่มเติม
     public function researchAssistants()
     {
     return $this->hasMany(ResearchAssistant::class);
     }
+
+
+
 }
