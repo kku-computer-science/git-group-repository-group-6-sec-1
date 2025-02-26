@@ -14,6 +14,4 @@ return [
     'next'         => 'Next',
     'previous'     => 'Previous',
     'edit'      => 'Edit Program',
-
 ];
-
