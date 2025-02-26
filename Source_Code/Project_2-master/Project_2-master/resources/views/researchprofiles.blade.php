@@ -494,25 +494,25 @@
 <script>
     $(document).ready(function() {
 
-        var table1 = $('#example1').DataTable({
-            responsive: true,
-        });
+        // var table1 = $('#example1').DataTable({
+        //     responsive: true,
+        // });
 
-        var table2 = $('#example2').DataTable({
-            responsive: true,
-        });
-        var table3 = $('#example3').DataTable({
-            responsive: true,
-        });
-        var table4 = $('#example4').DataTable({
-            responsive: true,
-        });
-        var table5 = $('#example5').DataTable({
-            responsive: true,
-        });
-        var table6 = $('#example6').DataTable({
-            responsive: true,
-        });
+        // var table2 = $('#example2').DataTable({
+        //     responsive: true,
+        // });
+        // var table3 = $('#example3').DataTable({
+        //     responsive: true,
+        // });
+        // var table4 = $('#example4').DataTable({
+        //     responsive: true,
+        // });
+        // var table5 = $('#example5').DataTable({
+        //     responsive: true,
+        // });
+        // var table6 = $('#example6').DataTable({
+        //     responsive: true,
+        // });
 
 
         $('button[data-bs-toggle="tab"]').on('shown.bs.tab', function(event) {
@@ -806,15 +806,24 @@
         }
     });
 </script>
-<!-- <script>
-    // get the p element
+<script>
     $(document).ready(function() {
-    const a = document.getElementById('authtd');
-    console.log(a.text)
-    const myArray =  a.text.toString().split(" ");
-    console.log(myArray)
-    document.getElementById("authtd").innerHTML = "name :"+ myArray;
-    
-});
-</script> -->
+        var table1 = $('#example1').DataTable({
+            responsive: true,
+            language: {
+                lengthMenu: "@lang('datatables.lengthMenu')",
+                search: "@lang('datatables.search')",
+                info: "@lang('datatables.info')",
+                infoEmpty: "@lang('datatables.infoEmpty')",
+                zeroRecords: "@lang('datatables.zeroRecords')",
+                paginate: {
+                    first: "@lang('datatables.first')",
+                    last: "@lang('datatables.last')",
+                    next: "@lang('datatables.next')",
+                    previous: "@lang('datatables.previous')"
+                }
+            }
+        });
+    });
+</script>
 @endsection
