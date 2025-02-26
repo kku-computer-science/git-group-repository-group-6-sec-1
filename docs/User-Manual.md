@@ -50,12 +50,12 @@
 (images/project.png)
 
 ### หน้า Research Group
-(images/group.png)
+![image](images/group.png)
  เมื่อกดปุ่ม more details
- (images/group-detail.png)
+![image](images/group-detail.png)
 ### หน้า Report
 
-(images/report.png)
+![image](images/report.png)
 
 ---
 
