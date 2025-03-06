@@ -36,7 +36,9 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $rg->group_name_en }}</h5>
+                    <h5 class="card-title">
+                        {{ app()->getLocale() == 'th' ? $rg->group_name_th : (app()->getLocale() == 'en' ? $rg->group_name_en : ($rg->group_name_zh ?? '-')) }}
+                    </h5>
                     <h3 class="card-text">{{ Str::limit($rg->{'group_desc_'.app()->getLocale()}, 350) }}</h3>
                 </div>
                 <div>
