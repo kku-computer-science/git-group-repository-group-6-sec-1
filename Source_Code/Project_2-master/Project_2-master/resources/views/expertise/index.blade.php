@@ -26,34 +26,46 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($experts as $i => $expert)
-                    <tr id="expert_id_{{ $expert->id }}">
-                        <td>{{ $i+1 }}</td>
+                @foreach ($experts as $i => $expert)
+                <tr id="expert_id_{{ $expert->id }}">
+                    <td>{{ $i+1 }}</td>
 
-                        @if(Auth::user()->hasRole('admin'))
-                        <td>
-                            @if(app()->getLocale() == 'th')
-                                {{ Str::limit($expert->user->fname_th . ' ' . $expert->user->lname_th, 20) }}
-                            @else
-                                {{ Str::limit($expert->user->fname_en . ' ' . $expert->user->lname_en, 20) }}
-                            @endif
-                        </td>
+                    @if(Auth::user()->hasRole('admin'))
+                    <td>
+                        @if(app()->getLocale() == 'th')
+                            {{ Str::limit($expert->user->fname_th . ' ' . $expert->user->lname_th, 20) }}
+                        @elseif(app()->getLocale() == 'en')
+                            {{ Str::limit($expert->user->fname_en . ' ' . $expert->user->lname_en, 20) }}
+                        @elseif(app()->getLocale() == 'zh')
+                            {{ Str::limit($expert->user->fname_en . ' ' . $expert->user->lname_en, 20) }} <!-- Fixed: Correct field for Chinese -->
                         @endif
-                        <td>{{ $expert->expert_name }}</td>
-                        <td>
-                            <form action="{{ route('experts.destroy',$expert->id) }}" method="POST">
-                                <li class="list-inline-item">
-                                    <a class="btn btn-outline-success btn-sm" id="edit-expertise" type="button" data-toggle="modal" data-id="{{ $expert->id }}" data-placement="top" title="{{ __('experts.edit') }}" href="javascript:void(0)"><i class="mdi mdi-pencil"></i></a>
-                                </li>
-                                @csrf
-                                <meta name="csrf-token" content="{{ csrf_token() }}">
-                                <li class="list-inline-item">
-                                    <button class="btn btn-outline-danger btn-sm show_confirm" id="delete-expertise" type="submit" data-id="{{ $expert->id }}" data-toggle="tooltip" data-placement="top" title="{{ __('experts.delete') }}"><i class="mdi mdi-delete"></i></button>
-                                </li>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
+                    </td>
+                    @endif
+
+                    <td>
+                        @if(app()->getLocale() == 'th')
+                            {{ $expert->expert_name_th }} <!-- Thai name -->
+                        @elseif(app()->getLocale() == 'zh')
+                            {{ $expert->expert_name_zh }} <!-- Chinese name -->
+                        @else
+                            {{ $expert->expert_name }} <!-- Default name (English or fallback) -->
+                        @endif
+                    </td>
+                    <td>
+                        <form action="{{ route('experts.destroy', $expert->id) }}" method="POST">
+                            <li class="list-inline-item">
+                                <a class="btn btn-outline-success btn-sm" id="edit-expertise" type="button" data-toggle="modal" data-id="{{ $expert->id }}" data-placement="top" title="{{ __('experts.edit') }}" href="javascript:void(0)"><i class="mdi mdi-pencil"></i></a>
+                            </li>
+                            @csrf
+                            <meta name="csrf-token" content="{{ csrf_token() }}">
+                            <li class="list-inline-item">
+                                <button class="btn btn-outline-danger btn-sm show_confirm" id="delete-expertise" type="submit" data-id="{{ $expert->id }}" data-toggle="tooltip" data-placement="top" title="{{ __('experts.delete') }}"><i class="mdi mdi-delete"></i></button>
+                            </li>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+
                 </tbody>
             </table>
         </div>
@@ -99,7 +111,7 @@
 <script>
     $(document).ready(function() {
         var table1 = $('#example1').DataTable({
-            order: [[1, 'asc']],
+            order: [[0, 'asc']], // Order by the first column (which represents the ID)
             rowGroup: {
                 dataSrc: 1
             },

@@ -45,57 +45,57 @@
             <div class="col-md-2">
                 <img class="card-image" src="{{$res->picture}}" alt="">
             </div>
+
             <div class="col-md-6">
-                <div class="card-body">
-                    <h6 class="card-text"><b>{{$res->position_th}} {{$res->fname_th}} {{$res->lname_th}}</b></h6>
-                    @if(app()->getLocale() == 'en')
-                        <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}, Ph.D.</b></h6>
-                    @elseif(app()->getLocale() == 'zh')
-                        <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}, 博士</b></h6>
-                    @else
-                        <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}, Ph.D.</b></h6>
-                    @endif
+    <div class="card-body">
+        <h6 class="card-text"><b>{{$res->position_th}} {{$res->fname_th}} {{$res->lname_th}}</b></h6>
 
-                        <h6 class="card-text1"><b>{{ __('academic_ranks.' . $res->academic_ranks_en) }}</b></h6>
-                        <!-- <h6 class="card-text1">Department of {{$res->program->program_name_en}}</h6> -->
-                        <!-- <h6 class="card-text1">College of Computing</h6>
-                    <h6 class="card-text1">Khon Kaen University</h6> -->
-                        <h6 class="card-text1">{{__('researchers.Email')}} {{$res->email}}</h6>
-                        <h6 class="card-title">{{ trans('message.education') }}</h6>
-                        @foreach($res->education as $edu)
-                            <h6 class="card-text2 col-sm-10">
-                                <!-- Display Year based on language -->
-                                @if(app()->getLocale() == 'en')
-                                    {{ $edu->year_anno_domini }}  <!-- English Year -->
-                                @elseif(app()->getLocale() == 'zh')
-                                    {{ $edu->year_anno_domini }}  <!-- Chinese Year -->
-                                @else
-                                    {{ $edu->year }}  <!-- Thai Year -->
-                                @endif
-
-                                <!-- Display University name based on language -->
-                                {{ $edu->{'university_' . app()->getLocale()} ?? $edu->uname }} <!-- Default to Thai if no translation -->
-
-                                <!-- Display Qualification name based on language -->
-                                {{ $edu->{'qua_name_' . app()->getLocale()} ?? $edu->qua_name }} <!-- Default to Thai if no translation -->
-                            </h6>
-                        @endforeach
+        @if(app()->getLocale() == 'en')
+            @if($res->doctoral_degree == 'Ph.D.')
+                <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}, {{ $res->doctoral_degree }}</b></h6>
+            @else
+                <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}</b></h6>
+            @endif
+        @elseif(app()->getLocale() == 'zh')
+            @if($res->doctoral_degree == 'Ph.D.')
+                <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}, {{ $res->doctoral_degree }}</b></h6>
+            @else
+                <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}</b></h6>
+            @endif
+        @else
+            @if($res->doctoral_degree == 'Ph.D.')
+                <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}, {{ $res->doctoral_degree }}</b></h6>
+            @else
+                <h6 class="card-text"><b>{{ $res->fname_en }} {{ $res->lname_en }}</b></h6>
+            @endif
+        @endif
 
 
+        <h6 class="card-text1"><b>{{ __('academic_ranks.' . $res->academic_ranks_en) }}</b></h6>
+        <h6 class="card-text1">{{__('researchers.Email')}} {{$res->email}}</h6>
+        <h6 class="card-title">{{ trans('message.education') }}</h6>
 
+        @foreach($res->education as $edu)
+            <h6 class="card-text2 col-sm-10">
+                @if(app()->getLocale() == 'en')
+                    {{ $edu->year_anno_domino }}
+                    {{ $edu->university_en }}
+                    {{ $edu->qua_name_en }}
+                @elseif(app()->getLocale() == 'zh')
+                    {{ $edu->year_anno_domino }}
+                    {{ $edu->university_zh }}
+                    {{ $edu->qua_name_zh }}
+                @else
+                    {{ $edu->year }}
+                    {{ $edu->uname }}
+                    {{ $edu->qua_name }}
+                @endif
+            </h6>
+        @endforeach
 
-                        <!-- <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
-                            {{ trans('message.expertise') }}
-                        </button> -->
-                        <!-- <h6 class="card-title">Metrics overview</h6>
-                    <h6 class="card-text2" id="citation">Citation count</h6>
-                    <h6 class="card-text2" id="doc_count">Document count</h6>
-                    <h6 class="card-text2" id="cite_count">Cited By count</h6>
-                    <h6 class="card-text2" id="h-index">H-index </h6> -->
+    </div>
+</div>
 
-                </div>
-            </div>
 
             <div class="col-md-4">
                 <h6 class="title-pub">{{ trans('message.publications2') }}</h6>
@@ -183,6 +183,9 @@
                     <!-- <tr>
                         <th><a href="{{ route('excel', ['id' => $res->id]) }}" target="_blank">#Export</a></td>
                     </tr> -->
+
+                        <!-- Table Summary -->
+                    
                     <tr>
                         <th>{{__('researcher_details.no')}}</th>
                         <th>{{__('researcher_details.year')}}</th>
@@ -276,8 +279,15 @@
                             @endforeach
                             @foreach ($paper->teacher as $author)
                             <span>
-                                <a href="{{ route('detail',Crypt::encrypt($author->id))}}">
-                                    <teacher>{{$author -> fname_en}} {{$author -> lname_en}}</teacher></a>
+                                <a href="{{ route('detail', Crypt::encrypt($author->id)) }}">
+                                    @if(app()->getLocale() == 'th')
+                                        <teacher>{{ $author->fname_th }} {{ $author->lname_th }}</teacher>
+                                    @elseif(app()->getLocale() == 'zh')
+                                        <teacher>{{ $author->fname_en }} {{ $author->lname_en }}</teacher>
+                                    @else
+                                        <teacher>{{ $author->fname_en }} {{ $author->lname_en }}</teacher>
+                                    @endif
+                                </a>
                             </span>
                             @endforeach
                         </td>
@@ -325,8 +335,15 @@
                             @endforeach
                             @foreach ($paper->teacher as $author)
                             <span>
-                                <a href="{{ route('detail',Crypt::encrypt($author->id))}}">
-                                    <teacher>{{$author -> fname_en}} {{$author -> lname_en}}</teacher></a>
+                                <a href="{{ route('detail', Crypt::encrypt($author->id)) }}">
+                                    @if(app()->getLocale() == 'th')
+                                        <teacher>{{ $author->fname_th }} {{ $author->lname_th }}</teacher>
+                                    @elseif(app()->getLocale() == 'zh')
+                                        <teacher>{{ $author->fname_en }} {{ $author->lname_en }}</teacher>
+                                    @else
+                                        <teacher>{{ $author->fname_en }} {{ $author->lname_en }}</teacher>
+                                    @endif
+                                </a>
                             </span>
                             @endforeach
                         </td>
@@ -378,8 +395,15 @@
                             @endforeach
                             @foreach ($paper->teacher as $author)
                             <span>
-                                <a href="{{ route('detail',Crypt::encrypt($author->id))}}">
-                                    <teacher>{{$author -> fname_en}} {{$author -> lname_en}}</teacher></a>
+                                <a href="{{ route('detail', Crypt::encrypt($author->id)) }}">
+                                    @if(app()->getLocale() == 'th')
+                                        <teacher>{{ $author->fname_th }} {{ $author->lname_th }}</teacher>
+                                    @elseif(app()->getLocale() == 'zh')
+                                        <teacher>{{ $author->fname_en }} {{ $author->lname_en }}</teacher>
+                                    @else
+                                        <teacher>{{ $author->fname_en }} {{ $author->lname_en }}</teacher>
+                                    @endif
+                                </a>
                             </span>
                             @endforeach
                         </td>
@@ -424,7 +448,15 @@
                             @endforeach
                             @foreach ($paper->user as $author)
                             <span>
-                                <a> {{$author -> fname_en}} {{$author -> lname_en}}</a>
+                                <a href="{{ route('detail', Crypt::encrypt($author->id)) }}">
+                                    @if(app()->getLocale() == 'th')
+                                        <teacher>{{ $author->fname_th }} {{ $author->lname_th }}</teacher>
+                                    @elseif(app()->getLocale() == 'zh')
+                                        <teacher>{{ $author->fname_en }} {{ $author->lname_en }}</teacher>
+                                    @else
+                                        <teacher>{{ $author->fname_en }} {{ $author->lname_en }}</teacher>
+                                    @endif
+                                </a>
                             </span>
                             @endforeach
                         </td>
@@ -465,9 +497,15 @@
                             @endforeach
                             @foreach ($paper->user as $author)
                             <span>
-                                <a href="{{ route('detail',Crypt::encrypt($author->id))}}">
-                                    <teacher>{{$author -> fname_en}} {{$author -> lname_en}}</teacher></a>
-
+                                <a href="{{ route('detail', Crypt::encrypt($author->id)) }}">
+                                    @if(app()->getLocale() == 'th')
+                                        <teacher>{{ $author->fname_th }} {{ $author->lname_th }}</teacher>
+                                    @elseif(app()->getLocale() == 'zh')
+                                        <teacher>{{ $author->fname_en }} {{ $author->lname_en }}</teacher>
+                                    @else
+                                        <teacher>{{ $author->fname_en }} {{ $author->lname_en }}</teacher>
+                                    @endif
+                                </a>
                             </span>
                             @endforeach
                         </td>
@@ -691,7 +729,7 @@
         //$("#scopus").append('data-to="100"');
         document.getElementById("all").innerHTML += `   
                 <h2 class="timer count-title count-number" data-to="${sum}" data-speed="1500"></h2>
-                <p class="count-text ">SUMMARY</p>`
+                <p class="count-text ">{{ trans('reference.summary') }}</p>`
 
         document.getElementById("scopus_sum").innerHTML += `   
                 <h2 class="timer count-title count-number" data-to="${sumsco}" data-speed="1500"></h2>
