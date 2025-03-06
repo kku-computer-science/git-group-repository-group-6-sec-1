@@ -1,14 +1,14 @@
-1740515422186	geckodriver	INFO	Listening on 127.0.0.1:52813
-1740515425226	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "52814" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Ping\\AppData\\Local\\Temp\\rust_mozprofileiBby1t"
+1741289080056	geckodriver	INFO	Listening on 127.0.0.1:58464
+1741289083154	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "58465" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Ping\\AppData\\Local\\Temp\\rust_mozprofile9GSaRv"
 console.warn: services.settings: Ignoring preference override of remote settings server
 console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
 Dynamically enable window occlusion 0
-1740515426414	Marionette	INFO	Marionette enabled
-1740515426676	Marionette	INFO	Listening on port 52875
-WebDriver BiDi listening on ws://127.0.0.1:52814
-Read port: 52875
-1740515426988	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-DevTools listening on ws://127.0.0.1:52814/devtools/browser/c3db011f-1ee9-4399-971d-96a3aae30d85
+1741289084022	Marionette	INFO	Marionette enabled
+1741289084211	Marionette	INFO	Listening on port 58525
+WebDriver BiDi listening on ws://127.0.0.1:58465
+Read port: 58525
+1741289084462	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:58465/devtools/browser/6a8826cf-c6c1-420d-9a86-a84e2961ebbe
 console.error: ({})
 console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
 console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
@@ -27,33 +27,5 @@ console.error: ({})
 console.error: ({})
 console.error: ({})
 console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-1740515481680	Marionette	INFO	Stopped listening on port 52875
+1741289105280	Marionette	INFO	Stopped listening on port 58525
 Dynamically enable window occlusion 1

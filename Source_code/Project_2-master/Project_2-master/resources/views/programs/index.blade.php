@@ -187,14 +187,14 @@
             var token = $("meta[name='csrf-token']").attr("content");
             e.preventDefault();
             swal({
-                title: "{{ __('programs.confirm_title') }}", // แปลข้อความ "Are you sure?"
-                text: "{{ __('programs.confirm_text') }}", // แปลข้อความ "You will not be able to recover this imaginary file!"
+                title: "{{ __('programs.confirm_title') }}", /
+                text: "{{ __('programs.confirm_text') }}",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    swal("{{ __('programs.delete_success') }}", { // แปลข้อความ "Delete Successfully"
+                    swal("{{ __('programs.delete_success') }}", { 
                         icon: "success",
                     }).then(function() {
                         location.reload();
@@ -206,7 +206,7 @@
                                 "_token": token,
                             },
                             success: function(data) {
-                                $('#msg').html('{{ __('programs.delete_msg') }}'); // แปลข้อความ "program entry deleted successfully"
+                                $('#msg').html('{{ __('programs.delete_msg') }}'); 
                                 $("#program_id_" + program_id).remove();
                             },
                             error: function(data) {

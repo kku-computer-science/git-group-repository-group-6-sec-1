@@ -105,19 +105,59 @@ TC43_ADMINRoles - ตรวจสอบภาษาส่วนต่างๆ �
 TC42_ADMINRoles_TableTranslation - ตรวจสอบภาษาในตารางของ UI19
     [Setup]    Reset Language To English
     Go To    ${ROLES_URL}
-    Verify Table Header    1    #
-    Verify Table Header    2    Role Name
-    Verify Table Header    3    Action
+    Log To Console    Starting verification of English table headers...
+
+    # ตรวจสอบคอลัมน์ 1
+    ${status1}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table//thead//tr//th[1]    timeout=40s
+    Run Keyword If    not ${status1}    Log To Console    Element not found for header 1 after 40s
+    ${text1}=    Get Text    xpath=//table//thead//tr//th[1]
+    Log To Console    Actual text for header 1: ${text1}
+    Run Keyword If    "${text1}" != "#"    Fail    Header 1 mismatch: Expected "#", got "${text1}"
+    Log To Console    Successfully verified header 1: Expected "#", Actual "${text1}"
+
+    # ตรวจสอบคอลัมน์ 2
+    ${status2}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table//thead//tr//th[2]    timeout=40s
+    Run Keyword If    not ${status2}    Log To Console    Element not found for header 2 after 40s
+    ${text2}=    Get Text    xpath=//table//thead//tr//th[2]
+    Log To Console    Actual text for header 2: ${text2}
+    Run Keyword If    "${text2}" != "Role Name"    Fail    Header 2 mismatch: Expected "Role Name", got "${text2}"
+    Log To Console    Successfully verified header 2: Expected "Role Name", Actual "${text2}"
+
+    # ตรวจสอบคอลัมน์ 3
+    ${status3}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table//thead//tr//th[3]    timeout=40s
+    Run Keyword If    not ${status3}    Log To Console    Element not found for header 3 after 40s
+    ${text3}=    Get Text    xpath=//table//thead//tr//th[3]
+    Log To Console    Actual text for header 3: ${text3}
+    Run Keyword If    "${text3}" != "Action"    Fail    Header 3 mismatch: Expected "Action", got "${text3}"
+    Log To Console    Successfully verified header 3: Expected "Action", Actual "${text3}"
+
     Switch Language    th
     Go To    ${ROLES_URL}
-    Verify Table Header    1    #
-    Verify Table Header    2    ชื่อบทบาท
-    Verify Table Header    3    การกระทำ
+    Log To Console    Starting verification of Thai table headers...
+
+    # ตรวจสอบคอลัมน์ 2 ภาษาไทย
+    ${text2}=    Get Text    xpath=//table//thead//tr//th[2]
+    Run Keyword If    "${text2}" != "ชื่อบทบาท"    Fail    Header 2 mismatch: Expected "ชื่อบทบาท", got "${text2}"
+    Log To Console    Successfully verified header 2 in Thai
+
+    # ตรวจสอบคอลัมน์ 3 ภาษาไทย
+    ${text3}=    Get Text    xpath=//table//thead//tr//th[3]
+    Run Keyword If    "${text3}" != "การกระทำ"    Fail    Header 3 mismatch: Expected "การกระทำ", got "${text3}"
+    Log To Console    Successfully verified header 3 in Thai
+
     Switch Language    zh
     Go To    ${ROLES_URL}
-    Verify Table Header    1    #
-    Verify Table Header    2    角色名称
-    Verify Table Header    3    操作
+    Log To Console    Starting verification of Chinese table headers...
+
+    # ตรวจสอบคอลัมน์ 2 ภาษาจีน
+    ${text2}=    Get Text    xpath=//table//thead//tr//th[2]
+    Run Keyword If    "${text2}" != "角色名称"    Fail    Header 2 mismatch: Expected "角色名称", got "${text2}"
+    Log To Console    Successfully verified header 2 in Chinese
+
+    # ตรวจสอบคอลัมน์ 3 ภาษาจีน
+    ${text3}=    Get Text    xpath=//table//thead//tr//th[3]
+    Run Keyword If    "${text3}" != "操作"    Fail    Header 3 mismatch: Expected "操作", got "${text3}"
+    Log To Console    Successfully verified header 3 in Chinese
     
 
 TC40_ADMINRoles_FormTranslation - ตรวจสอบภาษาของฟอร์มเพิ่ม Roles ของ UI19

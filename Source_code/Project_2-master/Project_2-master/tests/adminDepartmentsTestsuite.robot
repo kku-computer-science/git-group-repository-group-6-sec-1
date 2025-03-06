@@ -55,7 +55,7 @@ Switch Language
 
 Verify Page Language
     [Arguments]    ${expected_text}
-    Wait Until Element Is Visible    xpath=//div[contains(@class, 'card-header')]    timeout=25s    # ปรับ xpath และเพิ่ม timeout
+    Wait Until Element Is Visible    xpath=//div[contains(@class, 'card-header')]    timeout=25s
     ${actual_text}=    Get Text    xpath=//div[contains(@class, 'card-header')]
     Should Contain    ${actual_text}    ${expected_text}
     Log To Console    Verified text: ${expected_text} (Actual: ${actual_text})
@@ -89,12 +89,15 @@ Verify Back Button
     Log To Console    Verified back button text: ${expected_text}
 
 Verify Table Header
-    [Arguments]    ${column}    ${expected_text}
-    Wait Until Element Is Visible    xpath=//table    timeout=20s
-    Wait Until Element Is Visible    xpath=//table//thead//th[${column}]    timeout=20s
-    ${actual_text}=    Get Text    xpath=//table//thead//th[${column}]
+    [Arguments]    ${index}    ${expected_text}
+    Log To Console    Verifying table header - Index: ${index}, Expected Text: ${expected_text}
+    ${headers}=    Get WebElements    css=table.table-hover thead th
+    ${status}=    Run Keyword And Return Status    Should Not Be Empty    ${headers}
+    Run Keyword If    not ${status}    Log To Console    No table headers found
+    ${actual_text}=    Get Text    ${headers}[${index-1}]  # ลด index ลง 1 เพราะ Python/ Robot Framework ใช้ 0-based index
+    Log To Console    Actual text found for index ${index}: ${actual_text}
     Should Contain    ${actual_text}    ${expected_text}
-    Log To Console    Verified table header column ${column}: ${expected_text} (Actual: ${actual_text})
+    Log To Console    Verified table header index ${index}: Expected "${expected_text}", Actual "${actual_text}"
 
 Verify Popup Language
     [Arguments]    ${expected_title}    ${expected_text}    ${expected_success}
@@ -133,28 +136,97 @@ TC43_ADMINDepartments - ตรวจสอบภาษาสส่วนต่�
     Verify Page Language    部门
     Verify New Department Button    新建部门
 
+*** Test Cases ***
 TC42_ADMINDepartments_TableTranslation - ตรวจสอบภาษาในตารางของ UI21
     [Setup]    Reset Language To English
     Go To    ${DEPARTMENTS_URL}
-    Verify Table Header    1    #
-    Verify Table Header    2    Department Name
-    Verify Table Header    3    Action
+    Log To Console    Starting verification of English table headers...
+
+    # ตรวจสอบคอลัมน์ 1
+    ${status1}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[1]    timeout=40s
+    Run Keyword If    not ${status1}    Log To Console    Element not found for header 1 after 40s
+    ${text1}=    Get Text    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[1]
+    Log To Console    Actual text for header 1: ${text1}
+    Run Keyword If    "${text1}" != "#"    Fail    Header 1 mismatch: Expected "#", got "${text1}"
+    Log To Console    Successfully verified header 1: Expected "#", Actual "${text1}"
+
+    # ตรวจสอบคอลัมน์ 2
+    ${status2}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[2]    timeout=40s
+    Run Keyword If    not ${status2}    Log To Console    Element not found for header 2 after 40s
+    ${text2}=    Get Text    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[2]
+    Log To Console    Actual text for header 2: ${text2}
+    Run Keyword If    "${text2}" != "Department Name"    Fail    Header 2 mismatch: Expected "Department Name", got "${text2}"
+    Log To Console    Successfully verified header 2: Expected "Department Name", Actual "${text2}"
+
+    # ตรวจสอบคอลัมน์ 3
+    ${status3}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[3]    timeout=40s
+    Run Keyword If    not ${status3}    Log To Console    Element not found for header 3 after 40s
+    ${text3}=    Get Text    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[3]
+    Log To Console    Actual text for header 3: ${text3}
+    Run Keyword If    "${text3}" != "Action"    Fail    Header 3 mismatch: Expected "Action", got "${text3}"
+    Log To Console    Successfully verified header 3: Expected "Action", Actual "${text3}"
+
     Switch Language    th
     Go To    ${DEPARTMENTS_URL}
-    Verify Table Header    1    #
-    Verify Table Header    2    ชื่อแผนก
-    Verify Table Header    3    การกระทำ
+    Log To Console    Starting verification of Thai table headers...
+
+    # ตรวจสอบคอลัมน์ 1
+    ${status1}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[1]    timeout=40s
+    Run Keyword If    not ${status1}    Log To Console    Element not found for header 1 after 40s
+    ${text1}=    Get Text    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[1]
+    Log To Console    Actual text for header 1: ${text1}
+    Run Keyword If    "${text1}" != "#"    Fail    Header 1 mismatch: Expected "#", got "${text1}"
+    Log To Console    Successfully verified header 1: Expected "#", Actual "${text1}"
+
+    # ตรวจสอบคอลัมน์ 2
+    ${status2}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[2]    timeout=40s
+    Run Keyword If    not ${status2}    Log To Console    Element not found for header 2 after 40s
+    ${text2}=    Get Text    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[2]
+    Log To Console    Actual text for header 2: ${text2}
+    Run Keyword If    "${text2}" != "ชื่อแผนก"    Fail    Header 2 mismatch: Expected "ชื่อแผนก", got "${text2}"
+    Log To Console    Successfully verified header 2: Expected "ชื่อแผนก", Actual "${text2}"
+
+    # ตรวจสอบคอลัมน์ 3
+    ${status3}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[3]    timeout=40s
+    Run Keyword If    not ${status3}    Log To Console    Element not found for header 3 after 40s
+    ${text3}=    Get Text    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[3]
+    Log To Console    Actual text for header 3: ${text3}
+    Run Keyword If    "${text3}" != "การกระทำ"    Fail    Header 3 mismatch: Expected "การกระทำ", got "${text3}"
+    Log To Console    Successfully verified header 3: Expected "การกระทำ", Actual "${text3}"
+
     Switch Language    zh
     Go To    ${DEPARTMENTS_URL}
-    Verify Table Header    1    #
-    Verify Table Header    2    部门名称
-    Verify Table Header    3    操作
+    Log To Console    Starting verification of Chinese table headers...
+
+    # ตรวจสอบคอลัมน์ 1
+    ${status1}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[1]    timeout=40s
+    Run Keyword If    not ${status1}    Log To Console    Element not found for header 1 after 40s
+    ${text1}=    Get Text    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[1]
+    Log To Console    Actual text for header 1: ${text1}
+    Run Keyword If    "${text1}" != "#"    Fail    Header 1 mismatch: Expected "#", got "${text1}"
+    Log To Console    Successfully verified header 1: Expected "#", Actual "${text1}"
+
+    # ตรวจสอบคอลัมน์ 2
+    ${status2}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[2]    timeout=40s
+    Run Keyword If    not ${status2}    Log To Console    Element not found for header 2 after 40s
+    ${text2}=    Get Text    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[2]
+    Log To Console    Actual text for header 2: ${text2}
+    Run Keyword If    "${text2}" != "部门名称"    Fail    Header 2 mismatch: Expected "部门名称", got "${text2}"
+    Log To Console    Successfully verified header 2: Expected "部门名称", Actual "${text2}"
+
+    # ตรวจสอบคอลัมน์ 3
+    ${status3}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[3]    timeout=40s
+    Run Keyword If    not ${status3}    Log To Console    Element not found for header 3 after 40s
+    ${text3}=    Get Text    xpath=//table[contains(@class, 'table-hover')]//thead//tr//th[3]
+    Log To Console    Actual text for header 3: ${text3}
+    Run Keyword If    "${text3}" != "操作"    Fail    Header 3 mismatch: Expected "操作", got "${text3}"
+    Log To Console    Successfully verified header 3: Expected "操作", Actual "${text3}"
 
 TC40_ADMINDepartments_FormTranslation - ตรวจสอบภาษาของฟอร์มเพิ่ม Departments ของ UI21
     [Setup]    Reset Language To English
     Go To    ${CREATE_URL}
     Verify Page Language    Create Department
-    Verify Departments List Button    Departments List    # ใช้ Departments List แทน Department List
+    Verify Departments List Button    Departments List
     Verify Button Text    Submit
     Switch Language    th
     Go To    ${CREATE_URL}
@@ -185,7 +257,7 @@ TC41_ADMINDepartments_EditTranslation - ตรวจสอบภาษา form a
     [Setup]    Reset Language To English
     Go To    ${EDIT_URL}
     Verify Page Language    Edit Department
-    Verify Departments List Button    Departments List    # ใช้ Departments List แทน Department List
+    Verify Departments List Button    Departments List
     Verify Button Text    Submit
     Switch Language    th
     Go To    ${EDIT_URL}
@@ -198,17 +270,17 @@ TC41_ADMINDepartments_EditTranslation - ตรวจสอบภาษา form a
     Verify Departments List Button    部门列表
     Verify Button Text    提交
 
-TC41_ADMINDepartments_DeleteTranslation - ตรวจสอบภาษาการลบข้อมูล และ pop up ที่แสดงขึ้นมา ของ UI21
+TC45_ADMINDepartments_DeleteTranslation - ตรวจสอบภาษาการลบข้อมูล และ pop up ที่แสดงขึ้นมา ของ UI21
     [Setup]    Reset Language To English
     Go To    ${DEPARTMENTS_URL}
     Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify Popup Language    Are you sure?    If you delete this, it will be gone forever    Deleted Successfully    # ปรับให้ตรงกับที่แสดงจริง
+    Verify Popup Language    Are you sure?    You will not be able to recover this file!    Delete Successfully
     Switch Language    th
     Go To    ${DEPARTMENTS_URL}
     Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify Popup Language    คุณแน่ใจหรือไม่?    หากคุณลบข้อมูลนี้ จะไม่สามารถกู้คืนได้    ลบสำเร็จ
+    Verify Popup Language    คุณแน่ใจหรือไม่?    หากคุณลบข้อมูลนี้ จะไม่สามารถกู้คืนได้    ลบข้อมูลสำเร็จ
     Switch Language    zh
     Go To    ${DEPARTMENTS_URL}
     Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
