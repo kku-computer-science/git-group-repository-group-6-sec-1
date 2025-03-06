@@ -24,7 +24,7 @@ return [
 
     'program_name_en' => [
         'Computer Science' => 'Computer Science',
-        'Infomation Technology' => 'Information Technology',
+        'Information Technology' => 'Information Technology',
         'Geo-Informatics' => 'Geo-Informatics',
     ],
 ];
