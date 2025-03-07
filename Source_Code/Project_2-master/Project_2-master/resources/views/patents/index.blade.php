@@ -21,8 +21,8 @@
                 <thead>
                     <tr>
                         <th>{{ __('patents.no') }}</th>
-                        <th>{{ __('patents.paper_name') }}</th>
-                        <th>{{ __('patents.paper_type') }}</th>
+                        <th>{{ __('patents.name') }}</th>
+                        <th>{{ __('patents.type') }}</th>
                         <th>{{ __('patents.registration_date') }}</th>
                         <th>{{ __('patents.ref_number') }}</th>
                         <th>{{ __('patents.creator') }}</th>
