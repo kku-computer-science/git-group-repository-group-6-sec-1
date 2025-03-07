@@ -19,8 +19,8 @@ return [
     'detail_title'    => 'รายละเอียดหนังสือ',
     'card_description'=> 'ข้อมูลรายละเอียดหนังสือ',
     'edit_title'      => 'แก้ไขรายละเอียดหนังสือ',
-    'submit_button'   => 'Submit',
-    'cancel_button'   => 'Cancel',
+    'submit_button'   => 'บันทึก',
+    'cancel_button'   => 'ยกเลิก',
     'back_button'     => 'กลับ',
     // สำหรับข้อความ error
     'error_title'     => 'Whoops!',
