@@ -6,7 +6,7 @@
 <div class="container">
     <div class="card col-md-8" style="padding: 16px;">
         <div class="card-body">
-            <h4 class="card-title">{{ __('research_projects.detail_title') }}</h4>
+            <h4 class="card-title">{{ __('research_projects.title') }}</h4>
             <p class="card-description">{{ __('research_projects.card_description') }}</p>
             <div class="row">
                 <p class="card-text col-sm-3"><b>{{ __('research_projects.label.project_name') }}</b></p>
@@ -66,13 +66,16 @@
                         @endif
                     @endforeach
 
-                    @foreach($researchProject->outsider as $user)
-                        @if($user->pivot->role == 2)
-                            ,{{ app()->getLocale() == 'th' ? $user->fname_th : $user->fname_en }}
-                            {{ app()->getLocale() == 'th' ? $user->lname_th : $user->lname_en }}
-                            @if (!$loop->last),@endif
-                        @endif
-                    @endforeach
+                    @if($researchProject->programs)
+                        @foreach($researchProject->programs as $program)
+                            @if($program->pivot->role == 2)
+                                ,{{ app()->getLocale() == 'th' ? $program->program_name_th : $program->program_name_en }}
+                                @if (!$loop->last),@endif
+                            @endif
+                        @endforeach
+                    @else
+                        <!-- <p>ไม่มีโปรแกรมที่เกี่ยวข้อง</p> -->
+                    @endif
                 </p>
             </div>
             <div class="pull-right mt-5">

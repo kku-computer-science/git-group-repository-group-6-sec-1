@@ -50,13 +50,14 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $rg->group_name_en }}</h5>
+                    <h5 class="card-title">
+                        {{ app()->getLocale() == 'th' ? $rg->group_name_th : (app()->getLocale() == 'en' ? $rg->group_name_en : ($rg->group_name_zh ?? '-')) }}
+                    </h5>
                     @php
                         // กำหนด locale สำหรับคำอธิบาย: ใช้ภาษาปัจจุบัน (ไม่เปลี่ยน 'en' เป็น 'zh')
                         $descLocale = app()->getLocale();
                     @endphp
                     <h3 class="card-text">{{ $rg->{'group_detail_'.$descLocale} ?? $rg->group_detail_en }}</h3>
-                   
                 </div>
             </div>
         </div>

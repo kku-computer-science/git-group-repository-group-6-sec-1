@@ -9,16 +9,10 @@
     @endif
     <div class="col-md-8 grid-margin stretch-card">
         <div class="card" style="padding: 16px;">
-<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/resources/views/users/show.blade.php
-            <div class="card-body" >
-                <h4 class="card-title">ข้อมูลผู้ใช้งาน</h4>
-                <p class="card-description">ข้อมูลรายละเอียดผู้ใช้งาน</p>
-=======
             <div class="card-body">
                 <h4 class="card-title">{{ __('users.user_info') }}</h4>
                 <p class="card-description">{{ __('users.user_details') }}</p>
                 
->>>>>>> origin/Thanachai_0183:Source_code/Project_2-master/Project_2-master/resources/views/users/show.blade.php
                 <div class="row mt-2">
                     <h6 class="col-md-3"><b>{{ __('users.name_th') }}</b></h6>
                     <h6 class="col-md-9">{{$user->title_name_th}} {{ $user->fname_th }} {{ $user->lname_th }}</h6>

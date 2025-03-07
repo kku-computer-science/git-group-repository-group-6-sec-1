@@ -31,7 +31,7 @@ class Program extends Model
     {
         $map = [
             'Computer Science' => 'CS',
-            'Infomation Technology' => 'IT',
+            'Information Technology' => 'IT',
             'Geo-Informatics' => 'GIS',
         ];
 
