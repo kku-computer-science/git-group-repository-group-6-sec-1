@@ -49,6 +49,13 @@
                         <textarea name="group_desc_en" class="form-control" style="height:90px" placeholder="{{ __('research_groups.placeholder.group_desc_en') }}">{{ old('group_desc_en', $researchGroup->group_desc_en) }}</textarea>
                     </div>
                 </div>
+                {{-- Group Description (China) --}}
+                <div class="form-group row mt-2">
+                    <label class="col-sm-3"><b>{{ __('research_groups.label.group_desc_zh') }}</b></label>
+                    <div class="col-sm-8">
+                        <textarea name="group_desc_zh" class="form-control" style="height:90px" placeholder="{{ __('research_groups.placeholder.group_desc_zh') }}">{{ old('group_desc_zh', $researchGroup->group_desc_zh) }}</textarea>
+                    </div>
+                </div>
                 <!-- Group Detail (Thai) -->
                 <div class="form-group row mt-2">
                     <label class="col-sm-3"><b>{{ __('research_groups.label.group_detail_th') }}</b></label>
@@ -63,6 +70,14 @@
                         <textarea name="group_detail_en" class="form-control" style="height:90px" placeholder="{{ __('research_groups.placeholder.group_detail_en') }}">{{ old('group_detail_en', $researchGroup->group_detail_en) }}</textarea>
                     </div>
                 </div>
+                <!-- Group Detail (China) -->
+                <div class="form-group row mt-2">
+                    <label class="col-sm-3"><b>{{ __('research_groups.label.group_detail_zh') }}</b></label>
+                    <div class="col-sm-8">
+                        <textarea name="group_detail_zh" class="form-control" style="height:90px" placeholder="{{ __('research_groups.placeholder.group_detail_zh') }}">{{ old('group_detail_zh', $researchGroup->group_detail_zh) }}</textarea>
+                    </div>
+                </div>
+
                 <!-- Group Image -->
                 <div class="form-group row mt-2">
                     <label class="col-sm-3"><b>{{ __('research_groups.label.group_image') }}</b></label>
@@ -77,7 +92,8 @@
                         <select id="head0" class="custom-select" name="head">
                             <option value="">{{ __('research_groups.select_member') }}</option>
                             @foreach($users as $user)
-                                <option value="{{ $user->id }}" @if($researchGroup->user->contains('id', $user->id) && $user->pivot->role == 1) selected @endif>
+                                <option value="{{ $user->id }}"
+                                    @if($researchGroup->user->contains('id', $user->id) && optional($user->pivot)->role == 1) selected @endif>
                                     {{ app()->getLocale() == 'th' ? $user->fname_th.' '.$user->lname_th : $user->fname_en.' '.$user->lname_en }}
                                 </option>
                             @endforeach
@@ -127,7 +143,7 @@
                                     <th>{{ __('research_groups.label.outsider_lname') }}</th>
                                     <th><a href="javascript:void(0);" id="addMore2" style="font-size:18px;" title="{{ __('research_groups.label.add_more') }}"><i class="mdi mdi-plus"></i></a></th>
                                 </tr>
-                                @if($researchGroup->outsider->count() > 0)
+                                @if(optional($researchGroup->outsider)->count() > 0)
                                     @foreach($researchGroup->outsider as $outsider)
                                         <tr>
                                             <td><input type="text" name="title_name[]" class="form-control" placeholder="{{ __('research_groups.placeholder.outsider_title') }}" value="{{ $outsider->title_name }}"></td>
@@ -148,6 +164,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="pt-4">
                     <button type="submit" class="btn btn-primary mt-5">{{ __('research_groups.submit_button') }}</button>
                     <a class="btn btn-light mt-5" href="{{ route('researchGroups.index') }}">{{ __('research_groups.back_button') }}</a>
@@ -165,11 +182,11 @@ $(document).ready(function() {
     $("#head0").select2();
     var i = 0;
     var selectOptions = `
-        @foreach($users as $user)
-            <option value="{{ $user->id }}">
-                {{ app()->getLocale() == 'th' ? $user->fname_th+' '+$user->lname_th : $user->fname_en+' '+$user->lname_en }}
-            </option>
-        @endforeach
+    @foreach($users as $user)
+        <option value="{{ $user->id }}">
+            {{ app()->getLocale() == 'th' ? $user->fname_th . ' ' . $user->lname_th : $user->fname_en . ' ' . $user->lname_en }}
+        </option>
+    @endforeach
     `;
     $("#add-btn2").click(function() {
         ++i;

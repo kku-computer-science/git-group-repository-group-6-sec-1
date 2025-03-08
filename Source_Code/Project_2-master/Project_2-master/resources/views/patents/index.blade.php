@@ -34,12 +34,17 @@
                         <tr>
                             <td>{{ $i + 1 }}</td>
                             <td>{{ Str::limit($paper->ac_name,50) }}</td>
-                            <td>{{ $paper->ac_type }}</td>
+                            <td>{{ __('patents.ac_type.' . ($paper->ac_type ?? '')) }}</td>
                             <td>{{ $paper->ac_year }}</td>
                             <td>{{ Str::limit($paper->ac_refnumber,50) }}</td>
                             <td>
                                 @foreach($paper->user as $a)
-                                    {{ $a->fname_th }} {{ $a->lname_th }}@if(!$loop->last),@endif
+                                    @if(app()->getLocale() == 'th')
+                                        {{ $a->fname_th }} {{ $a->lname_th }}
+                                    @else
+                                        {{ $a->fname_en }} {{ $a->lname_en }}
+                                    @endif
+                                    @if(!$loop->last),@endif
                                 @endforeach
                             </td>
                             <td>
@@ -81,10 +86,20 @@
 <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js" defer></script>
 <script>
     $(document).ready(function() {
-        var table = $('#example1').DataTable({
+        var table1 = $('#example1').DataTable({
             responsive: true,
             language: {
-                search: "{{ __('patents.search') }}"
+                lengthMenu: "@lang('datatables.lengthMenu')",
+                search: "@lang('datatables.search')",
+                info: "@lang('datatables.info')",
+                infoEmpty: "@lang('datatables.infoEmpty')",
+                zeroRecords: "@lang('datatables.zeroRecords')",
+                paginate: {
+                    first: "@lang('datatables.first')",
+                    last: "@lang('datatables.last')",
+                    next: "@lang('datatables.next')",
+                    previous: "@lang('datatables.previous')"
+                }
             }
         });
     });

@@ -1,0 +1,169 @@
+*** Settings ***
+Library         SeleniumLibrary
+Suite Setup     Open Browserr
+
+*** Variables ***
+${BROWSER}              Chrome
+${REUSERNAME}           punhor1@kku.ac.th
+${REPASSWORD}           123456789
+${ADMINUSERNAME}        admin@gmail.com
+${ADMINPASSWORD}        12345678
+${INVALID_USERNAME}     raye@uk.com
+${INVALID_PASSWORD}     1234567888
+${Base_URL}             http://127.0.0.1:8000
+${DASHBOARD_URL}        http://127.0.0.1:8000/dashboard
+${LOGIN_URL}            http://127.0.0.1:8000/login
+${current_url}          ${EMPTY}
+${LANG_DROPDOWN}    xpath=//*[@id="navbarDropdownMenuLink"]
+${EN_BUTTON}    xpath=//div[@class='dropdown-menu show']//a[contains(text(), 'English')]
+${TH_BUTTON}    xpath=//div[@class='dropdown-menu show']//a[contains(text(), 'ไทย')]
+${CH_BUTTON}    xpath=//div[@class='dropdown-menu show']//a[contains(text(), '中文')]
+
+
+*** Test Cases ***
+TC01_Correct_Login
+    [Documentation]    ทดสอบการเข้าสู่ระบบด้วย Username และ Password ที่ถูกต้อง ทั้ง 3 ภาษา
+    
+    # ทดสอบภาษาอังกฤษ
+    Change Language To English
+    Open Browserr
+    # Verify Login Success    Login
+    # Verify Login Success    Username
+    # Verify Login Success    Password
+    # Verify Login Success    Remember Me
+    # Verify Login Success    If you forgot your password, please contact the system administrator.
+    # Verify Login Success    For first-time students, log in with your student ID.
+    Login Input Correct
+    Click Logout
+    
+    # ทดสอบในภาษาไทย
+    Change Language To Thai
+    Open Browserr
+    # Verify Login Success    เข้าสู่ระบบ
+    # Verify Login Success    ชื่อผู้ใช้
+    # Verify Login Success    รหัสผ่าน
+    # Verify Login Success    จดจำฉัน
+    # Verify Login Success    หากคุณลืมรหัสผ่าน โปรดติดต่อผู้ดูแลระบบ
+    # Verify Login Success    ใช้ KKU-Mail ของคุณในการเข้าสู่ระบบ
+    # Verify Login Success    สำหรับนักศึกษาครั้งแรก กรุณาเข้าสู่ระบบด้วยรหัสนักศึกษา
+    Login Input Correct
+    Click Logout
+    
+    # ทดสอบในภาษาจีน
+    Change Language To Chinese
+    Open Browserr
+    # Verify Login Success    登入
+    # Verify Login Success    用户名
+    # Verify Login Success    密码
+    # Verify Login Success    记住我
+    # Verify Login Success    如果您忘记了密码，请联系系统管理员。
+    # Verify Login Success    使用您的 KKU-Mail 登入
+    # Verify Login Success    對於首次入學的學生，請使用學生證登入。
+    Login Input Correct
+    Click Logout
+
+
+TC02_Correct_Login_Admin
+    [Documentation]    ทดสอบการเข้าสู่ระบบด้วย Username และ Password ของ Admin
+    Change Language To English
+    Open Browserr
+    Login Input Correct Admin
+    Click Logout
+
+    Change Language To Thai
+    Open Browserr
+    Login Input Correct Admin
+    Click Logout
+
+    Change Language To Chinese
+    Open Browserr
+    Login Input Correct Admin
+
+    Click Logout
+
+TC03_Incorrect_Login   
+    [Documentation]    ทดสอบการเข้าสู่ระบบด้วย Username และ Password ที่ไม่ถูกต้อง
+    Change Language To English
+    Open Browserr
+    Login Input Incorrect
+    Click Logout
+
+    Change Language To Thai
+    Open Browserr
+    Login Input Incorrect
+    Click Logout
+
+    Change Language To Chinese
+    Open Browserr
+    Login Input Incorrect
+
+    Click Logout
+
+
+*** Keywords ***
+Open Browserr
+    Open Browser    ${Base_URL}    ${BROWSER}
+    Maximize Browser Window
+    Click Element   xpath=//a[contains(@class, 'btn-solid-sm')]
+    ${handles}=    Get Window Handles
+    Switch Window    ${handles}[1]    # สลับไปยังแท็บใหม่
+    Wait Until Location Contains    /login    3s
+    ${current_url}=    Get Location
+    Should Be Equal As Strings    ${current_url}    ${LOGIN_URL}
+
+Login Input Correct
+    Input Text    id=username    ${REUSERNAME}
+    Input Text    id=password    ${REPASSWORD}
+    Click Element   xpath=//button[@type='submit']
+    Wait Until Location Contains    ${DASHBOARD_URL}    5s
+
+Login Input Correct Admin
+    Input Text    id=username    ${ADMINUSERNAME}
+    Input Text    id=password    ${ADMINPASSWORD}
+    Click Element   xpath=//button[@type='submit']
+    Wait Until Location Contains    ${DASHBOARD_URL}    5s
+
+Login Input Incorrect
+    Input Text    id=username    ${INVALID_USERNAME}
+    Input Text    id=password    ${INVALID_PASSWORD}
+    Click Element   xpath=//button[@type='submit']
+    Wait Until Location Contains    ${LOGIN_URL}    5s
+
+Click Logout
+    ${current_url}=    Get Location
+    Log To Console    Current URL before logout: ${current_url}
+    Wait Until Page Contains Element    xpath=//a[@class='nav-link' and .//i[contains(@class, 'mdi-logout')]]    8s
+    Click Element    xpath=//a[@class='nav-link' and .//i[contains(@class, 'mdi-logout')]]
+    Wait Until Location Contains    ${LOGIN_URL}    8s
+    Log To Console    Logged out successfully
+
+Reset Language To English
+    Mouse Over    ${LANG_DROPDOWN}
+    Sleep    1s
+    Click Element    ${LANG_DROPDOWN}
+    Wait Until Element Is Visible    ${EN_BUTTON}    timeout=5s
+    Click Element    ${EN_BUTTON}
+    Sleep    3s
+
+Change Language To English
+    Go To    ${Base_URL}/lang/en
+    Sleep    2s
+    Reload Page
+    Wait Until Page Contains    Login    5s
+
+Change Language To Thai
+    Go To    ${Base_URL}/lang/th
+    Sleep    2s
+    Reload Page
+    Wait Until Page Contains    เข้าสู่ระบบ    5s
+
+Change Language To Chinese
+    Go To    ${Base_URL}/lang/zh
+    Sleep    2s
+    Reload Page
+    Wait Until Page Contains    登入    5s
+
+Verify Login Success
+    [Arguments]    ${expected_text}
+    Page Should Contain    ${expected_text}    10s
+    Log To Console    Verified text: ${expected_text}

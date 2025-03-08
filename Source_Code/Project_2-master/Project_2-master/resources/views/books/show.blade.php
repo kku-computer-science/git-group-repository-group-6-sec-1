@@ -1,6 +1,9 @@
 @extends('dashboards.users.layouts.user-dash-layout')
 
+
+
 @section('title', __('books.detail_title'))
+
 
 @section('content')
 <div class="container">

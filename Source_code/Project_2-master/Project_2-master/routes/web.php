@@ -160,6 +160,9 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
 
     Route::resource('researchAssistant', ResearchAssistantController::class);
 
+    
+
+
     Route::resource('researchAssistant', ResearchAssistantController::class);
 
 });

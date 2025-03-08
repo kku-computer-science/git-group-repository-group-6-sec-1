@@ -190,14 +190,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </li>
         @endcan
 
-        @can('groups-list')
+        <!-- @can('groups-list')
         <li class="nav-item">
             <a class="nav-link" href="{{ route('researchAssistant.index')}}">
                 <i  class="menu-icon mdi mdi-account-arrow-right "></i>
                 <span class="menu-title">{{ __('sidebar.research_assistant') }}</span>
             </a>
         </li>
-        @endcan
+        @endcan -->
 
         @can('export')
         <li class="nav-item">
