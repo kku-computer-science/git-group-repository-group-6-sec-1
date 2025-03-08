@@ -1,0 +1,37 @@
+1741426697750	geckodriver	INFO	Listening on 127.0.0.1:4031
+1741426700848	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "4032" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Asus\\AppData\\Local\\Temp\\rust_mozprofiletOBuhY"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Dynamically enable window occlusion 0
+1741426701161	Marionette	INFO	Marionette enabled
+1741426701248	Marionette	INFO	Listening on port 4043
+Read port: 4043
+WebDriver BiDi listening on ws://127.0.0.1:4032
+1741426701310	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:4032/devtools/browser/c7520ef6-0463-4e75-abed-2ed69d7ed1ef
+console.error: ({})
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
+console.error: ({})
+console.error: ({})
+JavaScript error: http://127.0.0.1:8000/programs, line 570: SyntaxError: expected property name, got '/'
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+JavaScript error: http://127.0.0.1:8000/programs, line 570: SyntaxError: expected property name, got '/'
+console.error: ({})
+1741426731168	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+console.error: ({})
+JavaScript error: http://127.0.0.1:8000/programs, line 570: SyntaxError: expected property name, got '/'
+console.error: ({})
+console.error: ({})
+JavaScript error: http://127.0.0.1:8000/programs, line 570: SyntaxError: expected property name, got '/'
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+1741426780008	Marionette	INFO	Stopped listening on port 4043
+console.error: ({})
+Dynamically enable window occlusion 1

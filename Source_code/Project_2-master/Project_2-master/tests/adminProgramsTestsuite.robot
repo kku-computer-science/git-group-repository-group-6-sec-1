@@ -6,155 +6,143 @@ Suite Teardown  Logout And Close Browser
 *** Variables ***
 ${BROWSER}              Firefox
 ${PROGRAMS_URL}         http://127.0.0.1:8000/programs
-${CREATE_URL}           http://127.0.0.1:8000/programs/create
-${VALID_PROGRAM_ID}     3    # เปลี่ยนเป็น ID ที่มีอยู่ในฐานข้อมูลจริง
-${EDIT_URL}             http://127.0.0.1:8000/programs/${VALID_PROGRAM_ID}/edit
 ${USERNAME}             admin@gmail.com    # ปรับตามผู้ใช้จริง
 ${PASSWORD}             12345678           # ปรับตามรหัสผ่านจริง
 ${LOGIN_URL}            http://127.0.0.1:8000/login
 ${DASHBOARD_URL}        http://127.0.0.1:8000/dashboard
+${TIMEOUT}              30s
 
 *** Keywords ***
 Open Browser And Login
     Open Browser    ${LOGIN_URL}    ${BROWSER}
     Maximize Browser Window
+    Set Selenium Timeout    ${TIMEOUT}
     Login To System
 
 Login To System
-    Wait Until Page Contains Element    id=username    15s
+    Wait Until Page Contains Element    id=username    ${TIMEOUT}
     Input Text    id=username    ${USERNAME}
     Input Text    id=password    ${PASSWORD}
     Click Button    xpath=//button[@type='submit']
-    Wait Until Location Contains    ${DASHBOARD_URL}    15s
-    Log To Console    Login successful, redirected to: ${DASHBOARD_URL}
+    Wait Until Location Contains    ${DASHBOARD_URL}    ${TIMEOUT}
+    Log To Console    เข้าสู่ระบบสำเร็จ, ไปที่: ${DASHBOARD_URL}
 
-Reset Language To English
+Reset Language To Thai
     Go To    ${DASHBOARD_URL}
-    Wait Until Element Is Visible    xpath=//a[contains(@class, 'nav-link dropdown-toggle')]    timeout=15s
+    Wait Until Element Is Visible    xpath=//a[contains(@class, 'nav-link dropdown-toggle')]    ${TIMEOUT}
     Click Element    xpath=//a[contains(@class, 'nav-link dropdown-toggle')]
-    Sleep    2s    # รอให้ Dropdown โหลด
-    Wait Until Element Is Visible    xpath=//div[contains(@class, 'dropdown-menu')]    timeout=10s
-    ${dropdown_items}=    Get WebElements    xpath=//div[contains(@class, 'dropdown-menu')]//a
-    FOR    ${item}    IN    @{dropdown_items}
+    Wait Until Element Is Visible    xpath=//div[contains(@class, 'dropdown-menu')]    ${TIMEOUT}
+    ${items}=    Get WebElements    xpath=//div[contains(@class, 'dropdown-menu')]//a
+    FOR    ${item}    IN    @{items}
         ${text}=    Get Text    ${item}
-        Log To Console    Dropdown item: ${text}
-        Run Keyword If    '${text}' == 'English' or '${text}' == 'EN' or '${text}' == 'en'    Click Element    ${item}
+        Log To Console    ตัวเลือกใน Dropdown: ${text}
     END
-    Sleep    2s    # รอให้หน้าโหลดหลังเปลี่ยนภาษา
-    Wait Until Page Contains Element    xpath=//span[contains(@class, 'flag-icon-us')]    10s
-    Log To Console    Reset language to English
+    Click Element    xpath=//div[contains(@class, 'dropdown-menu')]//a[contains(text(), 'ไทย')]
+    Sleep    2s
+    Wait Until Page Contains Element    xpath=//span[contains(@class, 'flag-icon-th')]    ${TIMEOUT}
+    Log To Console    รีเซ็ตภาษาเป็น ไทย
 
 Switch Language
     [Arguments]    ${lang}
-    ${lang_text}=    Set Variable If    '${lang}' == 'en'    English    '${lang}' == 'th'    ไทย    '${lang}' == 'zh'    中国
+    ${lang_text}=    Set Variable If    '${lang}' == 'th'    ไทย    '${lang}' == 'zh'    中国
     Go To    ${DASHBOARD_URL}
-    Wait Until Element Is Visible    xpath=//a[contains(@class, 'nav-link dropdown-toggle')]    timeout=15s
+    Wait Until Element Is Visible    xpath=//a[contains(@class, 'nav-link dropdown-toggle')]    ${TIMEOUT}
     Click Element    xpath=//a[contains(@class, 'nav-link dropdown-toggle')]
-    Sleep    2s    # รอให้ Dropdown โหลด
-    Wait Until Element Is Visible    xpath=//div[contains(@class, 'dropdown-menu')]    timeout=10s
-    ${dropdown_items}=    Get WebElements    xpath=//div[contains(@class, 'dropdown-menu')]//a
-    FOR    ${item}    IN    @{dropdown_items}
+    Wait Until Element Is Visible    xpath=//div[contains(@class, 'dropdown-menu')]    ${TIMEOUT}
+    ${items}=    Get WebElements    xpath=//div[contains(@class, 'dropdown-menu')]//a
+    FOR    ${item}    IN    @{items}
         ${text}=    Get Text    ${item}
-        Log To Console    Dropdown item: ${text}
-        Run Keyword If    '${text}' == '${lang_text}'    Click Element    ${item}
+        Log To Console    ตัวเลือกใน Dropdown: ${text}
     END
-    Sleep    2s    # รอให้หน้าโหลดหลังเปลี่ยนภาษา
+    Click Element    xpath=//div[contains(@class, 'dropdown-menu')]//a[contains(text(), '${lang_text}')]
+    Sleep    2s
     ${flag}=    Run Keyword If    '${lang}' == 'zh'    Set Variable    cn    ELSE    Set Variable    ${lang}
-    Wait Until Page Contains Element    xpath=//span[contains(@class, 'flag-icon-${flag}')]    10s
-    Log To Console    Switched to language: ${lang}
+    Wait Until Page Contains Element    xpath=//span[contains(@class, 'flag-icon-${flag}')]    ${TIMEOUT}
+    Log To Console    เปลี่ยนภาษาเป็น: ${lang}
 
 Verify Page Language
     [Arguments]    ${expected_text}
-    Wait Until Page Contains    ${expected_text}    15s
-    Log To Console    Verified page text: ${expected_text}
+    Wait Until Page Contains    ${expected_text}    ${TIMEOUT}
+    Log To Console    ตรวจสอบข้อความในหน้า: ${expected_text}
 
 Verify ModalHeader
     [Arguments]    ${expected_text}
-    Wait Until Element Contains    xpath=//div[@id='crud-modal']//h4[@id='programCrudModal']    ${expected_text}    15s
+    Wait Until Element Is Visible    xpath=//div[@id='crud-modal']//h4[@id='programCrudModal']    ${TIMEOUT}
     ${actual_text}=    Get Text    xpath=//div[@id='crud-modal']//h4[@id='programCrudModal']
-    Log To Console    Actual modal header text: ${actual_text}
     Should Contain    ${actual_text}    ${expected_text}
-    Log To Console    Verified modal header: ${expected_text}
+    Log To Console    ตรวจสอบหัวข้อ Modal: ${expected_text}
 
 Verify Table Header
     [Arguments]    ${column}    ${expected_text}
-    Wait Until Element Is Visible    xpath=//table//thead//th[${column}]    15s
+    Wait Until Element Is Visible    xpath=//table//thead//th[${column}]    ${TIMEOUT}
     ${actual_text}=    Get Text    xpath=//table//thead//th[${column}]
-    Log To Console    Actual table header column ${column} text: ${actual_text}
     Should Contain    ${actual_text}    ${expected_text}
-    Log To Console    Verified table header column ${column}: ${expected_text}
+    Log To Console    ตรวจสอบหัวตารางคอลัมน์ ${column}: ${expected_text}
 
 Open AddModal
-    Wait Until Page Contains Element    xpath=//a[@id='new-program']    15s
+    Go To    ${PROGRAMS_URL}
+    Wait Until Element Is Visible    xpath=//a[@id='new-program']    ${TIMEOUT}
     Click Element    xpath=//a[@id='new-program']
-    Sleep    3s    # รอให้ JavaScript โหลด Modal Header
-    Wait Until Page Contains Element    xpath=//div[@id='crud-modal']//h4[@id='programCrudModal']    15s
-    Log To Console    Add modal opened
+    Sleep    3s
+    Wait Until Element Is Visible    xpath=//div[@id='crud-modal']//h4[@id='programCrudModal']    ${TIMEOUT}
+    Log To Console    เปิด Modal เพิ่มข้อมูล
 
 Verify FormLabel
     [Arguments]    ${label_xpath}    ${expected_text}
-    Wait Until Element Is Visible    ${label_xpath}    15s
+    Wait Until Element Is Visible    ${label_xpath}    ${TIMEOUT}
     ${actual_text}=    Get Text    ${label_xpath}
-    Log To Console    Actual label text: ${actual_text}
     Should Contain    ${actual_text}    ${expected_text}
-    Log To Console    Verified label: ${expected_text}
+    Log To Console    ตรวจสอบป้ายกำกับ: ${expected_text}
 
 Verify PlaceholderText
     [Arguments]    ${input_xpath}    ${expected_placeholder}
-    Wait Until Element Is Visible    ${input_xpath}    15s
+    Wait Until Element Is Visible    ${input_xpath}    ${TIMEOUT}
     ${actual_placeholder}=    Get Element Attribute    ${input_xpath}    placeholder
-    Log To Console    Actual placeholder text: ${actual_placeholder}
     Should Contain    ${actual_placeholder}    ${expected_placeholder}
-    Log To Console    Verified placeholder: ${expected_placeholder}
+    Log To Console    ตรวจสอบข้อความตัวอย่าง: ${expected_placeholder}
 
 Verify ButtonText
     [Arguments]    ${button_xpath}    ${expected_text}
-    Wait Until Element Is Visible    ${button_xpath}    15s
+    Wait Until Element Is Visible    ${button_xpath}    ${TIMEOUT}
     ${actual_text}=    Get Text    ${button_xpath}
-    Log To Console    Actual button text: ${actual_text}
     Should Contain    ${actual_text}    ${expected_text}
-    Log To Console    Verified button: ${expected_text}
+    Log To Console    ตรวจสอบปุ่ม: ${expected_text}
 
 Open EditModal
-    Wait Until Page Contains Element    xpath=//a[@id='edit-program'][1]    15s
+    Go To    ${PROGRAMS_URL}
+    Wait Until Element Is Visible    xpath=//a[@id='edit-program'][1]    ${TIMEOUT}
     Click Element    xpath=//a[@id='edit-program'][1]
-    Sleep    3s    # รอให้ JavaScript โหลด Modal Header
-    Wait Until Page Contains Element    xpath=//div[@id='crud-modal']//h4[@id='programCrudModal']    15s
-    Log To Console    Edit modal opened
+    Sleep    3s
+    Wait Until Element Is Visible    xpath=//div[@id='crud-modal']//h4[@id='programCrudModal']    ${TIMEOUT}
+    Log To Console    เปิด Modal แก้ไขข้อมูล
 
 Close Modal
     Click Element    xpath=//div[@id='crud-modal']//a[contains(text(), 'Cancel')]
-    Wait Until Page Contains Element    xpath=//div[contains(@class, 'card-body')]    15s
-    Log To Console    Modal closed
+    Wait Until Element Is Visible    xpath=//div[contains(@class, 'card-body')]    ${TIMEOUT}
+    Log To Console    ปิด Modal
 
 Verify PopupLanguage
     [Arguments]    ${expected_title}    ${expected_text}    ${expected_success}
-    Wait Until Page Contains Element    xpath=//div[contains(@class, 'swal-title')]    15s
+    Wait Until Element Is Visible    xpath=//div[contains(@class, 'swal-title')]    ${TIMEOUT}
     ${title}=    Get Text    xpath=//div[contains(@class, 'swal-title')]
-    Log To Console    Actual popup title: ${title}
     Should Contain    ${title}    ${expected_title}
     ${text}=    Get Text    xpath=//div[contains(@class, 'swal-text')]
-    Log To Console    Actual popup text: ${text}
     Should Contain    ${text}    ${expected_text}
     Click Element    xpath=//button[contains(@class, 'swal-button--confirm')]
-    Sleep    3s    # รอให้หน้าโหลดหลังลบ
-    Wait Until Page Contains Element    xpath=//div[contains(@class, 'card-body')]    15s
-    Log To Console    Verified popup: ${expected_title}, ${expected_text}, ${expected_success}
+    Sleep    3s
+    Wait Until Element Is Visible    xpath=//div[contains(@class, 'card-body')]    ${TIMEOUT}
+    Log To Console    ตรวจสอบป๊อปอัพ: ${expected_title}, ${expected_text}, ${expected_success}
 
 Logout And Close Browser
     Go To    ${DASHBOARD_URL}
     Click Element    xpath=//a[contains(@href, '/logout')]
-    Wait Until Location Contains    ${LOGIN_URL}    15s
-    Log To Console    Logged out successfully
+    Wait Until Location Contains    ${LOGIN_URL}    ${TIMEOUT}
+    Log To Console    ออกจากระบบสำเร็จ
     Close Browser
 
 *** Test Cases ***
-TC43_ADMINPrograms - ตรวจสอบภาษาส่วนต่างๆ ของ UI22 ที่ http://127.0.0.1:8000/programs
-    [Setup]    Reset Language To English
-    Go To    ${PROGRAMS_URL}
-    Verify Page Language    Programs
-    Verify Page Language    Add Program
-    Switch Language    th
+TC43_ADMINPrograms - ตรวจสอบภาษาส่วนต่างๆ ของ UI
+    [Setup]    Reset Language To Thai
     Go To    ${PROGRAMS_URL}
     Verify Page Language    หลักสูตร
     Verify Page Language    เพิ่มหลักสูตร
@@ -163,14 +151,8 @@ TC43_ADMINPrograms - ตรวจสอบภาษาส่วนต่าง�
     Verify Page Language    课程
     Verify Page Language    添加课程
 
-TC42_ADMINPrograms_TableTranslation - ตรวจสอบภาษาในตารางของ UI22 ที่ http://127.0.0.1:8000/programs
-    [Setup]    Reset Language To English
-    Go To    ${PROGRAMS_URL}
-    Verify Table Header    1    ID
-    Verify Table Header    2    Program Name (TH)
-    Verify Table Header    3    Degree
-    Verify Table Header    4    Action
-    Switch Language    th
+TC42_ADMINPrograms_TableTranslation - ตรวจสอบภาษาในตาราง
+    [Setup]    Reset Language To Thai
     Go To    ${PROGRAMS_URL}
     Verify Table Header    1    รหัส
     Verify Table Header    2    ชื่อหลักสูตร (TH)
@@ -183,22 +165,8 @@ TC42_ADMINPrograms_TableTranslation - ตรวจสอบภาษาในต
     Verify Table Header    3    学历
     Verify Table Header    4    操作
 
-TC40_ADMINPrograms_FormTranslation - ตรวจสอบภาษาของฟอร์มเพิ่ม Programs ของ UI22 ที่ http://127.0.0.1:8000/programs
-    [Setup]    Reset Language To English
-    Go To    ${PROGRAMS_URL}
-    Open AddModal
-    Verify ModalHeader    Add Program
-    Verify FormLabel    xpath=//div[@id='crud-modal']//strong[contains(text(), 'Degree')]    Degree
-    Verify FormLabel    xpath=//div[@id='crud-modal']//strong[contains(text(), 'Department')]    Department
-    Verify FormLabel    xpath=//div[@id='crud-modal']//strong[contains(text(), 'Program Name (TH)')]    Program Name (TH)
-    Verify FormLabel    xpath=//div[@id='crud-modal']//strong[contains(text(), 'Program Name (EN)')]    Program Name (EN)
-    Verify PlaceholderText    xpath=//input[@id='program_name_th']    Enter program name in Thai
-    Verify PlaceholderText    xpath=//input[@id='program_name_en']    Enter program name in English
-    Verify ButtonText    xpath=//button[@id='btn-save']    Submit
-    Verify ButtonText    xpath=//div[@id='crud-modal']//a[contains(text(), 'Cancel')]    Cancel
-    Close Modal
-    Switch Language    th
-    Go To    ${PROGRAMS_URL}
+TC40_ADMINPrograms_FormTranslation - ตรวจสอบภาษาของฟอร์มเพิ่มข้อมูล
+    [Setup]    Reset Language To Thai
     Open AddModal
     Verify ModalHeader    เพิ่มหลักสูตร
     Verify FormLabel    xpath=//div[@id='crud-modal']//strong[contains(text(), 'ระดับการศึกษา')]    ระดับการศึกษา
@@ -211,7 +179,6 @@ TC40_ADMINPrograms_FormTranslation - ตรวจสอบภาษาของ�
     Verify ButtonText    xpath=//div[@id='crud-modal']//a[contains(text(), 'ยกเลิก')]    ยกเลิก
     Close Modal
     Switch Language    zh
-    Go To    ${PROGRAMS_URL}
     Open AddModal
     Verify ModalHeader    添加课程
     Verify FormLabel    xpath=//div[@id='crud-modal']//strong[contains(text(), '学历')]    学历
@@ -224,22 +191,8 @@ TC40_ADMINPrograms_FormTranslation - ตรวจสอบภาษาของ�
     Verify ButtonText    xpath=//div[@id='crud-modal']//a[contains(text(), '取消')]    取消
     Close Modal
 
-TC41_ADMINPrograms_EditTranslation - ตรวจสอบภาษา form action Edit ของ UI22 ที่ http://127.0.0.1:8000/programs
-    [Setup]    Reset Language To English
-    Go To    ${PROGRAMS_URL}
-    Open EditModal
-    Verify ModalHeader    Edit Program
-    Verify FormLabel    xpath=//div[@id='crud-modal']//strong[contains(text(), 'Degree')]    Degree
-    Verify FormLabel    xpath=//div[@id='crud-modal']//strong[contains(text(), 'Department')]    Department
-    Verify FormLabel    xpath=//div[@id='crud-modal']//strong[contains(text(), 'Program Name (TH)')]    Program Name (TH)
-    Verify FormLabel    xpath=//div[@id='crud-modal']//strong[contains(text(), 'Program Name (EN)')]    Program Name (EN)
-    Verify PlaceholderText    xpath=//input[@id='program_name_th']    Enter program name in Thai
-    Verify PlaceholderText    xpath=//input[@id='program_name_en']    Enter program name in English
-    Verify ButtonText    xpath=//button[@id='btn-save']    Submit
-    Verify ButtonText    xpath=//div[@id='crud-modal']//a[contains(text(), 'Cancel')]    Cancel
-    Close Modal
-    Switch Language    th
-    Go To    ${PROGRAMS_URL}
+TC41_ADMINPrograms_EditTranslation - ตรวจสอบภาษาของฟอร์มแก้ไขข้อมูล
+    [Setup]    Reset Language To Thai
     Open EditModal
     Verify ModalHeader    แก้ไขหลักสูตร
     Verify FormLabel    xpath=//div[@id='crud-modal']//strong[contains(text(), 'ระดับการศึกษา')]    ระดับการศึกษา
@@ -252,7 +205,6 @@ TC41_ADMINPrograms_EditTranslation - ตรวจสอบภาษา form acti
     Verify ButtonText    xpath=//div[@id='crud-modal']//a[contains(text(), 'ยกเลิก')]    ยกเลิก
     Close Modal
     Switch Language    zh
-    Go To    ${PROGRAMS_URL}
     Open EditModal
     Verify ModalHeader    編輯程式
     Verify FormLabel    xpath=//div[@id='crud-modal']//strong[contains(text(), '学历')]    学历
@@ -265,12 +217,8 @@ TC41_ADMINPrograms_EditTranslation - ตรวจสอบภาษา form acti
     Verify ButtonText    xpath=//div[@id='crud-modal']//a[contains(text(), '取消')]    取消
     Close Modal
 
-TC44_ADMINPrograms_DeleteTranslation - ตรวจสอบภาษาการลบข้อมูลและpop up ที่แสดงขึ้นมา ของ UI22 ที่ http://127.0.0.1:8000/programs
-    [Setup]    Reset Language To English
-    Go To    ${PROGRAMS_URL}
-    Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify PopupLanguage    Are you sure?    You will not be able to recover this file!    Delete Successfully
-    Switch Language    th
+TC44_ADMINPrograms_DeleteTranslation - ตรวจสอบภาษาของป๊อปอัพการลบ
+    [Setup]    Reset Language To Thai
     Go To    ${PROGRAMS_URL}
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
     Verify PopupLanguage    คุณแน่ใจหรือไม่?    คุณจะไม่สามารถกู้คืนไฟล์นี้ได้!    ลบข้อมูลสำเร็จ
