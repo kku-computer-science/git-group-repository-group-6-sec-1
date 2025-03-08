@@ -39,19 +39,22 @@
                             <td>{{ $book->ac_page }}</td>
                             <td>
                                 <form action="{{ route('books.destroy', $book->id) }}" method="POST">
+                                    <!-- ปุ่ม View -->
                                     <li class="list-inline-item">
                                         <a class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('books.view') }}" href="{{ route('books.show', $book->id) }}">
                                             <i class="mdi mdi-eye"></i>
                                         </a>
                                     </li>
-                                    @if(Auth::user()->can('update', $book))
+                                    <!-- ปุ่ม Edit -->
+                                    @if(Auth::user()->hasRole('admin') || Auth::user()->can('update', $book))
                                         <li class="list-inline-item">
                                             <a class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('books.edit') }}" href="{{ route('books.edit', $book->id) }}">
                                                 <i class="mdi mdi-pencil"></i>
                                             </a>
                                         </li>
                                     @endif
-                                    @if(Auth::user()->can('delete', $book))
+                                    <!-- ปุ่ม Delete -->
+                                    @if(Auth::user()->hasRole('admin') || Auth::user()->can('delete', $book))
                                         @csrf
                                         @method('DELETE')
                                         <li class="list-inline-item">

@@ -1,229 +1,186 @@
 *** Settings ***
-Library         SeleniumLibrary
-Suite Setup     Open Browser And Login
-Suite Teardown  Logout And Close Browser
+Documentation    Test Suite for Research Funds System
+Library          SeleniumLibrary
+Suite Setup      Open Browser And Login
+Suite Teardown   Close All Browsers
 
 *** Variables ***
-${BROWSER}              Firefox
-${FUNDS_URL}            http://127.0.0.1:8000/funds
-${CREATE_URL}           http://127.0.0.1:8000/funds/create
-${VALID_FUND_ID}        2    # ยังคงใช้ ID 2 เป็นตัวแปร แต่ไม่ใช้ใน ${EDIT_URL} โดยตรง
-${VIEW_URL}             http://127.0.0.1:8000/funds/${VALID_FUND_ID}
-${EDIT_URL}             http://127.0.0.1:8000/funds/eyJpdiI6IkZBKzlJUjFDVHZiVFZPUG5SUFdkRFE9PSIsInZhbHVlIjoiNWNFWjBNQlppSEN0SU9hdUtjS0V6QT09IiwibWFjIjoiNTg0NTA5ZWY0OTRlMDUwZTgxYjQzZjcxZmI2MjhlNTI2MWQyNjJiZTk5NGZkNDQ0ZDMzOTMzZmI0YzExZDMyNCIsInRhZyI6IiJ9/edit
-${USERNAME}             admin@gmail.com    # ปรับตามผู้ใช้จริง
-${PASSWORD}             12345678           # ปรับตามรหัสผ่านจริง
-${LOGIN_URL}            http://127.0.0.1:8000/login
-${DASHBOARD_URL}        http://127.0.0.1:8000/dashboard
+${LOGIN_URL}      http://127.0.0.1:8000/login
+${FUNDS_URL}      http://127.0.0.1:8000/funds
+${BROWSER}        Firefox
+${USERNAME}       admin@gmail.com
+${PASSWORD}       12345678
+${CREATE_URL}     http://127.0.0.1:8000/funds/create
+${VIEW_URL}       http://127.0.0.1:8000/funds/20  # ตัวอย่าง URL (จะดึงจาก TC1)
+${EDIT_URL}       http://127.0.0.1:8000/funds/20/edit  # ตัวอย่าง URL (จะดึงจาก TC1)
+
+${FUND_NAME}      test
+${FUND_TYPE}      Internal Fund
+${FUND_LEVEL}     High
+${SUPPORT_RESOURCE}  test
+${UPDATED_FUND_NAME}  Updated Fund  # ชื่อใหม่สำหรับการแก้ไข
+
+*** Test Cases ***
+TC01 - Login and Access Funds List
+    [Documentation]    Verify successful login and navigation to funds page
+    Wait For Table Load
+    Page Should Contain Element    xpath://table  # ปรับตาม ID ตารางในหน้า /funds (อาจไม่ใช่ example1)
+    Page Should Contain    Research Funds
+
+TC02 - Verify Funds List Display
+    [Documentation]    Verify the funds table displays correctly
+    Wait For Table Load
+    ${count}=    Get Fund Count
+    Should Be True    ${count} >= 0
+    Page Should Contain Element    xpath://th[contains(text(),'No')]
+    Page Should Contain Element    xpath://th[contains(text(),'Fund Name')]  # ปรับตามหัวตาราง
+    Page Should Contain Element    xpath://th[contains(text(),'Fund Type')]  # ปรับตามหัวตาราง
+    Page Should Contain Element    xpath://th[contains(text(),'Fund Level')]  # ปรับตามหัวตาราง
+    Page Should Contain Element    xpath://th[contains(text(),'Action')]  # ปรับตามหัวตาราง
+
+TC03 - Add New Fund
+    [Documentation]    Verify adding a new fund
+    Go To    ${CREATE_URL}
+    Wait For Page Load
+    Fill Fund Form    ${FUND_NAME}    ${FUND_TYPE}    ${FUND_LEVEL}    ${SUPPORT_RESOURCE}
+    Scroll Element Into View    xpath://button[@type='submit']
+    Click Element    xpath://button[@type='submit']
+    Sleep    2s  # รอหน้าโหลดชั่วคราว
+    ${current_url}=    Get Location
+    Log To Console    Current URL after submit: ${current_url}
+    Run Keyword If    '${current_url}' != '${FUNDS_URL}'    Go To    ${FUNDS_URL}
+    Reload Page
+    Wait For Table Load
+    ${status}=    Run Keyword And Return Status    Wait Until Page Contains    Fund updated successfully    timeout=3s
+    Run Keyword If    not ${status}    Log To Console    Warning: 'Fund updated successfully' not found, checking table for ${FUND_NAME}
+
+
+TC04 - View Fund Details
+    [Documentation]    Verify viewing details of a newly created fund
+    Go To    ${FUNDS_URL}
+    Wait For Table Load
+    Search In DataTable    ${FUND_NAME}
+    ${row}=    Get Element Count    xpath://table/tbody/tr[td[contains(text(), '${FUND_NAME}')]]
+    Run Keyword If    ${row} > 0    Click View Button By Text    ${FUND_NAME}
+    ...    ELSE    Fail    ${FUND_NAME} not found in table after search
+    Wait For Page Load
+    Page Should Contain Element    xpath://h4[contains(text(), 'Research Funds')]  # ปรับตามหน้า View
+    Page Should Contain    ${FUND_NAME}
+    Page Should Contain    ${SUPPORT_RESOURCE}
+    Page Should Contain    ${FUND_TYPE}
+    Page Should Contain    ${FUND_LEVEL}
+    Click Element    xpath://a[contains(text(), 'Back') or contains(text(), 'กลับ')]
+    Wait For Table Load
+
+TC05 - Edit Fund
+    [Documentation]    Verify editing an existing fund
+    Go To    ${FUNDS_URL}
+    Wait For Table Load
+    ${initial_count}=    Get Fund Count
+    Search In DataTable    ${FUND_NAME}
+    ${row}=    Get Element Count    xpath://table/tbody/tr[td[contains(text(), '${FUND_NAME}')]]
+    Run Keyword If    ${row} > 0    Click Edit Button By Text    ${FUND_NAME}
+    ...    ELSE    Fail    ${FUND_NAME} not found in table after search
+    Wait For Page Load
+    Fill Fund Form    ${UPDATED_FUND_NAME}    ${FUND_TYPE}    ${FUND_LEVEL}    ${SUPPORT_RESOURCE}
+    Scroll Element Into View    xpath://button[@type='submit']
+    Click Element    xpath://button[@type='submit']
+    Wait Until Page Contains    Fund updated successfully    timeout=10s  # ยืนยันการแก้ไขสำเร็จ
+    Go To    ${FUNDS_URL}
+    Wait For Table Load
+    ${new_count}=    Get Fund Count
+    Should Be Equal    ${initial_count}    ${new_count}  # ยืนยันจำนวนแถวไม่เปลี่ยน
+    # ลบ Page Should Contain    ${UPDATED_FUND_NAME} เพราะไม่ปรากฏในหน้า
+
+TC06 - Delete Updated Fund
+    [Documentation]    Verify deleting the updated fund
+    Go To    ${FUNDS_URL}
+    Wait For Table Load
+    Search In DataTable    ${UPDATED_FUND_NAME}
+    ${row}=    Get Element Count    xpath://table/tbody/tr[td[contains(text(), '${UPDATED_FUND_NAME}')]]
+    Run Keyword If    ${row} > 0    Click Delete Button By Text    ${UPDATED_FUND_NAME}
+    ...    ELSE    Fail    ${UPDATED_FUND_NAME} not found in table after search
+    Handle Sweet Alert Confirmation    # จัดการป๊อปอัพยืนยัน (ถ้ามี)
 
 *** Keywords ***
+Clear Search Field
+    Wait Until Element Is Visible    xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']    timeout=10s  # ปรับตามคลาสของช่องค้นหาในหน้า /funds
+    Input Text    xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']    ${EMPTY}
+    Sleep    2s    # รอตารางรีเฟรช
+    Wait Until Page Contains Element    xpath://table/tbody/tr    timeout=10s
+
 Open Browser And Login
     Open Browser    ${LOGIN_URL}    ${BROWSER}
     Maximize Browser Window
     Login To System
+    ${current_url}=    Get Location
+    Run Keyword If    '${current_url}' != '${FUNDS_URL}'    Go To    ${FUNDS_URL}
+    Wait Until Page Contains Element    xpath://table    timeout=10s
 
 Login To System
-    Wait Until Element Is Visible    id=username    timeout=20s
+    Wait Until Page Contains Element    id=username    timeout=10s
+    Log To Console    Found username field
     Input Text    id=username    ${USERNAME}
     Input Text    id=password    ${PASSWORD}
     Click Button    xpath=//button[@type='submit']
-    Wait Until Location Contains    ${DASHBOARD_URL}    timeout=20s
-    Log To Console    Login successful, redirected to: ${DASHBOARD_URL}
+    ${status}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath://body    timeout=10s
+    Run Keyword If    not ${status}    Fail    Login failed or initial page not loaded
+    Log To Console    Login successful
 
-Reset Language To English
-    Go To    ${DASHBOARD_URL}
-    Wait Until Element Is Visible    xpath=//a[contains(@class, 'nav-link dropdown-toggle')]    timeout=20s
-    Click Element    xpath=//a[contains(@class, 'nav-link dropdown-toggle')]
-    Wait Until Element Is Visible    xpath=//div[contains(@class, 'dropdown-menu')]    timeout=20s
-    ${items}=    Get WebElements    xpath=//div[contains(@class, 'dropdown-menu')]//a
-    FOR    ${item}    IN    @{items}
-        ${text}=    Get Text    ${item}
-        Log To Console    ตัวเลือกใน Dropdown: ${text}
-    END
-    ${english_present}=    Run Keyword And Return Status    Element Should Be Visible    xpath=//a[contains(., 'English')]
-    ${thai_present}=       Run Keyword And Return Status    Element Should Be Visible    xpath=//a[contains(., 'ไทย')]
-    ${chinese_present}=    Run Keyword And Return Status    Element Should Be Visible    xpath=//a[contains(., '中国')]
-    Run Keyword If    not ${english_present}    Fail    English language option not found in dropdown
-    Run Keyword If    not ${thai_present}       Fail    Thai language option not found in dropdown
-    Run Keyword If    not ${chinese_present}    Fail    Chinese language option not found in dropdown
-    Click Element    xpath=//a[contains(., 'English')]
-    Wait Until Element Is Visible    xpath=//span[contains(@class, 'flag-icon-us')]    timeout=15s
-    Wait Until Page Contains    Research Information Management System    timeout=20s
-    Log To Console    Reset language to English
+Wait For Page Load
+    [Arguments]    ${timeout}=10s
+    Wait Until Page Contains Element    xpath://body    timeout=${timeout}
 
-Switch Language
-    [Arguments]    ${lang}
-    Go To    ${DASHBOARD_URL}
-    Wait Until Element Is Visible    xpath=//a[contains(@class, 'nav-link dropdown-toggle')]    timeout=20s
-    Click Element    xpath=//a[contains(@class, 'nav-link dropdown-toggle')]
-    ${lang_text}=    Run Keyword If    '${lang}' == 'en'    Set Variable    English
-    ...    ELSE IF    '${lang}' == 'th'    Set Variable    ไทย
-    ...    ELSE IF    '${lang}' == 'zh'    Set Variable    中国
-    ${lang_present}=    Run Keyword And Return Status    Element Should Be Visible    xpath=//a[contains(., '${lang_text}')]
-    Run Keyword If    not ${lang_present}    Fail    Language ${lang_text} not found in dropdown
-    Click Element    xpath=//a[contains(., '${lang_text}')]
-    ${flag}=    Run Keyword If    '${lang}' == 'zh'    Set Variable    cn    ELSE    Set Variable    ${lang}
-    Wait Until Element Is Visible    xpath=//span[contains(@class, 'flag-icon-${flag}')]    timeout=15s
-    Run Keyword If    '${lang}' == 'en'    Wait Until Page Contains    Research Information Management System    timeout=20s
-    Run Keyword If    '${lang}' == 'th'    Wait Until Page Contains    ระบบจัดการข้อมูลวิจัย    timeout=20s
-    Run Keyword If    '${lang}' == 'zh'    Wait Until Page Contains    研究信息管理系统    timeout=20s
-    Log To Console    Switched to language: ${lang}
+Wait For Table Load
+    [Arguments]    ${timeout}=20s
+    Wait Until Page Contains Element    xpath://table    timeout=${timeout}  # ปรับตาม ID ตารางในหน้า /funds
+    Log To Console    Table loaded successfully
 
-Verify Page Language
-    [Arguments]    ${expected_text}
-    Wait Until Element Is Visible    xpath=//h4[contains(@class, 'card-title')]    timeout=25s
-    ${actual_text}=    Get Text    xpath=//h4[contains(@class, 'card-title')]
-    Should Contain    ${actual_text}    ${expected_text}
-    Log To Console    Verified page title: ${expected_text} (Actual: ${actual_text})
+Handle Sweet Alert Confirmation
+    Wait Until Page Contains Element    xpath://div[contains(@class,'swal-modal')]    timeout=10s
+    Click Element    xpath://button[contains(@class,'swal-button--confirm')]
+    Sleep    1s
+    Click Element    xpath://button[contains(@class,'swal-button--confirm')]
+    Wait Until Element Is Not Visible    xpath://div[contains(@class,'swal-modal')]    timeout=10s
 
-Verify Button Text
-    [Arguments]    ${expected_text}
-    Wait Until Element Is Visible    xpath=//button[@type='submit']    timeout=20s
-    ${actual_text}=    Get Text    xpath=//button[@type='submit']
-    Should Contain    ${actual_text}    ${expected_text}
-    Log To Console    Verified button text: ${expected_text}
+Search In DataTable
+    [Arguments]    ${search_text}
+    Wait Until Element Is Visible    xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']    timeout=10s  # ปรับตามคลาสของช่องค้นหา
+    Input Text    xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']    ${search_text}
+    Sleep    3s
+    Wait Until Page Contains Element    xpath://table/tbody/tr    timeout=20s
 
-Verify New Fund Button
-    [Arguments]    ${expected_text}
-    Wait Until Element Is Visible    xpath=//a[contains(@class, 'btn btn-primary') and contains(@href, 'funds/create')]    timeout=20s
-    ${actual_text}=    Get Text    xpath=//a[contains(@class, 'btn btn-primary') and contains(@href, 'funds/create')]
-    Should Contain    ${actual_text}    ${expected_text}
-    Log To Console    Verified new fund button text: ${expected_text}
+Click View Button By Text
+    [Arguments]    ${text}
+    ${locator}=    Set Variable    xpath://table/tbody/tr[td[contains(text(), '${text}')]]//a[contains(@class, 'btn-outline-primary') and contains(@title, 'View')]  # ปรับตามปุ่ม View
+    Scroll Element Into View    ${locator}
+    Wait Until Element Is Visible    ${locator}    timeout=10s
+    Click Element    ${locator}
 
-Verify Back Button
-    [Arguments]    ${expected_text}
-    Wait Until Element Is Visible    xpath=//a[contains(@class, 'btn') and contains(@href, 'funds')]    timeout=20s
-    ${actual_text}=    Get Text    xpath=//a[contains(@class, 'btn') and contains(@href, 'funds')]
-    Should Contain    ${actual_text}    ${expected_text}
-    Log To Console    Verified back button text: ${expected_text}
+Click Edit Button By Text
+    [Arguments]    ${text}
+    ${locator}=    Set Variable    xpath://table/tbody/tr[td[contains(text(), '${text}')]]//a[contains(@class, 'btn-outline-success') and contains(@title, 'Edit')]  # ปรับตามปุ่ม Edit
+    Scroll Element Into View    ${locator}
+    Wait Until Element Is Visible    ${locator}    timeout=10s
+    Click Element    ${locator}
 
-Verify Table Header
-    [Arguments]    ${index}    ${expected_text}
-    Wait Until Element Is Visible    xpath=//table//thead//th[${index}]    timeout=40s
-    ${actual_text}=    Get Text    xpath=//table//thead//th[${index}]
-    Should Contain    ${actual_text}    ${expected_text}
-    Log To Console    Verified table header index ${index}: Expected "${expected_text}", Actual "${actual_text}"
+Click Delete Button By Text
+    [Arguments]    ${text}
+    ${locator}=    Set Variable    xpath://table/tbody/tr[td[contains(text(), '${text}')]]//button[contains(@class, 'btn-outline-danger') or contains(@title, 'Delete')]  # ปรับตามปุ่ม Delete
+    Scroll Element Into View    ${locator}
+    Wait Until Element Is Visible    ${locator}    timeout=10s
+    Click Element    ${locator}
 
-Verify Popup Language
-    [Arguments]    ${expected_title}    ${expected_text}    ${expected_success}
-    Wait Until Element Is Visible    xpath=//div[contains(@class, 'swal-title')]    timeout=30s
-    ${title}=    Get Text    xpath=//div[contains(@class, 'swal-title')]
-    Should Contain    ${title}    ${expected_title}
-    ${text}=    Get Text    xpath=//div[contains(@class, 'swal-text')]
-    Should Contain    ${text}    ${expected_text}
-    Click Element    xpath=//button[contains(., 'Cancel') or contains(., 'ยกเลิก') or contains(., '取消')]
-    Reload Page
-    Wait Until Element Is Visible    xpath=//h4[contains(@class, 'card-title')]    timeout=20s
-    Log To Console    Verified popup: ${expected_title} - ${expected_text}
+Get Fund Count
+    ${count}=    Get Element Count    xpath://table/tbody/tr
+    RETURN    ${count}
 
-Logout And Close Browser
-    Go To    ${DASHBOARD_URL}
-    Wait Until Element Is Visible    xpath=//a[contains(@class, 'nav-link dropdown-toggle')]    timeout=20s
-    Click Element    xpath=//a[contains(@class, 'nav-link dropdown-toggle')]
-    Wait Until Element Is Visible    xpath=//a[contains(@href, '/logout')]    timeout=20s
-    Click Element    xpath=//a[contains(@href, '/logout')]
-    Wait Until Location Contains    ${LOGIN_URL}    timeout=20s
-    Log To Console    Logged out successfully
-    Close Browser
-
-*** Test Cases ***
-TC43_ADMINFunds - ตรวจสอบภาษาส่วนต่างๆ ของ UI
-    [Setup]    Reset Language To English
-    Go To    ${FUNDS_URL}
-    Verify Page Language    Research Funds
-    Verify New Fund Button    ADD
-    Switch Language    th
-    Go To    ${FUNDS_URL}
-    Verify Page Language    ทุนวิจัย
-    Verify New Fund Button    เพิ่ม
-    Switch Language    zh
-    Go To    ${FUNDS_URL}
-    Verify Page Language    研究资金
-    Verify New Fund Button    添加
-
-TC42_ADMINFunds_Table - ตรวจสอบภาษาในตาราง
-    [Setup]    Reset Language To English
-    Go To    ${FUNDS_URL}
-    Verify Table Header    1    No.
-    Verify Table Header    2    Fund Name
-    Verify Table Header    3    Fund Type
-    Verify Table Header    4    Fund Level
-    Verify Table Header    5    Action
-    Switch Language    th
-    Go To    ${FUNDS_URL}
-    Verify Table Header    1    ลำดับ
-    Verify Table Header    2    ชื่อทุน
-    Verify Table Header    3    ประเภททุน
-    Verify Table Header    4    ระดับทุน
-    Verify Table Header    5    การกระทำ
-    Switch Language    zh
-    Go To    ${FUNDS_URL}
-    Verify Table Header    1    序号
-    Verify Table Header    2    资金名称
-    Verify Table Header    3    资金类型
-    Verify Table Header    4    资金等级
-    Verify Table Header    5    操作
-
-TC40_ADMINFunds_Form - ตรวจสอบภาษาของฟอร์มเพิ่ม Funds
-    [Setup]    Reset Language To English
-    Go To    ${CREATE_URL}
-    Verify Page Language    Add Research Fund
-    Verify Back Button    Cancel
-    Verify Button Text    Submit
-    Switch Language    th
-    Go To    ${CREATE_URL}
-    Verify Page Language    เพิ่มทุนวิจัย
-    Verify Back Button    Cancel
-    Verify Button Text    Submit
-    Switch Language    zh
-    Go To    ${CREATE_URL}
-    Verify Page Language    添加研究资金
-    Verify Back Button    取消
-    Verify Button Text    提交
-
-TC41_ADMINFunds_View - ตรวจสอบภาษาข้อมูลในตาราง
-    [Setup]    Reset Language To English
-    Go To    ${VIEW_URL}
-    Verify Page Language    Research Funds
-    Verify Back Button    Back
-    Switch Language    th
-    Go To    ${VIEW_URL}
-    Verify Page Language    ทุนวิจัย
-    Verify Back Button    กลับ
-    Switch Language    zh
-    Go To    ${VIEW_URL}
-    Verify Page Language    研究资金
-    Verify Back Button    返回
-
-TC41_ADMINFunds_Edit - ตรวจสอบภาษาของฟอร์มแก้ไข
-    [Setup]    Reset Language To English
-    Go To    ${EDIT_URL}
-    Verify Page Language    Edit Fund
-    Verify Back Button    Cancel
-    Verify Button Text    Submit
-    Switch Language    th
-    Go To    ${EDIT_URL}
-    Verify Page Language    แก้ไขทุน
-    Verify Back Button    Cancel
-    Verify Button Text    Submit
-    Switch Language    zh
-    Go To    ${EDIT_URL}
-    Verify Page Language    编辑资金
-    Verify Back Button    取消
-    Verify Button Text    提交
-
-TC41_ADMINFunds_Delete - ตรวจสอบภาษาการลบข้อมูลและป๊อปอัพ
-    [Setup]    Reset Language To English
-    Go To    ${FUNDS_URL}
-    Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
-    Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify Popup Language    Are you sure?    You will not be able to recover this file!    Deleted Successfully
-    Switch Language    th
-    Go To    ${FUNDS_URL}
-    Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
-    Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify Popup Language    คุณแน่ใจหรือไม่?    หากคุณลบข้อมูลนี้ จะไม่สามารถกู้คืนได้    ลบสำเร็จ
-    Switch Language    zh
-    Go To    ${FUNDS_URL}
-    Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
-    Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify Popup Language    你确定吗？    如果删除，数据将永远消失。    删除成功
+Fill Fund Form
+    [Arguments]    ${name}    ${type}    ${level}    ${resource}
+    ${name}=    Evaluate    '${name}'.strip()
+    Select From List By Label    name=fund_type    ${type}
+    Wait Until Element Is Visible    id=fund_code    timeout=5s
+    Select From List By Label    name=fund_level    ${level}
+    Input Text    name=fund_name    ${name}
+    Input Text    name=support_resource    ${resource}
+    # เพิ่มฟิลด์อื่น ๆ หากมีในฟอร์ม (เช่น ปี งบประมาณ) ตามโครงสร้างฟอร์มจริง

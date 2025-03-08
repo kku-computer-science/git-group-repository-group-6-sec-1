@@ -200,7 +200,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
 
                     <!-- เพิ่มส่วนของ Research Assistant -->
-                    @endcan
+                    <!-- @endcan
                     @can('groups-list')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('researchAssistant.index')}}">
@@ -208,7 +208,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <span class="menu-title">Research Assistant</span>
 
                         </a>
-                    </li>
+                    </li> -->
 
                     @endcan
                     @can('export')

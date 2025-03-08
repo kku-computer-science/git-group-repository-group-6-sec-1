@@ -1,20 +1,23 @@
-1741288326451	geckodriver	INFO	Listening on 127.0.0.1:65289
-1741288329539	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "65290" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Ping\\AppData\\Local\\Temp\\rust_mozprofileOlGEuc"
+1741441136005	geckodriver	INFO	Listening on 127.0.0.1:8166
+1741441139083	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "8167" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Asus\\AppData\\Local\\Temp\\rust_mozprofileyS6rVD"
 console.warn: services.settings: Ignoring preference override of remote settings server
 console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
 Dynamically enable window occlusion 0
-1741288330461	Marionette	INFO	Marionette enabled
-1741288330655	Marionette	INFO	Listening on port 65351
-WebDriver BiDi listening on ws://127.0.0.1:65290
-Read port: 65351
-1741288330936	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-DevTools listening on ws://127.0.0.1:65290/devtools/browser/ea2fba75-7359-4111-8f40-cb5dc33353ef
+1741441139363	Marionette	INFO	Marionette enabled
+1741441139445	Marionette	INFO	Listening on port 8174
+WebDriver BiDi listening on ws://127.0.0.1:8167
+Read port: 8174
+1741441139669	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:8167/devtools/browser/ed1ec2c9-c7f4-4686-bfd0-066c41073bb4
 console.error: ({})
 console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
 console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
 console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-1741288340889	Marionette	INFO	Stopped listening on port 65351
+1741441155240	Marionette	INFO	Stopped listening on port 8174
 Dynamically enable window occlusion 1
+Exiting due to channel error.
+Exiting due to channel error.

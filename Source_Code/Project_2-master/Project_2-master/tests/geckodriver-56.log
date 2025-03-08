@@ -1,0 +1,61 @@
+1741451933929	geckodriver	INFO	Listening on 127.0.0.1:14329
+1741451936992	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "14330" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Asus\\AppData\\Local\\Temp\\rust_mozprofileW3tCW2"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Dynamically enable window occlusion 0
+1741451937290	Marionette	INFO	Marionette enabled
+1741451937370	Marionette	INFO	Listening on port 14337
+WebDriver BiDi listening on ws://127.0.0.1:14330
+Read port: 14337
+1741451937569	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:14330/devtools/browser/39b2b80d-50c6-4000-9faa-e991fb219f8e
+console.error: ({})
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+1741451967301	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+console.error: ({})
+1741451968902	Marionette	INFO	Stopped listening on port 14337
+JavaScript warning: http://127.0.0.1:8000/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js, line 7: Script terminated by timeout at:
+contains@http://127.0.0.1:8000/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js:7:993
+getClassNames@http://127.0.0.1:8000/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js:7:15149
+fill@http://127.0.0.1:8000/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js:7:18037
+update@http://127.0.0.1:8000/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js:7:14010
+k@http://127.0.0.1:8000/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js:7:2962
+n/<@http://127.0.0.1:8000/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js:7:27400
+each@http://127.0.0.1:8000/vendors/js/vendor.bundle.base.js:2:2976
+each@http://127.0.0.1:8000/vendors/js/vendor.bundle.base.js:2:1454
+n@http://127.0.0.1:8000/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js:7:27118
+@http://127.0.0.1:8000/js/dashboard.js:217:30
+e@http://127.0.0.1:8000/vendors/js/vendor.bundle.base.js:2:30005
+Deferred/then/l/</t<@http://127.0.0.1:8000/vendors/js/vendor.bundle.base.js:2:30307
+
+Dynamically enable window occlusion 1
+console.error: services.settings: 
+  Message: NetworkError: Network error: TypeError: NetworkError: Network request failed
+  Stack:
+    APIError@resource://services-settings/RemoteSettingsClient.sys.mjs:107:1
+NetworkError@resource://services-settings/RemoteSettingsClient.sys.mjs:111:5
+_adjustedError@resource://services-settings/RemoteSettingsClient.sys.mjs:912:14
+maybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:817:38
+
+console.warn: services.settings: main/partitioning-exempt-urls sync interrupted by shutdown
+console.warn: services.settings: main/normandy-recipes-capabilities sync interrupted by shutdown
+console.warn: services.settings: security-state/onecrl sync interrupted by shutdown
+console.warn: services.settings: main/translations-wasm sync interrupted by shutdown
+console.warn: services.settings: main/cookie-banner-rules-list sync interrupted by shutdown
+console.warn: services.settings: main/top-sites sync interrupted by shutdown
+console.warn: services.settings: main/search-default-override-allowlist sync interrupted by shutdown
+console.error: (new AbortError("IndexedDB: main/backup-recovery-download-links getLastModified() IndexedDB:  execute() A request was aborted, for example through a call to IDBTransaction.abort.", "resource://services-settings/IDBHelpers.sys.mjs", 16))

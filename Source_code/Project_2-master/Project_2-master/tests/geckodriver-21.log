@@ -1,37 +1,26 @@
-1741289382086	geckodriver	INFO	Listening on 127.0.0.1:62409
-1741289385185	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "62410" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Ping\\AppData\\Local\\Temp\\rust_mozprofile65Pgro"
+1741443968257	geckodriver	INFO	Listening on 127.0.0.1:9648
+1741443971348	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "9649" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Asus\\AppData\\Local\\Temp\\rust_mozprofileCOxMOo"
 console.warn: services.settings: Ignoring preference override of remote settings server
 console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
 Dynamically enable window occlusion 0
-1741289385949	Marionette	INFO	Marionette enabled
-1741289386109	Marionette	INFO	Listening on port 62469
-WebDriver BiDi listening on ws://127.0.0.1:62410
-Read port: 62469
-1741289386458	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-DevTools listening on ws://127.0.0.1:62410/devtools/browser/dbd94c03-d796-4cf2-8051-08a972fa30a4
+1741443971703	Marionette	INFO	Marionette enabled
+1741443971814	Marionette	INFO	Listening on port 9656
+WebDriver BiDi listening on ws://127.0.0.1:9649
+Read port: 9656
+1741443972149	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:9649/devtools/browser/45ee62dc-a7df-4d8d-9c2a-2f8083425ed2
 console.error: ({})
 console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
 console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
 console.error: ({})
 console.error: ({})
-JavaScript error: http://127.0.0.1:8000/programs, line 570: SyntaxError: expected property name, got '/'
 console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-JavaScript error: http://127.0.0.1:8000/programs, line 570: SyntaxError: expected property name, got '/'
-console.error: ({})
-console.error: ({})
-JavaScript error: http://127.0.0.1:8000/programs, line 570: SyntaxError: expected property name, got '/'
-console.error: ({})
-console.error: ({})
-JavaScript error: http://127.0.0.1:8000/programs, line 570: SyntaxError: expected property name, got '/'
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-1741289445798	Marionette	INFO	Stopped listening on port 62469
+1741444001712	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+1741444003227	Marionette	INFO	Stopped listening on port 9656
 Dynamically enable window occlusion 1
+console.warn: services.settings: main/translations-wasm sync interrupted by shutdown
+console.error: (new Error("IndexedDB: main/fxrelay-allowlist getLastModified() IndexedDB:  execute() The application is shutting down", "resource://services-settings/IDBHelpers.sys.mjs", 16))

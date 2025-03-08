@@ -1,37 +1,75 @@
-1741289647364	geckodriver	INFO	Listening on 127.0.0.1:49711
-1741289650447	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "49712" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Ping\\AppData\\Local\\Temp\\rust_mozprofilegHhCFX"
+1741444160012	geckodriver	INFO	Listening on 127.0.0.1:10087
+1741444163103	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "10088" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Asus\\AppData\\Local\\Temp\\rust_mozprofileJKCF1I"
 console.warn: services.settings: Ignoring preference override of remote settings server
 console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
 Dynamically enable window occlusion 0
-1741289651405	Marionette	INFO	Marionette enabled
-1741289651617	Marionette	INFO	Listening on port 49773
-WebDriver BiDi listening on ws://127.0.0.1:49712
-Read port: 49773
-1741289651875	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-DevTools listening on ws://127.0.0.1:49712/devtools/browser/98de89e5-c21a-46e2-b60e-e99857742a96
+1741444163741	Marionette	INFO	Marionette enabled
+1741444163885	Marionette	INFO	Listening on port 10095
+WebDriver BiDi listening on ws://127.0.0.1:10088
+Read port: 10095
+1741444164273	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:10088/devtools/browser/727511bf-a9b1-4313-aa5e-5f305038aa3b
 console.error: ({})
 console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
-console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
-console.error: ({})
-console.error: ({})
-JavaScript error: http://127.0.0.1:8000/programs, line 570: SyntaxError: expected property name, got '/'
 console.error: ({})
 console.error: ({})
 console.error: ({})
 console.error: ({})
 console.error: ({})
 console.error: ({})
-JavaScript error: http://127.0.0.1:8000/programs, line 570: SyntaxError: expected property name, got '/'
-console.error: ({})
-console.error: ({})
-JavaScript error: http://127.0.0.1:8000/programs, line 570: SyntaxError: expected property name, got '/'
-console.error: ({})
-console.error: ({})
-JavaScript error: http://127.0.0.1:8000/programs, line 570: SyntaxError: expected property name, got '/'
 console.error: ({})
 console.error: ({})
 console.error: ({})
 console.error: ({})
 console.error: ({})
-1741289730854	Marionette	INFO	Stopped listening on port 49773
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+1741444193749	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+console.error: ({})
+1741444208943	Marionette	INFO	Stopped listening on port 10095
 Dynamically enable window occlusion 1

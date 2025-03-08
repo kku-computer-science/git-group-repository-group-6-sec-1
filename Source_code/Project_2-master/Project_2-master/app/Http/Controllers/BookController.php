@@ -104,7 +104,10 @@ class BookController extends Controller
     public function edit($id)
     {
         $book = Academicwork::find($id);
-        $this->authorize('update', $book);
+        // ตรวจสอบว่าเป็นแอดมินหรือเจ้าของข้อมูล (ผ่าน Pivot)
+        if (!auth()->user()->hasRole('admin') && !$book->user->contains(auth()->user()->id)) {
+            abort(403, 'This action is unauthorized.');
+        }
         return view('books.edit', compact('book'));
     }
 
@@ -117,12 +120,14 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //return $id;
         $book = Academicwork::find($id);
-        //return $book;
+        // ตรวจสอบว่าเป็นแอดมินหรือเจ้าของข้อมูล (ผ่าน Pivot)
+        if (!auth()->user()->hasRole('admin') && !$book->user->contains(auth()->user()->id)) {
+            abort(403, 'This action is unauthorized.');
+        }
+
         $this->validate($request, [
             'ac_name' => 'required',
-            //'ac_sourcetitle' => 'required',
             'ac_year' => 'required',
         ]);
 
@@ -130,11 +135,10 @@ class BookController extends Controller
         $input['ac_type'] = 'book';
 
         $book->update($input);
-    
-        return redirect()->route('books.index')
-                        ->with('success','Book updated successfully');
-    }
 
+        return redirect()->route('books.index')
+                        ->with('success', 'Book updated successfully');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -144,10 +148,13 @@ class BookController extends Controller
     public function destroy($id)
     {
         $book = Academicwork::find($id);
-        $this->authorize('delete', $book);
+        // ตรวจสอบว่าเป็นแอดมินหรือเจ้าของข้อมูล (ผ่าน Pivot)
+        if (!auth()->user()->hasRole('admin') && !$book->user->contains(auth()->user()->id)) {
+            abort(403, 'This action is unauthorized.');
+        }
         $book->delete();
 
         return redirect()->route('books.index')
-            ->with('success', 'Product deleted successfully');
+                        ->with('success', 'Product deleted successfully');
     }
 }
