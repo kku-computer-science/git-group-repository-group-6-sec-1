@@ -14,8 +14,10 @@ class AddProgramsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('program_id')->nullable();
-            $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade'); // use this for field after specific column.
+            if (!Schema::hasColumn('users', 'program_id')) {
+                $table->unsignedBigInteger('program_id')->nullable();
+                $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade');
+            }
         });
     }
 

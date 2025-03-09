@@ -19,9 +19,11 @@ use Illuminate\Contracts\Encryption\DecryptException;
 
 class PaperController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $id = auth()->user()->id;
@@ -40,21 +42,18 @@ class PaperController extends Controller
         return view('papers.index', compact('papers'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
+        $this->authorize('create', Paper::class);
         $source = Source_data::all();
         $users = User::role(['teacher', 'student'])->get();
         return view('papers.create', compact('source', 'users'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
+        $this->authorize('create', Paper::class);
+
         $this->validate($request, [
             'paper_name' => 'required|unique:papers,paper_name',
             'paper_type' => 'required',
@@ -64,30 +63,22 @@ class PaperController extends Controller
             'paper_doi' => 'required',
         ]);
 
-        $input = $request->except(['_token']);
-        $key = $input['keyword'];
-        $key = explode(', ', $key);
-        $myNewArray = [];
-        foreach ($key as $val) {
-            $myNewArray[] = ['$' => $val]; // Simplified structure
-        }
-        $input['keyword'] = $myNewArray;
-
+        $input = $request->only(['paper_name', 'paper_type', 'paper_sourcetitle', 'paper_url', 'paper_yearpub', 'paper_volume', 'paper_issue', 'paper_citation', 'paper_page', 'paper_doi']);
         $paper = Paper::create($input);
 
         foreach ($request->cat as $value) {
-            $paper->source()->attach($value);
+            $paper->sources()->attach($value);
         }
 
         foreach ($request->moreFields as $key => $value) {
             if ($value['userid'] != null) {
-                $paper->teacher()->attach($value, ['author_type' => $request->pos[$key]]);
+                $paper->teacher()->attach($value);
             }
         }
 
-        if (isset($input['fname'][0]) && !empty($input['fname'][0])) {
+        if (isset($request->fname[0]) && !empty($request->fname[0])) {
             foreach ($request->input('fname') as $key => $value) {
-                $data = ['fname' => $input['fname'][$key], 'lname' => $input['lname'][$key]];
+                $data = ['fname' => $request->fname[$key], 'lname' => $request->lname[$key]];
                 $author = Author::where([['author_fname', '=', $data['fname']], ['author_lname', '=', $data['lname']]])->first();
 
                 if (!$author) {
@@ -97,69 +88,42 @@ class PaperController extends Controller
                     $author->save();
                 }
 
-                $paper->author()->attach($author->id, ['author_type' => $request->pos2[$key]]);
+                $paper->author()->attach($author->id);
             }
         }
 
         return redirect()->route('papers.index')->with('success', 'Paper created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $paper = Paper::findOrFail($id);
+        $this->authorize('view', $paper);
+    
         $currentLanguage = App::getLocale();
-
-        // Handle the keyword field
-        if (is_array($paper->keyword)) {
-            // Extract '$' values from nested arrays
-            $keywordsArray = array_column($paper->keyword, '$');
-            $originalKeywords = implode(', ', $keywordsArray);
-        } elseif (is_string($paper->keyword)) {
-            $originalKeywords = $paper->keyword;
-        } else {
-            $originalKeywords = '';
-        }
-
-        // Process and translate keywords
-        if (!empty($originalKeywords)) {
-            $keywords = explode(',', $originalKeywords);
-            $translatedKeywords = [];
-            foreach ($keywords as $keyword) {
-                $translatedKeywords[] = app('TranslationService')->translate(trim($keyword), $currentLanguage);
-            }
-            $translatedKeywords = implode(', ', $translatedKeywords);
-        } else {
-            $translatedKeywords = 'No Keywords Available';
-        }
-
-        // Translate abstract
-        $translatedAbstract = ($currentLanguage !== 'en')
+    
+        // ดึง Abstract ที่แปล
+        $translatedAbstract = ($currentLanguage !== 'en' && isset($paper->abstract))
             ? app('TranslationService')->translate($paper->abstract, $currentLanguage)
-            : $paper->abstract;
-
+            : ($paper->abstract ?? 'No Abstract Available');
+    
+        // ดึง Keywords และแปลง JSON ให้ถูกต้อง
+        $translatedKeywords = collect(json_decode($paper->keywords))->pluck('$')->implode(', ') ?: 'No Keywords Available';
+    
         return view('papers.show', compact('paper', 'translatedAbstract', 'translatedKeywords'));
     }
+    
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         try {
             $id = decrypt($id);
             $paper = Paper::findOrFail($id);
 
-            $k = collect($paper['keyword']);
-            $val = $k->implode('$', ', ');
-            $paper['keyword'] = $val;
-
             $this->authorize('update', $paper);
 
             $sources = Source_data::pluck('source_name', 'source_name')->all();
-            $paperSource = $paper->source->pluck('source_name', 'source_name')->all();
+            $paperSource = $paper->sources()->pluck('source_name', 'source_name')->all();
             $users = User::role(['teacher', 'student'])->get();
 
             return view('papers.edit', compact('paper', 'users', 'paperSource', 'sources'));
@@ -168,11 +132,10 @@ class PaperController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Paper $paper)
     {
+        $this->authorize('update', $paper);
+
         $this->validate($request, [
             'paper_type' => 'required',
             'paper_sourcetitle' => 'required',
@@ -182,35 +145,27 @@ class PaperController extends Controller
             'paper_page' => 'required',
         ]);
 
-        $input = $request->except(['_token']);
-        $key = $input['keyword'];
-        $key = explode(', ', $key);
-        $myNewArray = [];
-        foreach ($key as $val) {
-            $myNewArray[] = ['$' => $val];
-        }
-        $input['keyword'] = $myNewArray;
-
+        $input = $request->only(['paper_name', 'paper_type', 'paper_sourcetitle', 'paper_url', 'paper_yearpub', 'paper_volume', 'paper_issue', 'paper_citation', 'paper_page', 'paper_doi']);
         $paper->update($input);
 
         $paper->author()->detach();
         $paper->teacher()->detach();
-        $paper->source()->detach();
+        $paper->sources()->detach();
 
         foreach ($request->sources as $value) {
             $v = Source_data::select('id')->where('source_name', '=', $value)->get();
-            $paper->source()->attach($v);
+            $paper->sources()->attach($v);
         }
 
         foreach ($request->moreFields as $key => $value) {
             if ($value['userid'] != null) {
-                $paper->teacher()->attach($value, ['author_type' => $request->pos[$key]]);
+                $paper->teacher()->attach($value);
             }
         }
 
-        if (isset($input['fname'][0]) && !empty($input['fname'][0])) {
+        if (isset($request->fname[0]) && !empty($request->fname[0])) {
             foreach ($request->input('fname') as $key => $value) {
-                $data = ['fname' => $input['fname'][$key], 'lname' => $input['lname'][$key]];
+                $data = ['fname' => $request->fname[$key], 'lname' => $request->lname[$key]];
                 $author = Author::where([['author_fname', '=', $data['fname']], ['author_lname', '=', $data['lname']]])->first();
 
                 if (!$author) {
@@ -220,26 +175,28 @@ class PaperController extends Controller
                     $author->save();
                 }
 
-                $paper->author()->attach($author->id, ['author_type' => $request->pos2[$key]]);
+                $paper->author()->attach($author->id);
             }
         }
 
         return redirect()->route('papers.index')->with('success', 'Paper updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
+    public function destroy(Paper $paper)
     {
-        // Implement deletion logic if needed
+        $this->authorize('delete', $paper);
+
+        $paper->teacher()->detach();
+        $paper->author()->detach();
+        $paper->sources()->detach();
+        $paper->delete();
+
+        return redirect()->route('papers.index')->with('success', 'Paper deleted successfully');
     }
 
-    /**
-     * Export papers to Excel.
-     */
     public function export(Request $request)
     {
         return Excel::download(new ExportUser, 'papers.xlsx');
     }
+
 }

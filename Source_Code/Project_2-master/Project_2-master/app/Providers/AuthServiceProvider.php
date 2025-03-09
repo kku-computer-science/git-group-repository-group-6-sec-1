@@ -10,6 +10,8 @@ use App\Models\ResearchProject;
 use App\Policies\ResearchGroupPolicy;
 use App\Policies\ResearchProjectPolicy;
 use App\Policies\UploadfileGroupPolicy;
+use App\Models\Paper;
+use App\Policies\PaperPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -22,8 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         ResearchProject::class => ResearchProjectPolicy::class,
         Product::class => UploadfileGroupPolicy::class,
         ResearchGroup::class => ResearchGroupPolicy::class,
-        //ResearchGroup::class => UploadfiletoGroupPolicy::class,
-
+        Paper::class => PaperPolicy::class,
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
 
@@ -35,7 +36,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        //
     }
 }

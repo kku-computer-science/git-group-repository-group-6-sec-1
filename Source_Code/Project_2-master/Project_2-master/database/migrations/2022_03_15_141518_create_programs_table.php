@@ -13,17 +13,18 @@ class CreateProgramsTable extends Migration
      */
     public function up()
     {
-        Schema::create('programs', function (Blueprint $table) {
-            $table->id();
-            $table->string('program_name_th');
-            $table->string('program_name_en');
-
-            $table->unsignedBigInteger('degree_id');
-            $table->foreign('degree_id')->references('id')->on('degrees')->onDelete('cascade');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('programs')) {
+            Schema::create('programs', function (Blueprint $table) {
+                $table->id();
+                $table->string('program_name_th');
+                $table->string('program_name_en');
+                $table->unsignedBigInteger('degree_id');
+                $table->foreign('degree_id')->references('id')->on('degrees')->onDelete('cascade');
+                $table->timestamps();
+            });
+        }
     }
-
+    
     /**
      * Reverse the migrations.
      *

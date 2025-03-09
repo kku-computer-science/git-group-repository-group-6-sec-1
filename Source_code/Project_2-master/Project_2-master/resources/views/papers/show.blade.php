@@ -14,7 +14,7 @@
                 <p class="card-text col-sm-9">{{ $paper->paper_name }}</p>
             </div>
             <div class="row mt-2">
-                <p class="card-text col-sm-3">Abstract ({{ strtoupper(app()->getLocale()) }})</p>
+                <p class="card-text col-sm-3">{{ __('Published_research.Abstract') }}</p>
                 <p class="col-sm-9">{{ $translatedAbstract }}</p>
             </div>
             <div class="row mt-2">
