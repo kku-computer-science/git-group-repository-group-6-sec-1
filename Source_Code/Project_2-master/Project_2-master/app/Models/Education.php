@@ -12,6 +12,7 @@ class Education extends Model
     protected $fillable = [
         'uname','qua_name','level','year'
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

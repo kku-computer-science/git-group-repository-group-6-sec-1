@@ -103,13 +103,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Expertise::class);
     }
-
-    public function education()
-    {
-        return $this->hasMany(Education::class);
-    }
     public function fund()
     {
         return $this->hasMany(Fund::class);
     }
+    public function education()
+    {
+    return $this->hasMany(Education::class);  // Assuming 'Education' is your related model.
+    }
+
 }

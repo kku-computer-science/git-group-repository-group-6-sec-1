@@ -15,7 +15,7 @@ return [
     'confirm_text'  => 'If you delete this, it will be gone forever.',
     'delete_success'=> 'Deleted Successfully',
     'search'        => 'Search:',
-    
+
     // For edit / create pages
     'edit_title'         => 'Edit Research Group',
     'edit_description'   => 'Please fill in the details to edit the research group',
@@ -26,8 +26,10 @@ return [
         'group_name_en'         => 'Group Name (English)',
         'group_desc_th'         => 'Group Description (Thai)',
         'group_desc_en'         => 'Group Description (English)',
+        'group_desc_zh'         => 'Group Description (China)',
         'group_detail_th'       => 'Group Detail (Thai)',
         'group_detail_en'       => 'Group Detail (English)',
+        'group_detail_zh'       => 'Group Detail (China)',
         'group_image'           => 'Group Image',
         'group_head'            => 'Group Head',
         'group_member'          => 'Group Member',
@@ -43,8 +45,10 @@ return [
         'group_name_en'    => 'Enter group name (English)',
         'group_desc_th'    => 'Enter group description (Thai)',
         'group_desc_en'    => 'Enter group description (English)',
+        'group_desc_zh'    => 'Enter group description (China)',
         'group_detail_th'  => 'Enter group detail (Thai)',
         'group_detail_en'  => 'Enter group detail (English)',
+        'group_detail_zh'  => 'Enter group detail (China)',
         'outsider_title'   => 'Enter title/prefix',
         'outsider_fname'   => 'Enter first name',
         'outsider_lname'   => 'Enter last name',

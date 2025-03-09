@@ -58,7 +58,9 @@
     <!-- Navigation -->
     <nav id="navbar" class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand logo-image" href="#"><img src="{{asset('img/logo2.png')}}" alt="alternative"></a>
+        <a class="navbar-brand logo-image" href="#">
+    <img src="{{ asset('img/logo2_' . (App::getLocale() === 'en' ? 'en' : (App::getLocale() === 'zh' ? 'zh' : 'th')) . '.png') }}" alt="alternative">
+    </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

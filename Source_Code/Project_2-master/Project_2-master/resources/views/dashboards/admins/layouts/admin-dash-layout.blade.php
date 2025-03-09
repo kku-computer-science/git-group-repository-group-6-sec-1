@@ -16,7 +16,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
 
-<
+
+
+
+
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('vendors/feather/feather.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/mdi/css/materialdesignicons.min.css')}}">
@@ -97,6 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="dropdown-header text-center">
                                     <img class="img-md rounded-circle" src="{{ Auth::user()->picture }}"
                                         alt="Profile image">
+
                                     <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }}</p>
                                     <p class="fw-light text-muted mb-0"></p>
                                 </div>
@@ -152,7 +156,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         href="{{ route('profile')}}">
                         <i class="menu-icon mdi mdi-account-circle-outline"></i>
                         <span class="menu-title">User Profile</span>
-
                     </a>
                 </li>
                 <li class="nav-item">
@@ -160,7 +163,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         href="{{ route('settings')}}">
                         <i class="menu-icon mdi mdi mdi-settings-outline"></i>
                         <span class="menu-title">Settings</span>
-
                     </a>
                 </li>
                 <li class="nav-item nav-category">Option</li>
@@ -175,24 +177,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="nav-link" href="{{ route('researchProjects.index')}}">
                         <i class="menu-icon mdi mdi-book-outline"></i>
                         <span class="menu-title">Research Project</span>
-
                     </a>
                 </li>
                 @can('user-list')
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index')}}">
                         <i class="menu-icon mdi mdi-account-multiple-outline"></i>
                         <span class="menu-title">Users</span>
-
                     </a>
                 </li>
+
+                    <li class="nav-item nav-category">Admin</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.index')}}">
+                            <i class="menu-icon mdi mdi-account-multiple-outline"></i>
+                            <span class="menu-title">Users</span>
+                        </a>
+                    </li>
+
                 @endcan
                 @can('role-list')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('roles.index')}}">
                         <i class="menu-icon mdi mdi-chart-gantt"></i>
                         <span class="menu-title">Roles</span>
-
                     </a>
                 </li>
                 @endcan
@@ -201,7 +210,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="nav-link" href="{{ route('permissions.index')}}">
                         <i class="menu-icon mdi mdi-checkbox-marked-circle-outline"></i>
                         <span class="menu-title">Permission</span>
-
                     </a>
                 </li>
                 @endcan
@@ -210,7 +218,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="nav-link" href="{{ route('departments.index')}}">
                         <i class="menu-icon mdi mdi-animation-outline"></i>
                         <span class="menu-title">Departments</span>
-
                     </a>
                 </li>
                 @endcan
@@ -219,7 +226,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="nav-link" href="{{ route('researchGroups.index')}}">
                         <i class="menu-icon mdi mdi-view-dashboard-outline"></i>
                         <span class="menu-title">Research Group</span>
-
                     </a>
                 </li>
                 @endcan
@@ -264,7 +270,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     </div>
     </div>
-
 
     <!-- plugins:js -->
     <script src="{{asset('vendors/js/vendor.bundle.base.js')}}"></script>
@@ -394,3 +399,6 @@ $(function() {
 
 
 </html>
+=======
+                                    <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }}</p>
+>>>>>>> origin/Thanakrit_2664:Source_code/Project_2-master/Project_2-master/resources/views/dashboards/admins/layouts/admin-dash-layout.blade.php
