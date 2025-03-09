@@ -26,7 +26,7 @@ Login To System
     Log To Console    Found username field
     Input Text    id=username    ${USERNAME}
     Input Text    id=password    ${PASSWORD}
-    Click Button    xpath=//button[@type='submit']
+    Click Button    xpath=//button[@type='submit' and contains(text(), 'Login')]
     Wait Until Location Contains    ${DASHBOARD_URL}    15s
     Log To Console    Login successful, redirected to: ${DASHBOARD_URL}
     Wait Until Page Contains Element    xpath=//a[@class='nav-link dropdown-toggle' and .//span[contains(@class, 'flag-icon')]]    15s

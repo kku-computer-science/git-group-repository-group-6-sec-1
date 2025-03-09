@@ -23,7 +23,7 @@ Start At Main Page And Go To Login
 Admin User Can Login Successfully
     Input Text      name=username    ${USERNAME}
     Input Text      name=password    ${PASSWORD}
-    Click Button    xpath=//button[@type='submit' and contains(text(), 'Log In')]
+    Click Button    xpath=//button[@type='submit' and contains(text(), 'Login')]
     Sleep    ${DELAY}
     Wait Until Page Contains    Dashboard    timeout=5s
     Sleep    ${DELAY}

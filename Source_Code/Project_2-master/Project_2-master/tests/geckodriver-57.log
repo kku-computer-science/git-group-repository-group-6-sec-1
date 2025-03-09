@@ -1,0 +1,70 @@
+1740543181588	geckodriver	INFO	Listening on 127.0.0.1:52170
+1740543184658	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "52171" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\bodin\\AppData\\Local\\Temp\\rust_mozprofileaVcUCq"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Dynamically enable window occlusion 0
+1740543184949	Marionette	INFO	Marionette enabled
+1740543185050	Marionette	INFO	Listening on port 52178
+WebDriver BiDi listening on ws://127.0.0.1:52171
+Read port: 52178
+1740543185193	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: services.settings: 
+  Remote Settings startup changesets bundle could not be extracted (TypeError: NetworkError: Network request failed)
+console.error: services.settings: 
+  Message: TypeError: NetworkError: Network request failed
+  Stack:
+    fetch/</request.onerror@resource://services-settings/Utils.sys.mjs:238:26
+
+console.error: services.settings: 
+  Message: TypeError: NetworkError: Network request failed
+  Stack:
+    fetch/</request.onerror@resource://services-settings/Utils.sys.mjs:238:26
+
+console.error: services.settings: 
+  Message: TypeError: NetworkError: Network request failed
+  Stack:
+    fetch/</request.onerror@resource://services-settings/Utils.sys.mjs:238:26
+
+console.error: services.settings: 
+  Message: TypeError: NetworkError: Network request failed
+  Stack:
+    fetch/</request.onerror@resource://services-settings/Utils.sys.mjs:238:26
+
+DevTools listening on ws://127.0.0.1:52171/devtools/browser/02b94494-7dba-4079-82a3-c6ccc6ba032b
+console.error: services.settings: 
+  Message: TypeError: NetworkError: Network request failed
+  Stack:
+    fetch/</request.onerror@resource://services-settings/Utils.sys.mjs:238:26
+
+console.error: ({})
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
+console.error: ({})
+console.error: ({})
+1740543205018	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+JavaScript error: , line 0: NotFoundError: No such JSProcessActor 'DevToolsProcess'
+JavaScript error: , line 0: NotFoundError: No such JSProcessActor 'DevToolsProcess'
+JavaScript error: , line 0: NotFoundError: No such JSProcessActor 'DevToolsProcess'
+console.error: (new Error("Polling for changes failed: NetworkError: Network request failed.", "resource://services-settings/remote-settings.sys.mjs", 430))
+1740543216933	Marionette	INFO	Stopped listening on port 52178
+JavaScript warning: http://127.0.0.1:8000/js/app.js, line 523: Script terminated by timeout at:
+__webpack_require__.nmd@http://127.0.0.1:8000/js/app.js:523:12
+@webpack-internal:///./node_modules/lodash/lodash.js:1:53
+./node_modules/lodash/lodash.js@http://127.0.0.1:8000/js/app.js:365:1
+__webpack_require__@http://127.0.0.1:8000/js/app.js:432:42
+@webpack-internal:///./resources/js/bootstrap.js:1:12
+./resources/js/bootstrap.js@http://127.0.0.1:8000/js/app.js:335:1
+__webpack_require__@http://127.0.0.1:8000/js/app.js:432:42
+@webpack-internal:///./resources/js/app.js:1:20
+./resources/js/app.js@http://127.0.0.1:8000/js/app.js:325:1
+__webpack_require__@http://127.0.0.1:8000/js/app.js:432:42
+@http://127.0.0.1:8000/js/app.js:585:83
+__webpack_require__.O@http://127.0.0.1:8000/js/app.js:469:23
+@http://127.0.0.1:8000/js/app.js:587:53
+@http://127.0.0.1:8000/js/app.js:589:12
+
+Dynamically enable window occlusion 1
