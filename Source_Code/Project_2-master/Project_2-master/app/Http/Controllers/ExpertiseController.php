@@ -19,15 +19,20 @@ class ExpertiseController extends Controller
     {
         $id = auth()->user()->id;
         if (auth()->user()->hasRole('admin')) {
-            $experts = Expertise::all();
+            $experts = Expertise::orderBy('id', 'asc')->get(); // Order by ID in ascending order
         } else {
-            $experts = Expertise::with('user')->whereHas('user', function ($query) use ($id) {
-                $query->where('users.id', '=', $id);
-            })->paginate(10);
+            $experts = Expertise::with('user')
+                ->whereHas('user', function ($query) use ($id) {
+                    $query->where('users.id', '=', $id);
+                })
+                ->orderBy('id', 'asc') // Order by ID in ascending order
+                ->paginate(10); // Pagination
         }
-
+    
         return view('expertise.index', compact('experts'));
     }
+    
+    
 
     /**
      * Show the form for creating a new resource.
@@ -140,4 +145,6 @@ class ExpertiseController extends Controller
         }
         //return response()->json($exp);
     }
+
+    
 }

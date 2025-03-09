@@ -6,6 +6,7 @@ use App\Models\Academicwork;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Paper;
+use App\Models\Education;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
@@ -18,10 +19,18 @@ class ProfileController extends Controller
         //$paper = User::with(['paper','author'])->where('id',$id)->get();
         $id = Crypt::decrypt($id);
         $res = User::where('id',$id)->first();
+        $res_ed = User::with('education')->where('id', $id)->first();  // ดึงข้อมูล user พร้อมกับ education
+
+
+
         $teachers = User::role('teacher')->get();
         $papers = Paper::with('teacher','author','source')->whereHas('teacher', function($query) use($id) {
             $query->where('users.id', '=', $id);
         })->orderBy('paper_yearpub', 'desc')-> get();
+
+        $education = Education::with('user')->whereHas('user', function($query) use($id) {
+            $query->where('users.id', '=', $id);
+        })->orderBy('id', 'desc')-> get();
 
         $papers_scopus = Paper::with('teacher','author','source')->whereHas('teacher', function($query) use($id) {
             $query->where('users.id', '=', $id);
@@ -30,11 +39,16 @@ class ProfileController extends Controller
         })->get();
 //return $papers_scopus;
 
-        $papers_wos = Paper::with('teacher','author','source')->whereHas('teacher', function($query) use($id) {
-            $query->where('users.id', '=', $id);
-        })->whereHas('source', function($query) {
-            $query->where('source_data_id', '=', 2);
-        })->orderBy('paper_yearpub', 'desc')-> get();
+        $papers_wos = Paper::with('teacher','author','source')
+            ->whereHas('teacher', function($query) use($id) {
+                $query->where('users.id', '=', $id);
+            })
+            ->whereHas('source', function($query) {
+                $query->where('source_data_id', '=', 2);
+            })
+            ->orderBy('paper_yearpub', 'desc')
+            ->get();
+
         
         $papers_tci = Paper::with('teacher','author')->whereHas('teacher', function($query) use($id) {
             $query->where('users.id', '=', $id);
@@ -57,7 +71,6 @@ class ProfileController extends Controller
         $book_chapter = Academicwork::with('user','author')->whereHas('user', function($query) use($id) {
             $query->where('users.id', '=', $id);
         })->where('ac_type', '=', 'book')->get();
-
        
 
         $patent = Academicwork::with('user','author')->whereHas('user', function($query) use($id) {
@@ -155,7 +168,8 @@ class ProfileController extends Controller
                 ->with('paper_wos_s',json_encode($paper_wos_s,JSON_NUMERIC_CHECK))
                 ->with('paper_book_s',json_encode($paper_book_s,JSON_NUMERIC_CHECK))
                 ->with('paper_patent_s',json_encode($paper_patent_s,JSON_NUMERIC_CHECK))
-                ->with(compact('res','teachers','papers','papers_tci','papers_scopus','papers_wos','book_chapter','patent'));
+                ->with(compact('res', 'res_ed', 'teachers', 'papers', 'papers_tci', 'papers_scopus', 'papers_wos', 'book_chapter', 'patent'));
+
 
 
     //return view('researchprofiles',compact('res','papers','year','paper'))->with('year',json_encode($year,JSON_NUMERIC_CHECK))->with('paper',json_encode($paper,JSON_NUMERIC_CHECK));
