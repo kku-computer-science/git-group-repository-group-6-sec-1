@@ -68,7 +68,7 @@ Logout And Close Browser
     Close Browser
 
 *** Test Cases ***
-TC40_REFunds_Form - ตรวจสอบภาษาของฟอร์มเพิ่ม Funds
+TC01_REFunds_Form - ตรวจสอบภาษาของฟอร์มเพิ่ม Funds
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาในฟอร์มเพิ่ม Funds ที่ /funds/create
     Go To    ${CREATE_URL}
@@ -96,7 +96,7 @@ TC40_REFunds_Form - ตรวจสอบภาษาของฟอร์มเ
     Verify Page Language    资金名称
     Verify Page Language    支持机构 / 研究项目
 
-TC41_REFunds_View - ตรวจสอบภาษาของข้อมูลในตาราง
+TC02_REFunds_View - ตรวจสอบภาษาของข้อมูลในตาราง
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาของข้อมูลในหน้ารายละเอียด Funds ที่ /funds/{Id}
     Go To    ${VIEW_URL}
@@ -127,7 +127,7 @@ TC41_REFunds_View - ตรวจสอบภาษาของข้อมูล
     Verify Page Language    资金等级
     Verify Page Language    支持机构 / 研究项目
 
-TC42_REFunds_Table - ตรวจสอบภาษาในตาราง Research Projects
+TC03_REFunds_Table - ตรวจสอบภาษาในตาราง Research Projects
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาในหน้ารายการ Research Projects ที่ /researchProjects
     Go To    ${RESEARCH_URL}
@@ -143,7 +143,7 @@ TC42_REFunds_Table - ตรวจสอบภาษาในตาราง Rese
     Verify Page Language    研究项目
     Verify Page Language    序号
 
-TC43_REFunds - ตรวจสอบภาษาส่วนต่างๆ ของ Funds รวมถึง Fund Type
+TC04_REFunds - ตรวจสอบภาษาส่วนต่างๆ ของ Funds รวมถึง Fund Type
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาในหน้ารายการ Funds ที่ /funds รวมถึง fund_type
     Go To    ${FUNDS_URL}

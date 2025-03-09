@@ -68,7 +68,7 @@ Logout And Close Browser
     Close Browser
 
 *** Test Cases ***
-TC54_REBooks - ตรวจสอบภาษาส่วนต่างๆ ของ UI16
+TC01_REBooks - ตรวจสอบภาษาส่วนต่างๆ ของ UI16
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาส่วนต่างๆ ในหน้า Books ที่ /books
     Go To    ${BOOKS_URL}
@@ -111,7 +111,7 @@ TC54_REBooks - ตรวจสอบภาษาส่วนต่างๆ ข�
     Verify Page Language    搜索:
     Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-eye')]]    # 查看 button
 
-TC55_REBooks_Table - ตรวจสอบภาษาในตารางของ UI16
+TC02_REBooks_Table - ตรวจสอบภาษาในตารางของ UI16
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาในตาราง Books ที่ /books
     Go To    ${BOOKS_URL}
@@ -142,7 +142,7 @@ TC55_REBooks_Table - ตรวจสอบภาษาในตารางข�
     Verify Table Header    5    页码
     Verify Table Header    6    操作
 
-TC56_REBooks_View - ตรวจสอบภาษาข้อมูลในหน้ารายละเอียดของ UI16
+TC03_REBooks_View - ตรวจสอบภาษาข้อมูลในหน้ารายละเอียดของ UI16
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาข้อมูลในหน้ารายละเอียด Books ที่ /books/15
     Go To    http://127.0.0.1:8000/books/15
@@ -176,7 +176,7 @@ TC56_REBooks_View - ตรวจสอบภาษาข้อมูลในห
     Verify Page Language    页码
     Verify Page Language    返回
 
-TC57_REBooks_Form - ตรวจสอบภาษาของฟอร์มเพิ่ม Books ของ UI16
+TC04_REBooks_Form - ตรวจสอบภาษาของฟอร์มเพิ่ม Books ของ UI16
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาในฟอร์มเพิ่ม Books ที่ /books/create
     Go To    ${CREATE_URL}
@@ -213,7 +213,7 @@ TC57_REBooks_Form - ตรวจสอบภาษาของฟอร์มเ
     Verify Page Language    提交
     Verify Page Language    取消
 
-TC58_REBook_FormEdit - ตรวจสอบภาษาของฟอร์มแก้ไข Books ของ UI16
+TC05_REBook_FormEdit - ตรวจสอบภาษาของฟอร์มแก้ไข Books ของ UI16
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาในฟอร์มแก้ไข Books ที่ /books/15/edit
     Go To    http://127.0.0.1:8000/books/15/edit

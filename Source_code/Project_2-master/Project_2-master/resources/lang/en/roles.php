@@ -23,7 +23,7 @@ return [
 
 
     'permissions' => [
-        'user-listt'     => 'User List',
+        'user-list'     => 'User List',
         'user-create'   => 'Create User',
         'user-edit'     => 'Edit User',
         'user-delete'   => 'Delete User',

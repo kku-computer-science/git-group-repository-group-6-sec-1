@@ -68,7 +68,65 @@ Logout And Close Browser
     Close Browser
 
 *** Test Cases ***
-TC37_REResearchProject_Form - ตรวจสอบภาษาของฟอร์มเพิ่มข้อมูล
+TC01_REResearchProject_Form - ตรวจสอบภาษาส่วนต่างๆ
+    [Setup]    Reset Language To English
+    [Documentation]    ตรวจสอบภาษาส่วนต่างๆ ในหน้า Research Projects ที่ /researchProjects
+    Go To    ${RESEARCH_URL}
+    Wait Until Page Contains    Research Projects    15s
+    # ภาษาอังกฤษ
+    Verify Page Language    Research Projects
+    Verify Page Language    ADD
+    Verify Page Language    No.
+    Verify Page Language    Year
+    Verify Page Language    Project Name
+    Verify Page Language    Project Head
+    Verify Page Language    Project Member
+    Verify Page Language    Action
+    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-eye')]]  # ปุ่ม View
+    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-pencil')]]  # ปุ่ม Edit
+    Page Should Contain Element    xpath=//button[contains(@class, 'btn') and .//i[contains(@class, 'mdi-delete')]]  # ปุ่ม Delete
+    Verify Page Language    Are you sure?
+    Verify Page Language    If you delete this, it will be gone forever.
+    Verify Page Language    Deleted Successfully
+    Verify Page Language    Search:
+
+    Switch Language    th
+    # ภาษาไทย
+    Verify Page Language    โครงการวิจัย
+    Verify Page Language    เพิ่ม
+    Verify Page Language    ลำดับ
+    Verify Page Language    ปี(ค.ศ.)
+    Verify Page Language    ชื่อโครงการ
+    Verify Page Language    หัวหน้าโครงการ
+    Verify Page Language    สมาชิก
+    Verify Page Language    การกระทำ
+    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-eye')]]  # ปุ่ม ดู
+    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-pencil')]]  # ปุ่ม แก้ไข
+    Page Should Contain Element    xpath=//button[contains(@class, 'btn') and .//i[contains(@class, 'mdi-delete')]]  # ปุ่ม ลบ
+    Verify Page Language    คุณแน่ใจหรือไม่?
+    Verify Page Language    หากลบแล้ว ข้อมูลจะหายไปตลอดกาล
+    Verify Page Language    ลบสำเร็จ
+    Verify Page Language    ค้นหา:
+
+    Switch Language    zh
+    # ภาษาจีน
+    Verify Page Language    研究项目
+    Verify Page Language    添加
+    Verify Page Language    序号
+    Verify Page Language    年份
+    Verify Page Language    项目名称
+    Verify Page Language    项目负责人
+    Verify Page Language    项目成员
+    Verify Page Language    操作
+    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-eye')]]  # ปุ่ม 查看
+    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-pencil')]]  # ปุ่ม 编辑
+    Page Should Contain Element    xpath=//button[contains(@class, 'btn') and .//i[contains(@class, 'mdi-delete')]]  # ปุ่ม 删除
+    Verify Page Language    你确定吗？
+    Verify Page Language    如果删除，数据将永远消失。
+    Verify Page Language    删除成功
+    Verify Page Language    搜索:
+
+TC02__REResearchProject_Form - ตรวจสอบภาษาของฟอร์มเพิ่มข้อมูล
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาในฟอร์มเพิ่ม Research Project ที่ /researchProjects/create
     Go To    ${CREATE_URL}
@@ -150,65 +208,7 @@ TC37_REResearchProject_Form - ตรวจสอบภาษาของฟอ�
     Verify Page Language    请指定状态
     Verify Page Language    选择成员
 
-TC36_REResearchProject - ตรวจสอบภาษาส่วนต่างๆ
-    [Setup]    Reset Language To English
-    [Documentation]    ตรวจสอบภาษาส่วนต่างๆ ในหน้า Research Projects ที่ /researchProjects
-    Go To    ${RESEARCH_URL}
-    Wait Until Page Contains    Research Projects    15s
-    # ภาษาอังกฤษ
-    Verify Page Language    Research Projects
-    Verify Page Language    ADD
-    Verify Page Language    No.
-    Verify Page Language    Year
-    Verify Page Language    Project Name
-    Verify Page Language    Project Head
-    Verify Page Language    Project Member
-    Verify Page Language    Action
-    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-eye')]]  # ปุ่ม View
-    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-pencil')]]  # ปุ่ม Edit
-    Page Should Contain Element    xpath=//button[contains(@class, 'btn') and .//i[contains(@class, 'mdi-delete')]]  # ปุ่ม Delete
-    Verify Page Language    Are you sure?
-    Verify Page Language    If you delete this, it will be gone forever.
-    Verify Page Language    Deleted Successfully
-    Verify Page Language    Search:
-
-    Switch Language    th
-    # ภาษาไทย
-    Verify Page Language    โครงการวิจัย
-    Verify Page Language    เพิ่ม
-    Verify Page Language    ลำดับ
-    Verify Page Language    ปี(ค.ศ.)
-    Verify Page Language    ชื่อโครงการ
-    Verify Page Language    หัวหน้าโครงการ
-    Verify Page Language    สมาชิก
-    Verify Page Language    การกระทำ
-    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-eye')]]  # ปุ่ม ดู
-    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-pencil')]]  # ปุ่ม แก้ไข
-    Page Should Contain Element    xpath=//button[contains(@class, 'btn') and .//i[contains(@class, 'mdi-delete')]]  # ปุ่ม ลบ
-    Verify Page Language    คุณแน่ใจหรือไม่?
-    Verify Page Language    หากลบแล้ว ข้อมูลจะหายไปตลอดกาล
-    Verify Page Language    ลบสำเร็จ
-    Verify Page Language    ค้นหา:
-
-    Switch Language    zh
-    # ภาษาจีน
-    Verify Page Language    研究项目
-    Verify Page Language    添加
-    Verify Page Language    序号
-    Verify Page Language    年份
-    Verify Page Language    项目名称
-    Verify Page Language    项目负责人
-    Verify Page Language    项目成员
-    Verify Page Language    操作
-    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-eye')]]  # ปุ่ม 查看
-    Page Should Contain Element    xpath=//a[contains(@class, 'btn') and .//i[contains(@class, 'mdi-pencil')]]  # ปุ่ม 编辑
-    Page Should Contain Element    xpath=//button[contains(@class, 'btn') and .//i[contains(@class, 'mdi-delete')]]  # ปุ่ม 删除
-    Verify Page Language    你确定吗？
-    Verify Page Language    如果删除，数据将永远消失。
-    Verify Page Language    删除成功
-    Verify Page Language    搜索:
-
-TC38_REResearchProject_Table - ตรวจสอบภาษาข้อมูลในตาราง
+TC03_REResearchProject_Table - ตรวจสอบภาษาข้อมูลในตาราง
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาข้อมูลในตาราง Research Projects ที่ /researchProjects รวมถึง Project Head
     Go To    ${RESEARCH_URL}

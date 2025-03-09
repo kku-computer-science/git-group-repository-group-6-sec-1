@@ -2,63 +2,91 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap4.min.css">
-@section('title', __('published_research.title'))
+
+@section('title', 'Dashboard')
 
 @section('content')
 <div class="container">
     @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
     @endif
     <div class="card" style="padding: 16px;">
         <div class="card-body">
-            <h4 class="card-title">{{ __('published_research.title') }}</h4>
-            <a class="btn btn-primary btn-menu btn-icon-text btn-sm mb-3" href="{{ route('papers.create') }}">
-                <i class="mdi mdi-plus btn-icon-prepend"></i> {{ __('published_research.add_button') }}
-            </a>
+            <h4 class="card-title">Published research</h4>
+            @can('create', App\Models\Paper::class)
+                <a class="btn btn-primary btn-menu btn-icon-text btn-sm mb-3" href="{{ route('papers.create') }}"><i class="mdi mdi-plus btn-icon-prepend"></i> ADD </a>
+            @endcan
             @if(Auth::user()->hasRole('teacher'))
-                <a class="btn btn-primary btn-icon-text btn-sm mb-3" href="{{ route('callscopus', Crypt::encrypt(Auth::user()->id)) }}">
-                    <i class="mdi mdi-refresh btn-icon-prepend icon-sm"></i> {{ __('published_research.call_paper') }}
-                </a>
+                <a class="btn btn-primary btn-icon-text btn-sm mb-3" href="{{ route('callscopus', Crypt::encrypt(Auth::user()->id)) }}"><i class="mdi mdi-refresh btn-icon-prepend icon-sm"></i> Call Paper</a>
             @endif
-            <table id="example1" class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>{{ __('published_research.no') }}</th>
-                        <th>{{ __('published_research.paper_name') }}</th>
-                        <th>{{ __('published_research.paper_type') }}</th>
-                        <th>{{ __('published_research.paper_yearpub') }}</th>
-                        <th width="280px">{{ __('published_research.action') }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($papers->sortByDesc('paper_yearpub') as $i => $paper)
+            <!-- <div class="table-responsive"> -->
+                <table id="example1" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>ชื่อเรื่อง</th>
+                            <th>ประเภท</th>
+                            <th>ปีที่ตีพิมพ์</th>
+                            <th>ผู้เขียน</th>
+                            <!-- <th>Source Title</th> -->
+                            <th width="280px">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($papers->sortByDesc('paper_yearpub') as $i => $paper)
                         <tr>
                             <td>{{ $i + 1 }}</td>
                             <td>{{ Str::limit($paper->paper_name, 50) }}</td>
-                            <td>{{ __('published_research.paper_types.' . $paper->paper_type) }}</td>
+                            <td>{{ Str::limit($paper->paper_type, 50) }}</td>
                             <td>{{ $paper->paper_yearpub }}</td>
                             <td>
+                                @if($paper->teacher->isNotEmpty())
+                                    @foreach($paper->teacher->take(1) as $teacher)
+                                        {{ $teacher->fname_en }} {{ $teacher->lname_en }}
+                                        @if(!$loop->last), @endif
+                                    @endforeach
+                                @endif
+                                @if($paper->author->isNotEmpty())
+                                    @foreach($paper->author->take(1) as $author)
+                                        , {{ $author->author_fname }} {{ $author->author_lname }}
+                                        @if(!$loop->last), @endif
+                                    @endforeach
+                                @endif
+                                @if($paper->teacher->isEmpty() && $paper->author->isEmpty())
+                                    No Authors
+                                @endif
+                            </td>
+                            <!-- <td>{{ Str::limit($paper->paper_sourcetitle,50) }}</td> -->
+
+                            <td>
                                 <form action="{{ route('papers.destroy', $paper->id) }}" method="POST">
-                                    <li class="list-inline-item">
-                                        <a class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('published_research.view') }}" href="{{ route('papers.show', $paper->id) }}">
-                                            <i class="mdi mdi-eye"></i>
-                                        </a>
-                                    </li>
-                                    @if(Auth::user()->can('update', $paper))
+                                    <ul class="list-inline mb-0">
                                         <li class="list-inline-item">
-                                            <a class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="{{ __('published_research.edit') }}" href="{{ route('papers.edit', Crypt::encrypt($paper->id)) }}">
-                                                <i class="mdi mdi-pencil"></i>
-                                            </a>
+                                            <a class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="view" href="{{ route('papers.show', $paper->id) }}"><i class="mdi mdi-eye"></i></a>
                                         </li>
-                                    @endif
+                                        @can('update', $paper)
+                                            <li class="list-inline-item">
+                                                <a class="btn btn-outline-success btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="Edit" href="{{ route('papers.edit', Crypt::encrypt($paper->id)) }}"><i class="mdi mdi-pencil"></i></a>
+                                            </li>
+                                        @endcan
+                                        @can('delete', $paper)
+                                            @csrf
+                                            @method('DELETE')
+                                            <li class="list-inline-item">
+                                                <button class="btn btn-outline-danger btn-sm show_confirm" type="submit" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-delete"></i></button>
+                                            </li>
+                                        @endcan
+                                    </ul>
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                        @endforeach
+                    </tbody>
+                </table>
+                <br>
+            <!-- </div> -->
             <br>
         </div>
     </div>
@@ -92,14 +120,14 @@
         var form = $(this).closest("form");
         event.preventDefault();
         swal({
-            title: `{{ __('published_research.confirm_title') }}`,
-            text: "{{ __('published_research.confirm_text') }}",
+            title: `Are you sure?`,
+            text: "If you delete this, it will be gone forever.",
             icon: "warning",
             buttons: true,
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete) {
-                swal("{{ __('published_research.delete_success') }}", {
+                swal("Delete Successfully", {
                     icon: "success",
                 }).then(function() {
                     location.reload();
@@ -110,4 +138,3 @@
     });
 </script>
 @stop
-

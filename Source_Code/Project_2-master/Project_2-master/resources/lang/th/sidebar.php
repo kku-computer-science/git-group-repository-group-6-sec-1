@@ -1,0 +1,23 @@
+<?php
+return [
+    'dashboard' => 'แดชบอร์ด',
+    'profile' => 'โปรไฟล์',
+    'user_profile' => 'โปรไฟล์ผู้ใช้',
+    'option' => 'ตัวเลือก',
+    'admin' => 'ผู้ดูแลระบบ',
+    'manage_fund' => 'จัดการกองทุน',
+    'research_project' => 'โครงการวิจัย',
+    'research_group' => 'กลุ่มวิจัย',
+    'manage_publications' => 'จัดการสิ่งพิมพ์',
+    'published_research' => 'งานวิจัยที่เผยแพร่',
+    'book' => 'หนังสือ',
+    'other_academic_works' => 'ผลงานวิชาการอื่นๆ',
+    'research_assistant' => 'ผู้ช่วยวิจัย',
+    'export' => 'ส่งออกข้อมูล',
+    'users' => 'ผู้ใช้',
+    'roles' => 'บทบาท',
+    'permission' => 'สิทธิ์การเข้าถึง',
+    'departments' => 'แผนก',
+    'manage_programs' => 'จัดการโปรแกรม',
+    'manage_expertise' => 'จัดการความเชี่ยวชาญ',
+];

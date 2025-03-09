@@ -76,7 +76,7 @@ Logout And Close Browser
     Close Browser
 
 *** Test Cases ***
-TC48_REPapers - ตรวจสอบภาษาส่วนต่างๆ
+TC01_REPapers - ตรวจสอบภาษาส่วนต่างๆ
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาส่วนต่างๆ ในหน้า Papers ที่ /papers
     Go To    ${PAPERS_URL}
@@ -120,7 +120,7 @@ TC48_REPapers - ตรวจสอบภาษาส่วนต่างๆ
     ...    ELSE    Log To Console    Edit button not found, possibly due to permissions or no data
     Verify Page Language    搜索:
 
-TC49_REPapers_Table - ตรวจสอบภาษาของตาราง Papers และข้อมูลในช่อง Type
+TC02_REPapers_Table - ตรวจสอบภาษาของตาราง Papers และข้อมูลในช่อง Type
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาของตาราง Papers และข้อมูลในช่อง Type ที่ /papers
     Go To    ${PAPERS_URL}
@@ -152,7 +152,7 @@ TC49_REPapers_Table - ตรวจสอบภาษาของตาราง 
     Should Be True    '${type_zh}' in ['期刊', '会议论文', '书籍系列', '书籍']
     Log To Console    Type in Chinese (row 1): ${type_zh}
 
-TC50_REPapers_View - ตรวจสอบภาษาข้อมูลในหน้ารายละเอียด
+TC03_REPapers_View - ตรวจสอบภาษาข้อมูลในหน้ารายละเอียด
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาข้อมูลในหน้ารายละเอียด Papers ที่ /papers/{Id}
     Go To    ${VIEW_URL}
@@ -209,7 +209,7 @@ TC50_REPapers_View - ตรวจสอบภาษาข้อมูลใน�
     Verify Page Language    URL
     Verify Page Language    返回
 
-TC51_REPapers_Form - ตรวจสอบภาษาของฟอร์มเพิ่ม Papers
+TC04_REPapers_Form - ตรวจสอบภาษาของฟอร์มเพิ่ม Papers
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาในฟอร์มเพิ่ม Papers ที่ /papers/create
     Go To    ${CREATE_URL}
@@ -283,7 +283,7 @@ TC51_REPapers_Form - ตรวจสอบภาษาของฟอร์ม�
     Verify Page Language    提交
     Verify Page Language    返回
 
-TC52_REPapers_FormEdit - ตรวจสอบภาษาของฟอร์มแก้ไข Papers
+TC05_REPapers_FormEdit - ตรวจสอบภาษาของฟอร์มแก้ไข Papers
     [Setup]    Reset Language To English
     [Documentation]    ตรวจสอบภาษาในฟอร์มแก้ไข Papers โดยคลิกปุ่ม Edit ในหน้า Papers
     Go To    ${PAPERS_URL}

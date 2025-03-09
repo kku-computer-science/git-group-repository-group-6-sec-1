@@ -83,7 +83,7 @@ Logout And Close Browser
     Close Browser
 
 *** Test Cases ***
-TC59_REAcademicWork_Delete - ตรวจสอบภาษาเมื่อกดปุ่ม Delete และ popup ต่างๆเมื่อลบ
+TC01_REAcademicWork_Delete - ตรวจสอบภาษาเมื่อกดปุ่ม Delete และ popup ต่างๆเมื่อลบ
     [Setup]    Reset Language To English
     Go To    ${PATENTS_URL}
     Wait Until Page Contains    Other Academic Works (Patents, Utility Models, Copyrights)    15s
@@ -96,7 +96,7 @@ TC59_REAcademicWork_Delete - ตรวจสอบภาษาเมื่อก
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
     Verify Popup Language    你确定吗？    删除后，数据将无法恢复。    删除成功
 
-TC60_REAcademicWork - ตรวจสอบภาษาส่วนต่างๆ ของ UI17
+TC02_REAcademicWork - ตรวจสอบภาษาส่วนต่างๆ ของ UI17
     [Setup]    Reset Language To English
     Go To    ${PATENTS_URL}
     Verify Page Language    Other Academic Works (Patents, Utility Models, Copyrights)
@@ -132,8 +132,7 @@ TC60_REAcademicWork - ตรวจสอบภาษาส่วนต่าง�
     Verify Page Language    操作
     Verify Page Language    搜索:
 
-# TC61-TC65 คงเดิม (ย่อเพื่อความกระชับ)
-TC61_REAcademicWork_Table - ตรวจสอบภาษาในตารางของ UI17
+TC03_REAcademicWork_Table - ตรวจสอบภาษาในตารางของ UI17
     [Setup]    Reset Language To English
     Go To    ${PATENTS_URL}
     Verify Table Header    1    No.
@@ -160,7 +159,7 @@ TC61_REAcademicWork_Table - ตรวจสอบภาษาในตารา�
     Verify Table Header    6    创建者
     Verify Table Header    7    操作
 
-TC62_REAcademicWork_View - ตรวจสอบภาษาข้อมูลในหน้ารายละเอียดของ UI17
+TC04_REAcademicWork_View - ตรวจสอบภาษาข้อมูลในหน้ารายละเอียดของ UI17
     [Setup]    Reset Language To English
     Go To    ${VIEW_URL}
     Verify Page Language    Other Academic Works (Patents, Utility Models, Copyrights)
@@ -190,7 +189,7 @@ TC62_REAcademicWork_View - ตรวจสอบภาษาข้อมูล�
     Verify Page Language    共同创建者
     Verify Page Language    返回
 
-TC63_REAcademicWork_Form - ตรวจสอบภาษาของฟอร์มเพิ่ม Patents ของ UI17
+TC05_REAcademicWork_Form - ตรวจสอบภาษาของฟอร์มเพิ่ม Patents ของ UI17
     [Setup]    Reset Language To English
     Go To    ${CREATE_URL}
     Verify Page Language    Add
