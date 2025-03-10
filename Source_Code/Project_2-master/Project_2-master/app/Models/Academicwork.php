@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Academicwork extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'ac_name',
         'ac_type',
@@ -15,15 +17,16 @@ class Academicwork extends Model
         'ac_refnumber',
         'ac_page',
     ];
-    use HasFactory;
+
     public function user()
     {
-        return $this->belongsToMany(User::class,'user_of_academicworks')->withPivot('author_type');
+        return $this->belongsToMany(User::class, 'user_of_academicworks')
+                    ->withPivot('author_type');
     }
 
     public function author()
     {
-        return $this->belongsToMany(Author::class,'author_of_academicworks')->withPivot('author_type');
-        // OR return $this->hasOne('App\Phone');
+        return $this->belongsToMany(Author::class, 'author_of_academicworks')
+                    ->withPivot('author_type');
     }
 }
