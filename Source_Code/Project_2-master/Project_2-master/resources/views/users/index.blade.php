@@ -155,10 +155,6 @@
                         @endforeach
                     </tbody>
                 </table>
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Thanakrit_2664
             </div>
         </div>
     </div>
