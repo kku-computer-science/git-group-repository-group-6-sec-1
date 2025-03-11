@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Redirect;
 
 
 use App\Http\Controllers\HomeController;
@@ -79,7 +76,7 @@ Route::middleware(['middleware' => 'PreventBackHistory'])->group(function () {
 
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home'); 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::get('/researchers',[ResearcherController::class,'index'])->name('researchers');
 Route::get('researchers/{id}', [ResearcherController::class, 'request'])->name('researchers');
 Route::get('researchers/{id}/search', [ResearcherController::class, 'search'])->name('searchresearchers');
@@ -167,16 +164,12 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
 
 });
 
-
-    //ensure language switch
-Route::get('/lang/{locale}', function ($locale) {
-    if (in_array($locale, ['en', 'th', 'zh'])) { // Allowed languages
-        Session::put('locale', $locale);
-        App::setLocale($locale);
-    }
-    return Redirect::back();
+Route::middleware(['auth'])->group(function () {
+    Route::get('/experts', [ExpertiseController::class, 'index'])->name('experts.index');
+    Route::get('/experts/create', [ExpertiseController::class, 'create'])->name('experts.create');
+    Route::post('/experts', [ExpertiseController::class, 'store'])->name('experts.store');
+    Route::delete('/experts/{id}', [ExpertiseController::class, 'destroy'])->name('experts.destroy');
 });
-
 
 // Route::get('/example/pdf', 'ExampleController@pdf_index');
 /*use App\Http\Controllers\FileUpload;

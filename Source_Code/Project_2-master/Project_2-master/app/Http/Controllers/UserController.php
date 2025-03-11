@@ -26,7 +26,6 @@ class UserController extends Controller
          $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
          $this->middleware('permission:user-delete', ['only' => ['destroy']]);
     }
-    
 
     /**
      * Display a listing of the resource.
@@ -135,30 +134,20 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-{
-    $user = User::findOrFail($id); // Added findOrFail for safety
-    $departments = Department::all();
-    $departmentId = $user->program->department_id; // Renamed $id to avoid overwriting parameter
-    $programs = Program::whereHas('department', function($q) use ($departmentId) {    
-        $q->where('id', '=', $departmentId);
-    })->get();
-    
-    // Fetch roles and translate them
-    $rolesRaw = Role::pluck('name', 'name')->all(); // e.g., ['admin' => 'admin', 'teacher' => 'teacher']
-    $roles = array_map(fn($role) => __("users.roles.{$role}"), array_keys($rolesRaw)); // Translate values
-    $roles = array_combine(array_keys($rolesRaw), $roles); // e.g., ['admin' => 'Admin', 'teacher' => 'Teacher']
-
-    // Departments (assuming this is for another dropdown or display)
-    $deps = Department::pluck('department_name_EN', 'department_name_EN')->all(); // Note: Key and value are the same
-
-    // User’s current roles (raw names for Form::select)
-    $userRole = $user->roles->pluck('name')->all(); // e.g., ['teacher', 'staff']
-
-    // User’s department (seems unused in snippet; included for completeness)
-    $userDep = $user->department()->pluck('department_name_EN', 'department_name_EN')->all();
-
-    return view('users.edit', compact('user', 'roles', 'deps', 'userRole', 'userDep', 'programs', 'departments'));
-}
+    {
+        $user = User::find($id);
+        $departments = Department::all();
+        $id = $user->program->department_id;
+        $programs = Program::whereHas('department', function($q) use ($id){    
+            $q->where('id', '=', $id);
+        })->get();
+        
+        $roles = Role::pluck('name', 'name')->all();
+        $deps = Department::pluck('department_name_EN','department_name_EN')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
+        $userDep = $user->department()->pluck('department_name_EN','department_name_EN')->all();
+        return view('users.edit', compact('user', 'roles','deps', 'userRole','userDep','programs','departments'));
+    }
 
     /**
      * Update the specified resource in storage.

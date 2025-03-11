@@ -9508,6 +9508,11 @@
     },
     "platform-dev": {},
     "plugin-api-version": "2.6.0"
-
-
+<<<<<<< HEAD:Source_Code/Project_2-master/Project_2-master/composer.lock
+<<<<<<< HEAD:Source_code/Project_2-master/Project_2-master/composer.lock
+=======
+>>>>>>> origin/Thanakrit_2664:Source_code/Project_2-master/Project_2-master/composer.lock
 }
+=======
+}
+>>>>>>> Bodin_1359:Source_Code/Project_2-master/Project_2-master/composer.lock

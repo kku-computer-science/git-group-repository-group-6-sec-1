@@ -69,7 +69,7 @@
                                 <select class="form-control" name="cat" id="cat" style="width: 100%;" required>
                                     <option>{{ __('users.select_category') }}</option>
                                     @foreach ($departments as $cat)
-                                    <option value="{{ $cat->id }}">{{ $cat->department_name_en }}</option>
+                                    <option value="{{$cat->id}}">{{ $cat->department_name_en }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -87,7 +87,7 @@
                     {!! Form::close() !!}
                 </div>
             </div>
-        </div> 
+        </div>
 
     </div>
 </div>

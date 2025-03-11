@@ -80,53 +80,6 @@ Click To Account Tab
     Wait Until Page Contains    User Profile    timeout=5s
     Sleep    ${DELAY}
 
-Click To Account Tab
-    Wait Until Element Is Visible    xpath=//a[@id='password-tab' and contains(@class, 'nav-link')]
-    Click Link    xpath=//a[@id='password-tab' and contains(@class, 'nav-link')]
-    Sleep    ${DELAY}
-# Switch to chinese
-    Wait Until Element Is Visible    xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]
-    Click Element    xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]
-    Sleep    ${DELAY}
-    Wait Until Element Is Visible    xpath=//a[contains(@href, '/lang/zh')]
-    Click Link    xpath=//a[contains(@href, '/lang/zh')]
-    Sleep    ${DELAY}
-    Wait Until Page Contains    中国    timeout=5s
-    Sleep    ${DELAY}
-    Wait Until Element Is Visible    xpath=//a[@id='password-tab' and contains(@class, 'nav-link')]
-    Click Link    xpath=//a[@id='password-tab' and contains(@class, 'nav-link')]
-    Sleep    ${DELAY}
-
-    # Switch to Thai
-    Wait Until Element Is Visible    xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]
-    Click Element    xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]
-    Sleep    ${DELAY}
-    Wait Until Element Is Visible    xpath=//a[contains(@href, '/lang/th')]
-    Click Link    xpath=//a[contains(@href, '/lang/th')]
-    Sleep    ${DELAY}
-    Wait Until Page Contains    ไทย    timeout=5s
-    Sleep    ${DELAY}
-    Wait Until Element Is Visible    xpath=//a[@id='password-tab' and contains(@class, 'nav-link')]
-    Click Link    xpath=//a[@id='password-tab' and contains(@class, 'nav-link')]
-    Sleep    ${DELAY}
-
-    # Switch back to English
-    Wait Until Element Is Visible    xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]
-    Click Element    xpath=//a[@id='navbarDropdownMenuLink' and contains(@class, 'dropdown-toggle')]
-    Sleep    ${DELAY}
-    Wait Until Element Is Visible    xpath=//a[contains(@href, '/lang/en')]
-    Click Link    xpath=//a[contains(@href, '/lang/en')]
-    Sleep    ${DELAY}
-    Wait Until Page Contains    English    timeout=5s
-    Sleep    ${DELAY}
-    Wait Until Element Is Visible    xpath=//a[@id='password-tab' and contains(@class, 'nav-link')]
-    Click Link    xpath=//a[@id='password-tab' and contains(@class, 'nav-link')]
-    Sleep    ${DELAY}
-    
-    Wait Until Page Contains    User Profile    timeout=5s
-    Sleep    ${DELAY}
-    
-
 *** Keywords ***
 Close Browser Session
     Close Browser

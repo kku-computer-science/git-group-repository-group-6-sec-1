@@ -1,10 +1,10 @@
 @extends('dashboards.users.layouts.user-dash-layout')
-
 @section('content')
+
 <div class="container">
     @if (\Session::has('success'))
     <div class="alert alert-success">
-        <p>{{ \Session::get('success', __('users.success_message')) }}</p>
+        <p>{{ \Session::get('success') }}</p>
     </div>
     @endif
     <div class="col-md-8 grid-margin stretch-card">
@@ -76,4 +76,5 @@
         </div>
     </div>
 </div>
+
 @endsection
