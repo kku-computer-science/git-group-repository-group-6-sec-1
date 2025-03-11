@@ -10,24 +10,24 @@
             <p class="card-description">{{ __('patents.card_description') }}</p>
 
             <div class="row">
-                <p class="card-text col-sm-3"><b>{{ __('patents.name') }}</b></p>
-                <p class="card-text col-sm-9">{{ $patent->ac_name }}</p>
+                <p class="card-text col-12 col-sm-3"><b>{{ __('patents.name') }}</b></p>
+                <p class="card-text col-12 col-sm-9">{{ $patent->ac_name }}</p>
             </div>
             <div class="row">
-                <p class="card-text col-sm-3"><b>{{ __('patents.type') }}</b></p>
-                <p class="card-text col-sm-9">{{ __('patents.ac_type.' . ($patent->ac_type ?? '')) }}</p>
+                <p class="card-text col-12 col-sm-3"><b>{{ __('patents.type') }}</b></p>
+                <p class="card-text col-12 col-sm-9">{{ __('patents.ac_type.' . ($patent->ac_type ?? '')) }}</p>
             </div>
             <div class="row">
-                <p class="card-text col-sm-3"><b>{{ __('patents.registration_date') }}</b></p>
-                <p class="card-text col-sm-9">{{ $patent->ac_year }}</p>
+                <p class="card-text col-12 col-sm-3"><b>{{ __('patents.registration_date') }}</b></p>
+                <p class="card-text col-12 col-sm-9">{{ $patent->ac_year }}</p>
             </div>
             <div class="row">
-                <p class="card-text col-sm-3"><b>{{ __('patents.ref_number') }}</b></p>
-                <p class="card-text col-sm-9">{{ __('patents.ref_number_label') }} {{ $patent->ac_refnumber }}</p>
+                <p class="card-text col-12 col-sm-3"><b>{{ __('patents.ref_number') }}</b></p>
+                <p class="card-text col-12 col-sm-9">{{ __('patents.ref_number_label') }} {{ $patent->ac_refnumber }}</p>
             </div>
             <div class="row">
-                <p class="card-text col-sm-3"><b>{{ __('patents.creator') }}</b></p>
-                <p class="card-text col-sm-9">
+                <p class="card-text col-12 col-sm-3"><b>{{ __('patents.creator') }}</b></p>
+                <p class="card-text col-12 col-sm-9">
                     @foreach($patent->user as $a)
                         @if(app()->getLocale() == 'th')
                             {{ $a->fname_th }} {{ $a->lname_th }}
@@ -39,17 +39,29 @@
                 </p>
             </div>
             <div class="row">
-                <p class="card-text col-sm-3"><b>{{ __('patents.co_creator') }}</b></p>
-                <p class="card-text col-sm-9">
+                <p class="card-text col-12 col-sm-3"><b>{{ __('patents.co_creator') }}</b></p>
+                <p class="card-text col-12 col-sm-9">
                     @foreach($patent->author as $a)
                         {{ $a->author_fname }} {{ $a->author_lname }}@if(!$loop->last),@endif
                     @endforeach
                 </p>
             </div>
-            <div class="pull-right mt-5">
+            <div class="d-flex justify-content-end mt-5">
                 <a class="btn btn-primary btn-sm" href="{{ route('patents.index') }}">{{ __('patents.back_button') }}</a>
             </div>
         </div>
     </div>
 </div>
+<style>
+    .card-text {
+        word-wrap: break-word;
+        overflow: hidden;
+        max-width: 100%;
+    }
+    @media (max-width: 768px) {
+        .card-text {
+            margin-bottom: 10px;
+        }
+    }
+</style>
 @endsection

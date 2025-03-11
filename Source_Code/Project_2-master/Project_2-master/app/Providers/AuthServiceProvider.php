@@ -22,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
         ResearchProject::class => ResearchProjectPolicy::class,
         Product::class => UploadfileGroupPolicy::class,
         ResearchGroup::class => ResearchGroupPolicy::class,
+        Academicwork::class => AcademicworkPolicy::class,
         //ResearchGroup::class => UploadfiletoGroupPolicy::class,
 
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
