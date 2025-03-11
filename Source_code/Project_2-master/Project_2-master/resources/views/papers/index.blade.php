@@ -114,42 +114,41 @@
 <!-- Delete Confirmation -->
 <script type="text/javascript">
     $('.show_confirm').click(function(event) {
-    event.preventDefault();
+        event.preventDefault();
 
-    var form = $(this).closest("form");
-    var url = form.attr('action');
+        var form = $(this).closest("form");
+        var url = form.attr('action');
 
-    swal({
-        title: "Are you sure?",
-        text: "If you delete this, it will be gone forever.",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-    }).then((willDelete) => {
-        if (willDelete) {
-            $.ajax({
-                type: 'DELETE',
-                url: url,
-                data: form.serialize(),
-                success: function(response) {
-                    if (response.success) {
-                        swal("Deleted Successfully!", {
-                            icon: "success",
-                        }).then(() => {
-                            window.location.href = "{{ route('papers.index') }}"; // กลับไปที่หน้า index
-                        });
-                    } else {
-                        swal("Error!", response.error, "error");
+        swal({
+            title: "Are you sure?",
+            text: "If you delete this, it will be gone forever.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: url,
+                    data: form.serialize(),  // ส่งข้อมูลจากฟอร์ม
+                    success: function(response) {
+                        if (response.success) {
+                            swal("Deleted Successfully!", {
+                                icon: "success",
+                            }).then(() => {
+                                window.location.href = "{{ route('papers.index') }}"; // กลับไปที่หน้า index
+                            });
+                        } else {
+                            swal("Error!", response.error, "error");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        swal("Error!", "Delete failed. Please try again.", "error");
                     }
-                },
-                error: function(response) {
-                    swal("Error!", "Delete failed. Please try again.", "error");
-                }
-            });
-        }
+                });
+            }
+        });
     });
-});
-
 </script>
 
 @stop

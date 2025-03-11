@@ -17,9 +17,12 @@ class CreateOutsidersWorkOfProjectTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('outsider_id');
             $table->unsignedBigInteger('research_project_id');
-            $table->foreign('outsider_id')->references('id')->on('outsiders')->onUpdate('cascade')->onDelete('cascade')->onDelete('cascade');
+
+            // Foreign keys
+            $table->foreign('outsider_id')->references('id')->on('outsiders')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('research_project_id')->references('id')->on('research_projects')->onUpdate('cascade')->onDelete('cascade');
 
+            $table->timestamps(); // เพิ่ม timestamps เพื่อให้บันทึกเวลา create และ update
         });
     }
 

@@ -26,10 +26,10 @@ TC02 - Add New Research Project
     [Documentation]    Verify adding a new research project with all required fields filled
     Go To    ${CREATE_URL}
     Wait For Form Load
-    
+
     # ✅ Step 1: กรอกชื่อกลุ่ม (Project Name)
     Input Text    name=project_name    โครงการวิจัยใหม่
-    
+
     # ✅ Step 2: กรอกวันเริ่มโครงการ (Project Start)
     Execute JavaScript    document.getElementById('Project_start').value = '2025-03-12';
 
@@ -39,24 +39,25 @@ TC02 - Add New Research Project
     # ✅ Step 4: เลือกแหล่งทุนวิจัย (Fund Source)
     Wait Until Element Is Visible    id=fund    timeout=10s
     Select From List By Label    id=fund    Statistical Thai – Isarn Dialect Machine Translation System using Parallel Corpus
-    
+
     # ✅ Step 5: กรอกปี (Year)
     Input Text    name=project_year    2025
-    
+
     # ✅ Step 6: กรอก Budget
     Input Text    name=budget    500000
-    
+
     # ✅ Step 7: เลือกสาขาวิชาวิทยาการคอมพิวเตอร์ (Responsible Department)
     Wait Until Element Is Visible    id=dep    timeout=10s
-    Select From List By Label    id=dep    สาขาวิชาวิทยาการคอมพิวเตอร์
-    
+    Select From List By Label    id=dep    Department of Computer Science
+
     # ✅ Step 8: กรอก Project Detail (Note)
     Input Text    name=note    รายละเอียดโครงการทดสอบ
-    
+
     # ✅ Step 9: เลือก Project Status
-    Wait Until Element Is Visible    id=status    timeout=10s
-    Select From List By Label    id=status    ยื่นขอ
-    
+    Scroll Element Into View    xpath=//label[text()='Project Status']/following-sibling::div//select
+    Wait Until Element Is Visible    xpath=//label[text()='Project Status']/following-sibling::div//select    timeout=10s
+    Select From List By Label    xpath=//label[text()='Project Status']/following-sibling::div//select    Requested
+
     # ✅ Step 10: เลือก Project Head
     Scroll Element Into View    id=head0
     Wait Until Element Is Visible    xpath=//select[@id='head0']/following-sibling::span//span[contains(@class,'select2-selection')]    timeout=10s
@@ -116,19 +117,19 @@ TC04 - Edit Research Project
     Reload Page
     Sleep    3s
     Wait For Table Load
-    
+
     Search In DataTable    โครงการวิจัยใหม่
-    
+
     # ✅ Scroll + Wait + Click ด้วย XPath ที่แม่นยำกว่าเดิม
     Scroll Element Into View    xpath=//table[@id='example1']//tr[td[normalize-space()='โครงการวิจัยใหม่']]//a[@title='Edit']
     Wait Until Element Is Visible    xpath=//table[@id='example1']//tr[td[normalize-space()='โครงการวิจัยใหม่']]//a[@title='Edit']    timeout=5s
     Click Element    xpath=//table[@id='example1']//tr[td[normalize-space()='โครงการวิจัยใหม่']]//a[@title='Edit']
-    
+
     Wait For Form Load
 
     # ✅ Step 1: เปลี่ยนชื่อโครงการ
     Input Text    name=project_name    โครงการวิจัยใหม่ที่แก้ไขแล้ว
-    
+
     # ✅ Step 2: เปลี่ยนวันเริ่มต้นโครงการ
     Wait Until Element Is Visible    name=project_start    timeout=10s
     Execute JavaScript    document.getElementsByName('project_start')[0].value = '2025-04-10';
@@ -186,48 +187,48 @@ TC05 - Delete Research Project
     Reload Page
     Sleep    3s
     Wait For Table Load
-    
+
     # ✅ ค้นหาข้อมูลในตาราง
     Input Text    xpath=//div[@id='example1_filter']//input[@type='search']    โครงการวิจัยใหม่ที่แก้ไขแล้ว
     Sleep    1s
     Press Keys    xpath=//div[@id='example1_filter']//input[@type='search']    ENTER
     Wait For Table Load
-    
+
     ${row}=    Get Element Count    xpath=//table[@id='example1']/tbody/tr[td[contains(text(),'โครงการวิจัยใหม่ที่แก้ไขแล้ว')]]
-    
+
     # ✅ กรณีไม่เจอข้อมูลในตาราง → ให้ Test Case ผ่านทันที
     Run Keyword If    ${row} == 0    Log    Research project already deleted, test case passed.
     Run Keyword If    ${row} == 0    RETURN
-    
+
     # ✅ ถ้ายังเจอข้อมูลในตาราง → ให้ทำการลบ
     Run Keyword If    ${row} > 0    Scroll Element Into View    xpath=//table[@id='example1']//td[contains(text(),'โครงการวิจัยใหม่ที่แก้ไขแล้ว')]/following-sibling::td//button[contains(@class,'btn-outline-danger')]
     Run Keyword If    ${row} > 0    Wait Until Element Is Visible    xpath=//table[@id='example1']//td[contains(text(),'โครงการวิจัยใหม่ที่แก้ไขแล้ว')]/following-sibling::td//button[contains(@class,'btn-outline-danger')]    timeout=10s
     Run Keyword If    ${row} > 0    Click Element    xpath=//table[@id='example1']//td[contains(text(),'โครงการวิจัยใหม่ที่แก้ไขแล้ว')]/following-sibling::td//button[contains(@class,'btn-outline-danger')]
-    
+
     # ✅ ยืนยันการลบด้วย Sweet Alert ตัวแรก
     Sleep    1s
     Handle Sweet Alert Confirmation
-    
+
     # ✅ ยืนยันการลบด้วย Sweet Alert ตัวที่สอง
     Sleep    1s
     Handle Sweet Alert Confirmation
-    
+
     # ✅ เพิ่ม Sleep เพื่อรอระบบอัปเดตข้อมูลในตาราง
     Sleep    2s
-    
+
     # ✅ รีเฟรชหน้าหลังลบ เพื่อให้ตารางโหลดใหม่
     Reload Page
     Wait For Table Load
-    
+
     # ✅ ค้นหาอีกครั้งหลังจากลบ เพื่อยืนยันว่าข้อมูลหายไปจริง ๆ
     Input Text    xpath=//div[@id='example1_filter']//input[@type='search']    โครงการวิจัยใหม่ที่แก้ไขแล้ว
     Sleep    1s
     Press Keys    xpath=//div[@id='example1_filter']//input[@type='search']    ENTER
     Wait For Table Load
-    
+
     # ✅ ตรวจสอบว่าข้อมูลหายไปจริง ๆ
     Wait Until Page Does Not Contain    โครงการวิจัยใหม่ที่แก้ไขแล้ว    timeout=10s
-    
+
     # ✅ ถ้ายังเจอข้อมูล → ให้ Fail
     ${row_after_delete}=    Get Element Count    xpath=//table[@id='example1']/tbody/tr[td[contains(text(),'โครงการวิจัยใหม่ที่แก้ไขแล้ว')]]
     Run Keyword If    ${row_after_delete} > 0    Fail    Project 'โครงการวิจัยใหม่ที่แก้ไขแล้ว' not deleted successfully!

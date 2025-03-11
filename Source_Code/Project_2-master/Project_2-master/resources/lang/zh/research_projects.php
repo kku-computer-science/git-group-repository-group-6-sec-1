@@ -16,7 +16,7 @@ return [
     'confirm_text'  => '如果删除，数据将永远消失。',
     'delete_success'=> '删除成功',
     'search'        => '搜索:',
-    
+
     // 用于编辑 / 创建页面
     'edit_title'        => '编辑研究项目',
     'edit_description'  => '请填写研究项目的详细信息以进行编辑',
@@ -59,4 +59,8 @@ return [
     'select_status'     => '请指定状态',
     // เพิ่มคีย์ select_member สำหรับ dropdown เลือกสมาชิก
     'select_member'     => '选择成员',
+    'select_status' => '选择状态',
+    'status_1' => '已申请',
+    'status_2' => '进行中',
+    'status_3' => '已关闭',
 ];

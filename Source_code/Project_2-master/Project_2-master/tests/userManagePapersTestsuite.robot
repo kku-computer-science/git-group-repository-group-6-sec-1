@@ -53,6 +53,9 @@ TC03 - View Research Paper Details
     ...    ELSE    Fail    Research paper "${PAPER_NAME}" not found in table
     Wait Until Page Contains    ${PAPER_NAME}    timeout=10s
     Page Should Contain    This is the abstract of ${PAPER_NAME}
+    # เลื่อนหน้าจอไปที่ปุ่ม "Back" ก่อนคลิก
+    Scroll Element Into View    xpath://a[contains(text(),"Back")]
+    Sleep    1s
     Click Element    xpath://a[contains(text(),"Back")]
     Wait For Table Load
 
@@ -76,7 +79,7 @@ TC04 - Edit Research Paper
     Execute JavaScript    document.querySelector('#paper_type').value = 'Journal';
     Execute JavaScript    var event = new Event('change'); document.querySelector('#paper_type').dispatchEvent(event);
     Sleep    1s
-    
+
     Scroll Element Into View    xpath://select[@id='paper_subtype']
     Execute JavaScript    document.querySelector('#paper_subtype').value = 'Article';
     Execute JavaScript    var event = new Event('change'); document.querySelector('#paper_subtype').dispatchEvent(event);
@@ -92,24 +95,24 @@ TC04 - Edit Research Paper
     Execute JavaScript    document.querySelector('input[name="paper_yearpub"]').value = '2024';
     Execute JavaScript    var event = new Event('change'); document.querySelector('input[name="paper_yearpub"]').dispatchEvent(event);
     Sleep    1s
-    
+
     # กรอก Citation
     Scroll Element Into View    xpath://input[@name='paper_citation']
     Execute JavaScript    document.querySelector('input[name="paper_citation"]').value = '10';
     Execute JavaScript    var event = new Event('change'); document.querySelector('input[name="paper_citation"]').dispatchEvent(event);
     Sleep    1s
-    
+
     # กรอก Page Number
     Scroll Element Into View    xpath://input[@name='paper_page']
     Execute JavaScript    document.querySelector('input[name="paper_page"]').value = '100-120';
     Execute JavaScript    var event = new Event('change'); document.querySelector('input[name="paper_page"]').dispatchEvent(event);
     Sleep    1s
-    
+
     # เลือก Pusadee Seresangtakul เป็น First Author (author_id = 16)
     Scroll Element Into View    xpath://select[@id='selUser0']
     Execute JavaScript    $("#selUser0").val("16").trigger("change");
     Sleep    1s
-    
+
     Execute JavaScript    $("#pos0").val("1").trigger("change");
     Sleep    1s
 
@@ -117,11 +120,11 @@ TC04 - Edit Research Paper
     Wait Until Element Is Visible    xpath://button[@type='submit']    timeout=10s
     ${is_enabled}=    Run Keyword And Return Status    Wait Until Element Is Enabled    xpath://button[@type='submit']    timeout=5s
     Run Keyword If    not ${is_enabled}    Fail    Submit button is disabled after filling form
-    
+
     # กดปุ่ม Submit ด้วย JavaScript
     Scroll Element Into View    xpath://button[@type='submit']
     Execute JavaScript    document.querySelector('button[type="submit"]').click();
-    
+
     # ตรวจสอบว่าชื่อใหม่ปรากฏในตาราง
     Go To    ${PAPERS_URL}
     Reload Page
@@ -135,18 +138,24 @@ TC05 - Delete Research Paper
     Reload Page
     Wait For Table Load
     Search In DataTable    ${UPDATED_PAPER_NAME}
-    
-    ${row} =    Get Element Count    xpath://table[@id="example1"]/tbody/tr[td[contains(text(),"${UPDATED_PAPER_NAME}")]]
+    ${row}=    Get Element Count    xpath://table[@id="example1"]/tbody/tr[td[contains(text(),"${UPDATED_PAPER_NAME}")]]
     Run Keyword If    ${row} > 0    Click Delete Button By Text    ${UPDATED_PAPER_NAME}
     ...    ELSE    Fail    Research paper "${UPDATED_PAPER_NAME}" not found in table
-    
     Handle Sweet Alert Confirmation
-    Sleep    2s
-    
+    # ข้ามการรอ SweetAlert
+    Sleep    1s
+    Run Keyword And Ignore Error    Click Element    xpath://button[contains(@class,"swal-button--confirm")]
+    ${ok_clicked}=    Run Keyword And Return Status    Execute JavaScript    document.querySelector('button.swal-button--confirm').click();
+    Sleep    1s
+    Wait Until Element Is Not Visible    xpath://div[contains(@class,"swal-modal")]    timeout=10s
+
+    # ตรวจสอบว่า ${UPDATED_PAPER_NAME} หายไปจากตาราง
     Reload Page
     Wait For Table Load
     Search In DataTable    ${UPDATED_PAPER_NAME}
-    Page Should Not Contain    ${UPDATED_PAPER_NAME}
+    ${row_after_delete}=    Get Element Count    xpath://table[@id="example1"]/tbody/tr[td[contains(text(),"${UPDATED_PAPER_NAME}")]]
+    Run Keyword If    ${row_after_delete} == 0    Log    Research paper "${UPDATED_PAPER_NAME}" has been successfully deleted.
+    ...    ELSE    Fail    Research paper "${UPDATED_PAPER_NAME}" is still in the table.
 
 *** Keywords ***
 Open Browser And Login

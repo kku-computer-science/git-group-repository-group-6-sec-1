@@ -235,14 +235,15 @@ class PaperController extends Controller
         try {
             $paper = Paper::findOrFail($id);
             $paper->delete();
-    
+
             // ✅ ส่ง response กลับเป็น JSON หลังลบสำเร็จ
-            return response()->json(['success' => 'Deleted Successfully']);
+            return response()->json(['success' => 'Paper deleted successfully']);
         } catch (\Exception $e) {
+            // ส่งข้อความ error ถ้าเกิดข้อผิดพลาด
             return response()->json(['error' => 'Delete Failed: ' . $e->getMessage()], 500);
         }
     }
-    
+
     /**
      * Export papers to Excel.
      */
