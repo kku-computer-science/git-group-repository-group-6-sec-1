@@ -4,7 +4,6 @@ return [
     'search_interests' => 'Research interests',
     'ETX' => 'Export To Excel',
     'LoginBtn' => 'Login',
-
     'lengthMenu'   => 'Show _MENU_ entries',
     'info'         => 'Showing _START_ to _END_ of _TOTAL_ entries',
     'infoEmpty'    => 'No data available',
@@ -14,6 +13,4 @@ return [
     'next'         => 'Next',
     'previous'     => 'Previous',
     'edit'      => 'Edit Program',
-
 ];
-
