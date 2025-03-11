@@ -125,9 +125,9 @@
                             <td>{{ $user->email }}</td>
                             <td>
                                 @if(!empty($user->getRoleNames()))
-                                @foreach($user->getRoleNames() as $val)
+                                    @foreach($user->getRoleNames() as $val)
                                         <label class="badge badge-dark">{{ __("roles.$val") }}</label>
-                                @endforeach
+                                    @endforeach
                                 @endif
                             </td>
                             <td>
