@@ -8,32 +8,26 @@
         <div class="card-body">
             <h4 class="card-title">{{ __('published_research.title') }}</h4>
             <p class="card-description">{{ __('published_research.card_description') }}</p>
-
+            
             <div class="row mt-3">
                 <p class="card-text col-sm-3"><b>{{ __('published_research.paper_name') }}</b></p>
                 <p class="card-text col-sm-9">{{ $paper->paper_name }}</p>
             </div>
             <div class="row mt-2">
-                <p class="card-text col-sm-3"><b>{{ __('published_research.Abstract') }}</b></p>
-                <p class="card-text col-sm-9">{{ $paper->abstract }}</p>
+                <p class="card-text col-sm-3">Abstract ({{ strtoupper(app()->getLocale()) }})</p>
+                <p class="col-sm-9">{{ $translatedAbstract }}</p>
             </div>
             <div class="row mt-2">
-                <p class="card-text col-sm-3"><b>{{ __('published_research.Keyword') }}</b></p>
-                <p class="card-text col-sm-9">{{ $paper->keyword }}</p>
+                <p class="card-text col-sm-3">{{ __('Published_research.Keyword') }}</p>
+                <p class="card-text col-sm-9">{{ $translatedKeywords }}</p>
             </div>
             <div class="row mt-2">
                 <p class="card-text col-sm-3"><b>{{ __('published_research.paper_type') }}</b></p>
                 <p class="card-text col-sm-9">{{ __('published_research.paper_types.' . $paper->paper_type) }}</p>
             </div>
             <div class="row mt-2">
-                <p class="card-text col-sm-3"><b>{{ __('published_research.paper_subtype') }}</b></p>
-                <p class="card-text col-sm-9">
-                    @if($paper->paper_subtype && array_key_exists($paper->paper_subtype, __('published_research.subtypes')))
-                        {{ __('published_research.subtypes.' . $paper->paper_subtype) }}
-                    @else
-                        {{ $paper->paper_subtype ?? 'N/A' }}
-                    @endif
-                </p>
+                <p class="card-text col-sm-3"><b>{{ __('Published_research.paper_subtype') }}</b></p>
+                <p class="card-text col-sm-9">{{ __('Published_research.subtypes.' . $paper->paper_subtype) }}</p>
             </div>
             <div class="row mt-2">
                 <p class="card-text col-sm-3"><b>{{ __('published_research.publication') }}</b></p>

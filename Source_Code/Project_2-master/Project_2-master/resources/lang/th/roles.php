@@ -84,4 +84,11 @@ return [
 
     'description'  => 'ข้อมูลรายละเอียด',
     'role_permissions' => 'สิทธิ์ของบทบาท',
+
+    //role
+    'admin' => 'ผู้ดูแลระบบ',
+    'headproject' => 'หัวหน้าโครงการ',
+    'staff' => 'เจ้าหน้าที่',
+    'student' => 'นักศึกษา',
+    'teacher' => 'อาจารย์',
 ];

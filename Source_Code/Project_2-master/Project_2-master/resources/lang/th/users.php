@@ -17,8 +17,8 @@ return [
     'edit_description' => 'กรอกข้อมูลแก้ไขรายละเอียดผู้ใช้งาน',
     'fname_th' => 'ชื่อ (ภาษาไทย)',
     'lname_th' => 'นามสกุล (ภาษาไทย)',
-    'fname_en' => 'ชื่อ (English)',
-    'lname_en' => 'นามสกุล (English)',
+    'fname_en' => 'ชื่อ (ภาษาอังกฤษ)',
+    'lname_en' => 'นามสกุล (ภาษาอังกฤษ)',
     'fname_th_placeholder' => 'กรอกชื่อภาษาไทย',
     'lname_th_placeholder' => 'กรอกนามสกุลภาษาไทย',
     'fname_en_placeholder' => 'กรอกชื่อภาษาอังกฤษ',
@@ -32,7 +32,7 @@ return [
     'status_graduated' => 'จบการศึกษา',
     'department' => 'แผนก',
     'program' => 'หลักสูตร',
-    'select_department' => 'เลือกแผนก',
+    'select_department' => 'เลือกภาควิชา',
     'select_program' => 'เลือกหลักสูตร',
     'submit' => 'บันทึก',
     'cancel' => 'ยกเลิก',
@@ -41,7 +41,7 @@ return [
     'user_info' => 'ข้อมูลผู้ใช้งาน',
     'user_details' => 'ข้อมูลรายละเอียดผู้ใช้งาน',
     'name_th' => 'ชื่อ (ภาษาไทย)',
-    'name_en' => 'ชื่อ (English)',
+    'name_en' => 'ชื่อ (ภาษาอังกฤษ)',
     'email' => 'อีเมล',
     'role' => 'บทบาท',
     'academic_ranks' => 'ตำแหน่งทางวิชาการ',
@@ -56,11 +56,12 @@ return [
     'user_details' => 'กรอกข้อมูลรายละเอียดผู้ใช้งาน',
     'first_name_th' => 'ชื่อ (ภาษาไทย)',
     'last_name_th' => 'นามสกุล (ภาษาไทย)',
-    'first_name_en' => 'ชื่อ (English)',
-    'last_name_en' => 'นามสกุล (English)',
+    'first_name_en' => 'ชื่อ (ภาษาอังกฤษ)',
+    'last_name_en' => 'นามสกุล (ภาษาอังกฤษ)',
     'email' => 'Email',
     'password' => 'รหัสผ่าน',
     'confirm_password' => 'ยืนยันรหัสผ่าน',
+    'select_category' => 'เลือกบทบาท',
     'role' => 'บทบาท',
     'department' => 'ภาควิชา',
     'program' => 'หลักสูตร',
@@ -83,4 +84,38 @@ return [
     'program_data_updated_successfully' => 'ข้อมูลโปรแกรมได้รับการอัปเดตเรียบร้อยแล้ว',
 
     'expertise_data_updated_successfully' => 'ข้อมูลความเชี่ยวชาญได้รับการอัปเดตเรียบร้อยแล้ว',
+
+        //drop-down
+        'departments' => [
+            'College of Computing' => 'วิทยาลัยคอมพิวเตอร์',
+        ],
+    
+    //education
+    
+    'education' => 'การศึกษา',
+    'bachelor' => 'ปริญญาตรี',
+    'master' => 'ปริญญาโท',
+    'doctoral' => 'ปริญญาเอก',
+
+    'university_name' => 'ชื่อมหาวิทยาลัย',
+    'university_name_th' => 'ชื่อมหาวิทยาลัย (ภาษาไทย)',
+    'university_name_en' => 'ชื่อมหาวิทยาลัย (ภาษาอังกฤษ)',
+    'university_name_cn' => 'ชื่อมหาวิทยาลัย (ภาษาจีน)',
+
+    'degree_acronym' => 'ตัวย่อวุฒิการศึกษา',
+    'degree_acronym_th' => 'ตัวย่อวุฒิการศึกษา (ภาษาไทย)',
+    'degree_acronym_en' => 'ตัวย่อวุฒิการศึกษา (ภาษาอังกฤษ)',
+    'degree_acronym_cn' => 'ตัวย่อวุฒิการศึกษา (ภาษาจีน)',
+
+    'degree_full' => 'วุฒิการศึกษา',
+    'degree_full_th' => 'วุฒิการศึกษา (ภาษาไทย)',
+    'degree_full_en' => 'วุฒิการศึกษา (ภาษาอังกฤษ)',
+    'degree_full_cn' => 'วุฒิการศึกษา (ภาษาจีน)',
+
+    'graduation_year' => 'ปีที่จบ',
+    'graduation_year_th' => 'ปีที่จบ (ภาษาไทย)',
+    'graduation_year_en' => 'ปีที่จบ (ภาษาอังกฤษ)',
+    'graduation_year_cn' => 'ปีที่จบ (ภาษาจีน)',
+
+    'academic_rank' => 'ตำแหน่งทางวิชาการ',
 ];

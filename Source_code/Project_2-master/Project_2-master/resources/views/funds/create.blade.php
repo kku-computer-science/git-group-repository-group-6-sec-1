@@ -1,15 +1,7 @@
 @extends('dashboards.users.layouts.user-dash-layout')
 
-<<<<<<< HEAD
-
-
 @section('title', __('funds.title'))
 
-
-=======
-@section('title', __('funds.title'))
-
->>>>>>> origin/Thanakrit_2664
 @section('content')
 <style>
     .my-select {

@@ -50,12 +50,12 @@
 (images/project.png)
 
 ### หน้า Research Group
-(images/group.png)
+![image](images/group.png)
  เมื่อกดปุ่ม more details
- (images/group-detail.png)
+![image](images/group-detail.png)
 ### หน้า Report
 
-(images/report.png)
+![image](images/report.png)
 
 ---
 
@@ -63,24 +63,23 @@
 
 ### User เมื่อเข้าสู่ระบบจะไปหน้า Dashboard โดยรูปภาพจะเรียงตาม User Profile, Manage Fund, Research Group, Publication research, Book, ผลงานวิชาการอื่นๆ เรียงตามลำดับ
 
-(images/dashboard-u.png)
-(images/user-u.png)
-(images/fund-u.png)
-(images/group-u.png)
-(images/project-u.png)
-(images/paper-u.png)
-(images/book-u.png)
-(images/work.png)
+![image](images/dashboard-u.png)
+![image](images/user-u.png)
+![image](images/fund-u.png)
+![image](images/group-u.png)
+![image](images/project-u.png)
+![image](images/paper-u.png)
+![image](images/book-u.png)
+![image](images/work-u.png)
 
 ## ส่วนของ Admin
 
 ### Admin เมื่อเข้าสู่ระบบจะไปหน้า Dashboard และมีส่วนต่างๆ เหมือนดัง User แต่จะมีส่วนที่แอดมินสามารถแก้ไขได้แก่ Users, Roles, Permission, Departments, Manage Programs, Manage Expertise เรียงตามลำดับ
 
-(images/dashboard-a.png)
-(images/user-a.png)
-(images/role-a.png)
-(images/permission-a.png)
-(images/department-a.png)
-(images/program-a.png)
-(images/expertise-a.png)
-(images/work.png)
+![image](images/dashboard-a.png)
+![image](images/user-a.png)
+![image](images/role-a.png)
+![image](images/permission-a.png)
+![image](images/department-a.png)
+![image](images/program-a.png)
+![image](images/expertise-a.png)
