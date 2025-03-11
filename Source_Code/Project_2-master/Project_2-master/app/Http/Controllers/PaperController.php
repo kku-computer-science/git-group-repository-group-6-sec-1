@@ -232,9 +232,17 @@ class PaperController extends Controller
      */
     public function destroy($id)
     {
-        // Implement deletion logic if needed
+        try {
+            $paper = Paper::findOrFail($id);
+            $paper->delete();
+    
+            // ✅ ส่ง response กลับเป็น JSON หลังลบสำเร็จ
+            return response()->json(['success' => 'Deleted Successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Delete Failed: ' . $e->getMessage()], 500);
+        }
     }
-
+    
     /**
      * Export papers to Excel.
      */
