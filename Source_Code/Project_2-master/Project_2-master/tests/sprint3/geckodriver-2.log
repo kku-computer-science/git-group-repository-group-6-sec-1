@@ -1,36 +1,20 @@
-1741516175899	geckodriver	INFO	Listening on 127.0.0.1:11323
-1741516178988	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "11324" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Asus\\AppData\\Local\\Temp\\rust_mozprofileJnBSyR"
+1741697019253	geckodriver	INFO	Listening on 127.0.0.1:1567
+1741697022322	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "1568" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Asus\\AppData\\Local\\Temp\\rust_mozprofileKt7gzm"
 console.warn: services.settings: Ignoring preference override of remote settings server
 console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
 Dynamically enable window occlusion 0
-1741516179318	Marionette	INFO	Marionette enabled
-1741516179439	Marionette	INFO	Listening on port 11331
-WebDriver BiDi listening on ws://127.0.0.1:11324
-Read port: 11331
-1741516179701	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-DevTools listening on ws://127.0.0.1:11324/devtools/browser/015ed611-ee55-43f2-b2e5-fc6d59699d97
+1741697022669	Marionette	INFO	Marionette enabled
+1741697022763	Marionette	INFO	Listening on port 1575
+WebDriver BiDi listening on ws://127.0.0.1:1568
+Read port: 1575
+1741697023013	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:1568/devtools/browser/f3c9ac8e-aa54-4e96-a9d5-6a66fc435a48
 console.error: ({})
 console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
 console.error: ({})
-JavaScript error: http://127.0.0.1:8000/books, line 982: SyntaxError: missing formal parameter
 console.error: ({})
 console.error: ({})
 console.error: ({})
-console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
-JavaScript error: http://127.0.0.1:8000/books, line 1014: SyntaxError: missing formal parameter
 console.error: ({})
-JavaScript error: http://127.0.0.1:8000/books, line 1011: SyntaxError: missing formal parameter
-console.error: ({})
-JavaScript error: http://127.0.0.1:8000/books, line 1011: SyntaxError: missing formal parameter
-console.error: ({})
-console.error: ({})
-JavaScript error: http://127.0.0.1:8000/books, line 1011: SyntaxError: missing formal parameter
-console.error: ({})
-JavaScript error: http://127.0.0.1:8000/books, line 1011: SyntaxError: missing formal parameter
-console.error: ({})
-console.error: ({})
-1741516209331	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
-console.error: ({})
-console.error: ({})
-1741516234433	Marionette	INFO	Stopped listening on port 11331
+1741697035910	Marionette	INFO	Stopped listening on port 1575
 Dynamically enable window occlusion 1

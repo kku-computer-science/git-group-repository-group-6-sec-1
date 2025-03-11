@@ -1,18 +1,11 @@
 @extends('dashboards.users.layouts.user-dash-layout')
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<<<<<<< HEAD
-
-
 @section('title', __('books.title'))
->>>>>>> origin/Prommin_1406
-=======
-@section('title', __('books.title'))
->>>>>>> origin/Thanakrit_2664
 @section('content')
 <style type="text/css">
     .dropdown-toggle {
         height: 40px;
-        width: 400px !important;
+        width: 80px !important;
     }
 
 

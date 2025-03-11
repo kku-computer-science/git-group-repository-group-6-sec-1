@@ -1,7 +1,6 @@
 <?php
 return [
     'title'            => 'Programs',
-    'add'              => 'Add Program',
     'id'               => 'ID',
     'name_th'          => 'Program Name (TH)',
     'name_en'          => 'Program Name (EN)',

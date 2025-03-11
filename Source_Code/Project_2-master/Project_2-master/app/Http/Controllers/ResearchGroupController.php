@@ -55,6 +55,7 @@ class ResearchGroupController extends Controller
         $request->validate([
             'group_name_th' => 'required',
             'group_name_en' => 'required',
+            'group_name_zh' => 'nullable',
             'head' => 'required',
             //'group_image' => 'required|mimes:png,jpg,jpeg|max:2048',
         ]);
@@ -125,6 +126,8 @@ class ResearchGroupController extends Controller
         $request->validate([
             'group_name_th' => 'required',
             'group_name_en' => 'required',
+            
+            
 
         ]);
         $input = $request->all();

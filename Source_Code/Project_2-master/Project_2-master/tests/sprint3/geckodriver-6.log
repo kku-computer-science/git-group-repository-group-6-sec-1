@@ -1,32 +1,19 @@
-1741517418142	geckodriver	INFO	Listening on 127.0.0.1:14683
-1741517421240	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "14684" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Asus\\AppData\\Local\\Temp\\rust_mozprofileASIW3s"
+1741698028954	geckodriver	INFO	Listening on 127.0.0.1:2954
+1741698032038	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "2955" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Asus\\AppData\\Local\\Temp\\rust_mozprofilesN1BFR"
 console.warn: services.settings: Ignoring preference override of remote settings server
 console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
 Dynamically enable window occlusion 0
-1741517421515	Marionette	INFO	Marionette enabled
-1741517421595	Marionette	INFO	Listening on port 14691
-WebDriver BiDi listening on ws://127.0.0.1:14684
-Read port: 14691
-1741517421808	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-DevTools listening on ws://127.0.0.1:14684/devtools/browser/c5792e0d-ec18-40b6-9b05-98fc899f8d91
+1741698032313	Marionette	INFO	Marionette enabled
+1741698032389	Marionette	INFO	Listening on port 2963
+WebDriver BiDi listening on ws://127.0.0.1:2955
+Read port: 2963
+1741698032584	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:2955/devtools/browser/b5338e58-7f2e-4a31-8347-a61734e5572e
 console.error: ({})
 console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
 console.error: ({})
 console.error: ({})
 console.error: ({})
 console.error: ({})
-console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-console.error: ({})
-1741517451529	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
-console.error: ({})
-console.error: ({})
-1741517468859	Marionette	INFO	Stopped listening on port 14691
+1741698042881	Marionette	INFO	Stopped listening on port 2963
 Dynamically enable window occlusion 1
