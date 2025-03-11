@@ -82,4 +82,12 @@ return [
     'scopus' => 'SCOPUS',
     'wos' => 'WOS',
     'tci' => 'TCI',
+    'save_image' => '保存',
+    'upload_profile_picture' => '上传个人资料图片',
+    'add_image' => '添加图片',
+    'new_password' => '新密码',
+    'confirm_password' => '确认密码',
+    'update_password' => '更新密码',
+    'change_user_password' => '更改用户密码',
+    
 ];

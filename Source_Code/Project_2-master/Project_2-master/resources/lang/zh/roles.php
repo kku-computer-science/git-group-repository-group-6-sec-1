@@ -86,4 +86,11 @@ return [
 
     'description'  => '详细信息',
     'role_permissions' => '角色权限',
+
+    //role
+    'admin' => '管理员',
+    'headproject' => '项目负责人',
+    'staff' => '员工',
+    'student' => '学生',
+    'teacher' => '教师',
 ];

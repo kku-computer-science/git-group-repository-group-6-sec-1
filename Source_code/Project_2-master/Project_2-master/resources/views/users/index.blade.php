@@ -110,7 +110,7 @@
                             <th>#</th>
                             <th>{{ __('users.name') }}</th>
                             <th>{{ __('users.department') }}</th>
-                            <th>{{ __('users.email') }}</th>
+                            <th>{{ __('profile.email') }}</th>
                             <th>{{ __('users.roles') }}</th>
                             <th width="280px">{{ __('users.action') }}</th>
                         </tr>
@@ -121,13 +121,13 @@
                         <tr>
                             <td>{{ $key++ }}</td>
                             <td>{{ $user->fname_en }} {{ $user->lname_en }} </td>
-                            <td>{{ Str::limit($user->program->program_name_en,20) }}</td>
+                            <td>{{ Str::limit($user->program->getAttribute('program_name_' . app()->getLocale()), 20) }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
                                 @if(!empty($user->getRoleNames()))
-                                @foreach($user->getRoleNames() as $val)
-                                <label class="badge badge-dark">{{ $val }}</label>
-                                @endforeach
+                                    @foreach($user->getRoleNames() as $val)
+                                        <label class="badge badge-dark">{{ __("roles.$val") }}</label>
+                                    @endforeach
                                 @endif
                             </td>
                             <td>

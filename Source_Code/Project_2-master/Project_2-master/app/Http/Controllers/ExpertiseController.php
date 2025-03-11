@@ -15,12 +15,22 @@ class ExpertiseController extends Controller
 
     public function index()
     {
-        $experts = Auth::user()->hasRole('admin')
-            ? Expertise::with('user')->get()  // Fetch all for admins
-            : Auth::user()->expertise()->get(); // Fetch user's expertise
-
+        $id = auth()->user()->id;
+        if (auth()->user()->hasRole('admin')) {
+            $experts = Expertise::orderBy('id', 'asc')->get(); // Order by ID in ascending order
+        } else {
+            $experts = Expertise::with('user')
+                ->whereHas('user', function ($query) use ($id) {
+                    $query->where('users.id', '=', $id);
+                })
+                ->orderBy('id', 'asc') // Order by ID in ascending order
+                ->paginate(10); // Pagination
+        }
+    
         return view('expertise.index', compact('experts'));
     }
+    
+    
 
     public function create()
     {

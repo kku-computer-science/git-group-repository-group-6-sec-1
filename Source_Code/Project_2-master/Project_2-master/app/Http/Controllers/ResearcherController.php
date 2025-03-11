@@ -49,6 +49,7 @@ class ResearcherController extends Controller
         $user8 = User::role('teacher')->where('position_th', 'อ.')->with('program')->whereHas('program', function($q) use($id){
             $q->where('id', '=', $id);
         })->orderBy('fname_en')->get();
+
         
         $users = collect([...$user1, ...$user4, ...$user2, ...$user5, ...$user3, ...$user6, ...$user7, ...$user8]);
         //return $users;
@@ -120,4 +121,5 @@ class ResearcherController extends Controller
         $a = $this->searchs($id,$request);
         return $a;
     }
+
 }

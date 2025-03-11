@@ -36,6 +36,9 @@ return [
     'select_program' => '选择课程',
     'submit' => '提交',
     'cancel' => '取消',
+    'name_title' => '名字',
+    'picture' => '个人照片',
+    'select_picture' => '选择图片',
 
     //show
     'user_info' => '用户信息',
@@ -62,6 +65,7 @@ return [
     'password' => '密码',
     'confirm_password' => '确认密码',
     'role' => '角色',
+    'select_category' => '选择角色',
     'department' => '系别',
     'program' => '课程',
     'submit' => '提交',
@@ -83,4 +87,36 @@ return [
     'program_data_updated_successfully' => '程序数据已成功更新',
 
     'expertise_data_updated_successfully' => '专业数据已成功更新',
+
+        //drop-down
+        'departments' => [
+            'College of Computing' => '计算机学院',
+        ],
+        //education
+    'education' => '教育',  
+    'bachelor' => '学士',  
+    'master' => '硕士',  
+    'doctoral' => '博士',  
+    
+    'university_name' => '大学名称',  
+    'university_name_th' => '大学名称 (泰语)',  
+    'university_name_en' => '大学名称 (英语)',  
+    'university_name_cn' => '大学名称 (中文)',  
+    
+    'degree_acronym' => '学位缩写',  
+    'degree_acronym_th' => '学位缩写 (泰语)',  
+    'degree_acronym_en' => '学位缩写 (英语)',  
+    'degree_acronym_cn' => '学位缩写 (中文)',  
+    
+    'degree_full' => '完整学位名称',  
+    'degree_full_th' => '完整学位名称 (泰语)',  
+    'degree_full_en' => '完整学位名称 (英语)',  
+    'degree_full_cn' => '完整学位名称 (中文)',  
+    
+    'graduation_year' => '毕业年份',  
+    'graduation_year_th' => '毕业年份 (泰语)',  
+    'graduation_year_en' => '毕业年份 (英语)',  
+    'graduation_year_cn' => '毕业年份 (中文)',  
+
+    'academic_rank' => '学术等级',
 ];
