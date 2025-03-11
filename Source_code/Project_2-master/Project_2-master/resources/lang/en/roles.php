@@ -87,4 +87,11 @@ return [
     'description'  => 'Details Information',
     'role_permissions' => 'Role Permissions',
 
+    //role
+    'admin' => 'Admin',
+    'headproject' => 'Head of Project',
+    'staff' => 'Staff',
+    'student' => 'Student',
+    'teacher' => 'Teacher',
+
 ];

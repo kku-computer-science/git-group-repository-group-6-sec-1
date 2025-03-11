@@ -63,6 +63,7 @@ return [
     'confirm_password' => 'Confirm Password',
     'role' => 'Role',
     'department' => 'Department',
+    'select_category' => 'Select Role',
     'program' => 'Program',
     'submit' => 'Submit',
     'cancel' => 'Cancel',
@@ -84,4 +85,41 @@ return [
     'program_data_updated_successfully' => 'Program data is updated successfully',
 
     'expertise_data_updated_successfully' => 'Expertise data is updated successfully',
+
+    //drop-down
+    'departments' => [
+        'College of Computing' => 'College of Computing',
+    ],
+    'education' => 'Education',
+
+    //education
+
+    'education' => 'Education', // 教育
+    'bachelor' => 'Bachelor', // 学士
+    'master' => 'Master', // 硕士
+    'doctoral' => 'Doctoral', // 博士
+
+    'university_name' => 'University Name', // 大学名称
+    'university_name_th' => 'University Name (Thai)', // 大学名称 (泰语)
+    'university_name_en' => 'University Name (English)', // 大学名称 (英语)
+    'university_name_cn' => 'University Name (Chinese)', // 大学名称 (中文)
+
+    'degree_acronym' => 'Degree Acronym', // 学位缩写
+    'degree_acronym_th' => 'Degree Acronym (Thai)', // 学位缩写 (泰语)
+    'degree_acronym_en' => 'Degree Acronym (English)', // 学位缩写 (英语)
+    'degree_acronym_cn' => 'Degree Acronym (Chinese)', // 学位缩写 (中文)
+
+    'degree_full' => 'Degree Name', // 完整学位名称
+    'degree_full_th' => 'Degree Name (Thai)', // 完整学位名称 (泰语)
+    'degree_full_en' => 'Degree Name (English)', // 完整学位名称 (英语)
+    'degree_full_cn' => 'Degree Name (Chinese)', // 完整学位名称 (中文)
+
+    'graduation_year' => 'Graduation Year', // 毕业年份
+    'graduation_year_th' => 'Graduation Year (Thai)', // 毕业年份 (泰语)
+    'graduation_year_en' => 'Graduation Year (English)', // 毕业年份 (英语)
+    'graduation_year_cn' => 'Graduation Year (Chinese)', // 毕业年份 (中文)
+
+    'academic_rank' => 'Academic Rank', // 学术职称
+
 ];
+
