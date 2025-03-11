@@ -164,7 +164,12 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
 
 });
 
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('/experts', [ExpertiseController::class, 'index'])->name('experts.index');
+    Route::get('/experts/create', [ExpertiseController::class, 'create'])->name('experts.create');
+    Route::post('/experts', [ExpertiseController::class, 'store'])->name('experts.store');
+    Route::delete('/experts/{id}', [ExpertiseController::class, 'destroy'])->name('experts.destroy');
+});
 
 // Route::get('/example/pdf', 'ExampleController@pdf_index');
 /*use App\Http\Controllers\FileUpload;
