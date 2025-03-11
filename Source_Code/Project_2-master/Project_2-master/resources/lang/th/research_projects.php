@@ -16,7 +16,7 @@ return [
     'confirm_text'  => 'คุณจะไม่สามารถกู้คืนไฟล์นี้ได้!',
     'delete_success'=> 'ลบสำเร็จ',
     'search'        => 'ค้นหา:',
-    
+
     // สำหรับหน้า edit / create
     'edit_title'        => 'แก้ไขโครงการวิจัย',
     'edit_description'  => 'กรอกข้อมูลแก้ไขรายละเอียดโครงการวิจัย',
@@ -59,4 +59,8 @@ return [
     'select_status'     => 'โปรดระบุสถานะ',
     // เพิ่มคีย์ select_member สำหรับ dropdown เลือกสมาชิก
     'select_member'     => 'เลือกสมาชิก',
+    'select_status' => 'เลือกสถานะ',
+    'status_1' => 'ยื่นขอ',
+    'status_2' => 'ดำเนินการ',
+    'status_3' => 'ปิดโครงการ',
 ];
