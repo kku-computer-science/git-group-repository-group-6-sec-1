@@ -130,7 +130,6 @@
                                     @endforeach
                                 @endif
                             </td>
-
                             <td>
                                 <form action="{{ route('users.destroy',$user->id) }}" method="POST">
                                 <li class="list-inline-item">
