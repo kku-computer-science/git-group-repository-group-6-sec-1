@@ -26,7 +26,18 @@
                         @foreach ($data as $key => $department)
                         <tr>
                             <td>{{ $department->id }}</td>
-                            <td>{{ $department->department_name_th }}</td>
+                            <td>
+                                @if (App::getLocale() == 'th')
+                                    {{ $department->department_name_th }}
+                                @elseif (App::getLocale() == 'en')
+                                    {{ $department->department_name_en }}
+                                @elseif (App::getLocale() == 'zh')
+                                    {{ $department->department_name_zh }}
+                                @else
+                                    {{ $department->department_name_en }} {{-- ค่าเริ่มต้นเป็นภาษาอังกฤษ --}}
+                                @endif
+                            </td>
+
                             <td>
                                 <form action="{{ route('departments.destroy',$department->id) }}" method="POST">
                                     <a class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="{{ __('departments.view') }}" href="{{ route('departments.show',$department->id) }}">

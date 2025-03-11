@@ -23,7 +23,7 @@ return [
     'call_paper' => 'เรียกดูผลงาน',
     'paper_types' => [
         'Journal' => 'วารสาร',
-        'Conference Proceeding' => 'บทความที่ประชุม',
+        'Conference Proceeding' => 'รายงานการประชุม',
         'Book Series' => 'หนังสือชุด',
         'Book' => 'หนังสือ',
     ],
@@ -36,7 +36,7 @@ return [
         'Erratum' => 'ข้อผิดพลาด',
         'Short Survey' => 'การสำรวจสั้น',
         'Letter' => 'จดหมาย',
-        'Note' => 'บันทึก',
+        'Note' => 'หมายเหตุ',
         'Abstract' => 'บทคัดย่อ',
     ],
     'publication_types' => [

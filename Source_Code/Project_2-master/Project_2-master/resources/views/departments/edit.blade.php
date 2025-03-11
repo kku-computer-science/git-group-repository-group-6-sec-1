@@ -28,6 +28,10 @@
                         <strong>{{ __('departments.name_en') }}:</strong>
                         {!! Form::text('department_name_en', null, ['placeholder' => __('departments.placeholder_name_en'), 'class' => 'form-control']) !!}
                     </div>
+                    <div class="form-group">
+                        <strong>{{ __('departments.name_zh') }}:</strong>
+                        {!! Form::text('department_name_zh', null, ['placeholder' => __('departments.placeholder_name_zh'), 'class' => 'form-control']) !!}
+                    </div>
                     <button type="submit" class="btn btn-primary">{{ __('departments.submit') }}</button>
                 {!! Form::close() !!}
             </div>

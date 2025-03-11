@@ -28,7 +28,7 @@
             <div class="p-4">
                 <div class="img-circle text-center mb-3">
                     <div class="text-center">
-                        <img class="profile-user-img img-fluid img-circle user_picture" src="{{ $user->picture }}" alt="{{ trans('reference.profile') }} picture">
+                        <img class="profile-user-img img-fluid img-circle user_picture" src="{{ $user->picture }}" alt="###">
                     </div>
                     <h4 class="text-center p-2">
                         @if(app()->getLocale() == 'zh')
