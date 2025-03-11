@@ -82,4 +82,11 @@ return [
     'scopus' => 'SCOPUS',
     'wos' => 'WOS',
     'tci' => 'TCI',
+    'save_image' => 'บันทึก',
+    'upload_profile_picture' => 'อัปโหลดโปรไฟล์',
+    'add_image' => 'เพิ่มรูปภาพ',
+    'new_password' => 'รหัสผ่านใหม่',
+    'confirm_password' => 'ยืนยันรหัสผ่าน',
+    'update_password' => 'อัปเดตรหัสผ่าน',
+    'change_user_password' => 'เปลี่ยนรหัสผ่านผู้ใช้',
 ];

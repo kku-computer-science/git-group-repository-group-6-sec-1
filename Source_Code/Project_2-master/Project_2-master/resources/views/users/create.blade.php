@@ -2,6 +2,15 @@
 
 @section('content')
 
+@php
+    $titles = [
+        'th' => ['นาย', 'นาง', 'นางสาว'],
+        'en' => ['Mr.', 'Mrs.', 'Miss'],
+        'zh' => ['先生', '太太', '小姐']
+    ];
+    $locale = app()->getLocale(); // Get current language
+@endphp
+
 <div class="container">
     <div class="justify-content-center">
         @if (count($errors) > 0)
@@ -21,6 +30,20 @@
                     <h4 class="card-title mb-5">{{ __('users.add_user') }}</h4>
                     <p class="card-description">{{ __('users.user_details') }}</p>
                     {!! Form::open(['route' => 'users.store', 'method' => 'POST']) !!}
+                
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <p><b>{{ __('users.name_title') }}</b></p>
+                            <select name="title_name_{{ $locale }}" class="form-control">
+                                <option value="" disabled selected>{{ __('users.name_title') }}</option>
+                                @foreach ($titles[$locale] as $title)
+                                    <option value="{{ $title }}">{{ $title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <p><b>{{ __('users.first_name_th') }}</b></p>

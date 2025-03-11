@@ -36,6 +36,9 @@ return [
     'select_program' => '选择课程',
     'submit' => '提交',
     'cancel' => '取消',
+    'name_title' => '名字',
+    'picture' => '个人照片',
+    'select_picture' => '选择图片',
 
     //show
     'user_info' => '用户信息',

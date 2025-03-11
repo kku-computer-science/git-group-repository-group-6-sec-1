@@ -36,6 +36,8 @@ return [
     'select_program' => 'เลือกหลักสูตร',
     'submit' => 'บันทึก',
     'cancel' => 'ยกเลิก',
+    'picture' => 'ภาพโปรไฟล์',
+    'select_picture' => 'เลือกรูปภาพ',
 
     //show
     'user_info' => 'ข้อมูลผู้ใช้งาน',
@@ -67,6 +69,7 @@ return [
     'program' => 'หลักสูตร',
     'submit' => 'ยืนยัน',
     'cancel' => 'ยกเลิก',
+    'name_title' => 'คำนำหน้า',
 
     //import
     'import_excel_csv' => 'นำเข้าไฟล์ Excel, CSV',

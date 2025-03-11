@@ -1,22 +1,75 @@
 @extends('dashboards.users.layouts.user-dash-layout')
 @section('content')
+<script>
+    var userId = {{ $user->id }};
+</script>
+
 <div class="container">
     <div class="justify-content-center">
-        @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <strong>{{ __('users.error_title') }}</strong> {{ __('users.error_message') }}<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
         <div class="card col-8" style="padding: 16px;">
             <div class="card-body">
                 <h4 class="card-title">{{ __('users.edit_title') }}</h4>
                 <p class="card-description">{{ __('users.edit_description') }}</p>
                 {!! Form::model($user, ['route' => ['users.update', $user->id], 'method'=>'PATCH']) !!}
+
+                
+
+            <!-- <div class="p-4">
+                <div class="img-circle text-center mb-3">
+                    <div class="text-center">
+                        <img class="profile-user-img img-fluid img-circle admin_picture" src="{{ Auth::user()->picture }}" alt="{{ trans('reference.profile') }} picture">
+                    </div>
+                    <h4 class="text-center p-2">{{ Auth::user()->{'fname_'.app()->getLocale()} }} {{ Auth::user()->{'lname_'.app()->getLocale()} }}</h4>
+                    <input type="file" name="admin_image" id="admin_image" style="opacity: 0;height:1px;display:none">
+                    <a href="javascript:void(0)" class="btn btn-primary btn-block btn-sm" id="change_picture_btn"><b>{{ trans('reference.change_picture') }}</b></a>
+                </div>
+            </div> -->
+
+            <div class="p-4">
+                <div class="img-circle text-center mb-3">
+                    <div class="text-center">
+                        <img class="profile-user-img img-fluid img-circle user_picture" src="{{ $user->picture }}" alt="{{ trans('reference.profile') }} picture">
+                    </div>
+                    <h4 class="text-center p-2">
+                        @if(app()->getLocale() == 'zh')
+                            {{ $user->fname_en }} {{ $user->lname_en }}
+                        @else
+                            {{ $user->{'fname_' . app()->getLocale()} }} {{ $user->{'lname_' . app()->getLocale()} }}
+                        @endif
+                    </h4>
+
+                    
+                    <!-- Hidden elements for cropping -->
+                    <div id="croppr-container" style="display: none; margin: 20px auto;">
+                        <img id="croppr-image" src="" style="max-width: 100%;">
+                    </div>
+                    
+                    <input type="file" name="user_image" id="user_image" style="opacity: 0;height:1px;display:none">
+                    <a href="javascript:void(0)" class="btn btn-primary btn-block btn-sm" id="change_picture_btn"><b>{{ trans('reference.change_picture') }}</b></a>
+                    
+                    <!-- Add a save button that will appear when cropping -->
+                    <button type="button" id="save_crop_btn" class="btn btn-success btn-block btn-sm" style="display: none;"><b>{{ trans('reference.save_image') }}</b></button>
+                </div>
+            </div>
+            
+
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <select name="title_name_{{ app()->getLocale() }}" class="form-control">
+                            <option value="" disabled selected>{{ __('users.name_title') }}</option>
+                            @foreach ($titles as $title)
+                                <option value="{{ $title }}" {{ old('title_name_' . app()->getLocale(), $user->{'title_name_' . app()->getLocale()}) == $title ? 'selected' : '' }}>
+                                    {{ $title }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+
+
+
 
                 <div class="form-group row">
                     <div class="col-sm-6">
@@ -45,18 +98,32 @@
                         <input type="text" name="email" value="{{ $user->email }}" class="form-control">
                     </div>
                 </div>
-                <div class="form-group row">
-                    <p class="col-sm-3"><b>{{ __('users.password') }}</b></p>
-                    <div class="col-sm-8">
-                        <input type="password" name="password" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <p class="col-sm-3"><b>{{ __('users.confirm_password') }}</b></p>
-                    <div class="col-sm-8">
-                        <input type="password" name="password_confirmation" class="form-control">
-                    </div>
-                </div>
+
+                @if(Auth::user()->email === 'admin@gmail.com')
+                    <form action="{{ route('admin.updateUserPassword', $user->id) }}" method="POST">
+                        @csrf
+                        <h4 class="mb-4">{{ trans('reference.change_user_password') }}</h4>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{ trans('reference.new_password') }}</label>
+                                    <input type="password" class="form-control" name="newpassword" placeholder="Enter new password">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{ trans('reference.confirm_new_password') }}</label>
+                                    <input type="password" class="form-control" name="newpassword_confirmation" placeholder="Confirm new password">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">{{ trans('reference.update_password') }}</button>
+                    </form>
+                    @endif
+
+
                 <div class="form-group row">
                     <p class="col-sm-3"><b>{{ __('users.academic_ranks') }}</b></p>
                     <div class="col-sm-8">
@@ -343,36 +410,107 @@
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- Include Croppr CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/croppr/dist/croppr.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/croppr/dist/croppr.min.js"></script>>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.js"></script>
+
+
+
+</script>
+
 <script>
-    $('#cat').on('change', function(e) {
-        var cat_id = e.target.value;
-        $.get('/ajax-get-subcat?cat_id=' + cat_id, function(data) {
-            $('#subcat').empty();
-            $.each(data, function(index, areaObj) {
-                $('#subcat').append('<option value="' + areaObj.id + '" >' + areaObj
-                    .program_name_en + '</option>');
-            });
-        });
+$(document).ready(function() {
+    let croppr;
+    let fileReader = new FileReader();
+    let selectedFile;
+    
+    // When change picture button is clicked
+    $(document).on('click', '#change_picture_btn', function() {
+        $('#user_image').click();
     });
-
-    function updateYears(level) {
-    // Get the Thai year value
-    let yearTh = document.getElementById(`${level}_year_th`).value;
-
-    // Validate if the year is in the correct format (e.g., numeric and valid)
-    if (yearTh) {
-        // Convert Thai year to Gregorian year (Thai year is 543 years ahead of Gregorian year)
-        let gregorianYear = yearTh - 543;
-
-        // Update the English and Chinese year fields dynamically
-        document.getElementById(`${level}_year_en`).value = gregorianYear;
-        document.getElementById(`${level}_year_cn`).value = gregorianYear;
+    
+    // When a file is selected
+    $('#user_image').on('change', function(e) {
+        selectedFile = e.target.files[0];
+        
+        if (!selectedFile) return;
+        
+        // Check file extension
+        const allowedExtensions = ['jpg', 'jpeg', 'png'];
+        const extension = selectedFile.name.split('.').pop().toLowerCase();
+        
+        if (!allowedExtensions.includes(extension)) {
+            alert('Only JPG, JPEG, and PNG files are allowed');
+            return;
+        }
+        
+        // Read the file and show the cropper
+        fileReader.readAsDataURL(selectedFile);
+    });
+    
+    fileReader.onload = function(e) {
+        // Show the cropper container
+        $('#croppr-container').show();
+        $('#croppr-image').attr('src', e.target.result);
+        $('#save_crop_btn').show();
+        
+        // Hide the change picture button temporarily
+        $('#change_picture_btn').hide();
+        
+        // Initialize Croppr with 2:3 aspect ratio
+        if (croppr) {
+            croppr.destroy();
+        }
+        
+        croppr = new Croppr('#croppr-image', {
+            aspectRatio: 16/9,
+            onInitialize: function(value) {},
+            onCropStart: function(value) {},
+            onCropMove: function(value) {},
+            onCropEnd: function(value) {}
+        });
+    };
+    
+    // When save button is clicked
+    $('#save_crop_btn').on('click', function() {
+        if (!croppr) return;
+        
+        const cropData = croppr.getValue();
+        
+        // Create a FormData object to send the file and crop coordinates
+        const formData = new FormData();
+        formData.append('user_image', selectedFile);
+        formData.append('x', cropData.x);
+        formData.append('y', cropData.y);
+        formData.append('width', cropData.width);
+        formData.append('height', cropData.height);
+        
+        // Send the data to the server
+        $.ajax({
+    url: '/admin/user-picture-update/' + userId,  // Now userId is defined
+    type: 'POST',
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function(response) {
+        if (response.status === 1) {
+            Swal.fire("Success", "User picture updated successfully", "success");
+            $('.user_picture').attr('src', '/images/imag_user/' + response.filename);
+        } else {
+            alert(response.msg);
+        }
+    },
+    error: function(xhr) {
+        alert('Error: ' + xhr.responseText);
+        console.error(xhr.responseText);
     }
-}
+});
 
+
+            });
+});
 </script>
 
 <script>
@@ -435,6 +573,49 @@
     });
 </script>
 
+<script>
+    $(document).ready(function() {
+        $('#adminUpdatePasswordForm').on('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                beforeSend: function() {
+                    $(document).find('span.error-text').text('');
+                },
+                success: function(response) {
+                    if (response.status === 1) {
+                        Swal.fire({
+                            title: "{{ trans('reference.update_password_success') }}",
+                            text: response.msg,
+                            icon: "success"
+                        });
+                        $('#adminUpdatePasswordForm')[0].reset();
+                    } else {
+                        Swal.fire("Error", response.msg, "error");
+                    }
+                },
+                error: function(xhr) {
+                    if (xhr.status === 422) { // Validation errors
+                        var errors = xhr.responseJSON.errors;
+                        $.each(errors, function(key, value) {
+                            $('span.' + key + '_error').text(value[0]);
+                        });
+                    } else {
+                        Swal.fire("Error", "Something went wrong: " + xhr.responseText, "error");
+                    }
+                }
+            });
+        });
+    });
+</script>
+
 
 
 <style>
@@ -493,7 +674,90 @@ h4 {
         font-size: 14px;
     }
 }
+.image-preview {
+        max-width: 150px;
+        max-height: 150px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 50%; /* ทำให้เป็นวงกลมเหมือนตัวอย่าง */
+    }
 
+    .btn-rounded {
+    border-radius: 25px;
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-rounded:hover {
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+    transform: scale(1.05);
+}
+</style>
+
+<style>
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .btn {
+        border-radius: 25px;
+        padding: 10px 20px;
+        font-weight: 500;
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+    }
+
+    .error-text {
+        font-size: 0.9rem;
+    }
+</style>
+
+
+
+<style>
+    .profile-user-img {
+        width: 150px; /* Fixed width */
+        height: 150px; /* Fixed height */
+        object-fit: cover; /* Ensures the image fits nicely without distortion */
+        border: 3px solid #ddd; /* Optional: adds a subtle border */
+        transition: transform 0.3s ease; /* Smooth hover effect */
+    }
+
+    .profile-user-img:hover {
+        transform: scale(1.05); /* Slight zoom on hover */
+    }
+
+    .btn-custom {
+        background-color: #007bff; /* Bootstrap primary color */
+        border-radius: 25px; /* Rounded corners */
+        padding: 10px 20px; /* Larger padding for a bigger button */
+        font-weight: 500; /* Slightly bolder text */
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3); /* Soft shadow */
+        transition: all 0.3s ease; /* Smooth transitions */
+    }
+
+    .btn-custom:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+        transform: translateY(-2px); /* Lift effect */
+        box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5); /* Stronger shadow on hover */
+    }
+
+    .btn-custom i {
+        vertical-align: middle; /* Aligns icon with text */
+    }
+
+    .profile-user-img {
+    width: 180px;
+    height: 320px;
+    object-fit: cover;
+    border: 3px solid #ddd;
+    transition: transform 0.3s ease;
+}
 </style>
 
 

@@ -62,6 +62,7 @@ class UserController extends Controller
 
     public function create()
     {
+
         $roles = \DB::table('roles')->pluck('name', 'name')->mapWithKeys(function ($name) {
             return [$name => __('roles.' . $name)];
         });
@@ -117,6 +118,9 @@ class UserController extends Controller
 {
     // Validation
     $this->validate($request, [
+        'title_name_en' => 'nullable',
+        'title_name_th' => 'nullable',
+        'title_name_zh' => 'nullable',
         'fname_en' => 'required',
         'lname_en' => 'required',
         'fname_th' => 'required',
@@ -126,6 +130,7 @@ class UserController extends Controller
         'roles' => 'required',
         'program_id' => 'required|exists:programs,id', // เปลี่ยน sub_cat เป็น program_id ให้ตรงกับฟอร์ม
         'academic_ranks_en' => 'nullable|in:Lecturer,Assistant Professor,Associate Professor,Professor',
+        'picture' => 'nullable|image|max:4096',
         // Education validation (optional fields)
         'bachelor_university_th' => 'nullable|string|max:150',
         'bachelor_university_en' => 'nullable|string|max:150',
@@ -153,8 +158,19 @@ class UserController extends Controller
         'doctoral_year_en' => 'nullable|string|max:4',
     ]);
 
+    // อัปโหลดรูปภาพ
+    if ($request->hasFile('picture')) {
+        $destinationPath = 'C:/Users/bodin/git-group-repository-group-6-sec-1/Source_Code/Project_2-master/Project_2-master/public/images/imag_user/';
+        $file = $request->file('picture');
+        $filename = time() . '_' . $file->getClientOriginalName(); // ชื่อไฟล์ไม่ซ้ำ
+        $file->move($destinationPath, $filename); // ย้ายไฟล์ไปยังโฟลเดอร์ที่ระบุ
+        $data['picture'] = $filename; // บันทึกชื่อไฟล์ใน DB
+    }
+
+
     // สร้างผู้ใช้ใหม่
     $user = User::create([
+        'title_name_en' => $request->title_name_en,
         'email' => $request->email,
         'password' => Hash::make($request->password),
         'fname_en' => $request->fname_en,
@@ -310,12 +326,17 @@ class UserController extends Controller
     
         // Fetch roles for the user
         $userRole = $user->roles->pluck('name', 'name')->all();
+        $lang = app()->getLocale(); 
     
         // Fetch department for the user
         $userDep = $user->department()->pluck('department_name_en', 'department_name_en')->all();
+        $titles = \DB::table('users')
+        ->select("title_name_{$lang}")
+        ->distinct()
+        ->pluck("title_name_{$lang}", "title_name_{$lang}");
     
         // Return the view with required data
-        return view('users.edit', compact('user', 'roles', 'deps', 'userRole', 'userDep', 'programs', 'departments', 'education'));
+        return view('users.edit', compact('user', 'roles', 'deps', 'userRole', 'userDep', 'programs', 'departments', 'education', 'titles', 'lang'));
     }
     
 
@@ -331,8 +352,14 @@ class UserController extends Controller
 
      public function update(Request $request, $id)
 {
+
+    $lang = app()->getLocale();
+    $titles = \DB::table('users')->select("title_name_{$lang}")->distinct()->pluck("title_name_{$lang}", "title_name_{$lang}");
     // Validate the user input
     $this->validate($request, [
+        'title_name_en' => 'required',
+        'title_name_th' => 'nullable',
+        'title_name_zh' => 'nullable',
         'fname_en' => 'required',
         'fname_th' => 'required',
         'lname_en' => 'required',
@@ -340,6 +367,7 @@ class UserController extends Controller
         'email' => 'required|email|unique:users,email,'.$id,
         'password' => 'confirmed',
         'roles' => 'required',
+        'picture' => 'nullable|image|max:2048',
         // Add validation for education fields (optional, if required)
         'bachelor_university_th' => 'nullable|string|max:150',
         'bachelor_university_en' => 'nullable|string|max:150',
@@ -367,6 +395,22 @@ class UserController extends Controller
         'doctoral_year_en' => 'nullable|string|max:4',
 
     ]);
+
+    if ($request->hasFile('picture')) {
+        $path = 'images/imag_user/';
+        $file = $request->file('picture');
+        $new_name = $user->fname_en . '.jpg';
+
+        // ลบรูปเก่าถ้ามี
+        if ($user->picture && File::exists(public_path($path . $user->picture))) {
+            File::delete(public_path($path . $user->picture));
+        }
+
+        $file->move(public_path($path), $new_name);
+        $data['picture'] = $new_name;
+    }
+
+    $user->update($data);
 
     // Get the user data
     $input = $request->all();
@@ -625,6 +669,52 @@ class UserController extends Controller
             }
         }
     }
+    
+    public function updateUserPicture(Request $request, $id)
+{
+    $path = 'images/imag_user/';
+
+    // Validate the request
+    $request->validate([
+        'user_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    // Check if file is uploaded
+    if (!$request->hasFile('user_image')) {
+        return response()->json(['status' => 0, 'msg' => 'No image file uploaded.']);
+    }
+
+    $file = $request->file('user_image');
+    $user = User::findOrFail($id); // Ensure user exists
+    $new_name = $user->fname_en . '_' . date('Ymd') . uniqid() . '.jpg'; // Use first name
+
+    // Move the file
+    $upload = $file->move(public_path($path), $new_name);
+    if (!$upload) {
+        return response()->json(['status' => 0, 'msg' => 'Something went wrong, upload failed.']);
+    }
+
+    // Delete old picture if exists
+    if ($user->picture) {
+        $oldPicturePath = public_path($path . $user->picture);
+        if (\File::exists($oldPicturePath)) {
+            \File::delete($oldPicturePath); // Delete old picture file
+        }
+    }
+
+    // Update database with the new image name
+    $user->update(['picture' => $new_name]);
+
+    return response()->json([
+        'status' => 1,
+        'filename' => $new_name,
+        'msg' => 'User profile picture updated successfully'
+    ]);
+}
+
+
+
+
 
     
     
