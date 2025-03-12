@@ -5,14 +5,14 @@ Suite Setup      Open Browser And Login
 Suite Teardown   Close All Browsers
 
 *** Variables ***
-${LOGIN_URL}      http://127.0.0.1:8000/login
-${FUNDS_URL}      http://127.0.0.1:8000/funds
+${LOGIN_URL}      https://cs6sec267.cpkkuhost.com/login
+${FUNDS_URL}      https://cs6sec267.cpkkuhost.com/funds
 ${BROWSER}        chrome
 ${USERNAME}       admin@gmail.com
 ${PASSWORD}       12345678
-${CREATE_URL}     http://127.0.0.1:8000/funds/create
-${VIEW_URL}       http://127.0.0.1:8000/funds/20  # ตัวอย่าง URL (จะดึงจาก TC1)
-${EDIT_URL}       http://127.0.0.1:8000/funds/20/edit  # ตัวอย่าง URL (จะดึงจาก TC1)
+${CREATE_URL}     https://cs6sec267.cpkkuhost.com/funds/create
+${VIEW_URL}       https://cs6sec267.cpkkuhost.com/funds/20  # ตัวอย่าง URL (จะดึงจาก TC1)
+${EDIT_URL}       https://cs6sec267.cpkkuhost.com/funds/20/edit  # ตัวอย่าง URL (จะดึงจาก TC1)
 
 # ปรับเฉพาะข้อมูลที่กรอกให้เป็นทางการ
 ${FUND_NAME}      กองทุนวิจัยนวัตกรรมเกษตรอัจฉริยะ

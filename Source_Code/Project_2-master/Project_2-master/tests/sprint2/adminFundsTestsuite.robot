@@ -5,15 +5,15 @@ Suite Teardown  Logout And Close Browser
 
 *** Variables ***
 ${BROWSER}              chrome
-${FUNDS_URL}            http://127.0.0.1:8000/funds
-${CREATE_URL}           http://127.0.0.1:8000/funds/create
+${FUNDS_URL}            https://cs6sec267.cpkkuhost.com/funds
+${CREATE_URL}           https://cs6sec267.cpkkuhost.com/funds/create
 ${VALID_FUND_ID}        2    # ยังคงใช้ ID 2 เป็นตัวแปร แต่ไม่ใช้ใน ${EDIT_URL} โดยตรง
-${VIEW_URL}             http://127.0.0.1:8000/funds/${VALID_FUND_ID}
-${EDIT_URL}             http://127.0.0.1:8000/funds/eyJpdiI6IkZBKzlJUjFDVHZiVFZPUG5SUFdkRFE9PSIsInZhbHVlIjoiNWNFWjBNQlppSEN0SU9hdUtjS0V6QT09IiwibWFjIjoiNTg0NTA5ZWY0OTRlMDUwZTgxYjQzZjcxZmI2MjhlNTI2MWQyNjJiZTk5NGZkNDQ0ZDMzOTMzZmI0YzExZDMyNCIsInRhZyI6IiJ9/edit
+${VIEW_URL}             https://cs6sec267.cpkkuhost.com/funds/${VALID_FUND_ID}
+${EDIT_URL}             https://cs6sec267.cpkkuhost.com/funds/eyJpdiI6InE0WEN1N0tUUllncHlIbDVXK0EvRUE9PSIsInZhbHVlIjoia2dWRVRGTDFpRGFCcjZBYktQZWg0Zz09IiwibWFjIjoiYTIzYTVjYTQ0YzFhZTdhNWMwZDJmNzNhOTk3MzcxN2IzNWFlM2JkMjZlMGM0YzYzMjI5YzhkOTgyYTU1MGU4MSIsInRhZyI6IiJ9/edit
 ${USERNAME}             admin@gmail.com    # ปรับตามผู้ใช้จริง
 ${PASSWORD}             12345678           # ปรับตามรหัสผ่านจริง
-${LOGIN_URL}            http://127.0.0.1:8000/login
-${DASHBOARD_URL}        http://127.0.0.1:8000/dashboard
+${LOGIN_URL}            https://cs6sec267.cpkkuhost.com/login
+${DASHBOARD_URL}        https://cs6sec267.cpkkuhost.com/dashboard
 
 *** Keywords ***
 Open Browser And Login
@@ -216,14 +216,14 @@ TC41_ADMINFunds_Delete - ตรวจสอบภาษาการลบข้�
     Go To    ${FUNDS_URL}
     Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify Popup Language    Are you sure?    You will not be able to recover this file!    Deleted Successfully
+    Verify Popup Language    Are you sure?    If you delete this, it will be gone forever    Deleted Successfully
     Switch Language    th
     Go To    ${FUNDS_URL}
     Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify Popup Language    คุณแน่ใจหรือไม่?    หากคุณลบข้อมูลนี้ จะไม่สามารถกู้คืนได้    ลบสำเร็จ
+    Verify Popup Language    คุณแน่ใจหรือไม่?    ถ้าคุณลบข้อมูลนี้ มันจะหายไปตลอดกาล    ลบสำเร็จ
     Switch Language    zh
     Go To    ${FUNDS_URL}
     Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify Popup Language    你确定吗？    如果删除，数据将永远消失。    删除成功
+    Verify Popup Language    你确定吗？    如果你删除这个，它将永远消失。    删除成功

@@ -5,15 +5,15 @@ Suite Teardown  Logout And Close Browser
 
 *** Variables ***
 ${BROWSER}              chrome
-${RESEARCH_GROUPS_URL}  http://127.0.0.1:8000/researchGroups
-${CREATE_URL}           http://127.0.0.1:8000/researchGroups/create
+${RESEARCH_GROUPS_URL}  https://cs6sec267.cpkkuhost.com/researchGroups
+${CREATE_URL}           https://cs6sec267.cpkkuhost.com/researchGroups/create
 ${VALID_GROUP_ID}       3
-${VIEW_URL}             http://127.0.0.1:8000/researchGroups/${VALID_GROUP_ID}
-${EDIT_URL}             http://127.0.0.1:8000/researchGroups/${VALID_GROUP_ID}/edit
+${VIEW_URL}             https://cs6sec267.cpkkuhost.com/researchGroups/${VALID_GROUP_ID}
+${EDIT_URL}             https://cs6sec267.cpkkuhost.com/researchGroups/${VALID_GROUP_ID}/edit
 ${USERNAME}             admin@gmail.com    # ปรับตามผู้ใช้จริง
 ${PASSWORD}             12345678           # ปรับตามรหัสผ่านจริง
-${LOGIN_URL}            http://127.0.0.1:8000/login
-${DASHBOARD_URL}        http://127.0.0.1:8000/dashboard
+${LOGIN_URL}            https://cs6sec267.cpkkuhost.com/login
+${DASHBOARD_URL}        https://cs6sec267.cpkkuhost.com/dashboard
 
 *** Keywords ***
 Open Browser And Login
@@ -216,14 +216,14 @@ TC06_ADMINResearchGroup_Delete - ตรวจสอบภาษาการล�
     Go To    ${RESEARCH_GROUPS_URL}
     Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify Popup Language    Are you sure?    You will not be able to recover this file!    Deleted Successfully
+    Verify Popup Language    Are you sure?    If you delete this, it will be gone forever    Deleted Successfully
     Switch Language    th
     Go To    ${RESEARCH_GROUPS_URL}
     Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify Popup Language    คุณแน่ใจหรือไม่?    หากคุณลบข้อมูลนี้ จะไม่สามารถกู้คืนได้    ลบสำเร็จ
+    Verify Popup Language    คุณแน่ใจหรือไม่?    ถ้าคุณลบข้อมูลนี้ มันจะหายไปตลอดกาล    ลบสำเร็จ
     Switch Language    zh
     Go To    ${RESEARCH_GROUPS_URL}
     Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify Popup Language    你确定吗？    如果删除，数据将永远消失。    删除成功
+    Verify Popup Language    你确定吗？    如果你删除这个，它将永远消失。    删除成功

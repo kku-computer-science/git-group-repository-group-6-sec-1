@@ -1,6 +1,3 @@
-ผมเข้าใจแล้วครับ คุณต้องการให้รวมและใช้ส่วน TC43_ADMINPermission จากไฟล์ที่ 2 แทนที่จะใช้จากไฟล์แรก เนื่องจากโค้ดในไฟล์ที่ 2 สามารถใช้งานได้ดีกว่า
-
-```robotframework
 *** Settings ***
 Library         SeleniumLibrary
 Suite Setup     Open Browser And Login
@@ -8,15 +5,15 @@ Suite Teardown  Logout And Close Browser
 
 *** Variables ***
 ${BROWSER}              chrome
-${PERMISSIONS_URL}      http://127.0.0.1:8000/permissions
-${CREATE_URL}           http://127.0.0.1:8000/permissions/create
+${PERMISSIONS_URL}      https://cs6sec267.cpkkuhost.com/permissions
+${CREATE_URL}           https://cs6sec267.cpkkuhost.com/permissions/create
 ${VALID_PERMISSION_ID}  1    # เปลี่ยนตาม ID ที่มีจริงในฐานข้อมูล
-${VIEW_URL}             http://127.0.0.1:8000/permissions/${VALID_PERMISSION_ID}
-${EDIT_URL}             http://127.0.0.1:8000/permissions/${VALID_PERMISSION_ID}/edit
+${VIEW_URL}             https://cs6sec267.cpkkuhost.com/permissions/${VALID_PERMISSION_ID}
+${EDIT_URL}             https://cs6sec267.cpkkuhost.com/permissions/${VALID_PERMISSION_ID}/edit
 ${USERNAME}             admin@gmail.com    # ปรับตามผู้ใช้จริง
 ${PASSWORD}             12345678           # ปรับตามรหัสผ่านจริง
-${LOGIN_URL}            http://127.0.0.1:8000/login
-${DASHBOARD_URL}        http://127.0.0.1:8000/dashboard
+${LOGIN_URL}            https://cs6sec267.cpkkuhost.com/login
+${DASHBOARD_URL}        https://cs6sec267.cpkkuhost.com/dashboard
 
 *** Keywords ***
 Open Browser And Login
@@ -272,7 +269,7 @@ TC45_ADMINPermission_DeleteTranslation - ตรวจสอบภาษากา
     ${popup_text_status}=    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=//div[contains(@class, 'swal-text')]    timeout=15s
     Run Keyword If    not ${popup_text_status}    Fail    Popup text not found
     ${popup_text}=    Get Text    xpath=//div[contains(@class, 'swal-text')]
-    Run Keyword If    "${popup_text}" != "You will not be able to recover this file!"    Fail    Popup text mismatch: Expected "You will not be able to recover this file!", got "${popup_text}"
+    Run Keyword If    "${popup_text}" != "If you delete this, it will be gone forever"    Fail    Popup text mismatch: Expected "If you delete this, it will be gone forever", got "${popup_text}"
     Log To Console    Popup text: ${popup_text}
 
     # ตรวจสอบปุ่ม Cancel และ OK
@@ -307,7 +304,7 @@ TC45_ADMINPermission_DeleteTranslation - ตรวจสอบภาษากา
     ${popup_text_status}=    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=//div[contains(@class, 'swal-text')]    timeout=15s
     Run Keyword If    not ${popup_text_status}    Fail    Popup text not found
     ${popup_text}=    Get Text    xpath=//div[contains(@class, 'swal-text')]
-    Run Keyword If    "${popup_text}" != "หากคุณลบข้อมูลนี้ จะไม่สามารถกู้คืนได้"    Fail    Popup text mismatch: Expected "หากคุณลบข้อมูลนี้ จะไม่สามารถกู้คืนได้", got "${popup_text}"
+    Run Keyword If    "${popup_text}" != "ถ้าคุณลบข้อมูลนี้ มันจะหายไปตลอดกาล"    Fail    Popup text mismatch: Expected "ถ้าคุณลบข้อมูลนี้ มันจะหายไปตลอดกาล", got "${popup_text}"
     Log To Console    Popup text: ${popup_text}
 
     # ตรวจสอบปุ่ม Cancel และ OK
@@ -342,7 +339,7 @@ TC45_ADMINPermission_DeleteTranslation - ตรวจสอบภาษากา
     ${popup_text_status}=    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=//div[contains(@class, 'swal-text')]    timeout=15s
     Run Keyword If    not ${popup_text_status}    Fail    Popup text not found
     ${popup_text}=    Get Text    xpath=//div[contains(@class, 'swal-text')]
-    Run Keyword If    "${popup_text}" != "如果删除，数据将永远消失。"    Fail    Popup text mismatch: Expected "如果删除，数据将永远消失。", got "${popup_text}"
+    Run Keyword If    "${popup_text}" != "如果你删除这个，它将永远消失。"    Fail    Popup text mismatch: Expected "如果你删除这个，它将永远消失。", got "${popup_text}"
     Log To Console    Popup text: ${popup_text}
 
     # ตรวจสอบปุ่ม Cancel และ OK

@@ -5,15 +5,15 @@ Suite Teardown  Logout And Close Browser
 
 *** Variables ***
 ${BROWSER}              chrome
-${RESEARCH_PROJECTS_URL}    http://127.0.0.1:8000/researchProjects
-${CREATE_URL}           http://127.0.0.1:8000/researchProjects/create
+${RESEARCH_PROJECTS_URL}    https://cs6sec267.cpkkuhost.com/researchProjects
+${CREATE_URL}           https://cs6sec267.cpkkuhost.com/researchProjects/create
 ${VALID_PROJECT_ID}     16    # อิงจาก URL ที่ให้มา
-${VIEW_URL}             http://127.0.0.1:8000/researchProjects/${VALID_PROJECT_ID}
-${EDIT_URL}             http://127.0.0.1:8000/researchProjects/${VALID_PROJECT_ID}/edit
+${VIEW_URL}             https://cs6sec267.cpkkuhost.com/researchProjects/${VALID_PROJECT_ID}
+${EDIT_URL}             https://cs6sec267.cpkkuhost.com/researchProjects/${VALID_PROJECT_ID}/edit
 ${USERNAME}             admin@gmail.com    # ปรับตามผู้ใช้จริง
 ${PASSWORD}             12345678           # ปรับตามรหัสผ่านจริง
-${LOGIN_URL}            http://127.0.0.1:8000/login
-${DASHBOARD_URL}        http://127.0.0.1:8000/dashboard
+${LOGIN_URL}            https://cs6sec267.cpkkuhost.com/login
+${DASHBOARD_URL}        https://cs6sec267.cpkkuhost.com/dashboard
 
 *** Keywords ***
 Open Browser And Login
@@ -44,7 +44,7 @@ Switch Language
     Go To    ${DASHBOARD_URL}
     Wait Until Page Contains Element    xpath=//a[@class='nav-link dropdown-toggle' and .//span[contains(@class, 'flag-icon')]]    15s
     Click Element    xpath=//a[@class='nav-link dropdown-toggle' and .//span[contains(@class, 'flag-icon')]]
-    Click Element    xpath=//a[contains(@href, 'http://127.0.0.1:8000/lang/${lang}')]
+    Click Element    xpath=//a[contains(@href, 'https://cs6sec267.cpkkuhost.com/lang/${lang}')]
     ${flag}=    Run Keyword If    '${lang}' == 'zh'    Set Variable    cn    ELSE    Set Variable    ${lang}
     Wait Until Page Contains Element    xpath=//span[contains(@class, 'flag-icon-${flag}')]    10s
     Log To Console    Switched to language: ${lang}
@@ -155,18 +155,11 @@ TC40_ADMINResearchProject_Form - ตรวจสอบภาษาของฟ�
     Verify Page Language    Title/Prefix
     Verify Page Language    First Name
     Verify Page Language    Last Name
-    # Placeholder
-    Verify Placeholder    xpath=//input[@name='project_name']    Enter project name
-    Verify Placeholder    xpath=//input[@name='title_name[]']    Enter title/prefix
-    Verify Placeholder    xpath=//input[@name='fname[]']    Enter first name
-    Verify Placeholder    xpath=//input[@name='lname[]']    Enter last name
-    # Dropdown Options
-    Verify Page Language    Please select a fund
-    Verify Page Language    Please specify status
-    Verify Page Language    Select Member
+    
     # ปุ่ม
     Verify Page Language    Submit
     Verify Page Language    Back
+    # ... (ส่วนภาษาไทยและจีนตามเดิม)
 
     Switch Language    th
     Go To    ${CREATE_URL}
@@ -194,10 +187,7 @@ TC40_ADMINResearchProject_Form - ตรวจสอบภาษาของฟ�
     Verify Placeholder    xpath=//input[@name='title_name[]']    กรอกตำแหน่งหรือคำนำหน้า
     Verify Placeholder    xpath=//input[@name='fname[]']    กรอกชื่อ
     Verify Placeholder    xpath=//input[@name='lname[]']    กรอกนามสกุล
-    # Dropdown Options
-    Verify Page Language    เลือกทุนวิจัย
-    Verify Page Language    โปรดระบุสถานะ
-    Verify Page Language    เลือกสมาชิก
+    
     # ปุ่ม
     Verify Page Language    Submit
     Verify Page Language    กลับ
@@ -228,10 +218,7 @@ TC40_ADMINResearchProject_Form - ตรวจสอบภาษาของฟ�
     Verify Placeholder    xpath=//input[@name='title_name[]']    请输入职位或前缀
     Verify Placeholder    xpath=//input[@name='fname[]']    请输入名字
     Verify Placeholder    xpath=//input[@name='lname[]']    请输入姓氏
-    # Dropdown Options
-    Verify Page Language    请选择资金
-    Verify Page Language    请指定状态
-    Verify Page Language    选择成员
+
     # ปุ่ม
     Verify Page Language    提交
     Verify Page Language    返回

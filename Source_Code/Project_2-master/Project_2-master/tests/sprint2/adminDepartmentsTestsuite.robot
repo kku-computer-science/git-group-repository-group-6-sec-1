@@ -5,15 +5,15 @@ Suite Teardown  Logout And Close Browser
 
 *** Variables ***
 ${BROWSER}              chrome
-${DEPARTMENTS_URL}      http://127.0.0.1:8000/departments
-${CREATE_URL}           http://127.0.0.1:8000/departments/create
+${DEPARTMENTS_URL}      https://cs6sec267.cpkkuhost.com/departments
+${CREATE_URL}           https://cs6sec267.cpkkuhost.com/departments/create
 ${VALID_DEPARTMENT_ID}  1    # เปลี่ยนตาม ID ที่มีจริงในฐานข้อมูล
-${VIEW_URL}             http://127.0.0.1:8000/departments/${VALID_DEPARTMENT_ID}
-${EDIT_URL}             http://127.0.0.1:8000/departments/${VALID_DEPARTMENT_ID}/edit
+${VIEW_URL}             https://cs6sec267.cpkkuhost.com/departments/${VALID_DEPARTMENT_ID}
+${EDIT_URL}             https://cs6sec267.cpkkuhost.com/departments/${VALID_DEPARTMENT_ID}/edit
 ${USERNAME}             admin@gmail.com    # ปรับตามผู้ใช้จริง
 ${PASSWORD}             12345678           # ปรับตามรหัสผ่านจริง
-${LOGIN_URL}            http://127.0.0.1:8000/login
-${DASHBOARD_URL}        http://127.0.0.1:8000/dashboard
+${LOGIN_URL}            https://cs6sec267.cpkkuhost.com/login
+${DASHBOARD_URL}        https://cs6sec267.cpkkuhost.com/dashboard
 
 *** Keywords ***
 Open Browser And Login
@@ -275,14 +275,14 @@ TC45_ADMINDepartments_DeleteTranslation - ตรวจสอบภาษาก�
     Go To    ${DEPARTMENTS_URL}
     Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify Popup Language    Are you sure?    You will not be able to recover this file!    Delete Successfully
+    Verify Popup Language    Are you sure?    If you delete this, it will be gone forever    Delete Successfully
     Switch Language    th
     Go To    ${DEPARTMENTS_URL}
     Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify Popup Language    คุณแน่ใจหรือไม่?    หากคุณลบข้อมูลนี้ จะไม่สามารถกู้คืนได้    ลบข้อมูลสำเร็จ
+    Verify Popup Language    คุณแน่ใจหรือไม่?    ถ้าคุณลบข้อมูลนี้ มันจะหายไปตลอดกาล    ลบข้อมูลสำเร็จ
     Switch Language    zh
     Go To    ${DEPARTMENTS_URL}
     Wait Until Element Is Visible    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=25s
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-    Verify Popup Language    你确定吗？    如果删除，数据将永远消失。    删除成功
+    Verify Popup Language    你确定吗？    如果你删除这个，它将永远消失。    删除成功

@@ -6,9 +6,9 @@ Suite Setup      Open Browser And Login
 Suite Teardown   Close All Browsers
 
 *** Variables ***
-${LOGIN_URL}      http://127.0.0.1:8000/login
-${RESEARCH_GROUPS_URL}    http://127.0.0.1:8000/researchGroups
-${CREATE_URL}     http://127.0.0.1:8000/researchGroups/create
+${LOGIN_URL}      https://cs6sec267.cpkkuhost.com/login
+${RESEARCH_GROUPS_URL}    https://cs6sec267.cpkkuhost.com/researchGroups
+${CREATE_URL}     https://cs6sec267.cpkkuhost.com/researchGroups/create
 
 ${BROWSER}        chrome
 ${USERNAME}       pusadee@kku.ac.th

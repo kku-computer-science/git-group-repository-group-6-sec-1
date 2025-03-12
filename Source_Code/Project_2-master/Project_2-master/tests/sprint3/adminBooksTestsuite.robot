@@ -5,11 +5,11 @@ Suite Setup      Open Browser And Login
 Suite Teardown   Close All Browsers
 
 *** Variables ***
-${LOGIN_URL}      http://127.0.0.1:8000/login
-${BOOKS_URL}      http://127.0.0.1:8000/books
-${CREATE_URL}     http://127.0.0.1:8000/books/create
-${VIEW_URL}       http://127.0.0.1:8000/books/20
-${EDIT_URL}       http://127.0.0.1:8000/books/20/edit
+${LOGIN_URL}      https://cs6sec267.cpkkuhost.com/login
+${BOOKS_URL}      https://cs6sec267.cpkkuhost.com/books
+${CREATE_URL}     https://cs6sec267.cpkkuhost.com/books/create
+${VIEW_URL}       https://cs6sec267.cpkkuhost.com/books/20
+${EDIT_URL}       https://cs6sec267.cpkkuhost.com/books/20/edit
 
 ${BROWSER}        chrome
 ${USERNAME}       admin@gmail.com
@@ -87,15 +87,13 @@ TC03 - Edit Book
     Page Should Contain    ${UPDATED_BOOK_NAME}
 
 TC04 - Delete Updated Book
-    [Documentation]    Verify deleting the updated book with basic Sweet Alert handling
+    [Documentation]    Verify deleting the updated book without Sweet Alert
     [Tags]    critical    deletion
     Go To    ${BOOKS_URL}
     Wait For Table Load
     Search In DataTable    ${UPDATED_BOOK_NAME}
     ${row}=    Get Element Count    xpath://table/tbody/tr[td[contains(text(), '${UPDATED_BOOK_NAME}')]]
-    Run Keyword If    ${row} > 0    Run Keywords
-    ...    Click Delete Button By Text    ${UPDATED_BOOK_NAME}
-    ...    AND    Handle Sweet Alert Deletion
+    Run Keyword If    ${row} > 0    Click Delete Button By Text    ${UPDATED_BOOK_NAME}
     ...    ELSE    Fail    ${UPDATED_BOOK_NAME} not found in table after search
     Wait For Table Load
     Search In DataTable    ${UPDATED_BOOK_NAME}
@@ -136,22 +134,6 @@ Wait For Table Load
     [Arguments]    ${timeout}=20s
     Wait Until Page Contains Element    xpath://table    timeout=${timeout}
     Log To Console    Table loaded successfully
-
-Handle Sweet Alert Deletion
-    Wait Until Page Contains Element    xpath://div[contains(@class,'swal-overlay')]    timeout=10s
-    Wait Until Page Contains    Are you sure?    timeout=10s
-    ${confirm_button}=    Set Variable    xpath://button[contains(@class,'swal-button--confirm') or contains(text(), 'OK')]
-    Wait Until Element Is Visible    ${confirm_button}    timeout=10s
-    Scroll Element Into View    ${confirm_button}
-    Log To Console    Attempting to confirm 'Are you sure?' dialog
-    Click Element    ${confirm_button}
-    ${is_visible}=    Run Keyword And Return Status    Wait Until Element Is Visible    ${confirm_button}    timeout=2s
-    Run Keyword If    ${is_visible}    Run Keyword And Ignore Error
-    ...    Execute JavaScript    var button = document.evaluate("//button[contains(@class,'swal-button--confirm') or contains(text(), 'OK')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if (button) button.click();
-    Log To Console    Confirmed 'Are you sure?' dialog, waiting for overlay to disappear
-    Wait Until Keyword Succeeds    3x    5s    Element Should Not Be Visible    xpath://div[contains(@class,'swal-overlay')]    message=First Sweet Alert still visible
-    Sleep    3s
-    Capture Page Screenshot    filename=after_deletion_${UPDATED_BOOK_NAME}.png
 
 Search In DataTable
     [Arguments]    ${search_text}

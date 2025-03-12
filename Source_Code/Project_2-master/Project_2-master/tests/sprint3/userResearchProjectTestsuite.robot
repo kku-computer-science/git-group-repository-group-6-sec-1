@@ -6,10 +6,10 @@ Suite Setup      Open Browser And Login
 Suite Teardown   Close All Browsers
 
 *** Variables ***
-${LOGIN_URL}      http://127.0.0.1:8000/login
-${DASHBOARD_URL}  http://127.0.0.1:8000/dashboard
-${INDEX_URL}      http://127.0.0.1:8000/researchProjects
-${CREATE_URL}     http://127.0.0.1:8000/researchProjects/create
+${LOGIN_URL}      https://cs6sec267.cpkkuhost.com/login
+${DASHBOARD_URL}  https://cs6sec267.cpkkuhost.com/dashboard
+${INDEX_URL}      https://cs6sec267.cpkkuhost.com/researchProjects
+${CREATE_URL}     https://cs6sec267.cpkkuhost.com/researchProjects/create
 ${BROWSER}        chrome
 ${USERNAME}       pusadee@kku.ac.th
 ${PASSWORD}       123456789
@@ -35,24 +35,25 @@ TC02 - Add New Research Project
     Input Text    name=project_year    2025
     Input Text    name=budget    500000
 
-    # Department - เลือก "สาขาวิชาวิทยาการคอมพิวเตอร์" แทน "Department of Computer Science"
+    # Department - ปรับให้ใช้ตัวเลือกที่มี
     Wait Until Element Is Visible    id=dep    timeout=20s
     ${options}=    Get List Items    id=dep
     Log To Console    Available departments: ${options}
-    Select From List By Label    id=dep    สาขาวิชาวิทยาการคอมพิวเตอร์
+    Run Keyword If    'College of Computing' in ${options}    Select From List By Label    id=dep    College of Computing
+    ...    ELSE    Fail    No valid department option found
 
     Input Text    name=note    รายละเอียดโครงการทดสอบ
 
-    # Project Status - ตรวจสอบตัวเลือกก่อนเลือก
+    # Project Status
     Scroll Element Into View    xpath=//label[text()='Project Status']/following-sibling::div//select
     Wait Until Element Is Visible    xpath=//label[text()='Project Status']/following-sibling::div//select    timeout=20s
     ${status_options}=    Get List Items    xpath=//label[text()='Project Status']/following-sibling::div//select
     Log To Console    Available status options: ${status_options}
     ${status_exists}=    Run Keyword And Return Status    List Should Contain Value    ${status_options}    Requested
     Run Keyword If    ${status_exists}    Select From List By Label    xpath=//label[text()='Project Status']/following-sibling::div//select    Requested
-    ...    ELSE    Select From List By Index    xpath=//label[text()='Project Status']/following-sibling::div//select    1    # เลือกตัวเลือกแรกถ้าไม่เจอ
+    ...    ELSE    Select From List By Index    xpath=//label[text()='Project Status']/following-sibling::div//select    1
 
-    # Project Head (Pusadee Seresangtakul)
+    # Project Head
     Scroll Element Into View    id=head0
     Wait Until Element Is Visible    xpath=//select[@id='head0']/following-sibling::span//span[contains(@class,'select2-selection')]    timeout=10s
     Click Element    xpath=//select[@id='head0']/following-sibling::span//span[contains(@class,'select2-selection')]
@@ -82,7 +83,7 @@ TC02 - Add New Research Project
     Go To    ${INDEX_URL}
     Reload Page
     Wait For Table Load
-    Sleep    2s
+    Wait Until Page Contains Element    xpath://table[@id='example1']/tbody/tr    timeout=20s
     Search In DataTable    โครงการวิจัยใหม่
     Page Should Contain    โครงการวิจัยใหม่
 

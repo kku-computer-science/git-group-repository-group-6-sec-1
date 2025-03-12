@@ -5,15 +5,15 @@ Suite Teardown  Logout And Close Browser
 
 *** Variables ***
 ${BROWSER}              chrome
-${ROLES_URL}            http://127.0.0.1:8000/roles
-${CREATE_URL}           http://127.0.0.1:8000/roles/create
+${ROLES_URL}            https://cs6sec267.cpkkuhost.com/roles
+${CREATE_URL}           https://cs6sec267.cpkkuhost.com/roles/create
 ${VALID_ROLE_ID}        3    # เปลี่ยนเป็น ID ที่มีอยู่ในฐานข้อมูลจริง
-${VIEW_URL}             http://127.0.0.1:8000/roles/${VALID_ROLE_ID}
-${EDIT_URL}             http://127.0.0.1:8000/roles/${VALID_ROLE_ID}/edit
+${VIEW_URL}             https://cs6sec267.cpkkuhost.com/roles/${VALID_ROLE_ID}
+${EDIT_URL}             https://cs6sec267.cpkkuhost.com/roles/${VALID_ROLE_ID}/edit    # แก้ไข URL
 ${USERNAME}             admin@gmail.com    # ปรับตามผู้ใช้จริง
 ${PASSWORD}             12345678           # ปรับตามรหัสผ่านจริง
-${LOGIN_URL}            http://127.0.0.1:8000/login
-${DASHBOARD_URL}        http://127.0.0.1:8000/dashboard
+${LOGIN_URL}            https://cs6sec267.cpkkuhost.com/login
+${DASHBOARD_URL}        https://cs6sec267.cpkkuhost.com/dashboard
 
 *** Keywords ***
 Open Browser And Login
@@ -44,7 +44,7 @@ Switch Language
     Go To    ${DASHBOARD_URL}
     Wait Until Page Contains Element    xpath=//a[@class='nav-link dropdown-toggle' and .//span[contains(@class, 'flag-icon')]]    15s
     Click Element    xpath=//a[@class='nav-link dropdown-toggle' and .//span[contains(@class, 'flag-icon')]]
-    Click Element    xpath=//a[contains(@href, 'http://127.0.0.1:8000/lang/${lang}')]
+    Click Element    xpath=//a[contains(@href, 'https://cs6sec267.cpkkuhost.com/lang/${lang}')]    # แก้ไข URL
     ${flag}=    Run Keyword If    '${lang}' == 'zh'    Set Variable    cn    ELSE    Set Variable    ${lang}
     Wait Until Page Contains Element    xpath=//span[contains(@class, 'flag-icon-${flag}')]    10s
     Log To Console    Switched to language: ${lang}
@@ -59,7 +59,6 @@ Verify Table Header
     ${actual_text}=    Get Text    xpath=//table//thead//th[${column}]
     Should Contain    ${actual_text}    ${expected_text}
     Log To Console    Verified table header column ${column}: ${expected_text}
-
 
 Verify Popup Language
     [Arguments]    ${expected_title}    ${expected_text}    ${expected_success}
@@ -106,59 +105,33 @@ TC42_ADMINRoles_TableTranslation - ตรวจสอบภาษาในตา
     [Setup]    Reset Language To English
     Go To    ${ROLES_URL}
     Log To Console    Starting verification of English table headers...
-
-    # ตรวจสอบคอลัมน์ 1
-    ${status1}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table//thead//tr//th[1]    timeout=40s
-    Run Keyword If    not ${status1}    Log To Console    Element not found for header 1 after 40s
     ${text1}=    Get Text    xpath=//table//thead//tr//th[1]
-    Log To Console    Actual text for header 1: ${text1}
     Run Keyword If    "${text1}" != "#"    Fail    Header 1 mismatch: Expected "#", got "${text1}"
     Log To Console    Successfully verified header 1: Expected "#", Actual "${text1}"
-
-    # ตรวจสอบคอลัมน์ 2
-    ${status2}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table//thead//tr//th[2]    timeout=40s
-    Run Keyword If    not ${status2}    Log To Console    Element not found for header 2 after 40s
     ${text2}=    Get Text    xpath=//table//thead//tr//th[2]
-    Log To Console    Actual text for header 2: ${text2}
     Run Keyword If    "${text2}" != "Role Name"    Fail    Header 2 mismatch: Expected "Role Name", got "${text2}"
     Log To Console    Successfully verified header 2: Expected "Role Name", Actual "${text2}"
-
-    # ตรวจสอบคอลัมน์ 3
-    ${status3}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//table//thead//tr//th[3]    timeout=40s
-    Run Keyword If    not ${status3}    Log To Console    Element not found for header 3 after 40s
     ${text3}=    Get Text    xpath=//table//thead//tr//th[3]
-    Log To Console    Actual text for header 3: ${text3}
     Run Keyword If    "${text3}" != "Action"    Fail    Header 3 mismatch: Expected "Action", got "${text3}"
     Log To Console    Successfully verified header 3: Expected "Action", Actual "${text3}"
-
     Switch Language    th
     Go To    ${ROLES_URL}
     Log To Console    Starting verification of Thai table headers...
-
-    # ตรวจสอบคอลัมน์ 2 ภาษาไทย
     ${text2}=    Get Text    xpath=//table//thead//tr//th[2]
     Run Keyword If    "${text2}" != "ชื่อบทบาท"    Fail    Header 2 mismatch: Expected "ชื่อบทบาท", got "${text2}"
     Log To Console    Successfully verified header 2 in Thai
-
-    # ตรวจสอบคอลัมน์ 3 ภาษาไทย
     ${text3}=    Get Text    xpath=//table//thead//tr//th[3]
     Run Keyword If    "${text3}" != "การกระทำ"    Fail    Header 3 mismatch: Expected "การกระทำ", got "${text3}"
     Log To Console    Successfully verified header 3 in Thai
-
     Switch Language    zh
     Go To    ${ROLES_URL}
     Log To Console    Starting verification of Chinese table headers...
-
-    # ตรวจสอบคอลัมน์ 2 ภาษาจีน
     ${text2}=    Get Text    xpath=//table//thead//tr//th[2]
     Run Keyword If    "${text2}" != "角色名称"    Fail    Header 2 mismatch: Expected "角色名称", got "${text2}"
     Log To Console    Successfully verified header 2 in Chinese
-
-    # ตรวจสอบคอลัมน์ 3 ภาษาจีน
     ${text3}=    Get Text    xpath=//table//thead//tr//th[3]
     Run Keyword If    "${text3}" != "操作"    Fail    Header 3 mismatch: Expected "操作", got "${text3}"
     Log To Console    Successfully verified header 3 in Chinese
-    
 
 TC40_ADMINRoles_FormTranslation - ตรวจสอบภาษาของฟอร์มเพิ่ม Roles ของ UI19
     [Setup]    Reset Language To English
@@ -231,17 +204,13 @@ TC45_ADMINRoles_DeleteTranslation - ตรวจสอบภาษาการ�
     Go To    ${ROLES_URL}
     Wait Until Page Contains    Roles    15s
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
-
-    # ตรวจสอบว่า Popup แสดงขึ้นมาหรือไม่
     ${popup_visible}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//h2[contains(@class, 'swal2-title')]
     Run Keyword If    ${popup_visible}    Verify Popup Language    Are you sure?    If you delete this, it will be gone forever    Deleted successfully
-
     Switch Language    th
     Go To    ${ROLES_URL}
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
     ${popup_visible}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//h2[contains(@class, 'swal2-title')]
     Run Keyword If    ${popup_visible}    Verify Popup Language    คุณแน่ใจหรือไม่?    หากลบแล้ว ข้อมูลจะหายไปตลอดกาล    ลบสำเร็จ
-
     Switch Language    zh
     Go To    ${ROLES_URL}
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]

@@ -5,11 +5,11 @@ Suite Teardown  Logout And Close Browser
 
 *** Variables ***
 ${BROWSER}              chrome
-${PROGRAMS_URL}         http://127.0.0.1:8000/programs
+${PROGRAMS_URL}         https://cs6sec267.cpkkuhost.com/programs
 ${USERNAME}             admin@gmail.com
 ${PASSWORD}             12345678
-${LOGIN_URL}            http://127.0.0.1:8000/login
-${DASHBOARD_URL}        http://127.0.0.1:8000/dashboard
+${LOGIN_URL}            https://cs6sec267.cpkkuhost.com/login
+${DASHBOARD_URL}        https://cs6sec267.cpkkuhost.com/dashboard
 ${TIMEOUT}              15s
 @{LANGUAGES}            th    zh    en
 
@@ -84,7 +84,7 @@ Verify ModalHeader
 
 Verify FormLabel
     [Arguments]    ${label_xpath}    ${expected_text}
-    Wait Until Element Is Visible    ${label_xpath}    5s
+    Wait Until Element Is Visible    ${label_xpath}    10s    # เพิ่มจาก 5s เป็น 10s
     ${actual_text}=    Get Text    ${label_xpath}
     Should Be Equal As Strings    ${actual_text}    ${expected_text}
     Log To Console    ตรวจสอบป้ายกำกับ: ${expected_text}
@@ -129,37 +129,29 @@ Add Test Data
     Select From List By Index    xpath=//select[@id='department']    1
     Click Button    xpath=//button[@id='btn-save']
     Wait Until Element Is Visible    xpath=//table[@id='example1']//tbody//tr    10s
-    # รอให้ป๊อปอัพสำเร็จหายไป
     Wait Until Element Is Not Visible    xpath=//div[contains(@class, 'swal2-container')]    15s
     Execute JavaScript    document.querySelectorAll('.swal2-container').forEach(el => el.remove());
-    Sleep    2s    # รอให้ overlay หาย
+    Sleep    2s
 
 Verify TC44
     [Arguments]    ${lang}
-    # ไปที่หน้าโปรแกรมและเปลี่ยนภาษา
     Switch Language    ${lang}
     Go To    ${PROGRAMS_URL}
     Log To Console    เริ่มทดสอบการลบในภาษา: ${lang}...
-
-    # ตรวจสอบและเพิ่มข้อมูลทดสอบถ้าจำเป็น
     ${row_count}=    Get Element Count    xpath=//table[@id='example1']//tbody//tr
     Run Keyword If    ${row_count} == 0    Add Test Data
     ${row_count}=    Get Element Count    xpath=//table[@id='example1']//tbody//tr
     Run Keyword If    ${row_count} == 0    Fail    ไม่มีข้อมูลในตารางสำหรับการลบ แม้จะเพิ่มข้อมูลแล้ว
-
-    # ตรวจสอบและคลิกปุ่มลบแรก
     ${delete_button_status}=    Run Keyword And Return Status    Wait Until Page Contains Element    xpath=//button[contains(@class, 'show_confirm')][1]    timeout=15s
     Run Keyword If    not ${delete_button_status}    Fail    ไม่พบปุ่มลบ (Delete button not found)
     Click Element    xpath=//button[contains(@class, 'show_confirm')][1]
     Log To Console    คลิกปุ่มลบแล้ว
-
-    # กำหนดข้อความที่คาดหวังตามภาษา
     ${expected_title}=    Set Variable If
     ...    '${lang}' == 'th'    คุณแน่ใจหรือไม่?
     ...    '${lang}' == 'zh'    你确定吗？
     ...    '${lang}' == 'en'    Are you sure?
     ${expected_text}=    Set Variable If
-    ...    '${lang}' == 'th'    หากคุณลบข้อมูลนี้ จะไม่สามารถกู้คืนได้
+    ...    '${lang}' == 'th'    ถ้าคุณลบข้อมูลนี้ มันจะหายไปตลอดกาล    # แก้จากเดิม
     ...    '${lang}' == 'zh'    如果删除，数据将永远消失。
     ...    '${lang}' == 'en'    You will not be able to recover this file!
     ${cancel_text}=    Set Variable If
@@ -170,28 +162,21 @@ Verify TC44
     ...    '${lang}' == 'th'    ตกลง
     ...    '${lang}' == 'zh'    确定
     ...    '${lang}' == 'en'    OK
-
-    # ตรวจสอบข้อความใน Popup
     ${popup_title_status}=    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=//div[contains(@class, 'swal-title')]    timeout=15s
     Run Keyword If    not ${popup_title_status}    Fail    ไม่พบหัวข้อป๊อปอัพ (Popup title not found)
     ${popup_title}=    Get Text    xpath=//div[contains(@class, 'swal-title')]
     Run Keyword If    "${popup_title}" != "${expected_title}"    Fail    หัวข้อป๊อปอัพไม่ตรง: คาดว่า "${expected_title}", ได้ "${popup_title}"
     Log To Console    หัวข้อป๊อปอัพ: ${popup_title}
-
     ${popup_text_status}=    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=//div[contains(@class, 'swal-text')]    timeout=15s
     Run Keyword If    not ${popup_text_status}    Fail    ไม่พบข้อความป๊อปอัพ (Popup text not found)
     ${popup_text}=    Get Text    xpath=//div[contains(@class, 'swal-text')]
     Run Keyword If    "${popup_text}" != "${expected_text}"    Fail    ข้อความป๊อปอัพไม่ตรง: คาดว่า "${expected_text}", ได้ "${popup_text}"
     Log To Console    ข้อความป๊อปอัพ: ${popup_text}
-
-    # ตรวจสอบปุ่ม Cancel และ OK
     ${cancel_button_status}=    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=//button[contains(text(), '${cancel_text}')]    timeout=15s
     Run Keyword If    not ${cancel_button_status}    Fail    ไม่พบปุ่มยกเลิก (Cancel button not found)
     ${ok_button_status}=    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=//button[contains(text(), '${ok_text}')]    timeout=15s
     Run Keyword If    not ${ok_button_status}    Fail    ไม่พบปุ่มตกลง (OK button not found)
     Log To Console    ตรวจสอบปุ่มยกเลิกและตกลงเรียบร้อย
-
-    # คลิกยกเลิกเพื่อปิด Popup
     Click Element    xpath=//button[contains(text(), '${cancel_text}')]
     Wait Until Element Is Visible    xpath=//div[contains(@class, 'card')]    timeout=15s
     Log To Console    ยกเลิกการลบ กลับสู่หน้าโปรแกรม
@@ -233,7 +218,7 @@ Verify TC42
     ${name_th_text}=    Set Variable If
     ...    '${lang}' == 'th'    ชื่อหลักสูตร (TH)
     ...    '${lang}' == 'zh'    课程名称 (泰语)
-    ...    '${lang}' == 'en'    Program Name (TH)
+    ...    '${lang}' == 'en'    Program Name (Thai)    # แก้จาก (TH) เป็น (Thai)
     ${degree_text}=    Set Variable If
     ...    '${lang}' == 'th'    ระดับการศึกษา
     ...    '${lang}' == 'zh'    学历
@@ -265,7 +250,7 @@ Verify TC40
     ${name_th_text}=    Set Variable If
     ...    '${lang}' == 'th'    ชื่อหลักสูตร (TH):
     ...    '${lang}' == 'zh'    课程名称 (泰语):
-    ...    '${lang}' == 'en'    Program Name (TH):
+    ...    '${lang}' == 'en'    Program Name (Thai):    # แก้จาก (TH) เป็น (Thai)
     ${name_en_text}=    Set Variable If
     ...    '${lang}' == 'th'    ชื่อหลักสูตร (EN):
     ...    '${lang}' == 'zh'    课程名称 (英语):
@@ -315,7 +300,7 @@ Verify TC41
     ${name_th_text}=    Set Variable If
     ...    '${lang}' == 'th'    ชื่อหลักสูตร (TH):
     ...    '${lang}' == 'zh'    课程名称 (泰语):
-    ...    '${lang}' == 'en'    Program Name (TH):
+    ...    '${lang}' == 'en'    Program Name (Thai):    # แก้จาก (TH) เป็น (Thai)
     ${name_en_text}=    Set Variable If
     ...    '${lang}' == 'th'    ชื่อหลักสูตร (EN):
     ...    '${lang}' == 'zh'    课程名称 (英语):
@@ -349,21 +334,21 @@ Verify TC41
 
 *** Test Cases ***
 TC43_ADMINPrograms - ตรวจสอบภาษาส่วนต่างๆ ของ UI
-    [Documentation]    ตรวจสอบภาษาส่วนต่างๆ ของ UI ที่ http://127.0.0.1:8000/programs
+    [Documentation]    ตรวจสอบภาษาส่วนต่างๆ ของ UI ที่ https://cs6sec267.cpkkuhost.com/programs
     Run Test For All Languages    Verify TC43
 
 TC42_ADMINPrograms_TableTranslation - ตรวจสอบภาษาในตาราง
-    [Documentation]    ตรวจสอบภาษาในตาราง ของ UI ที่ http://127.0.0.1:8000/programs
+    [Documentation]    ตรวจสอบภาษาในตาราง ของ UI ที่ https://cs6sec267.cpkkuhost.com/programs
     Run Test For All Languages    Verify TC42
 
 TC40_ADMINPrograms_FormTranslation - ตรวจสอบภาษาของฟอร์มเพิ่มข้อมูล
-    [Documentation]    ตรวจสอบภาษาของฟอร์มเพิ่มข้อมูล ที่ http://127.0.0.1:8000/programs
+    [Documentation]    ตรวจสอบภาษาของฟอร์มเพิ่มข้อมูล ที่ https://cs6sec267.cpkkuhost.com/programs
     Run Test For All Languages    Verify TC40
 
 TC41_ADMINPrograms_EditTranslation - ตรวจสอบภาษาของฟอร์มแก้ไขข้อมูล
-    [Documentation]    ตรวจสอบภาษาของฟอร์มแก้ไขข้อมูล ที่ http://127.0.0.1:8000/programs
+    [Documentation]    ตรวจสอบภาษาของฟอร์มแก้ไขข้อมูล ที่ https://cs6sec267.cpkkuhost.com/programs
     Run Test For All Languages    Verify TC41
 
 TC44_ADMINPrograms_DeleteTranslation - ตรวจสอบภาษาของป๊อปอัพการลบ
-    [Documentation]    ตรวจสอบภาษาการลบข้อมูลและป๊อปอัพ ที่ http://127.0.0.1:8000/programs
+    [Documentation]    ตรวจสอบภาษาการลบข้อมูลและป๊อปอัพ ที่ https://cs6sec267.cpkkuhost.com/programs
     Run Test For All Languages    Verify TC44
