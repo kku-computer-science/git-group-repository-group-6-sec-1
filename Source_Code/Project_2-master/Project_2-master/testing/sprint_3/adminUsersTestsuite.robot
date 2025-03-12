@@ -13,7 +13,7 @@ ${LOGIN_URL}    ${URL}/login
 ${WELCOME_TEXT}    Hello  admin - -
 
 *** Test Cases ***
-TC01_S3_LoginandViewUsersAdmin
+TC01_LoginandViewUsersAdmin
     [Documentation]    Test case to login and view users
     Open Browser To Form Page
     Input Text Into Username Field
@@ -23,7 +23,7 @@ TC01_S3_LoginandViewUsersAdmin
     Click User Sidebar Icon
     Sleep    5s
 
-TC02_S3_ViewUsersAdmin
+TC02_ViewUsersAdmin
     [Documentation]    Test case to view users
     Execute JavaScript    window.scrollBy({top: 800, behavior: 'smooth'});    # เลื่อนลงช้า ๆ 500px
     Sleep    5s
@@ -41,7 +41,7 @@ TC02_S3_ViewUsersAdmin
     Wait Until Element Is Visible    xpath=/html/body/div/div/div/div/div/div/div/div/a    timeout=5s
     Click Element    xpath=/html/body/div/div/div/div/div/div/div/div/a
 
-TC03_S3_EditUsersAdmin
+TC03_EditUsersAdmin
     [Documentation]    Test case to edit users
     Go To    ${URL}users/16/edit
     Execute JavaScript    window.scrollBy({top: 600, behavior: 'smooth'});    # เลื่อนลงช้า ๆ 500px
