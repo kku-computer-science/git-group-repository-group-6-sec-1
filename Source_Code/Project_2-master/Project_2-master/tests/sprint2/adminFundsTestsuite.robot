@@ -4,7 +4,7 @@ Suite Setup     Open Browser And Login
 Suite Teardown  Logout And Close Browser
 
 *** Variables ***
-${BROWSER}              Firefox
+${BROWSER}              chrome
 ${FUNDS_URL}            http://127.0.0.1:8000/funds
 ${CREATE_URL}           http://127.0.0.1:8000/funds/create
 ${VALID_FUND_ID}        2    # ยังคงใช้ ID 2 เป็นตัวแปร แต่ไม่ใช้ใน ${EDIT_URL} โดยตรง

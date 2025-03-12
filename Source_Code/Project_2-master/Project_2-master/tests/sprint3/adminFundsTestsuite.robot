@@ -7,18 +7,19 @@ Suite Teardown   Close All Browsers
 *** Variables ***
 ${LOGIN_URL}      http://127.0.0.1:8000/login
 ${FUNDS_URL}      http://127.0.0.1:8000/funds
-${BROWSER}        Firefox
+${BROWSER}        chrome
 ${USERNAME}       admin@gmail.com
 ${PASSWORD}       12345678
 ${CREATE_URL}     http://127.0.0.1:8000/funds/create
 ${VIEW_URL}       http://127.0.0.1:8000/funds/20  # ตัวอย่าง URL (จะดึงจาก TC1)
 ${EDIT_URL}       http://127.0.0.1:8000/funds/20/edit  # ตัวอย่าง URL (จะดึงจาก TC1)
 
-${FUND_NAME}      test
-${FUND_TYPE}      Internal Fund
-${FUND_LEVEL}     High
-${SUPPORT_RESOURCE}  test
-${UPDATED_FUND_NAME}  Updated Fund  # ชื่อใหม่สำหรับการแก้ไข
+# ปรับเฉพาะข้อมูลที่กรอกให้เป็นทางการ
+${FUND_NAME}      กองทุนวิจัยนวัตกรรมเกษตรอัจฉริยะ
+${FUND_TYPE}      Internal Fund  # คงไว้ตามตัวเลือกเดิม
+${FUND_LEVEL}     High  # ปรับให้สมจริง
+${SUPPORT_RESOURCE}  งบประมาณจากมหาวิทยาลัยขอนแก่นและหน่วยงานภาครัฐ
+${UPDATED_FUND_NAME}  กองทุนวิจัยนวัตกรรมเกษตรอัจฉริยะรุ่นที่ 2
 
 *** Test Cases ***
 TC01 - Login and Access Funds List
@@ -53,7 +54,6 @@ TC03 - Add New Fund
     Wait For Table Load
     ${status}=    Run Keyword And Return Status    Wait Until Page Contains    Fund updated successfully    timeout=3s
     Run Keyword If    not ${status}    Log To Console    Warning: 'Fund updated successfully' not found, checking table for ${FUND_NAME}
-
 
 TC04 - View Fund Details
     [Documentation]    Verify viewing details of a newly created fund

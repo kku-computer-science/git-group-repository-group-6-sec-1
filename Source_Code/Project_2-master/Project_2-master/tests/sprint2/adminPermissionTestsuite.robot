@@ -7,7 +7,7 @@ Suite Setup     Open Browser And Login
 Suite Teardown  Logout And Close Browser
 
 *** Variables ***
-${BROWSER}              Firefox
+${BROWSER}              chrome
 ${PERMISSIONS_URL}      http://127.0.0.1:8000/permissions
 ${CREATE_URL}           http://127.0.0.1:8000/permissions/create
 ${VALID_PERMISSION_ID}  1    # เปลี่ยนตาม ID ที่มีจริงในฐานข้อมูล

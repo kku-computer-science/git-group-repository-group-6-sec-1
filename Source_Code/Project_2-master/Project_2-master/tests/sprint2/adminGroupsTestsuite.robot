@@ -4,7 +4,7 @@ Suite Setup     Open Browser And Login
 Suite Teardown  Logout And Close Browser
 
 *** Variables ***
-${BROWSER}              Firefox
+${BROWSER}              chrome
 ${RESEARCH_GROUPS_URL}  http://127.0.0.1:8000/researchGroups
 ${CREATE_URL}           http://127.0.0.1:8000/researchGroups/create
 ${VALID_GROUP_ID}       3

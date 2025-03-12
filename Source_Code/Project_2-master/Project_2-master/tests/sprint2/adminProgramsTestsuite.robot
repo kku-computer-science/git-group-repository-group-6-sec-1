@@ -4,7 +4,7 @@ Suite Setup     Setup Browser And Login
 Suite Teardown  Logout And Close Browser
 
 *** Variables ***
-${BROWSER}              Firefox
+${BROWSER}              chrome
 ${PROGRAMS_URL}         http://127.0.0.1:8000/programs
 ${USERNAME}             admin@gmail.com
 ${PASSWORD}             12345678

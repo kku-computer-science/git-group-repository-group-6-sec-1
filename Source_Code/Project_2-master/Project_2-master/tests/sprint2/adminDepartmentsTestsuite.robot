@@ -4,7 +4,7 @@ Suite Setup     Open Browser And Login
 Suite Teardown  Logout And Close Browser
 
 *** Variables ***
-${BROWSER}              Firefox
+${BROWSER}              chrome
 ${DEPARTMENTS_URL}      http://127.0.0.1:8000/departments
 ${CREATE_URL}           http://127.0.0.1:8000/departments/create
 ${VALID_DEPARTMENT_ID}  1    # เปลี่ยนตาม ID ที่มีจริงในฐานข้อมูล

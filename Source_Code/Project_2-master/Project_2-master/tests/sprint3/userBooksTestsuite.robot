@@ -11,20 +11,21 @@ ${CREATE_URL}     http://127.0.0.1:8000/books/create
 ${VIEW_URL}       http://127.0.0.1:8000/books/20
 ${EDIT_URL}       http://127.0.0.1:8000/books/20/edit
 
-${BROWSER}        Firefox
+${BROWSER}        chrome
 ${USERNAME}       punhor1@kku.ac.th
 ${PASSWORD}       123456789
 
-${BOOK_NAME}      test
-${PUBLICATION}    test
-${YEAR}           2025-03-09  # ปรับเป็นรูปแบบ YYYY-MM-DD
-${PAGE}           test
-${UPDATED_BOOK_NAME}  newtest
-${UPDATED_PUBLICATION}  newtest
-${UPDATED_YEAR}   2025-03-09  # ปรับเป็นรูปแบบ YYYY-MM-DD
-${UPDATED_PAGE}   newtest
+# ปรับข้อมูลให้เป็นทางการและวันที่ให้เหมาะสม
+${BOOK_NAME}      การวิเคราะห์ข้อมูลเกษตรด้วยปัญญาประดิษฐ์
+${PUBLICATION}    สำนักพิมพ์มหาวิทยาลัยขอนแก่น
+${YEAR}           2025-03-09  # รูปแบบ YYYY-MM-DD สำหรับ JavaScript
+${PAGE}           150
 
-*** Test Cases ***
+${UPDATED_BOOK_NAME}  การวิเคราะห์ข้อมูลเกษตรด้วย AI รุ่นปรับปรุง
+${UPDATED_PUBLICATION}  สำนักพิมพ์เทคโนโลยีเกษตร
+${UPDATED_YEAR}   2025-06-15  # รูปแบบ YYYY-MM-DD สำหรับ JavaScript
+${UPDATED_PAGE}   180
+
 *** Test Cases ***
 TC01 - Add New Book
     [Documentation]    Verify adding a new book
@@ -61,8 +62,7 @@ TC02 - View Book Details
     Page Should Contain    ${BOOK_NAME}
     Page Should Contain    ${PUBLICATION}
     Page Should Contain    ${PAGE}
-    # กำหนดค่า Year โดยตรง
-    ${year_to_check}=    Set Variable    2025  # กำหนดเป็น "2025" โดยตรง
+    ${year_to_check}=    Set Variable    2025  # ใช้เฉพาะปีในการตรวจสอบ
     Page Should Contain    ${year_to_check}
     Click Element    xpath://a[contains(text(), 'Back')]
     Wait For Table Load
@@ -97,7 +97,6 @@ TC04 - Delete Updated Book
     ...    Click Delete Button By Text    ${UPDATED_BOOK_NAME}
     ...    AND    Handle Sweet Alert Deletion
     ...    ELSE    Fail    ${UPDATED_BOOK_NAME} not found in table after search
-    # รอให้ตารางโหลดใหม่หลังการลบ
     Wait For Table Load
     Search In DataTable    ${UPDATED_BOOK_NAME}
     ${row_after_delete}=    Get Element Count    xpath://table/tbody/tr[td[contains(text(), '${UPDATED_BOOK_NAME}')]]
@@ -106,9 +105,9 @@ TC04 - Delete Updated Book
 
 *** Keywords ***
 Clear Search Field
-    Wait Until Element Is Visible    xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']    timeout=10s  # ปรับตามคลาสของช่องค้นหา
+    Wait Until Element Is Visible    xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']    timeout=10s
     Input Text    xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']    ${EMPTY}
-    Sleep    2s    # รอตารางรีเฟรช
+    Sleep    2s
     Wait Until Page Contains Element    xpath://table/tbody/tr    timeout=10s
 
 Open Browser And Login
@@ -139,8 +138,6 @@ Wait For Table Load
     Log To Console    Table loaded successfully
 
 Handle Sweet Alert Deletion
-    [Documentation]    Handle only the first Sweet Alert dialog (Are you sure?)
-    # รอและจัดการ Sweet Alert ตัวแรก (Are you sure?)
     Wait Until Page Contains Element    xpath://div[contains(@class,'swal-overlay')]    timeout=10s
     Wait Until Page Contains    Are you sure?    timeout=10s
     ${confirm_button}=    Set Variable    xpath://button[contains(@class,'swal-button--confirm') or contains(text(), 'OK')]
@@ -148,16 +145,11 @@ Handle Sweet Alert Deletion
     Scroll Element Into View    ${confirm_button}
     Log To Console    Attempting to confirm 'Are you sure?' dialog
     Click Element    ${confirm_button}
-    # ตรวจสอบว่ายังเห็นปุ่มอยู่ไหม ถ้าใช่ ใช้ JavaScript
     ${is_visible}=    Run Keyword And Return Status    Wait Until Element Is Visible    ${confirm_button}    timeout=2s
     Run Keyword If    ${is_visible}    Run Keyword And Ignore Error
     ...    Execute JavaScript    var button = document.evaluate("//button[contains(@class,'swal-button--confirm') or contains(text(), 'OK')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if (button) button.click();
     Log To Console    Confirmed 'Are you sure?' dialog, waiting for overlay to disappear
-
-    # รอให้ Sweet Alert ตัวแรกหายไป
     Wait Until Keyword Succeeds    3x    5s    Element Should Not Be Visible    xpath://div[contains(@class,'swal-overlay')]    message=First Sweet Alert still visible
-
-    # รอหน้าเว็บอัปเดตหลังการลบ (ตัดส่วนจัดการ Sweet Alert ตัวที่สองออก)
     Sleep    3s
     Capture Page Screenshot    filename=after_deletion_${UPDATED_BOOK_NAME}.png
 
@@ -192,10 +184,17 @@ Click Delete Button By Text
 Fill Book Form
     [Arguments]    ${name}    ${publication}    ${year}    ${page}
     ${name}=    Evaluate    '${name}'.strip()
+    Wait Until Element Is Visible    name=ac_name    timeout=10s
     Input Text    name=ac_name    ${name}
+    Wait Until Element Is Visible    name=ac_sourcetitle    timeout=10s
     Input Text    name=ac_sourcetitle    ${publication}
-    Input Text    name=ac_year    ${year}
+    # ใช้ JavaScript กรอกวันที่เหมือนโค้ดก่อนหน้า
+    Wait Until Element Is Visible    name=ac_year    timeout=10s
+    Execute JavaScript    document.querySelector('[name="ac_year"]').value = "${year}";
+    Wait Until Element Is Visible    name=ac_page    timeout=10s
     Input Text    name=ac_page    ${page}
+    # ตรวจสอบการกรอก
     ${book_name_value}=    Get Element Attribute    name=ac_name    value
     Should Be Equal    ${book_name_value}    ${name}    msg=Failed to input Book Name
-
+    ${year_value}=    Execute JavaScript    return document.querySelector('[name="ac_year"]').value;
+    Should Be Equal    ${year_value}    ${year}    msg=Failed to input Year

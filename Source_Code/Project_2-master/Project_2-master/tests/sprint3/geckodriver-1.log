@@ -1,20 +1,23 @@
-1741696957072	geckodriver	INFO	Listening on 127.0.0.1:1331
-1741696960119	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "1332" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Asus\\AppData\\Local\\Temp\\rust_mozprofileRauewO"
+1741726380972	geckodriver	INFO	Listening on 127.0.0.1:6686
+1741726384087	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "6687" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Asus\\AppData\\Local\\Temp\\rust_mozprofileWGGMXC"
 console.warn: services.settings: Ignoring preference override of remote settings server
 console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
 Dynamically enable window occlusion 0
-1741696960401	Marionette	INFO	Marionette enabled
-1741696960483	Marionette	INFO	Listening on port 1342
-WebDriver BiDi listening on ws://127.0.0.1:1332
-Read port: 1342
-1741696960673	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-DevTools listening on ws://127.0.0.1:1332/devtools/browser/8d729fc4-eb7a-43d9-b196-054b52cfd524
+1741726384533	Marionette	INFO	Marionette enabled
+1741726384627	Marionette	INFO	Listening on port 6696
+WebDriver BiDi listening on ws://127.0.0.1:6687
+Read port: 6696
+1741726384842	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:6687/devtools/browser/3b93f1bd-b756-485f-881b-25983850f1bb
+console.error: ({})
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
+console.error: ({})
+console.error: ({})
 console.error: ({})
 console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:8000."
 console.error: ({})
 console.error: ({})
 console.error: ({})
 console.error: ({})
-console.error: ({})
-1741696972951	Marionette	INFO	Stopped listening on port 1342
+1741726393898	Marionette	INFO	Stopped listening on port 6696
 Dynamically enable window occlusion 1

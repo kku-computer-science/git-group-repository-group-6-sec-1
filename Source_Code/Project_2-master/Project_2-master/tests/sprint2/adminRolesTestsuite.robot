@@ -4,7 +4,7 @@ Suite Setup     Open Browser And Login
 Suite Teardown  Logout And Close Browser
 
 *** Variables ***
-${BROWSER}              Firefox
+${BROWSER}              chrome
 ${ROLES_URL}            http://127.0.0.1:8000/roles
 ${CREATE_URL}           http://127.0.0.1:8000/roles/create
 ${VALID_ROLE_ID}        3    # เปลี่ยนเป็น ID ที่มีอยู่ในฐานข้อมูลจริง

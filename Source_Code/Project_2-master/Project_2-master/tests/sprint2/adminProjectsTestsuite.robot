@@ -4,7 +4,7 @@ Suite Setup     Open Browser And Login
 Suite Teardown  Logout And Close Browser
 
 *** Variables ***
-${BROWSER}              Firefox
+${BROWSER}              chrome
 ${RESEARCH_PROJECTS_URL}    http://127.0.0.1:8000/researchProjects
 ${CREATE_URL}           http://127.0.0.1:8000/researchProjects/create
 ${VALID_PROJECT_ID}     16    # อิงจาก URL ที่ให้มา
