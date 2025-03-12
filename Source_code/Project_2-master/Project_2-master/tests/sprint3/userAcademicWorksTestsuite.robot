@@ -5,9 +5,9 @@ Suite Setup      Open Browser And Login
 Suite Teardown   Close All Browsers
 
 *** Variables ***
-${LOGIN_URL}      http://127.0.0.1:8000/login
-${PATENTS_URL}    http://127.0.0.1:8000/patents
-${CREATE_PATENT_URL}  http://127.0.0.1:8000/patents/create
+${LOGIN_URL}      https://cs6sec267.cpkkuhost.com/login
+${PATENTS_URL}    https://cs6sec267.cpkkuhost.com/patents
+${CREATE_PATENT_URL}  https://cs6sec267.cpkkuhost.com/patents/create
 
 ${BROWSER}        chrome
 ${USERNAME}       punhor1@kku.ac.th

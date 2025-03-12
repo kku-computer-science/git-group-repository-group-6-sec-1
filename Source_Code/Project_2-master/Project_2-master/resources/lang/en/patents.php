@@ -60,4 +60,6 @@ return [
         'อนุสิทธิบัตร' => 'Utility Model',
         'สิทธิบัตร'     => 'Patent',
     ],
+    'confirm_yes'   => 'Yes',
+    'confirm_no'   => 'No',
 ];
