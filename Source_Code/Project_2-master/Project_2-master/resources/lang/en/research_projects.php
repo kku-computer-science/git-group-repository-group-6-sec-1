@@ -16,7 +16,7 @@ return [
     'confirm_text'  => 'You will not be able to recover this file!',
     'delete_success'=> 'Deleted Successfully',
     'search'        => 'Search:',
-    
+
     // For edit / create pages
     'edit_title'        => 'Edit Research Project',
     'edit_description'  => 'Please fill in the details to edit the research project',
@@ -59,4 +59,8 @@ return [
     'select_status'     => 'Please specify status',
     // เพิ่มคีย์ select_member สำหรับ dropdown เลือกสมาชิก
     'select_member'     => 'Select Member',
+    'select_status' => 'Select Status',
+    'status_1' => 'Requested',
+    'status_2' => 'In Progress',
+    'status_3' => 'Closed',
 ];

@@ -34,7 +34,7 @@
     <div class="card" style="padding: 16px;">
         <div class="card-body">
             <h4 class="card-title" style="text-align: center;">{{ __('programs.title') }}</h4>
-            <a class="btn btn-primary btn-menu btn-icon-text btn-sm mb-3" href="javascript:void(0)" id="new-program" data-toggle="modal">
+            <a class="btn btn-primary btn-icon-text btn-sm mb-3" href="javascript:void(0)" id="new-program" data-toggle="modal" style="padding: 6px 12px; min-width: 120px; text-align: center;">
                 <i class="mdi mdi-plus btn-icon-prepend"></i> {{ __('programs.add') }}
             </a>
             <table id="example1" class="table table-striped">
@@ -47,11 +47,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($programs as $i => $program)
+                @foreach ($programs as $i => $program)
                     <tr id="program_id_{{ $program->id }}">
                         <td>{{ $i+1 }}</td>
-                        <td>{{ $program->program_name_th }}</td>
-                        <td>{{ $program->degree->degree_name_en }}</td>
+                        <td>
+                            @if (App::getLocale() == 'th')
+                                {{ $program->program_name_th }}
+                            @elseif (App::getLocale() == 'zh')
+                                {{ $program->program_name_zh ?? $program->program_name_en }}
+                            @else
+                                {{ $program->program_name_en }}
+                            @endif
+                        </td>
+                        <td>
+                        @if (App::getLocale() == 'th')
+                            {{ $program->degree->degree_name_th }}
+                        @elseif (App::getLocale() == 'zh')
+                            {{ $program->degree->degree_name_zh ?? $program->degree->degree_name_en }}
+                        @else
+                            {{ $program->degree->degree_name_en }}
+                        @endif
+                        </td>
                         <td>
                             <form action="{{ route('programs.destroy', $program->id) }}" method="POST">
                                 <li class="list-inline-item">

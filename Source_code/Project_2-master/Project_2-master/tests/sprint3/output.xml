@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.13.1 on win32)" generated="2025-03-12T00:51:25.555552" rpa="false" schemaversion="5">
+<suite id="s1" name="adminAcademicWorksTestsuite" source="D:\university\software\git-group-repository-group-6-sec-1\Source_code\Project_2-master\Project_2-master\tests\sprint3\adminAcademicWorksTestsuite.robot">
+<kw name="Open Browser And Login" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:25.831213" level="INFO">Opening browser 'chrome' to base url 'http://127.0.0.1:8000/login'.</msg>
+<arg>${LOGIN_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-03-12T00:51:25.830810" elapsed="2.751255"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-03-12T00:51:28.582401" elapsed="0.071269"/>
+</kw>
+<kw name="Login To System">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>id=username</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:28.654336" elapsed="0.019182"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Found username field</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-03-12T00:51:28.673725" elapsed="0.000493"/>
+</kw>
+<kw name="Element Should Be Enabled" owner="SeleniumLibrary">
+<arg>id=username</arg>
+<doc>Verifies that element identified by ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-03-12T00:51:28.674434" elapsed="0.039072"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:28.714101" level="INFO">Typing text 'admin@gmail.com' into text field 'id=username'.</msg>
+<arg>id=username</arg>
+<arg>${USERNAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-12T00:51:28.713752" elapsed="0.095606"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>id=password</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:28.809641" elapsed="0.010106"/>
+</kw>
+<kw name="Element Should Be Enabled" owner="SeleniumLibrary">
+<arg>id=password</arg>
+<doc>Verifies that element identified by ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-03-12T00:51:28.819916" elapsed="0.019895"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:28.840182" level="INFO">Typing text '12345678' into text field 'id=password'.</msg>
+<arg>id=password</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-12T00:51:28.839973" elapsed="0.075330"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath://button[@type='submit']</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:28.915491" elapsed="0.011712"/>
+</kw>
+<kw name="Element Should Be Enabled" owner="SeleniumLibrary">
+<arg>xpath://button[@type='submit']</arg>
+<doc>Verifies that element identified by ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-03-12T00:51:28.927667" elapsed="0.058137"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:28.986128" level="INFO">Clicking button 'xpath://button[@type='submit']'.</msg>
+<arg>xpath://button[@type='submit']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-12T00:51:28.985959" elapsed="0.071315"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath://body</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:29.057828" elapsed="1.365685"/>
+</kw>
+<msg time="2025-03-12T00:51:30.423660" level="INFO">${status} = True</msg>
+<var>${status}</var>
+<arg>Wait Until Page Contains Element</arg>
+<arg>xpath://body</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-03-12T00:51:29.057489" elapsed="1.366198"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${status}</arg>
+<arg>Fail</arg>
+<arg>Login failed or initial page not loaded</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-03-12T00:51:30.423835" elapsed="0.000194"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Login successful</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-03-12T00:51:30.424137" elapsed="0.000335"/>
+</kw>
+<status status="PASS" start="2025-03-12T00:51:28.654045" elapsed="1.770533"/>
+</kw>
+<kw name="Get Location" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:30.429769" level="INFO">${current_url} = http://127.0.0.1:8000/dashboard</msg>
+<var>${current_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="PASS" start="2025-03-12T00:51:30.424692" elapsed="0.005119"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:30.430357" level="INFO">Opening url 'http://127.0.0.1:8000/patents'</msg>
+<arg>${PATENTS_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-03-12T00:51:30.430237" elapsed="0.718544"/>
+</kw>
+<arg>'${current_url}' != '${PATENTS_URL}'</arg>
+<arg>Go To</arg>
+<arg>${PATENTS_URL}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-03-12T00:51:30.429973" elapsed="0.718947"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath://table</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.149085" elapsed="0.019425"/>
+</kw>
+<status status="PASS" start="2025-03-12T00:51:25.830242" elapsed="5.338468"/>
+</kw>
+<test id="s1-t1" name="TC01 - Add New Patent" line="25">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:31.169885" level="INFO">Opening url 'http://127.0.0.1:8000/patents/create'</msg>
+<arg>${CREATE_PATENT_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.169574" elapsed="0.401039"/>
+</kw>
+<kw name="Wait For Page Load">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath://body</arg>
+<arg>timeout=${timeout}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.571579" elapsed="0.008465"/>
+</kw>
+<status status="PASS" start="2025-03-12T00:51:31.571113" elapsed="0.009050"/>
+</kw>
+<kw name="Fill Patent Form">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-03-12T00:51:31.581136" level="INFO">${name} = Smart AI System for Research Management</msg>
+<var>${name}</var>
+<arg>'${name}'.strip()</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.580895" elapsed="0.000273"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>name=ac_name</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.581291" elapsed="0.012065"/>
+</kw>
+<kw name="Element Should Be Enabled" owner="SeleniumLibrary">
+<arg>name=ac_name</arg>
+<doc>Verifies that element identified by ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.593618" elapsed="0.018945"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:31.613275" level="INFO">Typing text 'Smart AI System for Research Management' into text field 'name=ac_name'.</msg>
+<arg>name=ac_name</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.612844" elapsed="0.123226"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>name=ac_type</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.736332" elapsed="0.012095"/>
+</kw>
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:31.748828" level="INFO">Selecting options from selection list 'name=ac_type' by label Patent.</msg>
+<arg>name=ac_type</arg>
+<arg>${type}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.748624" elapsed="0.067671"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>name=ac_year</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.816495" elapsed="0.009684"/>
+</kw>
+<kw name="Element Should Be Enabled" owner="SeleniumLibrary">
+<arg>name=ac_year</arg>
+<doc>Verifies that element identified by ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.826331" elapsed="0.014637"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:31.841319" level="INFO">Typing text '03/11/2025' into text field 'name=ac_year'.</msg>
+<arg>name=ac_year</arg>
+<arg>${reg_date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.841125" elapsed="0.062683"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>name=ac_refnumber</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.903958" elapsed="0.009230"/>
+</kw>
+<kw name="Element Should Be Enabled" owner="SeleniumLibrary">
+<arg>name=ac_refnumber</arg>
+<doc>Verifies that element identified by ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.913343" elapsed="0.013547"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:31.927230" level="INFO">Typing text '12345678' into text field 'name=ac_refnumber'.</msg>
+<arg>name=ac_refnumber</arg>
+<arg>${reg_number}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-12T00:51:31.927040" elapsed="0.078903"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//button[@id='add-btn2']</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.006097" elapsed="0.010318"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:32.016936" level="INFO">Clicking button 'xpath=//button[@id='add-btn2']'.</msg>
+<arg>xpath=//button[@id='add-btn2']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.016671" elapsed="0.085222"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath://select[contains(@id, 'selUser')]</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.102068" elapsed="0.012664"/>
+</kw>
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:32.115087" level="INFO">Selecting options from selection list 'xpath://select[contains(@id, 'selUser')]' by label Pongsathon Janyoi.</msg>
+<arg>xpath://select[contains(@id, 'selUser')]</arg>
+<arg>${internal_author}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.114893" elapsed="0.063483"/>
+</kw>
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:32.195065" level="INFO">${patent_name_value} = Smart AI System for Research Management</msg>
+<var>${patent_name_value}</var>
+<arg>name=ac_name</arg>
+<arg>value</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.178534" elapsed="0.016571"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${patent_name_value}</arg>
+<arg>${name}</arg>
+<arg>msg=Failed to input Patent Name</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.195249" elapsed="0.000232"/>
+</kw>
+<arg>${DEMO_NAME}</arg>
+<arg>${DEMO_TYPE}</arg>
+<arg>${DEMO_REG_DATE}</arg>
+<arg>${DEMO_REG_NUMBER}</arg>
+<arg>${INTERNAL_AUTHOR}</arg>
+<status status="PASS" start="2025-03-12T00:51:31.580493" elapsed="0.615064"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Patent form filled successfully</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.195911" elapsed="0.000373"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-03-12T00:51:32.196692" level="INFO">${submit_button} = xpath://button[@type='submit' and contains(@class, 'btn-primary')]</msg>
+<var>${submit_button}</var>
+<arg>xpath://button[@type='submit' and contains(@class, 'btn-primary')]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.196492" elapsed="0.000236"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${submit_button}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.196966" elapsed="0.020490"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Submit button is visible</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.217978" elapsed="0.000827"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
+<arg>${submit_button}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.219269" elapsed="0.026702"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Submit button is enabled</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.246402" elapsed="0.000396"/>
+</kw>
+<kw name="Scroll Element Into View" owner="SeleniumLibrary">
+<arg>${submit_button}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.247480" elapsed="0.294149"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Scrolled to Submit button</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.542817" elapsed="0.001267"/>
+</kw>
+<kw name="Wait For Overlay To Disappear">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:32.740656" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-03-12T00:51:32.740826" level="FAIL">timeout=2s</msg>
+<arg>xpath://*[contains(@class, 'overlay') or contains(@class, 'modal') or contains(@class, 'spinner') or contains(@class, 'swal')]</arg>
+<arg>timeout=2s</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="FAIL" start="2025-03-12T00:51:32.546846" elapsed="0.200794">timeout=2s</status>
+</kw>
+<msg time="2025-03-12T00:51:32.747872" level="INFO">${overlay_present} = False</msg>
+<var>${overlay_present}</var>
+<arg>Page Should Contain Element</arg>
+<arg>xpath://*[contains(@class, 'overlay') or contains(@class, 'modal') or contains(@class, 'spinner') or contains(@class, 'swal')]</arg>
+<arg>timeout=2s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.546284" elapsed="0.201617"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>${overlay_present}</arg>
+<arg>Wait Until Keyword Succeeds</arg>
+<arg>5x</arg>
+<arg>1s</arg>
+<arg>Element Should Not Be Visible</arg>
+<arg>xpath://*[contains(@class, 'overlay') or contains(@class, 'modal') or contains(@class, 'spinner') or contains(@class, 'swal')]</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.748038" elapsed="0.000151"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Overlay check completed</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.748294" elapsed="0.000394"/>
+</kw>
+<status status="PASS" start="2025-03-12T00:51:32.545305" elapsed="0.203466"/>
+</kw>
+<kw name="Click Submit Button">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.749352" elapsed="0.016784"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.766316" elapsed="0.017448"/>
+</kw>
+<kw name="Scroll Element Into View" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" start="2025-03-12T00:51:32.783933" elapsed="0.278466"/>
+</kw>
+<kw name="Wait For Overlay To Disappear">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:33.173021" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-03-12T00:51:33.173174" level="FAIL">timeout=2s</msg>
+<arg>xpath://*[contains(@class, 'overlay') or contains(@class, 'modal') or contains(@class, 'spinner') or contains(@class, 'swal')]</arg>
+<arg>timeout=2s</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="FAIL" start="2025-03-12T00:51:33.062979" elapsed="0.111074">timeout=2s</status>
+</kw>
+<msg time="2025-03-12T00:51:33.174182" level="INFO">${overlay_present} = False</msg>
+<var>${overlay_present}</var>
+<arg>Page Should Contain Element</arg>
+<arg>xpath://*[contains(@class, 'overlay') or contains(@class, 'modal') or contains(@class, 'spinner') or contains(@class, 'swal')]</arg>
+<arg>timeout=2s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-03-12T00:51:33.062814" elapsed="0.111404"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>${overlay_present}</arg>
+<arg>Wait Until Keyword Succeeds</arg>
+<arg>5x</arg>
+<arg>1s</arg>
+<arg>Element Should Not Be Visible</arg>
+<arg>xpath://*[contains(@class, 'overlay') or contains(@class, 'modal') or contains(@class, 'spinner') or contains(@class, 'swal')]</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-03-12T00:51:33.174350" elapsed="0.000117"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Overlay check completed</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-03-12T00:51:33.174580" elapsed="0.000436"/>
+</kw>
+<status status="PASS" start="2025-03-12T00:51:33.062570" elapsed="0.112553"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:33.175511" level="INFO">Clicking element 'xpath://button[@type='submit' and contains(@class, 'btn-primary')]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-12T00:51:33.175351" elapsed="0.956933"/>
+</kw>
+<msg time="2025-03-12T00:51:34.132453" level="INFO">${click_status} = True</msg>
+<var>${click_status}</var>
+<arg>Click Element</arg>
+<arg>${locator}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-03-12T00:51:33.175227" elapsed="0.957256"/>
+</kw>
+<kw name="Run Keyword Unless" owner="BuiltIn">
+<msg time="2025-03-12T00:51:34.132661" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+<arg>${click_status}</arg>
+<arg>Run Keywords</arg>
+<arg>Log To Console</arg>
+<arg>Normal click failed, attempting JavaScript click</arg>
+<arg>AND</arg>
+<arg>Execute JavaScript</arg>
+<arg>arguments[0].click();</arg>
+<arg>ARGUMENTS</arg>
+<arg>${locator}</arg>
+<doc>*DEPRECATED since RF 5.0. Use Native IF/ELSE or `Run Keyword If` instead.*</doc>
+<status status="PASS" start="2025-03-12T00:51:34.132624" elapsed="0.001016"/>
+</kw>
+<kw name="Run Keyword Unless" owner="BuiltIn">
+<msg time="2025-03-12T00:51:34.133906" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+<arg>${click_status}</arg>
+<arg>Fail</arg>
+<arg>Failed to click Submit button after multiple attempts</arg>
+<doc>*DEPRECATED since RF 5.0. Use Native IF/ELSE or `Run Keyword If` instead.*</doc>
+<status status="PASS" start="2025-03-12T00:51:34.133845" elapsed="0.001491"/>
+</kw>
+<arg>${submit_button}</arg>
+<status status="PASS" start="2025-03-12T00:51:32.749098" elapsed="1.386448"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Submit button clicked</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-03-12T00:51:34.135991" elapsed="0.000500"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath://div[contains(@class, 'alert-success')]</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:34.137020" elapsed="0.013512"/>
+</kw>
+<msg time="2025-03-12T00:51:34.150863" level="INFO">${success_message} = True</msg>
+<var>${success_message}</var>
+<arg>Wait Until Page Contains Element</arg>
+<arg>xpath://div[contains(@class, 'alert-success')]</arg>
+<arg>timeout=5s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-03-12T00:51:34.136858" elapsed="0.014066"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Success message found</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-03-12T00:51:34.151743" elapsed="0.000438"/>
+</kw>
+<arg>${success_message}</arg>
+<arg>Log To Console</arg>
+<arg>Success message found</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-03-12T00:51:34.151430" elapsed="0.000877"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:39.481250" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-03-12T00:51:39.481554" level="FAIL">Element 'xpath://div[contains(@class, 'alert-danger')]' did not appear in 5 seconds.</msg>
+<arg>xpath://div[contains(@class, 'alert-danger')]</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="FAIL" start="2025-03-12T00:51:34.152806" elapsed="5.331714">Element 'xpath://div[contains(@class, 'alert-danger')]' did not appear in 5 seconds.</status>
+</kw>
+<msg time="2025-03-12T00:51:39.484693" level="INFO">${error_message} = False</msg>
+<var>${error_message}</var>
+<arg>Wait Until Page Contains Element</arg>
+<arg>xpath://div[contains(@class, 'alert-danger')]</arg>
+<arg>timeout=5s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-03-12T00:51:34.152603" elapsed="5.332120"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>${error_message}</arg>
+<arg>Run Keywords</arg>
+<arg>Log To Console</arg>
+<arg>Error message found, submission may have failed</arg>
+<arg>AND</arg>
+<arg>${error_text}=</arg>
+<arg>Get Text</arg>
+<arg>xpath://div[contains(@class, 'alert-danger')]</arg>
+<arg>AND</arg>
+<arg>Log To Console</arg>
+<arg>Error details: ${error_text}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-03-12T00:51:39.485099" elapsed="0.000154"/>
+</kw>
+<kw name="Run Keyword Unless" owner="BuiltIn">
+<msg time="2025-03-12T00:51:39.485587" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+<arg>${success_message} or ${error_message}</arg>
+<arg>Log To Console</arg>
+<arg>No success or error message found, checking URL</arg>
+<doc>*DEPRECATED since RF 5.0. Use Native IF/ELSE or `Run Keyword If` instead.*</doc>
+<status status="PASS" start="2025-03-12T00:51:39.485554" elapsed="0.000935"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-03-12T00:51:41.487201" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-03-12T00:51:39.486776" elapsed="2.000702"/>
+</kw>
+<kw name="Get Location" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:41.504841" level="INFO">${current_url} = http://127.0.0.1:8000/patents</msg>
+<var>${current_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="PASS" start="2025-03-12T00:51:41.488524" elapsed="0.016463"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Current URL after submit: ${current_url}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-03-12T00:51:41.505933" elapsed="0.001409"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${current_url}' != '${PATENTS_URL}'</arg>
+<arg>Go To</arg>
+<arg>${PATENTS_URL}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-03-12T00:51:41.508288" elapsed="0.000705"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" start="2025-03-12T00:51:41.510040" elapsed="0.634513"/>
+</kw>
+<kw name="Wait For Table Load">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath://table</arg>
+<arg>timeout=${timeout}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:42.145584" elapsed="0.046571"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Table loaded successfully</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-03-12T00:51:42.192337" elapsed="0.000503"/>
+</kw>
+<status status="PASS" start="2025-03-12T00:51:42.145112" elapsed="0.047838"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath://table</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:42.193462" elapsed="0.009655"/>
+</kw>
+<msg time="2025-03-12T00:51:42.203250" level="INFO">${table_present} = True</msg>
+<var>${table_present}</var>
+<arg>Wait Until Page Contains Element</arg>
+<arg>xpath://table</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-03-12T00:51:42.193299" elapsed="0.009977"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Table found on page</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-03-12T00:51:42.204048" elapsed="0.000634"/>
+</kw>
+<arg>${table_present}</arg>
+<arg>Log To Console</arg>
+<arg>Table found on page</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-03-12T00:51:42.203668" elapsed="0.001197"/>
+</kw>
+<kw name="Run Keyword Unless" owner="BuiltIn">
+<msg time="2025-03-12T00:51:42.205669" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+<arg>${table_present}</arg>
+<arg>Fail</arg>
+<arg>Table not found on patents page</arg>
+<doc>*DEPRECATED since RF 5.0. Use Native IF/ELSE or `Run Keyword If` instead.*</doc>
+<status status="PASS" start="2025-03-12T00:51:42.205434" elapsed="0.001036"/>
+</kw>
+<kw name="Search In DataTable">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-12T00:51:42.207374" elapsed="0.021613"/>
+</kw>
+<msg time="2025-03-12T00:51:42.229118" level="INFO">${search_field_present} = True</msg>
+<var>${search_field_present}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-03-12T00:51:42.207242" elapsed="0.021902"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Run Keywords" owner="BuiltIn">
+<kw name="Element Should Be Enabled" owner="SeleniumLibrary">
+<arg>xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']</arg>
+<doc>Verifies that element identified by ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-03-12T00:51:42.229585" elapsed="0.029055"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:42.259100" level="INFO">Typing text 'smart' into text field 'xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']'.</msg>
+<arg>xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']</arg>
+<arg>${search_text}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-12T00:51:42.258812" elapsed="0.102448"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-03-12T00:51:45.362327" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-03-12T00:51:42.361451" elapsed="3.001234"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath://table/tbody/tr</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-12T00:51:45.363460" elapsed="0.033986"/>
+</kw>
+<arg>Element Should Be Enabled</arg>
+<arg>xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']</arg>
+<arg>AND</arg>
+<arg>Input Text</arg>
+<arg>xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']</arg>
+<arg>${search_text}</arg>
+<arg>AND</arg>
+<arg>Sleep</arg>
+<arg>3s</arg>
+<arg>AND</arg>
+<arg>Wait Until Page Contains Element</arg>
+<arg>xpath://table/tbody/tr</arg>
+<arg>timeout=10s</arg>
+<doc>Executes all the given keywords in a sequence.</doc>
+<status status="PASS" start="2025-03-12T00:51:42.229462" elapsed="3.168163"/>
+</kw>
+<arg>${search_field_present}</arg>
+<arg>Run Keywords</arg>
+<arg>Element Should Be Enabled</arg>
+<arg>xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']</arg>
+<arg>AND</arg>
+<arg>Input Text</arg>
+<arg>xpath://div[contains(@class, 'dataTables_filter')]//input[@type='search']</arg>
+<arg>${search_text}</arg>
+<arg>AND</arg>
+<arg>Sleep</arg>
+<arg>3s</arg>
+<arg>AND</arg>
+<arg>Wait Until Page Contains Element</arg>
+<arg>xpath://table/tbody/tr</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-03-12T00:51:42.229284" elapsed="3.168709"/>
+</kw>
+<kw name="Run Keyword Unless" owner="BuiltIn">
+<msg time="2025-03-12T00:51:45.398394" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+<arg>${search_field_present}</arg>
+<arg>Log To Console</arg>
+<arg>Search field not found, skipping search</arg>
+<doc>*DEPRECATED since RF 5.0. Use Native IF/ELSE or `Run Keyword If` instead.*</doc>
+<status status="PASS" start="2025-03-12T00:51:45.398324" elapsed="0.001580"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Searched for: ${search_text}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-03-12T00:51:45.400153" elapsed="0.000799"/>
+</kw>
+<arg>${SEARCH_TERM}</arg>
+<status status="PASS" start="2025-03-12T00:51:42.206932" elapsed="3.194171"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<msg time="2025-03-12T00:51:55.688357" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-03-12T00:51:55.688564" level="FAIL">Element 'xpath://table/tbody/tr[td[contains(text(), 'Smart AI System for Research Management')]]' did not appear in 10 seconds.</msg>
+<arg>xpath://table/tbody/tr[td[contains(text(), '${DEMO_NAME}')]]</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="FAIL" start="2025-03-12T00:51:45.401774" elapsed="10.287819">Element 'xpath://table/tbody/tr[td[contains(text(), 'Smart AI System for Research Management')]]' did not appear in 10 seconds.</status>
+</kw>
+<msg time="2025-03-12T00:51:55.689741" level="INFO">${row_found} = False</msg>
+<var>${row_found}</var>
+<arg>Wait Until Page Contains Element</arg>
+<arg>xpath://table/tbody/tr[td[contains(text(), '${DEMO_NAME}')]]</arg>
+<arg>timeout=10s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-03-12T00:51:45.401529" elapsed="10.288238"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>${row_found}</arg>
+<arg>Log To Console</arg>
+<arg>Patent '${DEMO_NAME}' found in table</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-03-12T00:51:55.690085" elapsed="0.000147"/>
+</kw>
+<kw name="Run Keyword Unless" owner="BuiltIn">
+<msg time="2025-03-12T00:51:55.690575" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+<kw name="Run Keywords" owner="BuiltIn">
+<doc>Executes all the given keywords in a sequence.</doc>
+<status status="PASS" start="2025-03-12T00:51:55.691468" elapsed="0.000083"/>
+</kw>
+<arg>${row_found}</arg>
+<arg>Run Keywords</arg>
+<doc>*DEPRECATED since RF 5.0. Use Native IF/ELSE or `Run Keyword If` instead.*</doc>
+<status status="PASS" start="2025-03-12T00:51:55.690540" elapsed="0.001065"/>
+</kw>
+<doc>Verify adding a new patent</doc>
+<status status="PASS" start="2025-03-12T00:51:31.168864" elapsed="24.523018"/>
+</test>
+<kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-03-12T00:51:55.693272" elapsed="2.560195"/>
+</kw>
+<doc>Test Suite for Research Patents Management System</doc>
+<status status="PASS" start="2025-03-12T00:51:25.557416" elapsed="32.696137"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="adminAcademicWorksTestsuite">adminAcademicWorksTestsuite</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-03-12T00:51:34.132661" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+<msg time="2025-03-12T00:51:34.133906" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+<msg time="2025-03-12T00:51:39.485587" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+<msg time="2025-03-12T00:51:42.205669" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+<msg time="2025-03-12T00:51:45.398394" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+<msg time="2025-03-12T00:51:55.690575" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+</errors>
+</robot>

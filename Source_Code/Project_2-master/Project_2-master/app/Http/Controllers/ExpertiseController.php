@@ -3,141 +3,117 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expertise;
-use App\Models\Fund;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ExpertiseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $id = auth()->user()->id;
         if (auth()->user()->hasRole('admin')) {
-            $experts = Expertise::all();
+            $experts = Expertise::orderBy('id', 'asc')->get(); // Order by ID in ascending order
         } else {
-            $experts = Expertise::with('user')->whereHas('user', function ($query) use ($id) {
-                $query->where('users.id', '=', $id);
-            })->paginate(10);
+            $experts = Expertise::with('user')
+                ->whereHas('user', function ($query) use ($id) {
+                    $query->where('users.id', '=', $id);
+                })
+                ->orderBy('id', 'asc') // Order by ID in ascending order
+                ->paginate(10); // Pagination
         }
-
+    
         return view('expertise.index', compact('experts'));
     }
+    
+    
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('expertise.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $r = $request->validate([
-            'expert_name' => 'required',
-
+        $request->validate([
+            'expert_name.*' => 'required|string|max:100',
+            'expert_name_th.*' => 'nullable|string|max:255',
+            'expert_name_zh.*' => 'nullable|string|max:255',
+            'user_id' => 'required|exists:users,id' // Now required for all submissions
         ]);
-        $exp = Expertise::find($request->exp_id);
-        //return $exp;
-        $exp_id = $request->exp_id;
-        //dd($custId);
-        if (auth()->user()->hasRole('admin')) {
-            $exp->update($request->all());
-        } else {
-            $user = User::find(Auth::user()->id);
-            $user->expertise()->updateOrCreate(['id' => $exp_id], ['expert_name' => $request->expert_name]);
+
+        try {
+            $userId = $request->user_id; // Always use the selected user_id
+
+            foreach ($request->expert_name as $index => $name) {
+                $expertiseData = [
+                    'expert_name' => $name,
+                    'expert_name_th' => $request->expert_name_th[$index] ?? null,
+                    'expert_name_zh' => $request->expert_name_zh[$index] ?? null,
+                    'user_id' => $userId,
+                ];
+
+                Expertise::create($expertiseData);
+            }
+
+            return redirect()->route('experts.index')
+                            ->with('success', 'experts.created_success');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                            ->with('error', 'experts.error_occurred')
+                            ->withInput();
         }
-
-        if (empty($request->exp_id))
-            $msg = 'Expertise entry created successfully.';
-        else
-            $msg = 'Expertise data is updated successfully';
-
-        if (auth()->user()->hasRole('admin')) {
-            return redirect()->route('experts.index')->with('success', $msg);
-        } else {
-            //return response()->json(['status'=>1,'msg'=>'Your expertise info has been update successfuly.']);
-            //return redirect()->back() ->with('alert', 'Updated!');
-            return back()->withInput(['tab' => 'expertise']);
-            //return response()->json(['status'=>1,'msg'=>'Your expertise info has been update successfuly.']);
-        }
-
-        //return redirect()->route('experts.index')->with('success',$msg);
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Expertise $expertise)
+    public function edit($id)
     {
-        //return view('expertise.show',compact('expertise'));
-        //$where = array('id' => $id);
-        //$exp = Expertise::where($where)->first();
+        $expertise = Expertise::findOrFail($id);
+        
+        if (!Auth::user()->hasRole('admin') && $expertise->user_id !== Auth::id()) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+        
         return response()->json($expertise);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $where = array('id' => $id);
-        $exp = Expertise::where($where)->first();
-        return response()->json($exp);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'expert_name' => 'required|string|max:100',
+            'expert_name_th' => 'nullable|string|max:255',
+            'expert_name_zh' => 'nullable|string|max:255',
+        ]);
+
+        $expertise = Expertise::findOrFail($id);
+        
+        if (!Auth::user()->hasRole('admin') && $expertise->user_id !== Auth::id()) {
+            return redirect()->route('experts.index')->with('error', 'experts.unauthorized');
+        }
+
+        $expertise->update([
+            'expert_name' => $request->expert_name,
+            'expert_name_th' => $request->expert_name_th,
+            'expert_name_zh' => $request->expert_name_zh,
+        ]);
+
+        return redirect()->route('experts.index')->with('success', 'experts.updated_success');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //dd($id);
-        $exp = Expertise::where('id', $id)->delete();
-        $msg = 'Expertise entry created successfully.';
-        if (auth()->user()->hasRole('admin')) {
-            return redirect()->route('experts.index')->with('success', $msg);
-        } else {
-            //return response()->json(['status'=>1,'msg'=>'Your expertise info has been update successfuly.']);
-            //return redirect()->back() ->with('alert', 'Updated!');
-            return back()->withInput(['tab' => 'expertise']);
-            //return response()->json(['status'=>1,'msg'=>'Your expertise info has been update successfuly.']);
+        $expertise = Expertise::findOrFail($id);
+        
+        if (!Auth::user()->hasRole('admin') && $expertise->user_id !== Auth::id()) {
+            return redirect()->route('experts.index')
+                            ->with('error', 'experts.unauthorized');
         }
-        //return response()->json($exp);
+
+        $expertise->delete();
+        return redirect()->route('experts.index')
+                        ->with('success', 'experts.deleted_success');
     }
 }

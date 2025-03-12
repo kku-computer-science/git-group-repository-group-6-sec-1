@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\paper;
+use App\Models\Paper;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PaperPolicy
@@ -18,19 +18,21 @@ class PaperPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->hasRole('teacher') || $user->hasRole('admin');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\paper  $paper
+     * @param  \App\Models\Paper  $paper
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, paper $paper)
+    public function view(User $user, Paper $paper)
     {
-        //
+        return $user->hasRole('admin') || 
+               $user->hasRole('teacher') || 
+               $paper->teacher()->where('user_id', $user->id)->exists();
     }
 
     /**
@@ -41,78 +43,92 @@ class PaperPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->hasRole('teacher') || $user->hasRole('admin');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\paper  $paper
+     * @param  \App\Models\Paper  $paper
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, paper $paper)
+    public function update(User $user, Paper $paper)
     {
-        // if($user->hasRole('staff')){
-        //     return true;
-        // }
-        // if($user->hasRole('admin')){
-        //     return true;
-        // }
-        $paper=Paper::find($paper->id)->teacher()->where('user_id',$user->id)->first();
-        if($paper){
+        // ให้สิทธิ์แก้ไขเฉพาะเจ้าของหรือ admin
+        if ($user->hasRole('admin')) {
             return true;
         }
-        else{
-            return false;
+
+        $isOwner = $paper->teacher()->where('user_id', $user->id)->exists();
+        if ($isOwner) {
+            return true;
         }
+
+        return false;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\paper  $paper
+     * @param  \App\Models\Paper  $paper
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, paper $paper)
+    public function delete(User $user, Paper $paper)
     {
-        // if($user->hasRole('staff')){
-        //     return true;
-        // }
-        // if($user->hasRole('admin')){
-        //     return true;
-        // }
-        $paper=Paper::find($paper->id)->teacher()->where('user_id',$user->id)->first();
-        if($paper){
+        // ให้สิทธิ์ลบเฉพาะเจ้าของหรือ admin
+        if ($user->hasRole('admin')) {
             return true;
         }
-        else{
-            return false;
+
+        $isOwner = $paper->teacher()->where('user_id', $user->id)->exists();
+        if ($isOwner) {
+            return true;
         }
+
+        return false;
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\paper  $paper
+     * @param  \App\Models\Paper  $paper
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, paper $paper)
+    public function restore(User $user, Paper $paper)
     {
-        //
+        if ($user->hasRole('admin')) {
+            return true;
+        }
+
+        $isOwner = $paper->teacher()->where('user_id', $user->id)->exists();
+        if ($isOwner) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\paper  $paper
+     * @param  \App\Models\Paper  $paper
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, paper $paper)
+    public function forceDelete(User $user, Paper $paper)
     {
-        //
+        if ($user->hasRole('admin')) {
+            return true;
+        }
+
+        $isOwner = $paper->teacher()->where('user_id', $user->id)->exists();
+        if ($isOwner) {
+            return true;
+        }
+
+        return false;
     }
 }

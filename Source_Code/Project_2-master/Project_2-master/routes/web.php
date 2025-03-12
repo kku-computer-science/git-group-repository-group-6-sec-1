@@ -150,6 +150,19 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
     Route::get('/ajax-get-subcat', [UserController::class, 'getCategory']);
     Route::get('tests', [TestController::class, 'index']); //call department
     Route::get('tests/{id}', [TestController::class, 'getCategory'])->name('tests'); //call program
+    Route::post('users/{id}/picture-update', 'UserController@updatePictureUser')->name('userPictureUpdate');
+    Route::post('users/{id}/picture-update', 'AdminController@updateUserPicture')->name('admin.userPictureUpdate');
+    Route::post('/admin/user-picture-update/{id}', [UserController::class, 'updateUserPicture']) 
+    ->name('admin.userPictureUpdate'); 
+    Route::post('/admin/users/store', [UserController::class, 'store'])
+    ->name('users.store');
+
+    Route::post('/admin/update-password/{id}', [AdminController::class, 'updateUserPassword'])->name('admin.updateUserPassword');
+
+
+
+    Route::post('/admin/user/{user}/add-image', [UserController::class, 'addUserImage'])->name('admin.userImageAdd');
+
 
     //เพิ่มส่วนของresearch-assistant
     Route::get('/research-assistant', [ResearchAssistantController::class, 'index'])->name('researchAssistant.index');
@@ -164,7 +177,12 @@ Route::group(['middleware' => ['auth', 'PreventBackHistory']], function () {
 
 });
 
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('/experts', [ExpertiseController::class, 'index'])->name('experts.index');
+    Route::get('/experts/create', [ExpertiseController::class, 'create'])->name('experts.create');
+    Route::post('/experts', [ExpertiseController::class, 'store'])->name('experts.store');
+    Route::delete('/experts/{id}', [ExpertiseController::class, 'destroy'])->name('experts.destroy');
+});
 
 // Route::get('/example/pdf', 'ExampleController@pdf_index');
 /*use App\Http\Controllers\FileUpload;

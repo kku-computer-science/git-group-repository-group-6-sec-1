@@ -24,80 +24,101 @@ ${CH_BUTTON}    xpath=//div[@class='dropdown-menu show']//a[contains(text(), '�
 TC01_Correct_Login
     [Documentation]    ทดสอบการเข้าสู่ระบบด้วย Username และ Password ที่ถูกต้อง ทั้ง 3 ภาษา
     
+    Open Browserr
     # ทดสอบภาษาอังกฤษ
     Change Language To English
-    Open Browserr
-    # Verify Login Success    Login
-    # Verify Login Success    Username
-    # Verify Login Success    Password
-    # Verify Login Success    Remember Me
-    # Verify Login Success    If you forgot your password, please contact the system administrator.
-    # Verify Login Success    For first-time students, log in with your student ID.
+    Verify Login Success    Login
+    Verify Login Success    Username
+    Verify Login Success    Password
+    Verify Login Success    Remember Me
+    Verify Login Success    If you forgot your password, please contact the system administrator.
+    Verify Login Success    For first-time students, log in with your student ID.
+    Verify Login Success    Login Failed: Your user ID or password is incorrect
     Login Input Correct
     Click Logout
     
     # ทดสอบในภาษาไทย
     Change Language To Thai
-    Open Browserr
-    # Verify Login Success    เข้าสู่ระบบ
-    # Verify Login Success    ชื่อผู้ใช้
-    # Verify Login Success    รหัสผ่าน
-    # Verify Login Success    จดจำฉัน
-    # Verify Login Success    หากคุณลืมรหัสผ่าน โปรดติดต่อผู้ดูแลระบบ
-    # Verify Login Success    ใช้ KKU-Mail ของคุณในการเข้าสู่ระบบ
-    # Verify Login Success    สำหรับนักศึกษาครั้งแรก กรุณาเข้าสู่ระบบด้วยรหัสนักศึกษา
+    Verify Login Success    เข้าสู่ระบบ
+    Verify Login Success    ชื่อผู้ใช้
+    Verify Login Success    รหัสผ่าน
+    Verify Login Success    จดจำฉัน
+    Verify Login Success    หากคุณลืมรหัสผ่าน โปรดติดต่อผู้ดูแลระบบ
+    Verify Login Success    การเข้าสู่ระบบล้มเหลว: รหัสผู้ใช้หรือรหัสผ่านของคุณไม่ถูกต้อง
+    Verify Login Success    สำหรับนักศึกษาครั้งแรก กรุณาเข้าสู่ระบบด้วยรหัสนักศึกษา
     Login Input Correct
     Click Logout
     
     # ทดสอบในภาษาจีน
     Change Language To Chinese
-    Open Browserr
-    # Verify Login Success    登入
-    # Verify Login Success    用户名
-    # Verify Login Success    密码
-    # Verify Login Success    记住我
-    # Verify Login Success    如果您忘记了密码，请联系系统管理员。
-    # Verify Login Success    使用您的 KKU-Mail 登入
-    # Verify Login Success    對於首次入學的學生，請使用學生證登入。
+    Verify Login Success    登入
+    Verify Login Success    用户名
+    Verify Login Success    密码
+    Verify Login Success    记住我
+    Verify Login Success    如果您忘记了密码，请联系系统管理员。
+    Verify Login Success    對於首次入學的學生，請使用學生證登入。
+    Verify Login Success    登入失败：您的用户 或密码不正确
     Login Input Correct
     Click Logout
+
+    Close Browser
 
 
 TC02_Correct_Login_Admin
     [Documentation]    ทดสอบการเข้าสู่ระบบด้วย Username และ Password ของ Admin
+    Open Browser
     Change Language To English
-    Open Browserr
+    Verify Login Success    Login
+    Verify Login Success    Username
+    Verify Login Success    Password
+    Verify Login Success    Remember Me
+    Verify Login Success    If you forgot your password, please contact the system administrator.
+    Verify Login Success    For first-time students, log in with your student ID.
+    Verify Login Success    Login Failed: Your user ID or password is incorrect
     Login Input Correct Admin
     Click Logout
 
     Change Language To Thai
-    Open Browserr
+    Verify Login Success    เข้าสู่ระบบ
+    Verify Login Success    ชื่อผู้ใช้
+    Verify Login Success    รหัสผ่าน
+    Verify Login Success    จดจำฉัน
+    Verify Login Success    หากคุณลืมรหัสผ่าน โปรดติดต่อผู้ดูแลระบบ
+    Verify Login Success    การเข้าสู่ระบบล้มเหลว: รหัสผู้ใช้หรือรหัสผ่านของคุณไม่ถูกต้อง
+    Verify Login Success    สำหรับนักศึกษาครั้งแรก กรุณาเข้าสู่ระบบด้วยรหัสนักศึกษา
     Login Input Correct Admin
     Click Logout
 
     Change Language To Chinese
-    Open Browserr
+    Verify Login Success    登入
+    Verify Login Success    用户名
+    Verify Login Success    密码
+    Verify Login Success    记住我
+    Verify Login Success    如果您忘记了密码，请联系系统管理员。
+    Verify Login Success    對於首次入學的學生，請使用學生證登入。
+    Verify Login Success    登入失败：您的用户 或密码不正确
     Login Input Correct Admin
-
     Click Logout
+
+    Close Browser
 
 TC03_Incorrect_Login   
     [Documentation]    ทดสอบการเข้าสู่ระบบด้วย Username และ Password ที่ไม่ถูกต้อง
-    Change Language To English
     Open Browserr
+    Change Language To English
     Login Input Incorrect
     Click Logout
 
     Change Language To Thai
-    Open Browserr
     Login Input Incorrect
     Click Logout
 
     Change Language To Chinese
-    Open Browserr
     Login Input Incorrect
 
     Click Logout
+
+    Close Browser
 
 
 *** Keywords ***
@@ -147,19 +168,19 @@ Reset Language To English
 
 Change Language To English
     Go To    ${Base_URL}/lang/en
-    Sleep    2s
+    Sleep    5s
     Reload Page
     Wait Until Page Contains    Login    5s
 
 Change Language To Thai
     Go To    ${Base_URL}/lang/th
-    Sleep    2s
+    Sleep    5s
     Reload Page
     Wait Until Page Contains    เข้าสู่ระบบ    5s
 
 Change Language To Chinese
     Go To    ${Base_URL}/lang/zh
-    Sleep    2s
+    Sleep    5s
     Reload Page
     Wait Until Page Contains    登入    5s
 
@@ -167,3 +188,10 @@ Verify Login Success
     [Arguments]    ${expected_text}
     Page Should Contain    ${expected_text}    10s
     Log To Console    Verified text: ${expected_text}
+
+Verify Dashboard Admin
+    [Arguments]    ${expected_text}
+    Title Should Be    Dashboard - Your Application Name
+    Page Should Contain    ${expected_text}    10s
+    Log To Console    Verified text: ${expected_text}
+

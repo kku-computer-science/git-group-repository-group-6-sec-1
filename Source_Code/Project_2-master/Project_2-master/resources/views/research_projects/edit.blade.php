@@ -122,7 +122,7 @@
                     <table class="table" id="dynamicAddRemove">
                         <tr>
                             <th width="522.98px">
-                                {{ __('research_projects.label.project_member') }} 
+                                {{ __('research_projects.label.project_member') }}
                                 ({{ __('research_projects.label.project_member_within') }})
                             </th>
                             <th><button type="button" name="add" id="add-btn2" class="btn btn-success btn-sm add"><i class="mdi mdi-plus"></i></button></th>

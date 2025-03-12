@@ -2,10 +2,10 @@
 return [
     'no' => '编号',
     'year' => '年份',
-    'paper_name' => '论文名称',
+    'paper_name' => '论文题目',
     'author' => '作者',
     'doc_types' => '文档类型',
-    'pages' => '页面数',
+    'pages' => '页',
     'journals' => '期刊/會議',
     'citation' => '引用',
     'doi' => 'DOI',

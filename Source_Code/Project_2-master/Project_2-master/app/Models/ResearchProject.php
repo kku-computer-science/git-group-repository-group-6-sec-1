@@ -31,3 +31,4 @@ class ResearchProject extends Model
     }
 
 }
+

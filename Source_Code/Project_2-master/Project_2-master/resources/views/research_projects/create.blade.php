@@ -73,13 +73,21 @@
                     </div>
                 </div>
                 <div class="form-group row mt-2">
-                    <label class="col-sm-2">{{ __('research_projects.label.support_resource') }}</label>
+                    <label class="col-sm-2">{{ ('research_projects.label.support_resource') }}</label>
                     <div class="col-sm-9">
                         <select id="dep" style="width: 200px;" class="custom-select my-select" name="responsible_department">
-                            <option value="" disabled selected>{{ __('research_projects.select_fund') }}</option>
+                            <option value="" disabled selected>{{ ('research_projects.select_fund') }}</option>
                             @foreach($deps as $dep)
-                                <option value="{{ $dep->department_name_th }}">{{ $dep->department_name_th }}</option>
-                            @endforeach
+                            <option value="{{ $dep->department_name_th }}">
+                                @if(app()->getLocale() == 'en' || app()->getLocale() == 'zh')
+                                    {{ $dep->department_name_en }}
+                                @elseif(app()->getLocale() == 'th')
+                                    {{ $dep->department_name_th }}
+                                @else
+                                    {{ $dep->department_name_en }} <!-- ค่าเริ่มต้นเป็นอังกฤษ -->
+                                @endif
+                            </option>
+                        @endforeach
                         </select>
                     </div>
                 </div>
@@ -94,9 +102,9 @@
                     <div class="col-sm-3">
                         <select id="status" class="custom-select my-select" name="status">
                             <option value="" disabled selected>{{ __('research_projects.select_status') }}</option>
-                            <option value="1">ยื่นขอ</option>
-                            <option value="2">ดำเนินการ</option>
-                            <option value="3">ปิดโครงการ</option>
+                            <option value="1">{{ __('research_projects.status_1') }}</option>
+                            <option value="2">{{ __('research_projects.status_2') }}</option>
+                            <option value="3">{{ __('research_projects.status_3') }}</option>
                         </select>
                     </div>
                 </div>

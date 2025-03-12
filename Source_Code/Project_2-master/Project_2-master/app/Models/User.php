@@ -35,7 +35,8 @@ class User extends Authenticatable
         'picture',
         'status',
         'program_id',
-        'username'
+        'username',
+        'title_name_zh',
         
     ];
 
@@ -103,13 +104,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(Expertise::class);
     }
-
-    public function education()
-    {
-        return $this->hasMany(Education::class);
-    }
     public function fund()
     {
         return $this->hasMany(Fund::class);
     }
+
+    public function isAdmin()
+    {
+        return $this->hasRole('admin');
+    }
+    public function education()
+    {
+    return $this->hasMany(Education::class);  // Assuming 'Education' is your related model.
+    }
+
 }

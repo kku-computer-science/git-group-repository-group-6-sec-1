@@ -7,7 +7,7 @@ ${MAIN_PAGE_URL}    http://127.0.0.1:8000/
 ${LOGIN_URL}        http://127.0.0.1:8000/login 
 ${USERNAME}         admin@gmail.com
 ${PASSWORD}         12345678
-${BROWSER}          Edge
+${BROWSER}          Firefox
 ${DELAY}           1s
 
 *** Test Cases ***
@@ -23,7 +23,7 @@ Start At Main Page And Go To Login
 Admin User Can Login Successfully
     Input Text      name=username    ${USERNAME}
     Input Text      name=password    ${PASSWORD}
-    Click Button    xpath=//button[@type='submit' and contains(text(), 'Log In')]
+    Click Button    xpath=//button[@type='submit' and contains(text(), 'Login')]
     Sleep    ${DELAY}
     Wait Until Page Contains    Dashboard    timeout=5s
     Sleep    ${DELAY}

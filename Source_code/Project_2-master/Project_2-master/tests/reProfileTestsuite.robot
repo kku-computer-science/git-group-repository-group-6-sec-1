@@ -73,7 +73,7 @@ Login To System
     Log To Console    Found username field
     Input Text    id=username    ${USERNAME}
     Input Text    id=password    ${PASSWORD}
-    Click Button    xpath=//button[@type='submit']
+    Click Button    xpath=//button[@type='submit' and contains(text(), 'Login')]
     ${status}=    Run Keyword And Return Status    Wait Until Location Contains    ${DASHBOARD_URL}    timeout=10s
     Run Keyword If    not ${status}    Fail    Login failed or dashboard not loaded
     Log To Console    Login successful, redirected to: ${DASHBOARD_URL}
