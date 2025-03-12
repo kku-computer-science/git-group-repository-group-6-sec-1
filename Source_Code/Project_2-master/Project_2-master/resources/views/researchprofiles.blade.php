@@ -185,7 +185,7 @@
                     </tr> -->
 
                         <!-- Table Summary -->
-                    
+
                     <tr>
                         <th>{{__('researcher_details.no')}}</th>
                         <th>{{__('researcher_details.year')}}</th>
@@ -666,7 +666,7 @@
     async function myFunction() {
         var res = <?php echo $res; ?>;
         //var fname = res.fname_en;
-        //var fname = res.fname_en.substr(0, 1); 
+        //var fname = res.fname_en.substr(0, 1);
         //console.log(fname);
         //const response = await fetch('https://api.elsevier.com/content/search/scopus?query=AUTHOR-NAME('+ res.lname_en +','+fname+')%20&apikey=6ab3c2a01c29f0e36b00c8fa1d013f83&httpAccept=application%2Fjson');
         const response = await fetch('https://api.elsevier.com/content/search/author?query=authlast(' + res.lname_en +
@@ -727,22 +727,22 @@
         let sum = sumsco + sumtci + sumwos + sumbook + sumpatent;
 
         //$("#scopus").append('data-to="100"');
-        document.getElementById("all").innerHTML += `   
+        document.getElementById("all").innerHTML += `
                 <h2 class="timer count-title count-number" data-to="${sum}" data-speed="1500"></h2>
                 <p class="count-text ">{{ trans('reference.summary') }}</p>`
 
-        document.getElementById("scopus_sum").innerHTML += `   
+        document.getElementById("scopus_sum").innerHTML += `
                 <h2 class="timer count-title count-number" data-to="${sumsco}" data-speed="1500"></h2>
                 <p class="count-text">SCOPUS</p>`
 
-        document.getElementById("wos_sum").innerHTML += `    
+        document.getElementById("wos_sum").innerHTML += `
                 <h2 class="timer count-title count-number" data-to="${sumwos}" data-speed="1500"></h2>
                 <p class="count-text ">WOS</p>`
 
-        document.getElementById("tci_sum").innerHTML += `  
+        document.getElementById("tci_sum").innerHTML += `
                 <h2 class="timer count-title count-number" data-to="${sumtci}" data-speed="1500"></h2>
                 <p class="count-text ">TCI</p>`
-            
+
 
 
         //document.getElementById("scopus").appendChild('data-to="100"');

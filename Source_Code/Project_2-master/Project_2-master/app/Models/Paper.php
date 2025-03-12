@@ -9,7 +9,7 @@ class Paper extends Model
 {
     use HasFactory;
     protected $hidden = [
-        
+
         'pivot'
     ];
     protected $fillable = [
@@ -30,7 +30,7 @@ class Paper extends Model
         'abstract',
         'keyword',
         'publication'
-    
+
     ];
     protected $casts = [
         'keyword' => 'array',
@@ -50,3 +50,4 @@ class Paper extends Model
         // OR return $this->hasOne('App\Phone');
     }
 }
+

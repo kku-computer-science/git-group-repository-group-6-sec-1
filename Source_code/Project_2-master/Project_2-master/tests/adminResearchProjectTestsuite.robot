@@ -6,10 +6,11 @@ Suite Setup      Open Browser And Login
 Suite Teardown   Close All Browsers
 
 *** Variables ***
-${LOGIN_URL}      http://127.0.0.1:8000/login
-${DASHBOARD_URL}  http://127.0.0.1:8000/dashboard
-${INDEX_URL}      http://127.0.0.1:8000/researchProjects
-${CREATE_URL}     http://127.0.0.1:8000/researchProjects/create
+${BASE_URL}       https://cs6sec267.cpkkuhost.com
+${LOGIN_URL}      ${BASE_URL}/login
+${DASHBOARD_URL}  ${BASE_URL}/dashboard
+${INDEX_URL}      ${BASE_URL}/researchProjects
+${CREATE_URL}     ${BASE_URL}/researchProjects/create
 ${BROWSER}        chrome
 ${USERNAME}       admin@gmail.com
 ${PASSWORD}       12345678
@@ -48,7 +49,7 @@ TC02 - Add New Research Project
 
     # ✅ Step 7: เลือกสาขาวิชาวิทยาการคอมพิวเตอร์ (Responsible Department)
     Wait Until Element Is Visible    id=dep    timeout=10s
-    Select From List By Label    id=dep    Department of Computer Science
+    Select From List By Label    id=dep    College of Computing
 
     # ✅ Step 8: กรอก Project Detail (Note)
     Input Text    name=note    รายละเอียดโครงการทดสอบ
