@@ -5,11 +5,12 @@ Suite Setup      Open Browser And Login
 Suite Teardown   Close All Browsers
 
 *** Variables ***
-${LOGIN_URL}      http://127.0.0.1:8000/login
-${FUNDS_URL}      http://127.0.0.1:8000/funds
-${CREATE_URL}     http://127.0.0.1:8000/funds/create
-${VIEW_URL}       http://127.0.0.1:8000/funds/2
-${EDIT_URL}       http://127.0.0.1:8000/funds/eyJpdiI6InB6WTNiaDQ0VnJrMHFnQVF5bW1ERFE9PSIsInZhbHVlIjoiVVVnSHNVYjBveVVUUWZHRkc0VUQ4UT09IiwibWFjIjoiNDg0YjNmMzI5MzVmZjFlMjY2MGE2ZjI0MDNkZmUzY2JjYzY3MjcyZGU1ZDEyZDA0NmRlZWJiMzU4Zjg4MWFiYyIsInRhZyI6IiJ9/edit
+${BASE_URL}       https://cs6sec267.cpkkuhost.com
+${LOGIN_URL}      ${BASE_URL}/login
+${FUNDS_URL}      ${BASE_URL}/funds
+${CREATE_URL}     ${BASE_URL}/funds/create
+${VIEW_URL}       ${BASE_URL}/funds/2
+${EDIT_URL}       ${BASE_URL}/funds/eyJpdiI6InB6WTNiaDQ0VnJrMHFnQVF5bW1ERFE9PSIsInZhbHVlIjoiVVVnSHNVYjBveVVUUWZHRkc0VUQ4UT09IiwibWFjIjoiNDg0YjNmMzI5MzVmZjFlMjY2MGE2ZjI0MDNkZmUzY2JjYzY3MjcyZGU1ZDEyZDA0NmRlZWJiMzU4Zjg4MWFiYyIsInRhZyI6IiJ9/edit
 ${BROWSER}        chrome
 ${USERNAME}       pusadee@kku.ac.th
 ${PASSWORD}       123456789

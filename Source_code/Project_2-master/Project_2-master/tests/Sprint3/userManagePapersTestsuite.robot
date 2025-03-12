@@ -5,9 +5,10 @@ Suite Setup       Open Browser And Login
 Suite Teardown    Close All Browsers
 
 *** Variables ***
-${LOGIN_URL}             http://localhost:8000/login
-${PAPERS_URL}            http://localhost:8000/papers
-${CREATE_URL}            http://localhost:8000/papers/create
+${BASE_URL}              https://cs6sec267.cpkkuhost.com
+${LOGIN_URL}             ${BASE_URL}/login
+${PAPERS_URL}            ${BASE_URL}/papers
+${CREATE_URL}            ${BASE_URL}/papers/create
 ${BROWSER}               chrome
 ${USERNAME}              pusadee@kku.ac.th
 ${PASSWORD}              123456789
