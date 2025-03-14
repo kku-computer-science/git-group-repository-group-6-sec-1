@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.13.2 on win32)" generated="2025-03-11T21:47:18.396887" rpa="false" schemaversion="5">
+<suite id="s1" name="adminExpertsTestsuite" source="C:\Users\pond2\OneDrive\Desktop\soft en\git-group-repository-group-6-sec-1\Source_code\Project_2-master\Project_2-master\tests\adminExpertsTestsuite.robot">
+<test id="s1-t1" name="Test Admin Can Access Main Page And Login" line="34">
+<kw name="Open Main Page And Go To Login">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-11T21:47:18.655359" level="INFO">Opening browser 'Edge' to base url 'http://127.0.0.1:8000/'.</msg>
+<arg>${MAIN_PAGE_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-03-11T21:47:18.655076" elapsed="2.676381"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-03-11T21:47:21.331842" elapsed="0.075198"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2025-03-11T21:47:21.407679" level="INFO">Clicking link 'xpath=//a[contains(text(), 'Login')]'.</msg>
+<arg>xpath=//a[contains(text(), 'Login')]</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-11T21:47:21.407257" elapsed="0.261561"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//a[contains(text(), 'Login')]</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-11T21:47:21.669313" elapsed="0.036003"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2025-03-11T21:47:27.108271" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-03-11T21:47:27.108549" level="FAIL">Element 'name=username' not visible after 5 seconds.</msg>
+<arg>name=username</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2025-03-11T21:47:21.705641" elapsed="5.407392">Element 'name=username' not visible after 5 seconds.</status>
+</kw>
+<status status="FAIL" start="2025-03-11T21:47:18.654332" elapsed="8.458955">Element 'name=username' not visible after 5 seconds.</status>
+</kw>
+<kw name="Login As Admin">
+<status status="NOT RUN" start="2025-03-11T21:47:27.113924" elapsed="0.000088"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-03-11T21:47:27.115043" elapsed="2.312930"/>
+</kw>
+<doc>Verify admin can access main page and login successfully</doc>
+<status status="FAIL" start="2025-03-11T21:47:18.653407" elapsed="10.774877">Element 'name=username' not visible after 5 seconds.</status>
+</test>
+<test id="s1-t2" name="Test Navigation To Experts Page" line="40">
+<kw name="Open Main Page And Go To Login">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-11T21:47:29.431761" level="INFO">Opening browser 'Edge' to base url 'http://127.0.0.1:8000/'.</msg>
+<msg time="2025-03-11T21:47:30.827063" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<arg>${MAIN_PAGE_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="FAIL" start="2025-03-11T21:47:29.431507" elapsed="1.395793">Execution terminated by signal</status>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="NOT RUN" start="2025-03-11T21:47:30.827725" elapsed="0.000081"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<arg>xpath=//a[contains(text(), 'Login')]</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-03-11T21:47:30.828038" elapsed="0.000066"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//a[contains(text(), 'Login')]</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="NOT RUN" start="2025-03-11T21:47:30.828327" elapsed="0.000062"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>name=username</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2025-03-11T21:47:30.828644" elapsed="0.000063"/>
+</kw>
+<status status="FAIL" start="2025-03-11T21:47:29.431132" elapsed="1.397788">Execution terminated by signal</status>
+</kw>
+<kw name="Login As Admin">
+<status status="NOT RUN" start="2025-03-11T21:47:30.829459" elapsed="0.000070"/>
+</kw>
+<kw name="Navigate To Experts">
+<status status="NOT RUN" start="2025-03-11T21:47:30.830247" elapsed="0.000072"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<arg>xpath=//table[@id='example1']</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="NOT RUN" start="2025-03-11T21:47:30.830684" elapsed="0.000058"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-03-11T21:47:30.831235" elapsed="0.000241"/>
+</kw>
+<doc>Verify admin can navigate to experts page after login</doc>
+<status status="FAIL" start="2025-03-11T21:47:29.430501" elapsed="1.401434">Execution terminated by signal</status>
+</test>
+<test id="s1-t3" name="Test Add Expert Button Visibility" line="48">
+<doc>Verify add expert button is visible for admin</doc>
+<tag>robot:exit</tag>
+<status status="FAIL" start="2025-03-11T21:47:30.833711" elapsed="0.000906">Test execution stopped due to a fatal error.</status>
+</test>
+<test id="s1-t4" name="Test Expert Table Structure" line="56">
+<doc>Verify experts table contains correct columns</doc>
+<tag>robot:exit</tag>
+<status status="FAIL" start="2025-03-11T21:47:30.835789" elapsed="0.000404">Test execution stopped due to a fatal error.</status>
+</test>
+<test id="s1-t5" name="Test Edit Expert Button Functionality" line="67">
+<doc>Verify edit button opens the modal</doc>
+<tag>robot:exit</tag>
+<status status="FAIL" start="2025-03-11T21:47:30.837413" elapsed="0.000376">Test execution stopped due to a fatal error.</status>
+</test>
+<test id="s1-t6" name="Test Delete Confirmation Appears" line="78">
+<doc>Verify delete button shows confirmation</doc>
+<tag>robot:exit</tag>
+<status status="FAIL" start="2025-03-11T21:47:30.838694" elapsed="0.000427">Test execution stopped due to a fatal error.</status>
+</test>
+<doc>To test the admin expertise management page functionality</doc>
+<status status="FAIL" start="2025-03-11T21:47:18.398515" elapsed="12.442193"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="6" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="2" skip="0" info="combined" combined="NOT robot:exit">NOT robot:exit</stat>
+</tag>
+<suite>
+<stat pass="0" fail="6" skip="0" id="s1" name="adminExpertsTestsuite">adminExpertsTestsuite</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

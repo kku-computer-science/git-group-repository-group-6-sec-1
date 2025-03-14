@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="6.669938">
+    <testsuite name="Browser Test Suite" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="6.669938">
+      <testsuite name="Tests\Browser\TC01_LoginTest" file="C:\Users\bodin\git-group-repository-group-6-sec-1\Source_Code\Project_2-master\Project_2-master\tests\Browser\TC01_LoginTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="5.097546">
+        <testcase name="testUserCanLogin" class="Tests\Browser\TC01_LoginTest" classname="Tests.Browser.TC01_LoginTest" file="C:\Users\bodin\git-group-repository-group-6-sec-1\Source_Code\Project_2-master\Project_2-master\tests\Browser\TC01_LoginTest.php" line="16" assertions="1" time="5.097546">
+          <system-out>
+</system-out>
+        </testcase>
+      </testsuite>
+      <testsuite name="Tests\Browser\TC02_LoginWrongUsernameTest" file="C:\Users\bodin\git-group-repository-group-6-sec-1\Source_Code\Project_2-master\Project_2-master\tests\Browser\TC02_LoginWrongUsernameTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="1.572392">
+        <testcase name="testUserLoginWithWrongUsername" class="Tests\Browser\TC02_LoginWrongUsernameTest" classname="Tests.Browser.TC02_LoginWrongUsernameTest" file="C:\Users\bodin\git-group-repository-group-6-sec-1\Source_Code\Project_2-master\Project_2-master\tests\Browser\TC02_LoginWrongUsernameTest.php" line="16" assertions="1" time="1.572392">
+          <system-out>
+</system-out>
+        </testcase>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
